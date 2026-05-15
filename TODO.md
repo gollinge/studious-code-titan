@@ -26,30 +26,30 @@ A r### Modules & Comprehension Practicals *(new)*
 - [ ] **Decide on module groupings** — sketch out which existing (and planned) lessons belong in each module and what each practical challenge will be
 
 ### Navigation & Progress
-- [ ] **Home screen (Module Overview)** — replaces current lesson list; vertical stack of module cards showing title, type badge (`Reading` / `Coding`), progress bar (e.g. "2 / 4 lessons"), and status (`Not started` / `In progress` / `Complete`)
-- [ ] **Module Detail Screen** — shows ordered lesson rows with status icons (✅ complete · 🔵 current · 🔒 locked); "Continue" button jumps to current lesson; practical row locked until all lessons complete
-- [ ] **Breadcrumb** — `Module N › Lesson N` breadcrumb in lesson view; back arrow returns to Module Detail Screen
+- [x] **Home screen (Module Overview)** — replaces current lesson list; vertical stack of module cards showing title, type badge (`Reading` / `Coding`), progress bar (e.g. "2 / 4 lessons"), and status (`Not started` / `In progress` / `Complete`)
+- [x] **Module Detail Screen** — shows ordered lesson rows with status icons (✅ complete · 🔵 current · 🔒 locked); "Continue" button jumps to current lesson; practical row locked until all lessons complete
+- [x] **Breadcrumb** — `Module N › Lesson N` breadcrumb in lesson view; back arrow returns to Module Detail Screen
 - [ ] **"Next Lesson →" button** — appears in lesson view only after lesson is marked complete
-- [ ] **Lock / unlock rules:**
+- [x] **Lock / unlock rules:**
   - Completed lessons: always re-visitable
   - Current lesson (first incomplete): unlocked
   - Any future lesson: locked
   - Module practical: locked until all lessons in module complete
   - Next module: locked until practical complete
-- [ ] **Lesson completion triggers:**
+- [x] **Lesson completion triggers:**
   - Reading lesson *with* quiz: quiz submission auto-completes the lesson
   - Reading lesson *without* quiz: a **"Finish"** button on the last content card auto-completes the lesson (no separate "mark complete" step)
   - Coding lesson: a **"Mark as complete"** button, always visible once the lesson is open (manual, no auto-check for now)
   - Quiz/practical: submitting all answers auto-completes
-- [ ] **`useProgress` hook** — owns all progress reads/writes; single source of truth
-- [ ] **Progress persistence** — save to `localStorage` under key `studious-progress`; shape:
+- [x] **`useProgress` hook** — owns all progress reads/writes; single source of truth
+- [x] **Progress persistence** — save to `localStorage` under key `studious-progress`; shape:
   ```json
   {
     "module1": { "lesson-0a": "complete", "lesson-0b": "in-progress", "practical": "locked" },
     "module2": { "lesson-1": "locked" }
   }
   ```
-- [ ] **Stable lesson IDs** — each lesson must have an `id` (e.g. `"module1-lesson-0a"`) that matches the progress key; defined in curriculum data, never changes
+- [x] **Stable lesson IDs** — each lesson must have an `id` (e.g. `"module1-lesson-0a"`) that matches the progress key; defined in curriculum data, never changes
 
 ---
 
@@ -66,65 +66,28 @@ A r### Modules & Comprehension Practicals *(new)*
 **Goal:** Build mental models before any coding begins.
 
 #### Lesson 0a — Introduction to Programming *(type: reading)*
-- [ ] Write content as short ContentCards (~30s read each), one concept per card:
-  - What programming is
-  - What a program is (step-by-step instructions)
-  - Instructions and logic
-  - Real-world examples kids relate to (games, apps, robots)
-  - Input → processing → output mental model
-- [ ] Write 3–5 quiz questions (multiple choice + true/false):
-  - Match examples to "program" vs "not a program"
-  - Reading comprehension questions
+- [x] Write content as short ContentCards (~30s read each), one concept per card
+- [x] Write 4 quiz questions (multiple choice + true/false)
 
 #### Lesson 0b — How Computers Follow Instructions *(type: reading)*
-- [ ] Write content as short ContentCards:
-  - Precision matters — computers are literal
-  - Order matters — sequence is everything
-  - Exact vs vague instructions (sandwich-making analogy, robot movement, game rules)
-  - This prevents "why isn't it working?" frustration later
-- [ ] Write 3–5 quiz questions (multiple choice + true/false)
+- [x] Write content as short ContentCards
+- [x] Write 4 quiz questions (multiple choice + true/false)
 
 #### Lesson 0c — Introduction to Python *(type: reading)*
-- [ ] Write content as short ContentCards:
-  - What Python is and why beginners use it
-  - Readable syntax — it looks almost like English
-  - What kinds of things use Python (YouTube, games, NASA scripts etc.)
-  - Teaser code snippets — immediately interpretable, playful:
-    - `print("Welcome to Python!")`
-    - `name = "Alex"\nprint(name + " found a treasure chest!")`
-  - Do NOT use abstractions like function definitions in prose
-- [ ] Write 3–5 quiz questions:
-  - Identify Python examples
-  - Predict what simple code does
-  - Reading comprehension
+- [x] Write content as short ContentCards (no quiz → Finish button on last card)
 
 #### Module 1 Practical
 - [ ] Combined comprehension quiz covering all three lessons
 
 ### Cross-cutting Lesson Work
-- [ ] **Curriculum file structure** — one file per lesson, one `index.ts` per module, assembled by `curriculum.ts`:
-  ```
-  src/data/curriculum/
-    module1/
-      index.ts        ← module metadata (title, type, goal)
-      lesson-0a.ts    ← Intro to Programming
-      lesson-0b.ts    ← How Computers Follow Instructions
-      lesson-0c.ts    ← Intro to Python
-    module2/
-      index.ts
-      lesson-1.ts     ← print()
-      lesson-2.ts     ← Variables
-      ...
-  curriculum.ts       ← assembles all modules in order; app imports from here
-  ```
-- [ ] **Curriculum hierarchy** — implement `Course → Module → Lesson → ContentCard + Quiz` structure in data model
-- [ ] **`LessonType`** — define as `"reading" | "coding" | "quiz" | "hybrid"` in `types.ts`
-- [ ] **`ContentCard` type** — `{ id, type: "text"|"image"|"callout"|"code"|"quiz-preview", title?, body }` — cards are the atomic unit of lesson content, not markdown blobs
+- [x] **Curriculum file structure** — JSON files per lesson + module, assembled by `loader.ts`
+- [x] **Curriculum hierarchy** — `Course → Module → Lesson → ContentCard + Quiz` in data model
+- [x] **`LessonType`**, **`ContentCard`**, **`QuizQuestion`**, **`ModuleConfig`**, **`LessonConfig`** — all defined in `types.ts`
 - [ ] **`Lesson` schema** — add `moduleId`, `type: LessonType`, `content: ContentCard[]`, `quiz?: QuizQuestion[]`, `solutionCode?`; make `starterCode` optional (not present for reading lessons)
 - [ ] **Migrate existing `lessons.ts`** — move lesson 1–8 content into `module2/lesson-N.ts` files; keep `lessons.ts` as a temporary re-export until App.tsx is updated
-- [ ] **Read-only lesson UI mode** — content card reader with a "Continue" button; no editor
-- [ ] **Reading comprehension quiz UI** — mix of multiple choice and true/false; 3–5 questions; shows explanation after each answer
-- [ ] **Module type field** — distinguish `reading` modules (quiz practical) from `coding` modules (coding practical)
+- [x] **Read-only lesson UI mode** — content card reader with Finish/Next buttons; no editor
+- [x] **Reading comprehension quiz UI** — multiple choice and true/false; shows explanation after each answer
+- [x] **Module type field** — `reading` vs `coding` modules distinguished in data and UI
 
 ### Lesson 1: print()
 - [x] Expand concept — "print() is a command that makes Python display a message on the screen. The parentheses () mean 'do this action now.' Anything inside quotes \" \" is text and Python will show it exactly as typed."

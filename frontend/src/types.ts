@@ -29,6 +29,8 @@ export type QuizQuestion = {
   explanation: string
 }
 
+export type LessonStatus = 'locked' | 'in-progress' | 'complete'
+
 export type ModuleConfig = {
   id: string
   title: string
