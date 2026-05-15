@@ -1,16 +1,13 @@
 {
   "id": "module2",
-  "title": "Python Basics",
+  "title": "Your First Python Programs",
   "type": "coding",
-  "goal": "Write your first Python programs using print, variables, math, and more.",
+  "goal": "Learn how to edit, run, and observe Python code — and feel what it's like to make the computer do things.",
   "lessonIds": [
-    "print",
-    "variables",
-    "math",
-    "if",
-    "loops",
-    "functions",
-    "lists",
-    "turtle"
+    "module2-1a",
+    "module2-1b",
+    "module2-1c",
+    "module2-1d",
+    "module2-final"
   ]
 }

@@ -174,3 +174,39 @@ type LessonGoal = "concept" | "guided-practice" | "open-practice" | "project"
 - `project` — multi-concept, open-ended, student-driven; used for module practicals
 
 **Rationale:** As lessons get to loops, functions, and lists, the distinction between "follow the scaffold" and "design something yourself" becomes pedagogically significant. This field lets the UI and progression logic treat them differently without adding new lesson types.
+
+---
+
+## Module 2 — "Your First Python Programs"
+
+### 2026-05-15 — Module 2 rebuilt from scratch around confidence, not concepts
+**Decision:** The original Module 2 lessons (print, variables, math, if, loops, functions, lists, turtle) were archived. Module 2 is now 4 lessons + 1 final project, covering only: `print()`, strings, variables, and string concatenation with `+`.
+
+Lessons:
+- `module2-1a` — Running Your First Program (`concept`)
+- `module2-1b` — Telling Stories with Python (`guided-practice`)
+- `module2-1c` — Variables (`guided-practice`)
+- `module2-1d` — Making Programs Dynamic (`guided-practice`)
+- `module2-final` — Mini Adventure Intro (`project`)
+
+**Rationale:** Module 2 is the transition from "understanding programming" to "successfully writing code." The primary goal is confidence and positive feedback loops, not depth. Avoided: loops, functions, conditionals, lists, heavy terminology, complex math, formal CS explanations.
+
+### 2026-05-15 — Editor starts with an objective comment, not starter code
+**Decision:** The code editor opens with a single Python comment stating the lesson objective (e.g. `# Make the computer display a message using print()`). The starter code is not pre-filled — it is available as hint 0 so the child has to actively ask for it.
+
+**Rationale:** Pre-filling the answer removes the "I did it" moment. The comment gives just enough direction without doing the work for them. Starter code as a hint means it's one tap away for children who need scaffolding.
+
+### 2026-05-15 — Card summaries shown in editor sidebar
+**Decision:** Each content card has a `summary` field (one-sentence TLDR). In the editor phase, the left sidebar shows card titles + their summaries as a compact reference panel, so the child doesn't have to navigate back to the cards to remember what they learned.
+
+**Rationale:** "Review Cards" button exists, but mid-task context switches break flow. The sidebar summaries keep the key idea visible without leaving the editor.
+
+### 2026-05-15 — Dive Deeper is a modal/mode switch, not a paragraph
+**Decision:** (Planned — see TODO.) The "🚀 Dive Deeper" challenge will be an opt-in mode triggered by a button. It swaps the editor prompt to the challenge objective while preserving the lesson code in a separate slot. A "← Back to lesson" button restores the original state.
+
+**Rationale:** A paragraph at the bottom of the sidebar is invisible to most children. Making it a distinct mode gives it presence without forcing it on anyone. Preserving the lesson code is essential — children should never feel like they might lose their work.
+
+### 2026-05-15 — CORS allows all localhost Vite ports; Vite locked to strictPort
+**Decision:** Backend CORS whitelist includes ports 5173–5176. Vite config sets `strictPort: true` so it fails loudly instead of silently drifting to a different port.
+
+**Rationale:** When Vite drifted to port 5175, the browser silently blocked all fetch calls with a CORS error that looked like a backend connection failure. Both fixes together prevent this class of confusing error.

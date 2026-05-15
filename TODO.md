@@ -85,13 +85,16 @@ A r### Modules & Comprehension Practicals *(new)*
 - [x] **`LessonType`**, **`ContentCard`**, **`QuizQuestion`**, **`ModuleConfig`**, **`LessonConfig`** — all defined in `types.ts`
 - [x] **`LessonType` simplified** — `"reading" | "coding"` only; no `hybrid` (coding lessons always embed 2–4 instruction cards before the editor)
 - [x] **`LessonGoal`** — type defined (`"concept" | "guided-practice" | "open-practice" | "project"`); added as optional field on `LessonConfig`; to be set when coding lessons migrate to JSON
-- [ ] **`Lesson` schema migration** — add `moduleId`, `type`, `goal`, `content: ContentCard[]`, `quiz?`; make `starterCode` optional; migrate module 2 lessons to JSON
-- [ ] **Migrate existing `lessons.ts`** — move lesson 1–8 content into `module2/lesson-N.json` files; update `loader.ts`; remove shim when `App.tsx` is updated
+- [x] **`Lesson` schema migration** — add `moduleId`, `type`, `goal`, `content: ContentCard[]`, `quiz?`; make `starterCode` optional; migrate module 2 lessons to JSON
+- [x] **Migrate existing `lessons.ts`** — module 2 rebuilt from scratch as JSON; `lessons.ts` fully removed from App.tsx (archived, not deleted yet)
 - [x] **Read-only lesson UI mode** — content card reader with Finish/Next buttons; no editor
 - [x] **Reading comprehension quiz UI** — multiple choice and true/false; shows explanation after each answer
 - [x] **Module type field** — `reading` vs `coding` modules distinguished in data and UI
-- [ ] **Coding lesson card flow** — implement 2–4 instruction cards shown *before* the editor unlocks (micro-reading → immediate action pattern)
-- [ ] **Quiz budget** — reading lessons: 5-question quiz; coding lessons: 0–3 question optional mini-quiz only
+- [x] **Coding lesson card flow** — 2–4 instruction cards shown before editor unlocks; "Open Editor →" on last card; "← Review Cards" in editor phase
+- [x] **Quiz budget** — reading lessons: 5-question quiz; coding lessons: 0–3 question optional mini-quiz only
+- [x] **Editor starts blank with objective comment** — `editorPrompt` field on each lesson JSON becomes `# comment` in editor; starter code is hint 0
+- [x] **Card summaries in editor sidebar** — `summary` field on `ContentCard`; shown as TLDR under each card title in the left tray during editor phase
+- [x] **Friendly error display in output console** — real error shown + `? Help` toggle reveals child-readable explanation; error type mapped to message
 
 ### Lesson 1: print()
 - [x] Expand concept — "print() is a command that makes Python display a message on the screen. The parentheses () mean 'do this action now.' Anything inside quotes \" \" is text and Python will show it exactly as typed."
@@ -164,7 +167,12 @@ A r### Modules & Comprehension Practicals *(new)*
 
 ### Cross-cutting Lesson Work
 - [ ] **Progressive hints UI** — build the "Show Hint" button with step-by-step reveal logic in the frontend (needed before per-lesson hint content can be used)
-- [ ] **Dive Deeper UI** — add a "Dive Deeper" section per lesson that reveals a challenge problem once the main lesson is completed
+- [ ] **Dive Deeper UI** — make the challenge problem feel distinct and opt-in, not just a paragraph in the sidebar:
+  - Render as a dedicated "🚀 Dive Deeper" button at the bottom of the sidebar
+  - Pressing it opens a **challenge mode**: swaps the editor prompt comment to the challenge objective, but preserves the current code in a separate slot so it isn't lost
+  - A "← Back to lesson" button restores the original prompt and code
+  - Challenge mode could have a distinct visual indicator (e.g. different header colour or badge) so the child knows they're in bonus territory
+  - Do **not** auto-mark the lesson complete when challenge mode is entered — it's optional
 - [ ] **Data model update** — extend the `Lesson` type in `types.ts` to support structured progressive hints (outline → steps → solution) and a `challenge` field for the Dive Deeper problem
 - [ ] **Blank starter code** — strip pre-filled answers from `starterCode`; keep full solution only as the final hint
 
@@ -180,7 +188,13 @@ A r### Modules & Comprehension Practicals *(new)*
 
 ### Bugs / Polish
 - [ ] **Mobile layout** — test and fix layout on small screens
-- [ ] **Error messages** — friendlier, child-readable error messages instead of raw Python tracebacks
+- [ ] **Friendly error display in output console** — when Python returns an error, show the real error text *and* an inline help message beneath it (triggered by a help icon `?` next to the error). Map common errors to child-readable explanations:
+  - `SyntaxError` → "Python couldn't understand this line. Check your quotes, parentheses, or spelling."
+  - `NameError` → "Python doesn't recognise that name. Did you create the variable first?"
+  - `IndentationError` → "The spacing on this line looks off. Try using the Tab key to indent."
+  - `TypeError` → "Two things are being mixed up that don't go together — like a number and a word."
+  - Timeout → "Your program ran for too long. Does it have a loop that never stops?"
+  - Design: real traceback shown first (collapsible or smaller), help text shown below or toggled by `?` icon
 - [ ] **Keyboard shortcut hints** — surface the Cmd/Ctrl+Enter shortcut visibly in the UI
 
 ### Localization *(i18n)*

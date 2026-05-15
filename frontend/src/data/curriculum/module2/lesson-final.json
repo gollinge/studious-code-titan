@@ -1,0 +1,39 @@
+{
+  "id": "module2-final",
+  "moduleId": "module2",
+  "title": "Final Project — Mini Adventure Intro",
+  "type": "coding",
+  "goal": "project",
+  "content": [
+    {
+      "id": "c1",
+      "type": "text",
+      "title": "Your mission",
+      "summary": "Write the opening screen of a text adventure using print(), strings, and variables.",
+      "body": "You've learned print(), strings, and variables. Now put it all together. You're going to write the opening screen of a text adventure game — the kind that sets the scene before the action starts."
+    },
+    {
+      "id": "c2",
+      "type": "callout",
+      "title": "What to include",
+      "summary": "A player name variable, an item variable, 4+ print() lines, and at least one + combination.",
+      "body": "Your adventure intro should have:\n• A player name (stored in a variable)\n• A weapon or item (stored in a variable)\n• At least 4 print() lines that tell the start of the story\n• One line that combines a variable with text using +"
+    },
+    {
+      "id": "c3",
+      "type": "code",
+      "title": "Example to get you started",
+      "summary": "This is a starting point only — make the story, names, and setting completely your own.",
+      "body": "player = \"Sam\"\nweapon = \"Laser Sword\"\n\nprint(player + \" entered the dungeon.\")\nprint(\"Equipped:\", weapon)\nprint(\"A giant slime appeared!\")\n\nThis is just a starting point — make it your own!"
+    }
+  ],
+  "starterCode": "player = \"Sam\"\nweapon = \"Laser Sword\"\n\nprint(player + \" entered the dungeon.\")\nprint(\"Equipped:\", weapon)\nprint(\"A giant slime appeared!\")\n",
+  "editorPrompt": "Write the opening of a text adventure — use variables for the player and an item, and tell the story with print()",
+  "progressiveHints": [
+    "# Starter example — replace everything with your own story!\nplayer = \"Sam\"\nweapon = \"Laser Sword\"\n\nprint(player + \" entered the dungeon.\")\nprint(\"Equipped:\", weapon)\nprint(\"A giant slime appeared!\")",
+    "# Hint: Start with two variables for your character\n# player = \"your name here\"\n# item = \"your item here\"",
+    "player = \"your name\"\nitem = \"your item\"\nlocation = \"the dungeon\"\nprint(player + \" arrived at \" + location + \".\")",
+    "player = \"Aria\"\nitem = \"Thunder Shield\"\nlocation = \"the Frozen Tower\"\nenemy = \"Ice Golem\"\n\nprint(player + \" arrived at \" + location + \".\")\nprint(\"She carried a \" + item + \".\")\nprint(\"A \" + enemy + \" blocked the path!\")\nprint(\"The adventure begins...\")"
+  ],
+  "challenge": "🚀 Dive Deeper: Add a sidekick character with their own name variable. Have them say something in your story using print()."
+}

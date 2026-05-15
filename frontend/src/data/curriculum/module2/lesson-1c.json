@@ -1,0 +1,39 @@
+{
+  "id": "module2-1c",
+  "moduleId": "module2",
+  "title": "1c — Variables",
+  "type": "coding",
+  "goal": "guided-practice",
+  "content": [
+    {
+      "id": "c1",
+      "type": "text",
+      "title": "Variables are labeled boxes",
+      "summary": "A variable holds information under a name — use that name later to get it back.",
+      "body": "A variable is like a labeled box that holds information. You give the box a name, then put something inside it. Later, whenever you use that name, Python goes and checks what's in the box."
+    },
+    {
+      "id": "c2",
+      "type": "code",
+      "title": "Creating a variable",
+      "summary": "Use = to store a value: name = \"Alex\" then print(name) to display it.",
+      "body": "Use = to put something into a variable. The name goes on the left, and the value goes on the right.\n\nname = \"Alex\"\nprint(name)\n\nThis stores the text \"Alex\" in a box called name, then prints what's inside."
+    },
+    {
+      "id": "c3",
+      "type": "callout",
+      "title": "You can change the value",
+      "summary": "Assign a new value with = again at any time — that's what makes programs flexible.",
+      "body": "Variables can be updated any time — just use = again with a new value. That's what makes programs flexible. Try changing \"Alex\" to your own name and run it!"
+    }
+  ],
+  "starterCode": "name = \"Alex\"\nprint(name)\n",
+  "editorPrompt": "Create a variable, store your name in it, and print it",
+  "progressiveHints": [
+    "# Starter code — try changing \"Alex\" to your name!\nname = \"Alex\"\nprint(name)",
+    "# Hint: Create more variables and print them\n# score = 100\n# print(score)",
+    "name = \"Alex\"\nscore = 100\nprint(name)\nprint(score)",
+    "name = \"Alex\"\npet = \"cat\"\nscore = 100\nprint(name)\nprint(pet)\nprint(score)"
+  ],
+  "challenge": "🚀 Dive Deeper: Build a mini character creator. Create variables for a character's name, their pet, and their favourite food. Print each one on its own line."
+}

@@ -1,0 +1,46 @@
+{
+  "id": "module2-1a",
+  "moduleId": "module2",
+  "title": "1a — Running Your First Program",
+  "type": "coding",
+  "goal": "concept",
+  "content": [
+    {
+      "id": "c1",
+      "type": "text",
+      "title": "The Code Editor",
+      "summary": "The big white box is where you type Python code.",
+      "body": "The big white box in the middle is the code editor. This is where you write Python programs. You can click anywhere inside it and start typing — just like a text editor, but for code."
+    },
+    {
+      "id": "c2",
+      "type": "callout",
+      "title": "The Run Button",
+      "summary": "Press Run (or Cmd/Ctrl+Enter) and Python carries out your code top to bottom.",
+      "body": "When you press Run, Python reads every line you wrote — from top to bottom — and carries out each instruction. You can also press Cmd+Enter (Mac) or Ctrl+Enter (Windows) to run without clicking."
+    },
+    {
+      "id": "c3",
+      "type": "text",
+      "title": "The Output Panel",
+      "summary": "Results appear in the Output panel. Errors are normal — they're just feedback.",
+      "body": "After you run your program, the results appear in the Output panel on the right. If your program prints something, it shows up there. If something goes wrong, you'll see an error message — and that's totally normal."
+    },
+    {
+      "id": "c4",
+      "type": "code",
+      "title": "print() — Your First Command",
+      "summary": "print(\"Hello!\") displays text on screen. Anything inside the quotes appears in the output.",
+      "body": "print() tells Python to display a message on the screen. Whatever you put inside the quotes will appear in the output.\n\nprint(\"Hello!\")\n\nTry changing \"Hello!\" to something else and hit Run."
+    }
+  ],
+  "starterCode": "print(\"Hello!\")\n",
+  "editorPrompt": "Make the computer display a message using print()",
+  "progressiveHints": [
+    "# Starter code — try changing the message!\nprint(\"Hello!\")",
+    "# Hint: Use print() with a message in quotes\n# print(\"your message here\")",
+    "print(\"your message here\")",
+    "print(\"Hello, world!\")\nprint(\"I made the computer say this!\")"
+  ],
+  "challenge": "🚀 Dive Deeper: Make the computer introduce itself. Write 3 print() lines — one for its name, one for its job, and one silly fact about it."
+}

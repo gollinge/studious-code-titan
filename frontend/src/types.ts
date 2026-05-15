@@ -23,6 +23,8 @@ export type ContentCard = {
   id: string
   type: ContentCardType
   title?: string
+  /** One-sentence TLDR shown in the coding lesson sidebar as a quick reference. */
+  summary?: string
   body: string
 }
 
@@ -67,6 +69,8 @@ export type LessonConfig = {
   content: ContentCard[]
   quiz?: QuizQuestion[]
   // Coding-lesson fields (optional for reading lessons)
+  /** Short prompt shown as a comment at the top of the blank editor, e.g. "Make the computer print a message." */
+  editorPrompt?: string
   starterCode?: string
   progressiveHints?: string[]
   challenge?: string
