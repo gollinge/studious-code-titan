@@ -105,3 +105,31 @@ Most recent decisions are at the top of each section.
 ### 2026-05-15 — Intro lessons (0a, 0b, 0c) are Module 1; coding lessons start at Module 2
 **Decision:** Module 1 contains three reading lessons (0a, 0b, 0c). The first coding lesson (`print()`) begins Module 2.
 **Rationale:** Gives the curriculum a clear narrative arc: orient → conceptual framing → hands-on coding.
+
+---
+
+## Navigation & Progress
+
+### 2026-05-15 — Module Overview Screen is the home screen
+**Decision:** The app's home/default view is a Module Overview Screen (vertical stack of module cards), not a flat lesson list.
+**Rationale:** Flat lesson lists don't communicate structure or progress. Module cards give learners a clear sense of where they are and what's ahead.
+
+### 2026-05-15 — Linear unlock: future lessons are locked until previous is complete
+**Decision:** A lesson is locked if any lesson before it in the curriculum is incomplete. The practical is locked until all lessons in its module are done. The next module is locked until the practical is done.
+**Rationale:** Prevents learners from skipping foundational content. Completed lessons remain fully re-visitable at any time.
+
+### 2026-05-15 — Lesson completion trigger varies by lesson type
+**Decision:** Three completion triggers depending on lesson type:
+1. Reading lesson *with* quiz → quiz submission auto-completes
+2. Reading lesson *without* quiz → "Finish" button on the last content card auto-completes
+3. Coding lesson → manual "Mark as complete" button (no auto-check for now)
+
+**Rationale:** Lessons without quizzes should feel conclusive without requiring an extra explicit action — the "Finish" button on the last card is that natural stopping point. Coding lessons can't be auto-checked yet, so manual completion is the fallback.
+
+### 2026-05-15 — Progress saved to localStorage via a `useProgress` hook
+**Decision:** All progress state lives in `localStorage` under the key `studious-progress`. A single `useProgress` hook owns all reads and writes. Shape: `{ moduleId: { lessonId: "locked"|"in-progress"|"complete" } }`.
+**Rationale:** No backend auth needed for MVP. A dedicated hook keeps progress logic out of components and makes it easy to migrate to a backend later.
+
+### 2026-05-15 — Stable lesson IDs are the canonical progress key
+**Decision:** Every lesson has a stable `id` (e.g. `"module1-lesson-0a"`) defined in `curriculum.ts`. Progress keys always match these IDs.
+**Rationale:** Changing a lesson title or order must not reset a learner's progress. Decoupling the key from display strings prevents accidental progress loss.

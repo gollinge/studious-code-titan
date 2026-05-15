@@ -25,6 +25,32 @@ A r### Modules & Comprehension Practicals *(new)*
   - Marked complete when the student decides they are done (no auto-checking for now)
 - [ ] **Decide on module groupings** — sketch out which existing (and planned) lessons belong in each module and what each practical challenge will be
 
+### Navigation & Progress
+- [ ] **Home screen (Module Overview)** — replaces current lesson list; vertical stack of module cards showing title, type badge (`Reading` / `Coding`), progress bar (e.g. "2 / 4 lessons"), and status (`Not started` / `In progress` / `Complete`)
+- [ ] **Module Detail Screen** — shows ordered lesson rows with status icons (✅ complete · 🔵 current · 🔒 locked); "Continue" button jumps to current lesson; practical row locked until all lessons complete
+- [ ] **Breadcrumb** — `Module N › Lesson N` breadcrumb in lesson view; back arrow returns to Module Detail Screen
+- [ ] **"Next Lesson →" button** — appears in lesson view only after lesson is marked complete
+- [ ] **Lock / unlock rules:**
+  - Completed lessons: always re-visitable
+  - Current lesson (first incomplete): unlocked
+  - Any future lesson: locked
+  - Module practical: locked until all lessons in module complete
+  - Next module: locked until practical complete
+- [ ] **Lesson completion triggers:**
+  - Reading lesson *with* quiz: quiz submission auto-completes the lesson
+  - Reading lesson *without* quiz: a **"Finish"** button on the last content card auto-completes the lesson (no separate "mark complete" step)
+  - Coding lesson: a **"Mark as complete"** button, always visible once the lesson is open (manual, no auto-check for now)
+  - Quiz/practical: submitting all answers auto-completes
+- [ ] **`useProgress` hook** — owns all progress reads/writes; single source of truth
+- [ ] **Progress persistence** — save to `localStorage` under key `studious-progress`; shape:
+  ```json
+  {
+    "module1": { "lesson-0a": "complete", "lesson-0b": "in-progress", "practical": "locked" },
+    "module2": { "lesson-1": "locked" }
+  }
+  ```
+- [ ] **Stable lesson IDs** — each lesson must have an `id` (e.g. `"module1-lesson-0a"`) that matches the progress key; defined in curriculum data, never changes
+
 ---
 
 ### Landing Page / Onboarding
