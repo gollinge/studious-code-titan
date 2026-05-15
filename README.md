@@ -17,7 +17,7 @@ A local-only Python learning web app for children. It includes short lessons, a 
 ### Backend
 
 ```bash
-cd /home/runner/work/studious-code-titan/studious-code-titan/backend
+cd backend
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -27,7 +27,7 @@ uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 ### Frontend
 
 ```bash
-cd /home/runner/work/studious-code-titan/studious-code-titan/frontend
+cd frontend
 npm install
 npm run dev
 ```
