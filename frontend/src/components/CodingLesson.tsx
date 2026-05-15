@@ -1,4 +1,4 @@
-import { keymap } from '@codemirror/view'
+import { keymap, EditorView } from '@codemirror/view'
 import { python } from '@codemirror/lang-python'
 import CodeMirror from '@uiw/react-codemirror'
 import { useCallback, useMemo, useRef, useState } from 'react'
@@ -44,7 +44,7 @@ function ContentCardView({ card }: CardProps) {
 
 // ── Main component ─────────────────────────────────────────────────────────────
 
-type Phase = 'cards' | 'editor'
+type Phase = 'cards' | 'editor' | 'dive-deeper'
 
 type Props = {
   lesson: LessonConfig
@@ -65,6 +65,7 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onBack }: Props)
     ? `# ${lesson.editorPrompt}\n`
     : ''
   const [code, setCode] = useState(initialCode)
+  const [savedLessonCode, setSavedLessonCode] = useState<string | null>(null) // preserved when entering Dive Deeper
   const [output, setOutput] = useState<ExecutionResponse | null>(null)
   const [isRunning, setIsRunning] = useState(false)
   const [hintsRevealed, setHintsRevealed] = useState(0)
@@ -139,6 +140,27 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onBack }: Props)
     setShowHelp(false)
   }
 
+  // ── Dive Deeper mode ─────────────────────────────────────────────────────────
+
+  const challengePrompt = lesson.challenge
+    ? `# 🚀 Dive Deeper\n# ${lesson.challenge.replace(/^🚀 Dive Deeper: /, '').replace(/\n/g, '\n# ')}\n`
+    : ''
+
+  const enterDiveDeeper = () => {
+    setSavedLessonCode(code)
+    setCode(challengePrompt)
+    setOutput(null)
+    setShowHelp(false)
+    setPhase('dive-deeper')
+  }
+
+  const exitDiveDeeper = () => {
+    setCode(savedLessonCode ?? initialCode)
+    setOutput(null)
+    setShowHelp(false)
+    setPhase('editor')
+  }
+
   // ── Derived output display ───────────────────────────────────────────────────
 
   const hasError = Boolean(output?.stderr) || Boolean(output?.timed_out)
@@ -190,72 +212,102 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onBack }: Props)
     )
   }
 
-  // ── Editor phase ──────────────────────────────────────────────────────────────
+  // ── Editor phase (shared between 'editor' and 'dive-deeper') ─────────────────
+
+  const isDivingDeeper = phase === 'dive-deeper'
 
   return (
-    <div className="coding-lesson coding-lesson--editor">
+    <div className={`coding-lesson coding-lesson--editor ${isDivingDeeper ? 'coding-lesson--challenge' : ''}`}>
       {/* Left panel: lesson info + hints */}
       <section className="coding-lesson__sidebar">
         <div className="coding-lesson__sidebar-header">
-          <button type="button" className="back-btn" onClick={onBack}>
-            ← Module
-          </button>
-          <button
-            type="button"
-            className="back-btn"
-            onClick={() => { setPhase('cards'); setCardIndex(0) }}
-          >
-            ← Review Cards
-          </button>
-        </div>
-
-        <h2 className="coding-lesson__title">{lesson.title}</h2>
-        <p className="coding-lesson__breadcrumb">{moduleTitle}</p>
-
-        {/* Summary of cards as quick reference */}
-        <div className="coding-lesson__card-summary">
-          {cards.map((card) => (
-            <div key={card.id} className="coding-lesson__summary-card">
-              {card.title && <strong className="coding-lesson__summary-title">{card.title}</strong>}
-              {card.summary && <p className="coding-lesson__summary-text">{card.summary}</p>}
-            </div>
-          ))}
-        </div>
-
-        {/* Progressive hints */}
-        {hints.length > 0 && (
-          <div className="hints-section">
-            <h4>Hints</h4>
-            {hintsRevealed > 0 && (
-              <ol className="hints-list">
-                {hints.slice(0, hintsRevealed).map((hint, i) => (
-                  <li key={i}>
-                    <pre className="hint-code">{hint}</pre>
-                  </li>
-                ))}
-              </ol>
-            )}
-            {hintsRevealed < hints.length && (
+          {isDivingDeeper ? (
+            <button type="button" className="back-btn" onClick={exitDiveDeeper}>
+              ← Back to Lesson
+            </button>
+          ) : (
+            <>
+              <button type="button" className="back-btn" onClick={onBack}>
+                ← Module
+              </button>
               <button
                 type="button"
-                className="secondary"
-                onClick={() => setHintsRevealed((n) => n + 1)}
+                className="back-btn"
+                onClick={() => { setPhase('cards'); setCardIndex(0) }}
               >
-                {hintsRevealed === 0
-                  ? 'Show Hint'
-                  : hintsRevealed === hints.length - 1
-                  ? 'Show Solution'
-                  : 'Next Hint'}
+                ← Review Cards
+              </button>
+            </>
+          )}
+        </div>
+
+        {isDivingDeeper ? (
+          /* ── Dive Deeper sidebar ── */
+          <div className="dive-deeper-sidebar">
+            <div className="dive-deeper-badge">🚀 Dive Deeper</div>
+            <p className="dive-deeper-description">
+              {lesson.challenge?.replace(/^🚀 Dive Deeper: /, '')}
+            </p>
+            <p className="dive-deeper-note">
+              Your lesson code is saved — press "← Back to Lesson" when you're done.
+            </p>
+          </div>
+        ) : (
+          /* ── Normal lesson sidebar ── */
+          <>
+            <h2 className="coding-lesson__title">{lesson.title}</h2>
+            <p className="coding-lesson__breadcrumb">{moduleTitle}</p>
+
+            {/* Summary of cards as quick reference */}
+            <div className="coding-lesson__card-summary">
+              {cards.map((card) => (
+                <div key={card.id} className="coding-lesson__summary-card">
+                  {card.title && <strong className="coding-lesson__summary-title">{card.title}</strong>}
+                  {card.summary && <p className="coding-lesson__summary-text">{card.summary}</p>}
+                </div>
+              ))}
+            </div>
+
+            {/* Progressive hints */}
+            {hints.length > 0 && (
+              <div className="hints-section">
+                <h4>Hints</h4>
+                {hintsRevealed > 0 && (
+                  <ol className="hints-list">
+                    {hints.slice(0, hintsRevealed).map((hint, i) => (
+                      <li key={i}>
+                        <pre className="hint-code">{hint}</pre>
+                      </li>
+                    ))}
+                  </ol>
+                )}
+                {hintsRevealed < hints.length && (
+                  <button
+                    type="button"
+                    className="secondary"
+                    onClick={() => setHintsRevealed((n) => n + 1)}
+                  >
+                    {hintsRevealed === 0
+                      ? 'Show Hint'
+                      : hintsRevealed === hints.length - 1
+                      ? 'Show Solution'
+                      : 'Next Hint'}
+                  </button>
+                )}
+              </div>
+            )}
+
+            {/* Dive Deeper button */}
+            {lesson.challenge && (
+              <button
+                type="button"
+                className="dive-deeper-btn"
+                onClick={enterDiveDeeper}
+              >
+                🚀 Dive Deeper
               </button>
             )}
-          </div>
-        )}
-
-        {/* Dive Deeper challenge */}
-        {lesson.challenge && (
-          <div className="challenge-section">
-            <p>{lesson.challenge}</p>
-          </div>
+          </>
         )}
 
         <button type="button" className="continue-btn coding-lesson__complete-btn" onClick={onComplete}>
@@ -281,7 +333,7 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onBack }: Props)
           value={code}
           height="100%"
           theme="light"
-          extensions={[python(), keyboardShortcut]}
+          extensions={[python(), keyboardShortcut, EditorView.lineWrapping]}
           onChange={(val) => setCode(val)}
           basicSetup={{ lineNumbers: true, foldGutter: false, autocompletion: true }}
         />

@@ -770,6 +770,69 @@ kbd {
   margin: 0;
 }
 
+/* ── Dive Deeper mode ── */
+
+.coding-lesson--challenge .coding-lesson__editor {
+  border-color: #f0b429;
+  box-shadow: 0 0 0 2px #ffd97d40;
+}
+
+.coding-lesson--challenge .coding-lesson__output {
+  border-color: #f0b429;
+}
+
+.dive-deeper-btn {
+  margin-top: auto;
+  padding: 0.55rem 0.9rem;
+  border: 2px dashed #f0b429;
+  border-radius: 0.6rem;
+  background: #fffbea;
+  color: #7b4f00;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.dive-deeper-btn:hover {
+  background: #fff3cd;
+  border-color: #e6ac00;
+}
+
+.dive-deeper-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+}
+
+.dive-deeper-badge {
+  display: inline-block;
+  background: #f0b429;
+  color: #3d2000;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  align-self: flex-start;
+}
+
+.dive-deeper-description {
+  font-size: 0.9rem;
+  color: #102a43;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.dive-deeper-note {
+  font-size: 0.78rem;
+  color: #627d98;
+  margin: 0;
+  border-top: 1px solid #d9e2ec;
+  padding-top: 0.5rem;
+}
+
 .editor-toolbar__shortcut {
   font-size: 0.75rem;
   color: #829ab1;
