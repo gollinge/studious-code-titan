@@ -12,6 +12,7 @@ import type { ModuleConfig, LessonConfig } from '../../types'
 import module1Json from './module1/module.json'
 import module2Json from './module2/module.json'
 import module3Json from './module3/module.json'
+import module4Json from './module4/module.json'
 
 // ── Module 1 lesson configs ───────────────────────────────────────────────────
 import lesson0aJson from './module1/lesson-0a.json'
@@ -32,12 +33,20 @@ import lesson2cJson from './module3/lesson-2c.json'
 import lesson2dJson from './module3/lesson-2d.json'
 import lesson3FinalJson from './module3/lesson-final.json'
 
+// ── Module 4 lesson configs ───────────────────────────────────────────────────
+import lesson3aJson from './module4/lesson-3a.json'
+import lesson3bJson from './module4/lesson-3b.json'
+import lesson3cJson from './module4/lesson-3c.json'
+import lesson3dJson from './module4/lesson-3d.json'
+import lesson4FinalJson from './module4/lesson-final.json'
+
 // ── Typed exports ─────────────────────────────────────────────────────────────
 
 export const modules: ModuleConfig[] = [
   module1Json as ModuleConfig,
   module2Json as ModuleConfig,
   module3Json as ModuleConfig,
+  module4Json as ModuleConfig,
 ]
 
 export const readingLessonConfigs: LessonConfig[] = [
@@ -57,6 +66,11 @@ export const codingLessonConfigs: LessonConfig[] = [
   lesson2cJson as LessonConfig,
   lesson2dJson as LessonConfig,
   lesson3FinalJson as LessonConfig,
+  lesson3aJson as LessonConfig,
+  lesson3bJson as LessonConfig,
+  lesson3cJson as LessonConfig,
+  lesson3dJson as LessonConfig,
+  lesson4FinalJson as LessonConfig,
 ]
 
 /** All lesson configs combined. */

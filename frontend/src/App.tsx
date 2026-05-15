@@ -168,6 +168,7 @@ function App() {
       {mode === 'lessons' && lessonView === 'reading-lesson' && activeLesson && (
         <div className="content-layout">
           <ReadingLesson
+            key={activeLesson.id}
             lesson={activeLesson}
             moduleTitle={activeModule?.title ?? ''}
             onComplete={() => handleLessonComplete(activeLesson.id)}
@@ -180,6 +181,7 @@ function App() {
       {/* ── Coding Lesson ── */}
       {mode === 'lessons' && lessonView === 'coding-lesson' && activeLesson && (
         <CodingLesson
+          key={activeLesson.id}
           lesson={activeLesson}
           moduleTitle={activeModule?.title ?? ''}
           onComplete={() => handleLessonComplete(activeLesson.id)}

@@ -1,0 +1,13 @@
+{
+  "id": "module4",
+  "title": "Repeating Actions with Loops",
+  "type": "coding",
+  "goal": "Stop writing things manually — teach Python to repeat work for you.",
+  "lessonIds": [
+    "module4-3a",
+    "module4-3b",
+    "module4-3c",
+    "module4-3d",
+    "module4-final"
+  ]
+}

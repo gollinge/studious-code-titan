@@ -1,0 +1,47 @@
+{
+  "id": "module4-3d",
+  "moduleId": "module4",
+  "title": "Loops + Decisions",
+  "type": "coding",
+  "goal": "guided-practice",
+  "summary": "Combine for loops with if/else — so each step of the loop can make its own choice.",
+  "content": [
+    {
+      "id": "c1",
+      "type": "code",
+      "title": "Checking Inside Every Step",
+      "summary": "An if statement inside a loop runs a check on every single iteration.",
+      "body": "You can put an if statement inside a loop. Python checks the condition every time the loop runs:\n\nfor i in range(5):\n    if i == 2:\n        print(\"Treasure!\")\n    else:\n        print(\"Empty room...\")\n\nOutput:\nEmpty room...\nEmpty room...\nTreasure!\nEmpty room...\nEmpty room...\n\nThe loop runs 5 times. On step 2 it finds treasure; all other steps find nothing."
+    },
+    {
+      "id": "c2",
+      "type": "code",
+      "title": "Even and Odd",
+      "summary": "The % operator gives the remainder after dividing — useful for detecting every other step.",
+      "body": "A useful trick: the % operator gives you the remainder after dividing.\n\n4 % 2 = 0  (divides evenly — even)\n5 % 2 = 1  (has a remainder — odd)\n\nfor i in range(6):\n    if i % 2 == 0:\n        print(i, \"is even\")\n    else:\n        print(i, \"is odd\")\n\nThis checks every number from 0 to 5."
+    },
+    {
+      "id": "c3",
+      "type": "code",
+      "title": "The Danger Zone",
+      "summary": "Mark a specific loop step as special using if i == number.",
+      "body": "You can mark specific loop steps as special:\n\nfor i in range(1, 6):\n    if i == 3:\n        print(\"Warning! Danger zone!\")\n    else:\n        print(\"Room\", i, \"— safe.\")\n\nOutput:\nRoom 1 — safe.\nRoom 2 — safe.\nWarning! Danger zone!\nRoom 4 — safe.\nRoom 5 — safe.\n\nEach room gets checked. Only room 3 triggers the warning."
+    },
+    {
+      "id": "c4",
+      "type": "callout",
+      "title": "Indentation Stacks Up",
+      "summary": "Loop body is 4 spaces in. Code inside if/else inside the loop is 8 spaces in.",
+      "body": "When you nest if inside a loop, both need proper indentation:\n\nfor i in range(3):         <- loop line\n    if i == 1:             <- if (4 spaces in)\n        print(\"special\")  <- if-body (8 spaces in)\n    else:\n        print(\"normal\")   <- else-body (8 spaces in)\n\nThe loop body is at 4 spaces. The if/else bodies are at 8 spaces."
+    }
+  ],
+  "editorPrompt": "Simulate a dungeon run: loop through 6 rooms. If the room number is 4, print \"Boss fight!\". Otherwise, print \"Room X — clear.\" (use i for X).",
+  "starterCode": "# Walk through 6 dungeon rooms\n# Room 4 has the boss!\n",
+  "progressiveHints": [
+    "Use for i in range(1, 7): so rooms are numbered 1 through 6.",
+    "Inside the loop, write if i == 4: then print the boss message.",
+    "Add an else: that prints \"Room\", i, \"— clear.\"",
+    "Answer:\nfor i in range(1, 7):\n    if i == 4:\n        print(\"Boss fight!\")\n    else:\n        print(\"Room\", i, \"— clear.\")"
+  ],
+  "challenge": "Add a second special room: if the room number is 2, print a \"Hidden chest!\" message. You will need elif to handle two special rooms."
+}
