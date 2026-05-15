@@ -4,10 +4,17 @@ export const lessons: Lesson[] = [
   {
     id: 'print',
     title: '1. print()',
-    concept: 'Use print() to show messages. It is the easiest way to make your program talk.',
-    starterCode: 'print("Hello, explorer!")\nprint("Python is fun!")',
-    expectedOutput: 'Two cheerful lines saying hello.',
-    hints: ['Try changing the words inside the quotes.', 'Add a third print line.'],
+    concept:
+      'print() is a command that makes Python display a message on the screen. The parentheses () mean "do this action now." Anything you put inside quotes " " is text — and Python will show it exactly as you typed it.',
+    starterCode: '# Write your first line of Python here\n',
+    expectedOutput: 'Any message you like — just make Python say something!',
+    progressiveHints: [
+      '# Hint 1: Use print() with a message inside quotes\n# print( "your message here" )',
+      'print("your message here")',
+      'print("Hello, explorer!")\nprint("Python is fun!")',
+    ],
+    challenge:
+      'Dive Deeper: Write a short poem using at least 4 print() calls — one line of the poem per print().',
   },
   {
     id: 'variables',

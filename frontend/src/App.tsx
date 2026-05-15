@@ -28,12 +28,19 @@ function App() {
   })
   const [output, setOutput] = useState<ExecutionResponse | null>(null)
   const [isRunning, setIsRunning] = useState(false)
+  const [hintsRevealed, setHintsRevealed] = useState<Record<string, number>>({})
   const outputRef = useRef<HTMLPreElement | null>(null)
 
   const selectedLesson = useMemo(
     () => lessons.find((lesson) => lesson.id === selectedLessonId) ?? lessons[0],
     [selectedLessonId],
   )
+
+  // Reset revealed hints when switching lessons
+  const handleSelectLesson = (id: string) => {
+    setSelectedLessonId(id)
+  }
+
 
   const currentCode = mode === 'lessons' ? lessonCodeById[selectedLesson.id] ?? '' : sandboxCode
 
@@ -127,7 +134,7 @@ function App() {
                       <button
                         type="button"
                         className={lesson.id === selectedLesson.id ? 'active' : ''}
-                        onClick={() => setSelectedLessonId(lesson.id)}
+                        onClick={() => handleSelectLesson(lesson.id)}
                       >
                         {lesson.title} {isComplete ? '✓' : ''}
                       </button>
@@ -140,7 +147,45 @@ function App() {
                 <p>{selectedLesson.concept}</p>
                 <h4>Goal</h4>
                 <p>{selectedLesson.expectedOutput}</p>
-                {selectedLesson.hints && selectedLesson.hints.length > 0 && (
+                {selectedLesson.progressiveHints && selectedLesson.progressiveHints.length > 0 && (() => {
+                  const revealed = hintsRevealed[selectedLesson.id] ?? 0
+                  const hints = selectedLesson.progressiveHints
+                  return (
+                    <div className="hints-section">
+                      <h4>Hints</h4>
+                      {revealed > 0 && (
+                        <ol>
+                          {hints.slice(0, revealed).map((hint, i) => (
+                            <li key={i}>
+                              <pre className="hint-code">{hint}</pre>
+                            </li>
+                          ))}
+                        </ol>
+                      )}
+                      {revealed < hints.length && (
+                        <button
+                          type="button"
+                          className="secondary"
+                          onClick={() =>
+                            setHintsRevealed((prev) => ({
+                              ...prev,
+                              [selectedLesson.id]: revealed + 1,
+                            }))
+                          }
+                        >
+                          {revealed === 0 ? 'Show Hint' : revealed === hints.length - 1 ? 'Show Solution' : 'Next Hint'}
+                        </button>
+                      )}
+                    </div>
+                  )
+                })()}
+                {selectedLesson.challenge && (
+                  <div className="challenge-section">
+                    <h4>🚀 Dive Deeper</h4>
+                    <p>{selectedLesson.challenge}</p>
+                  </div>
+                )}
+                {selectedLesson.hints && selectedLesson.hints.length > 0 && !selectedLesson.progressiveHints && (
                   <>
                     <h4>Hints</h4>
                     <ul>

@@ -7,6 +7,8 @@ export type Lesson = {
   starterCode: string
   expectedOutput: string
   hints?: string[]
+  progressiveHints?: string[]
+  challenge?: string
 }
 
 export type SandboxExample = {
