@@ -190,6 +190,14 @@ A r### Modules & Comprehension Practicals *(new)*
 - [ ] **Error messages** — friendlier, child-readable error messages instead of raw Python tracebacks
 - [ ] **Keyboard shortcut hints** — surface the Cmd/Ctrl+Enter shortcut visibly in the UI
 
+### Localization *(i18n)*
+- [ ] **Choose i18n library** — evaluate `react-i18next` or `FormatJS (react-intl)` for the frontend
+- [ ] **Extract all user-facing strings** — lesson content, UI labels, modal copy, error messages, hints, quiz questions
+- [ ] **Define locale file structure** — e.g. `src/locales/en.json`, `es.json`, etc.; one key namespace per feature area
+- [ ] **Locale switcher UI** — language selector in `TopNav` (flag or language name dropdown)
+- [ ] **Translate Module 1 content first** — use reading lessons as the pilot since they are the most text-heavy
+- [ ] **RTL support consideration** — note which languages (Arabic, Hebrew) would require layout mirroring; defer implementation but don't block it architecturally
+
 ### Infra / Dev
 - [ ] **Docker Compose setup** — single command to start both frontend and backend
 - [ ] **Backend tests** — expand test coverage in `backend/tests/test_executor.py`
