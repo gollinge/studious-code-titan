@@ -1,0 +1,153 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid #d9e2ec;
+  background: #ffffff;
+}
+
+.top-nav h1 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.top-nav nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.top-nav button,
+.editor-toolbar button,
+.lesson-list button,
+.secondary {
+  border: 1px solid #bcccdc;
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.65rem;
+  background: #fff;
+  color: #102a43;
+  cursor: pointer;
+}
+
+.top-nav button.active,
+.lesson-list button.active,
+.editor-toolbar button:first-child {
+  background: #2f6feb;
+  border-color: #2f6feb;
+  color: #fff;
+}
+
+.panel-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  min-height: 0;
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid #d9e2ec;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.panel-left,
+.panel-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.lesson-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.4rem 0 0.8rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.lesson-list button {
+  width: 100%;
+  text-align: left;
+}
+
+.instruction-card {
+  overflow: auto;
+  padding-right: 0.25rem;
+}
+
+.panel-center {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.cm-theme {
+  border: 1px solid #d9e2ec;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  flex: 1;
+}
+
+.cm-editor {
+  height: 100%;
+}
+
+.cm-content,
+.cm-gutter {
+  font-size: 1rem;
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+.output {
+  background: #f7fafc;
+  border: 1px solid #d9e2ec;
+  border-radius: 0.5rem;
+  padding: 0.7rem;
+  white-space: pre-wrap;
+  overflow: auto;
+  flex: 1;
+  margin: 0;
+}
+
+.output.error {
+  border-color: #d64545;
+  color: #8a0f0f;
+  background: #fff5f5;
+}
+
+.timeout {
+  color: #8a0f0f;
+  margin: 0.45rem 0 0;
+}
+
+.sandbox-theme .panel-left {
+  border-color: #f0b429;
+  background: #fffbe6;
+}
+
+@media (max-width: 1100px) {
+  .panel-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto minmax(240px, 1fr);
+  }
+
+  .panel-center {
+    min-height: 420px;
+  }
+}
