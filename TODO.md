@@ -36,23 +36,69 @@ A r### Modules & Comprehension Practicals *(new)*
   - The Cmd/Ctrl+Enter shortcut to run code
 - [ ] Modal should not appear again after first dismissal (set a `hasSeenWelcome` flag in localStorage)
 
-### Module 1: Introduction *(new, read-only with comprehension quiz)*
-- [ ] **No code editor** for this module — lessons are reading cards only
-- [ ] **Reading comprehension quiz** at the end of each lesson (multiple choice or short answer) instead of a coding practical
-- [ ] Module 1 practical = a comprehension quiz that covers both intro lessons combined
-- [ ] Write Lesson 0a content — Introduction to Programming:
-  - What is programming? What is a computer program?
+### Module 1: What Programming Is *(read-only + comprehension)*
+**Goal:** Build mental models before any coding begins.
+
+#### Lesson 0a — Introduction to Programming *(type: reading)*
+- [ ] Write content as short ContentCards (~30s read each), one concept per card:
+  - What programming is
+  - What a program is (step-by-step instructions)
+  - Instructions and logic
   - Real-world examples kids relate to (games, apps, robots)
-  - Keep it fun, concrete, no jargon
-- [ ] Write Lesson 0b content — Introduction to Python:
-  - What Python is and why it's a great first language
-  - Famous things built with Python (YouTube, games, NASA scripts etc.)
-  - A non-editable teaser code snippet to excite the learner
+  - Input → processing → output mental model
+- [ ] Write 3–5 quiz questions (multiple choice + true/false):
+  - Match examples to "program" vs "not a program"
+  - Reading comprehension questions
+
+#### Lesson 0b — How Computers Follow Instructions *(type: reading)*
+- [ ] Write content as short ContentCards:
+  - Precision matters — computers are literal
+  - Order matters — sequence is everything
+  - Exact vs vague instructions (sandwich-making analogy, robot movement, game rules)
+  - This prevents "why isn't it working?" frustration later
+- [ ] Write 3–5 quiz questions (multiple choice + true/false)
+
+#### Lesson 0c — Introduction to Python *(type: reading)*
+- [ ] Write content as short ContentCards:
+  - What Python is and why beginners use it
+  - Readable syntax — it looks almost like English
+  - What kinds of things use Python (YouTube, games, NASA scripts etc.)
+  - Teaser code snippets — immediately interpretable, playful:
+    - `print("Welcome to Python!")`
+    - `name = "Alex"\nprint(name + " found a treasure chest!")`
+  - Do NOT use abstractions like function definitions in prose
+- [ ] Write 3–5 quiz questions:
+  - Identify Python examples
+  - Predict what simple code does
+  - Reading comprehension
+
+#### Module 1 Practical
+- [ ] Combined comprehension quiz covering all three lessons
 
 ### Cross-cutting Lesson Work
-- [ ] **Read-only lesson UI mode** — support lessons that have no editor (just a content card with a "Continue" button)
-- [ ] **Reading comprehension quiz UI** — mix of multiple choice and true/false questions; 3–5 questions per lesson; no open-ended; shows explanation after each answer
-- [ ] **Module type field** — distinguish between `coding` modules (have editor + practical) and `reading` modules (have quiz instead)
+- [ ] **Curriculum file structure** — one file per lesson, one `index.ts` per module, assembled by `curriculum.ts`:
+  ```
+  src/data/curriculum/
+    module1/
+      index.ts        ← module metadata (title, type, goal)
+      lesson-0a.ts    ← Intro to Programming
+      lesson-0b.ts    ← How Computers Follow Instructions
+      lesson-0c.ts    ← Intro to Python
+    module2/
+      index.ts
+      lesson-1.ts     ← print()
+      lesson-2.ts     ← Variables
+      ...
+  curriculum.ts       ← assembles all modules in order; app imports from here
+  ```
+- [ ] **Curriculum hierarchy** — implement `Course → Module → Lesson → ContentCard + Quiz` structure in data model
+- [ ] **`LessonType`** — define as `"reading" | "coding" | "quiz" | "hybrid"` in `types.ts`
+- [ ] **`ContentCard` type** — `{ id, type: "text"|"image"|"callout"|"code"|"quiz-preview", title?, body }` — cards are the atomic unit of lesson content, not markdown blobs
+- [ ] **`Lesson` schema** — add `moduleId`, `type: LessonType`, `content: ContentCard[]`, `quiz?: QuizQuestion[]`, `solutionCode?`; make `starterCode` optional (not present for reading lessons)
+- [ ] **Migrate existing `lessons.ts`** — move lesson 1–8 content into `module2/lesson-N.ts` files; keep `lessons.ts` as a temporary re-export until App.tsx is updated
+- [ ] **Read-only lesson UI mode** — content card reader with a "Continue" button; no editor
+- [ ] **Reading comprehension quiz UI** — mix of multiple choice and true/false; 3–5 questions; shows explanation after each answer
+- [ ] **Module type field** — distinguish `reading` modules (quiz practical) from `coding` modules (coding practical)
 
 ### Lesson 1: print()
 - [x] Expand concept — "print() is a command that makes Python display a message on the screen. The parentheses () mean 'do this action now.' Anything inside quotes \" \" is text and Python will show it exactly as typed."

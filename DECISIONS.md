@@ -67,9 +67,32 @@ Most recent decisions are at the top of each section.
 
 ## Content Structure
 
+### 2026-05-15 — Curriculum hierarchy: Course → Module → Lesson → ContentCard + Quiz
+**Decision:** Formalize the curriculum as a 4-level hierarchy: Course > Module > Lesson > ContentCard (+ optional Quiz and Practical).
+**Rationale:** Keeps the app architecture clean as modules expand. Each level has a clear responsibility. ContentCards are the atomic unit of lesson content — not markdown blobs — giving future flexibility for animations, illustrations, narration, and per-card progress tracking.
+
+### 2026-05-15 — One file per lesson, one index.ts per module
+**Decision:** Curriculum content lives in `src/data/curriculum/moduleN/lesson-N.ts` files. Each module has an `index.ts` for metadata. `curriculum.ts` assembles everything in order. The app imports only from `curriculum.ts`.
+**Rationale:** Makes individual lessons easy to open, read, tweak, and compare in isolation. Adding a lesson = one new file + one import line. Avoids a single massive `lessons.ts` that becomes hard to navigate as content grows.
+
+### 2026-05-15 — ContentCard rule: no card should take more than ~30 seconds to read
+**Decision:** Each ContentCard must be short enough to read in ~30 seconds. One concept per card. Heavy visual spacing.
+**Rationale:** Children disengage quickly from dense text. Short cards prevent cognitive overload and make progress feel fast.
+
+### 2026-05-15 — Module 1 expanded to 3 lessons: 0a, 0b, 0c
+**Decision:** Module 1 ("What Programming Is") has three lessons:
+- 0a: Introduction to Programming
+- 0b: How Computers Follow Instructions *(new)*
+- 0c: Introduction to Python
+**Rationale:** Lesson 0b teaches that computers are literal and that order and precision matter — preventing a large class of beginner confusion before students write a line of code. The correct mental model sequence is: programs exist → computers follow instructions literally → Python is a tool for writing those instructions.
+
+### 2026-05-15 — Teaser code in Lesson 0c must be immediately interpretable
+**Decision:** The code preview in Lesson 0c uses only immediately readable snippets (e.g. `print("Welcome to Python!")` or `name = "Alex" / print(name + " found a treasure chest!")`). No abstractions like function definitions.
+**Rationale:** Kids tolerate syntax better than abstract explanation. The goal is excitement and recognizability, not instruction.
+
 ### 2026-05-15 — Module 1 is read-only with comprehension quizzes (no code editor)
-**Decision:** Module 1 (Introduction to Programming + Introduction to Python) uses read-only lesson cards and multiple choice / true-false comprehension quizzes instead of a code editor.
-**Rationale:** These lessons are conceptual, not hands-on. A quiz reinforces reading comprehension without needing code execution. Quizzes are 3–5 questions, mix of multiple choice and true/false, no open-ended answers.
+**Decision:** Module 1 uses read-only lesson cards and multiple choice / true-false comprehension quizzes instead of a code editor.
+**Rationale:** These lessons are conceptual, not hands-on. Quizzes are 3–5 questions, mix of multiple choice and true/false, no open-ended answers.
 
 ### 2026-05-15 — Two module types: `reading` and `coding`
 **Decision:** Modules are typed as either `reading` (content + comprehension quiz) or `coding` (editor + hints + challenge + coding practical).
@@ -77,8 +100,8 @@ Most recent decisions are at the top of each section.
 
 ### 2026-05-15 — Welcome/how-to-use is separate from Module 1 lessons
 **Decision:** The "how to use this app" onboarding is a modal, not a lesson. Module 1 lessons are about programming concepts, not app mechanics.
-**Rationale:** Conflating app onboarding with curriculum content would be confusing. The modal handles app orientation; Module 1 handles conceptual framing.
+**Rationale:** Conflating app onboarding with curriculum content would be confusing.
 
-### 2026-05-15 — Intro lessons (0a, 0b) are Module 1; numbered coding lessons start at Module 2
-**Decision:** Lessons "Introduction to Programming" and "Introduction to Python" form Module 1. The first coding lesson (`print()`) begins Module 2.
+### 2026-05-15 — Intro lessons (0a, 0b, 0c) are Module 1; coding lessons start at Module 2
+**Decision:** Module 1 contains three reading lessons (0a, 0b, 0c). The first coding lesson (`print()`) begins Module 2.
 **Rationale:** Gives the curriculum a clear narrative arc: orient → conceptual framing → hands-on coding.
