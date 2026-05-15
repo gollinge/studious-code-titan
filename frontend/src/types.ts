@@ -2,9 +2,20 @@ export type AppMode = 'lessons' | 'sandbox'
 
 // ── Curriculum types ──────────────────────────────────────────────────────────
 
-export type LessonType = 'reading' | 'coding' | 'quiz' | 'hybrid'
+export type LessonType = 'reading' | 'coding'
 
 export type ModuleType = 'reading' | 'coding'
+
+/**
+ * Describes the pedagogical intent of a lesson.
+ * Used from Module 2 onwards to distinguish guided vs open-ended coding lessons.
+ *
+ * concept        — introduces a new idea; heavily guided, minimal free coding
+ * guided-practice — student fills in scaffolded code with a clear expected output
+ * open-practice  — student writes freely within a prompt; no single right answer
+ * project        — multi-concept, open-ended, student-driven (used for practicals)
+ */
+export type LessonGoal = 'concept' | 'guided-practice' | 'open-practice' | 'project'
 
 export type ContentCardType = 'text' | 'callout' | 'code'
 
@@ -44,6 +55,15 @@ export type LessonConfig = {
   moduleId: string
   title: string
   type: LessonType
+  /**
+   * Pedagogical intent — required for coding lessons, omitted for reading lessons.
+   * concept | guided-practice | open-practice | project
+   */
+  goal?: LessonGoal
+  /**
+   * Reading lessons: 5–8 cards.
+   * Coding lessons: 2–4 cards shown before the editor unlocks.
+   */
   content: ContentCard[]
   quiz?: QuizQuestion[]
   // Coding-lesson fields (optional for reading lessons)

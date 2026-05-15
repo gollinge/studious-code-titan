@@ -137,3 +137,40 @@ Most recent decisions are at the top of each section.
 ### 2026-05-15 — Stable lesson IDs are the canonical progress key
 **Decision:** Every lesson has a stable `id` (e.g. `"module1-lesson-0a"`) defined in `curriculum.ts`. Progress keys always match these IDs.
 **Rationale:** Changing a lesson title or order must not reset a learner's progress. Decoupling the key from display strings prevents accidental progress loss.
+
+---
+
+## Pedagogy
+
+### 2026-05-15 — Coding lessons are "action-first with embedded guidance", not hybrid
+**Decision:** There is no `hybrid` lesson type. The two types remain `reading` and `coding`. Coding lessons always begin with 2–4 lightweight instruction cards (concept + example) before the editor unlocks. This is the standard coding lesson flow:
+1. Card 1–4: micro-reading (what, why, example)
+2. Editor unlocks
+3. Coding challenge
+4. Optional hints
+5. Practical / checkpoint
+
+Reading lessons = concept-first. Coding lessons = action-first with embedded guidance.
+
+**Rationale:** "Micro-reading → immediate action" is the strongest learning loop for children, and far better than either a giant explanation block or an immediate blank sandbox. Making it a structural property of every coding lesson (not a special `hybrid` type) keeps the data model simple and the UX consistent.
+
+### 2026-05-15 — Quizzes shrink after Module 1; coding practicals become primary
+**Decision:** Module 1 reading lessons use a full 5-question comprehension quiz. From Module 2 onwards, quizzes are optional and small (0–3 questions at most). Coding practicals are the primary assessment tool for coding modules.
+
+Target content budgets:
+- Reading lesson: 5–8 cards + 5-question quiz
+- Coding lesson: 2–4 cards + coding challenge + optional mini quiz (0–3 Qs)
+
+**Rationale:** Overloading coding modules with comprehension quizzes makes the app feel like school rather than experimentation. The coding challenge itself is the comprehension check for a coding lesson.
+
+### 2026-05-15 — `LessonGoal` type planned for Module 2+ lessons
+**Decision:** A `LessonGoal` field will be added to `LessonConfig` in `types.ts` when coding lessons are migrated to JSON:
+```typescript
+type LessonGoal = "concept" | "guided-practice" | "open-practice" | "project"
+```
+- `concept` — introduces a new idea; heavily guided, little open-ended coding
+- `guided-practice` — student fills in scaffolded code with clear expected output
+- `open-practice` — student writes freely within a prompt; no single right answer
+- `project` — multi-concept, open-ended, student-driven; used for module practicals
+
+**Rationale:** As lessons get to loops, functions, and lists, the distinction between "follow the scaffold" and "design something yourself" becomes pedagogically significant. This field lets the UI and progression logic treat them differently without adding new lesson types.

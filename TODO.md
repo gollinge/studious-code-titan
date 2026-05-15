@@ -83,11 +83,15 @@ A r### Modules & Comprehension Practicals *(new)*
 - [x] **Curriculum file structure** — JSON files per lesson + module, assembled by `loader.ts`
 - [x] **Curriculum hierarchy** — `Course → Module → Lesson → ContentCard + Quiz` in data model
 - [x] **`LessonType`**, **`ContentCard`**, **`QuizQuestion`**, **`ModuleConfig`**, **`LessonConfig`** — all defined in `types.ts`
-- [ ] **`Lesson` schema** — add `moduleId`, `type: LessonType`, `content: ContentCard[]`, `quiz?: QuizQuestion[]`, `solutionCode?`; make `starterCode` optional (not present for reading lessons)
-- [ ] **Migrate existing `lessons.ts`** — move lesson 1–8 content into `module2/lesson-N.ts` files; keep `lessons.ts` as a temporary re-export until App.tsx is updated
+- [x] **`LessonType` simplified** — `"reading" | "coding"` only; no `hybrid` (coding lessons always embed 2–4 instruction cards before the editor)
+- [x] **`LessonGoal`** — type defined (`"concept" | "guided-practice" | "open-practice" | "project"`); added as optional field on `LessonConfig`; to be set when coding lessons migrate to JSON
+- [ ] **`Lesson` schema migration** — add `moduleId`, `type`, `goal`, `content: ContentCard[]`, `quiz?`; make `starterCode` optional; migrate module 2 lessons to JSON
+- [ ] **Migrate existing `lessons.ts`** — move lesson 1–8 content into `module2/lesson-N.json` files; update `loader.ts`; remove shim when `App.tsx` is updated
 - [x] **Read-only lesson UI mode** — content card reader with Finish/Next buttons; no editor
 - [x] **Reading comprehension quiz UI** — multiple choice and true/false; shows explanation after each answer
 - [x] **Module type field** — `reading` vs `coding` modules distinguished in data and UI
+- [ ] **Coding lesson card flow** — implement 2–4 instruction cards shown *before* the editor unlocks (micro-reading → immediate action pattern)
+- [ ] **Quiz budget** — reading lessons: 5-question quiz; coding lessons: 0–3 question optional mini-quiz only
 
 ### Lesson 1: print()
 - [x] Expand concept — "print() is a command that makes Python display a message on the screen. The parentheses () mean 'do this action now.' Anything inside quotes \" \" is text and Python will show it exactly as typed."
