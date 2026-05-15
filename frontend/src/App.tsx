@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { lessons } from './data/lessons'
 import { sandboxExamples } from './data/sandboxExamples'
 import { TopNav } from './components/TopNav'
+import { WelcomeModal } from './components/WelcomeModal'
 import type { AppMode, ExecutionResponse } from './types'
 import './App.css'
 
@@ -15,6 +16,7 @@ const apiBase = import.meta.env.VITE_API_URL ?? 'http://127.0.0.1:8000'
 
 function App() {
   const [mode, setMode] = useState<AppMode>('lessons')
+  const [showWelcome, setShowWelcome] = useState<boolean>(true)
   const [selectedLessonId, setSelectedLessonId] = useState(lessons[0].id)
   const [lessonCodeById, setLessonCodeById] = useState<Record<string, string>>(() => {
     return Object.fromEntries(lessons.map((lesson) => [lesson.id, lesson.starterCode]))
@@ -120,7 +122,14 @@ function App() {
 
   return (
     <div className={`app ${mode === 'sandbox' ? 'sandbox-theme' : ''}`}>
-      <TopNav mode={mode} onChangeMode={setMode} />
+      {showWelcome && (
+        <WelcomeModal
+          onDismiss={() => {
+            setShowWelcome(false)
+          }}
+        />
+      )}
+      <TopNav mode={mode} onChangeMode={setMode} onHelp={() => setShowWelcome(true)} />
       <main className="panel-layout">
         <section className="panel panel-left">
           {mode === 'lessons' ? (

@@ -1,6 +1,14 @@
 # TODO
 
-A running list of things to work on for **studious-code-titan**.
+A r### Modules & Comprehension Practicals *(new)*
+- [ ] **Group lessons into modules** — organize lessons into themed modules:
+  - Module 1: Introduction *(reading only, no code editor, comprehension quiz per lesson + combined practical quiz)*
+  - Module 2+: Coding modules *(have editor, progressive hints, Dive Deeper challenge, and a coding practical at the end)*
+- [ ] **Module overview screen** — a UI view that shows the modules, which lessons are inside each, and progress through them
+- [ ] **Two module types:**
+  - `reading` — lessons are content cards with a comprehension quiz; practical is a combined quiz
+  - `coding` — lessons have an editor + hints + challenge; practical is an open-ended coding project
+- [ ] **Decide on module groupings** — sketch out which existing (and planned) lessons belong in each coding module and what each practical will belist of things to work on for **studious-code-titan**.
 
 ---
 
@@ -19,15 +27,32 @@ A running list of things to work on for **studious-code-titan**.
 
 ---
 
-### Lesson 0a: Introduction to Programming *(new)*
-- [ ] Write concept — what is programming, what is a computer program, why it matters; keep it fun and concrete for kids
-- [ ] No code editor needed — could be a read-only "story" panel or a simple animated explainer
-- [ ] Decide on format: text-only lesson, or include a non-editable code preview as illustration
+### Landing Page / Onboarding
+- [ ] **"How to use this app" welcome modal** — shown on first visit only (localStorage flag), dismissable; should explain:
+  - What the app is and who it's for
+  - How the lesson panel, code editor, and output panel work together
+  - How hints work (click to reveal one at a time)
+  - The Dive Deeper challenge concept
+  - The Cmd/Ctrl+Enter shortcut to run code
+- [ ] Modal should not appear again after first dismissal (set a `hasSeenWelcome` flag in localStorage)
 
-### Lesson 0b: Introduction to Python *(new)*
-- [ ] Write concept — what Python is, why it's a great first language, what kinds of things people build with it
-- [ ] Show a tiny teaser snippet (non-editable) to excite the learner before lesson 1
-- [ ] Decide on format: text-only or illustrated
+### Module 1: Introduction *(new, read-only with comprehension quiz)*
+- [ ] **No code editor** for this module — lessons are reading cards only
+- [ ] **Reading comprehension quiz** at the end of each lesson (multiple choice or short answer) instead of a coding practical
+- [ ] Module 1 practical = a comprehension quiz that covers both intro lessons combined
+- [ ] Write Lesson 0a content — Introduction to Programming:
+  - What is programming? What is a computer program?
+  - Real-world examples kids relate to (games, apps, robots)
+  - Keep it fun, concrete, no jargon
+- [ ] Write Lesson 0b content — Introduction to Python:
+  - What Python is and why it's a great first language
+  - Famous things built with Python (YouTube, games, NASA scripts etc.)
+  - A non-editable teaser code snippet to excite the learner
+
+### Cross-cutting Lesson Work
+- [ ] **Read-only lesson UI mode** — support lessons that have no editor (just a content card with a "Continue" button)
+- [ ] **Reading comprehension quiz UI** — mix of multiple choice and true/false questions; 3–5 questions per lesson; no open-ended; shows explanation after each answer
+- [ ] **Module type field** — distinguish between `coding` modules (have editor + practical) and `reading` modules (have quiz instead)
 
 ### Lesson 1: print()
 - [x] Expand concept — "print() is a command that makes Python display a message on the screen. The parentheses () mean 'do this action now.' Anything inside quotes \" \" is text and Python will show it exactly as typed."

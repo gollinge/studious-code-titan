@@ -1,5 +1,28 @@
 # Copilot Instructions
 
+## Starting the Dev Servers
+
+Always check if the servers are running before asking the user to verify in the browser. If they are not running, start them.
+
+```bash
+# Backend
+cd /Users/saragollinger/workspace/studious-code-titan/backend
+source .venv/bin/activate
+uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+```bash
+# Frontend
+cd /Users/saragollinger/workspace/studious-code-titan/frontend
+npm run dev
+```
+
+- Run each in a **background terminal** so they don't block.
+- If a port is already in use, kill it first: `kill $(lsof -ti TCP:<port>)`
+- Confirm both are up before telling the user to open the browser.
+
+---
+
 ## Workflow
 
 Follow this workflow for every piece of work, without exception.
