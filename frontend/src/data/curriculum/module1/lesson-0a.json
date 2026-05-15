@@ -1,0 +1,88 @@
+{
+  "id": "module1-lesson-0a",
+  "moduleId": "module1",
+  "title": "Introduction to Programming",
+  "type": "reading",
+  "content": [
+    {
+      "id": "0a-card-1",
+      "type": "text",
+      "title": "What is programming?",
+      "body": "Programming is giving a computer a set of instructions to follow. Just like you might write down the steps to make a sandwich or explain how to play a board game, a program tells a computer exactly what to do — step by step."
+    },
+    {
+      "id": "0a-card-2",
+      "type": "text",
+      "title": "What is a program?",
+      "body": "A program is a list of instructions written in a language that computers understand. Every app you've ever used — a game, a video player, a chat app — is a program. Someone wrote those instructions!"
+    },
+    {
+      "id": "0a-card-3",
+      "type": "callout",
+      "title": "Instructions + logic",
+      "body": "Programs don't just follow steps blindly — they can also make decisions. \"If the player's score is over 100, show the winner screen.\" That mixture of instructions and decisions is called logic, and it's what makes programs powerful."
+    },
+    {
+      "id": "0a-card-4",
+      "type": "text",
+      "title": "Programs are everywhere",
+      "body": "You interact with programs all the time: the game that tracks your score, the app that recommends your next video, the robot in a factory that builds cars. Every one of those started with someone writing instructions in a programming language."
+    },
+    {
+      "id": "0a-card-5",
+      "type": "text",
+      "title": "Input → Processing → Output",
+      "body": "Almost every program follows this pattern: it takes some input (a click, a number, a message), does something with it (processing), and produces output (a sound, a screen change, an answer). This mental model will help you understand any program you encounter."
+    }
+  ],
+  "quiz": [
+    {
+      "id": "0a-q1",
+      "type": "true-false",
+      "question": "A program is a list of instructions that a computer follows.",
+      "options": [
+        { "id": "true", "text": "True" },
+        { "id": "false", "text": "False" }
+      ],
+      "correctOptionId": "true",
+      "explanation": "Correct! A program is exactly that — a precise list of instructions written so a computer can follow them."
+    },
+    {
+      "id": "0a-q2",
+      "type": "multiple-choice",
+      "question": "Which of these is an example of a program?",
+      "options": [
+        { "id": "a", "text": "A pencil" },
+        { "id": "b", "text": "A video game" },
+        { "id": "c", "text": "A notebook" },
+        { "id": "d", "text": "A chair" }
+      ],
+      "correctOptionId": "b",
+      "explanation": "A video game is a program — someone wrote instructions telling the computer how to show graphics, keep score, and respond to your controller."
+    },
+    {
+      "id": "0a-q3",
+      "type": "multiple-choice",
+      "question": "In the Input → Processing → Output model, what does \"processing\" mean?",
+      "options": [
+        { "id": "a", "text": "Taking information in" },
+        { "id": "b", "text": "Showing a result on screen" },
+        { "id": "c", "text": "Doing something with the input" },
+        { "id": "d", "text": "Writing the program" }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Processing is the middle step — the computer takes the input and does something with it (calculates, decides, transforms) before producing output."
+    },
+    {
+      "id": "0a-q4",
+      "type": "true-false",
+      "question": "Only robots and factories use programs.",
+      "options": [
+        { "id": "true", "text": "True" },
+        { "id": "false", "text": "False" }
+      ],
+      "correctOptionId": "false",
+      "explanation": "False! Programs are in games, apps, websites, music players, cars, phones — almost everything around you that has a screen or a chip."
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "module1-lesson-0b",
+  "moduleId": "module1",
+  "title": "How Computers Follow Instructions",
+  "type": "reading",
+  "content": [
+    {
+      "id": "0b-card-1",
+      "type": "text",
+      "title": "Computers are very literal",
+      "body": "Computers do exactly what you tell them — nothing more, nothing less. If you say \"spread peanut butter\" but forget to say \"open the jar first,\" a computer would try to spread from a closed jar. It won't guess what you meant. Ever."
+    },
+    {
+      "id": "0b-card-2",
+      "type": "text",
+      "title": "Order matters — a lot",
+      "body": "Computers follow instructions in the exact order you give them. Step 1 always happens before Step 2. If you put instructions in the wrong order, you'll get a different result — or an error. There are no shortcuts."
+    },
+    {
+      "id": "0b-card-3",
+      "type": "callout",
+      "title": "The sandwich test",
+      "body": "Imagine telling a robot to make you a sandwich. Your instructions say: \"1. Spread peanut butter. 2. Open the jar.\" The robot will try to spread from a closed jar — and fail. Computers need every step spelled out, in the right order, with nothing left to imagination."
+    },
+    {
+      "id": "0b-card-4",
+      "type": "text",
+      "title": "This is why bugs happen",
+      "body": "Most beginner mistakes in coding come from a missing step, a wrong order, or a tiny spelling error. It's not a sign you're bad at coding — it's just how precise computers need to be. Once you understand this, bugs feel less mysterious and much easier to fix."
+    }
+  ],
+  "quiz": [
+    {
+      "id": "0b-q1",
+      "type": "true-false",
+      "question": "If your instructions are unclear, a computer will try to guess what you meant.",
+      "options": [
+        { "id": "true", "text": "True" },
+        { "id": "false", "text": "False" }
+      ],
+      "correctOptionId": "false",
+      "explanation": "False! Computers follow instructions literally and exactly. They don't guess, infer, or fill in the blanks — that's what makes precision so important."
+    },
+    {
+      "id": "0b-q2",
+      "type": "multiple-choice",
+      "question": "Your robot sandwich instructions say: \"1. Pour the milk. 2. Open the milk carton.\" What happens?",
+      "options": [
+        { "id": "a", "text": "The robot pours the milk perfectly" },
+        { "id": "b", "text": "The robot opens the carton first because it's smarter than that" },
+        { "id": "c", "text": "The robot tries to pour from a closed carton" },
+        { "id": "d", "text": "The robot asks you what to do" }
+      ],
+      "correctOptionId": "c",
+      "explanation": "The robot follows instructions in order — Step 1 is \"pour the milk,\" so it tries, even though the carton is closed. Computers don't reorder steps on their own."
+    },
+    {
+      "id": "0b-q3",
+      "type": "multiple-choice",
+      "question": "What is the most common cause of bugs (mistakes) in code?",
+      "options": [
+        { "id": "a", "text": "The computer is broken" },
+        { "id": "b", "text": "A missing step, wrong order, or spelling error in the instructions" },
+        { "id": "c", "text": "The programmer isn't smart enough" },
+        { "id": "d", "text": "The program is too long" }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Almost all beginner bugs come down to a missing step, instructions in the wrong order, or a tiny typo. Knowing this makes debugging much less frustrating."
+    },
+    {
+      "id": "0b-q4",
+      "type": "true-false",
+      "question": "The order you write instructions in doesn't affect what a program does.",
+      "options": [
+        { "id": "true", "text": "True" },
+        { "id": "false", "text": "False" }
+      ],
+      "correctOptionId": "false",
+      "explanation": "False! Order is everything. Computers execute instructions top to bottom, in sequence. Swap two steps and you get a completely different (often broken) result."
+    }
+  ]
+}

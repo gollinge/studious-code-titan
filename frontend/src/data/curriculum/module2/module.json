@@ -1,0 +1,16 @@
+{
+  "id": "module2",
+  "title": "Python Basics",
+  "type": "coding",
+  "goal": "Write your first Python programs using print, variables, math, and more.",
+  "lessonIds": [
+    "print",
+    "variables",
+    "math",
+    "if",
+    "loops",
+    "functions",
+    "lists",
+    "turtle"
+  ]
+}

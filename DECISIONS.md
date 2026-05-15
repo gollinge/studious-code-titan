@@ -102,6 +102,10 @@ Most recent decisions are at the top of each section.
 **Decision:** The "how to use this app" onboarding is a modal, not a lesson. Module 1 lessons are about programming concepts, not app mechanics.
 **Rationale:** Conflating app onboarding with curriculum content would be confusing.
 
+### 2026-05-15 — Lesson and module configs are JSON files, not TypeScript
+**Decision:** All curriculum content (cards, quiz questions, module metadata) lives in `.json` files under `src/data/curriculum/`. A single `loader.ts` statically imports them and exports fully-typed data. The app imports from `loader.ts` only.
+**Rationale:** JSON keeps content clearly separate from code — no TypeScript knowledge needed to edit a lesson. Vite handles static JSON imports natively; `resolveJsonModule: true` added to `tsconfig.app.json`. Statically imported for now (no runtime fetch) — easy to switch to a CMS fetch later without changing the loader's public API.
+
 ### 2026-05-15 — Intro lessons (0a, 0b, 0c) are Module 1; coding lessons start at Module 2
 **Decision:** Module 1 contains three reading lessons (0a, 0b, 0c). The first coding lesson (`print()`) begins Module 2.
 **Rationale:** Gives the curriculum a clear narrative arc: orient → conceptual framing → hands-on coding.

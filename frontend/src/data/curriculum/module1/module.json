@@ -1,0 +1,11 @@
+{
+  "id": "module1",
+  "title": "What Programming Is",
+  "type": "reading",
+  "goal": "Build mental models before any coding begins.",
+  "lessonIds": [
+    "module1-lesson-0a",
+    "module1-lesson-0b",
+    "module1-lesson-0c"
+  ]
+}
