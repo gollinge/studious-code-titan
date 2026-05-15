@@ -35,7 +35,7 @@
     }
   ],
   "starterCode": "print(\"Hello!\")\n",
-  "editorPrompt": "Make the computer display a message using print()",
+  "editorPrompt": "Make the computer say something using print().",
   "progressiveHints": [
     "# Starter code — try changing the message!\nprint(\"Hello!\")",
     "# Hint: Use print() with a message in quotes\n# print(\"your message here\")",

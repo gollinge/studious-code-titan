@@ -28,7 +28,7 @@
     }
   ],
   "starterCode": "print(\"A dragon appeared!\")\nprint(\"You found a sword.\")\n",
-  "editorPrompt": "Write a short story using multiple print() lines — one line of the story per print()",
+  "editorPrompt": "Write a short story using multiple print() lines — one line per print().",
   "progressiveHints": [
     "# Starter code — try continuing the story!\nprint(\"A dragon appeared!\")\nprint(\"You found a sword.\")",
     "# Hint: Add more print() lines to continue the story\n# print(\"What happens next?\")",

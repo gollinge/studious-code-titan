@@ -99,7 +99,7 @@ def _detect_error_type(stderr: str) -> str | None:
     return "ExecutionError"
 
 
-def execute_python_code(code: str) -> ExecutionResult:
+def execute_python_code(code: str, stdin: str = "") -> ExecutionResult:
     with tempfile.TemporaryDirectory(prefix="study-python-") as temp_dir:
         temp_path = Path(temp_dir)
         user_code_path = temp_path / "main.py"
@@ -115,6 +115,7 @@ def execute_python_code(code: str) -> ExecutionResult:
                 capture_output=True,
                 text=True,
                 timeout=TIMEOUT_SECONDS,
+                input=stdin,
                 env={"PYTHONIOENCODING": "utf-8"},
             )
             stderr = completed.stderr

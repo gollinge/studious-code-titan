@@ -1,0 +1,46 @@
+{
+  "id": "module3-final",
+  "moduleId": "module3",
+  "title": "Final Project — Choose Your Own Adventure",
+  "type": "coding",
+  "goal": "project",
+  "content": [
+    {
+      "id": "c1",
+      "type": "text",
+      "title": "Your Biggest Program Yet",
+      "summary": "You'll build a full branching adventure using everything from Module 3.",
+      "body": "This is it — your Module 3 final project. You're going to build a real choose-your-own-adventure game using everything you've learned:\n\n• input() to ask the player questions\n• variables to remember their name and choices\n• print() to tell the story\n• if / else to branch the adventure\n\nThere's no single right answer here. The story is yours."
+    },
+    {
+      "id": "c2",
+      "type": "callout",
+      "title": "The Requirements",
+      "summary": "Ask at least 3 questions, use the player's name, write if/else for each choice, create multiple different endings.",
+      "body": "Your adventure needs:\n\n✅ Ask the player their name — and use it in the story\n✅ Ask at least 3 different choices (doors, paths, items, actions...)\n✅ Use if / else for each choice\n✅ At least two different endings that feel meaningfully different\n✅ Make it fun — give it personality, humour, weirdness"
+    },
+    {
+      "id": "c3",
+      "type": "text",
+      "title": "Story Ideas",
+      "summary": "Space station, haunted bakery, dragon academy, underwater city — pick a world you'd want to explore.",
+      "body": "Stuck for a setting? Try one of these:\n\n🚀 Lost on a space station — airlocks, robots, zero gravity\n🏰 Exploring a haunted castle — friendly ghosts, secret passages\n🐉 Dragon Academy — choose your dragon, your spell, your destiny\n🌊 Underwater city — merpeople, sunken treasure, a very polite shark\n🍩 The Haunted Bakery — mysterious pastries, a ghost chef, a missing recipe\n\nOr make up your own world entirely."
+    },
+    {
+      "id": "c4",
+      "type": "code",
+      "title": "A Starting Shape",
+      "summary": "Here's the skeleton — fill in the story details, choices, and endings.",
+      "body": "name = input(\"What is your name, adventurer? \")\nprint(\"Welcome, \" + name + \"! Your adventure begins...\")\n\nchoice1 = input(\"Do you go left or right? \")\n\nif choice1 == \"left\":\n    print(\"You head left...\")\n    # keep going!\nelse:\n    print(\"You head right...\")\n    # keep going!\n\nAdd more choices inside each branch to make the story longer."
+    }
+  ],
+  "editorPrompt": "Build a choose-your-own-adventure game with 3+ choices and multiple endings.",
+  "starterCode": "name = input(\"What is your name, adventurer? \")\nprint(\"Welcome, \" + name + \"!\")\n\nchoice = input(\"Do you go left or right? \")\n\nif choice == \"left\":\n    print(\"You went left!\")\nelse:\n    print(\"You went right!\")\n",
+  "progressiveHints": [
+    "# Starter — add your story details and more choices!\nname = input(\"What is your name, adventurer? \")\nprint(\"Welcome, \" + name + \"!\")\n\nchoice = input(\"Do you go left or right? \")\n\nif choice == \"left\":\n    print(\"You went left!\")\nelse:\n    print(\"You went right!\")",
+    "# Hint: add a second choice inside the if branch!\n# choice2 = input(\"A door appears. Do you open it? \")\n# if choice2 == \"yes\":\n#     print(\"You step inside...\")\n# else:\n#     print(\"You walk away...\")",
+    "name = input(\"What is your name? \")\nprint(\"Welcome, \" + name + \"! The adventure begins.\")\n\npath = input(\"Forest or castle? \")\n\nif path == \"forest\":\n    print(\"You enter the dark forest.\")\n    animal = input(\"A creature blocks your path. Do you talk to it or run? \")\n    if animal == \"talk\":\n        print(\"It was a friendly wizard fox! You get a magic bean.\")\n    else:\n        print(\"You run — but drop your snacks. The fox eats them.\")\nelse:\n    print(\"The castle gates open with a creak.\")\n    print(\"A ghost butler bows. 'Welcome, ' + name + '.'\")",
+    "# Full example:\nname = input(\"What is your name, hero? \")\nprint(\"Greetings, \" + name + \"! The kingdom needs your help.\")\n\nquest = input(\"Do you seek the lost crown or the stolen recipe? \")\n\nif quest == \"crown\":\n    print(\"You ride north to the Ice Mountains.\")\n    bridge = input(\"A rickety bridge blocks your path. Cross it or find another way? \")\n    if bridge == \"cross\":\n        print(\"You make it across! A snow fox cheers.\")\n        print(\"You find the crown and return a hero!\")\n    else:\n        print(\"You find a secret tunnel — and a map to buried treasure too!\")\nelse:\n    print(\"You head to the Enchanted Bakery.\")\n    clue = input(\"The ghost chef offers a hint. Take it or guess yourself? \")\n    if clue == \"take it\":\n        print(\"The secret ingredient was moonlight! You save the bakery.\")\n    else:\n        print(\"Your guess was 'dragon pepper' — the pastries explode (deliciously).\")\n\nprint(\"\\nTHE END. Well done, \" + name + \"!\")"
+  ],
+  "challenge": "🚀 Dive Deeper: Add a score system! Create a variable called score = 0 at the start. Each time the player makes a \"good\" choice, add to it: score = score + 1. At the very end, print their final score. How high can a player get?"
+}

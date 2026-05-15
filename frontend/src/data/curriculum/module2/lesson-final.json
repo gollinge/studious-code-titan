@@ -28,7 +28,7 @@
     }
   ],
   "starterCode": "player = \"Sam\"\nweapon = \"Laser Sword\"\n\nprint(player + \" entered the dungeon.\")\nprint(\"Equipped:\", weapon)\nprint(\"A giant slime appeared!\")\n",
-  "editorPrompt": "Write the opening of a text adventure — use variables for the player and an item, and tell the story with print()",
+  "editorPrompt": "Write the opening of a text adventure — use variables for the player and an item, and tell the story with print().",
   "progressiveHints": [
     "# Starter example — replace everything with your own story!\nplayer = \"Sam\"\nweapon = \"Laser Sword\"\n\nprint(player + \" entered the dungeon.\")\nprint(\"Equipped:\", weapon)\nprint(\"A giant slime appeared!\")",
     "# Hint: Start with two variables for your character\n# player = \"your name here\"\n# item = \"your item here\"",

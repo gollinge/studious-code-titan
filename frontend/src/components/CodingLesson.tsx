@@ -33,11 +33,33 @@ type CardProps = {
   card: LessonConfig['content'][number]
 }
 
+const PY_LINE = /^(\s+\S|(?:if|else|elif|for|while|def|class|import|from|return|pass|break|try|except|raise|with|print|input)\b|[a-zA-Z_]\w*\s*[=(+\[{])/
+
+function isCodeParagraph(para: string): boolean {
+  const lines = para.split('\n').filter((l) => l.trim() !== '')
+  return lines.length > 0 && lines.every((l) => PY_LINE.test(l))
+}
+
+function CardBody({ body }: { body: string }) {
+  const paragraphs = body.split(/\n\n+/)
+  return (
+    <>
+      {paragraphs.map((para, i) =>
+        isCodeParagraph(para) ? (
+          <pre key={i} className="content-card__code"><code>{para}</code></pre>
+        ) : (
+          <p key={i} className="content-card__body" style={{ whiteSpace: 'pre-wrap' }}>{para}</p>
+        )
+      )}
+    </>
+  )
+}
+
 function ContentCardView({ card }: CardProps) {
   return (
     <div className={`content-card content-card--${card.type}`}>
       {card.title && <h3 className="content-card__title">{card.title}</h3>}
-      <p className="content-card__body" style={{ whiteSpace: 'pre-wrap' }}>{card.body}</p>
+      <CardBody body={card.body} />
     </div>
   )
 }
@@ -70,6 +92,7 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onBack }: Props)
   const [isRunning, setIsRunning] = useState(false)
   const [hintsRevealed, setHintsRevealed] = useState(0)
   const [showHelp, setShowHelp] = useState(false)
+  const [pendingInputs, setPendingInputs] = useState<{ prompts: string[]; values: string[] } | null>(null)
   const outputRef = useRef<HTMLPreElement | null>(null)
 
   const cards = lesson.content
@@ -92,14 +115,15 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onBack }: Props)
 
   // ── Code execution ───────────────────────────────────────────────────────────
 
-  const runCode = useCallback(async () => {
+  const runCode = useCallback(async (stdin = '') => {
     setIsRunning(true)
     setShowHelp(false)
+    setPendingInputs(null)
     try {
       const response = await fetch(`${apiBase}/api/execute`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code }),
+        body: JSON.stringify({ code, stdin }),
       })
       const payload = (await response.json()) as ExecutionResponse
       setOutput(payload)
@@ -125,13 +149,40 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onBack }: Props)
         {
           key: 'Mod-Enter',
           run: () => {
-            void runCode()
+            void handleRunClick()
             return true
           },
         },
       ]),
-    [runCode],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [code],
   )
+
+  // ── input() detection ────────────────────────────────────────────────────────
+
+  function extractInputPrompts(src: string): string[] {
+    const prompts: string[] = []
+    const re = /\binput\(\s*(?:f?["'])(.*?)["']\s*\)/g
+    let m: RegExpExecArray | null
+    while ((m = re.exec(src)) !== null) {
+      prompts.push(m[1])
+    }
+    // Also catch bare input() with no string arg
+    const bareRe = /\binput\(\s*\)/g
+    while ((bareRe.exec(src)) !== null) {
+      prompts.push('Enter a value')
+    }
+    return prompts
+  }
+
+  function handleRunClick() {
+    const prompts = extractInputPrompts(code)
+    if (prompts.length > 0) {
+      setPendingInputs({ prompts, values: prompts.map(() => '') })
+    } else {
+      void runCode()
+    }
+  }
 
   const resetCode = () => {
     setCode(initialCode)
@@ -318,7 +369,7 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onBack }: Props)
       {/* Center panel: editor */}
       <section className="coding-lesson__editor">
         <div className="editor-toolbar">
-          <button type="button" onClick={() => void runCode()} disabled={isRunning}>
+          <button type="button" onClick={handleRunClick} disabled={isRunning}>
             {isRunning ? 'Running…' : '▶ Run'}
           </button>
           <button type="button" className="secondary" onClick={resetCode}>
@@ -342,9 +393,47 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onBack }: Props)
       {/* Right panel: output */}
       <section className="coding-lesson__output">
         <h2>Output</h2>
-        {output === null ? (
+        {pendingInputs !== null && (
+          /* ── Input collection form ── */
+          <form
+            className="input-form"
+            onSubmit={(e) => {
+              e.preventDefault()
+              void runCode(pendingInputs.values.join('\n') + '\n')
+            }}
+          >
+            <p className="input-form__intro">Your program needs some answers first:</p>
+            {pendingInputs.prompts.map((prompt, i) => (
+              <div key={i} className="input-form__field">
+                <label className="input-form__label">{prompt || `Input ${i + 1}`}</label>
+                <input
+                  type="text"
+                  className="input-form__input"
+                  value={pendingInputs.values[i]}
+                  autoFocus={i === 0}
+                  onChange={(e) => {
+                    const newValues = [...pendingInputs.values]
+                    newValues[i] = e.target.value
+                    setPendingInputs({ ...pendingInputs, values: newValues })
+                  }}
+                />
+              </div>
+            ))}
+            <button type="submit" className="input-form__run-btn">
+              ▶ Run with my answers
+            </button>
+            <button
+              type="button"
+              className="secondary"
+              onClick={() => setPendingInputs(null)}
+            >
+              Cancel
+            </button>
+          </form>
+        )}
+        {output === null && pendingInputs === null ? (
           <p className="output-placeholder">Run your code to see the output here.</p>
-        ) : (
+        ) : output !== null ? (
           <>
             <pre
               ref={outputRef}
@@ -374,7 +463,7 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onBack }: Props)
               <p className="timeout">⏱ Execution stopped after 2 seconds.</p>
             )}
           </>
-        )}
+        ) : null}
       </section>
     </div>
   )

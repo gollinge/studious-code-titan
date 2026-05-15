@@ -28,7 +28,7 @@
     }
   ],
   "starterCode": "name = \"Mia\"\nprint(name + \" entered the castle.\")\n",
-  "editorPrompt": "Use a variable and + to print a message that includes a name",
+  "editorPrompt": "Use a variable and + to print a message that includes a name.",
   "progressiveHints": [
     "# Starter code — try changing the name or the message!\nname = \"Mia\"\nprint(name + \" entered the castle.\")",
     "# Hint: Use + to combine a variable with extra text\n# print(name + \" found a treasure chest!\")",

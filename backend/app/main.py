@@ -31,7 +31,7 @@ def health() -> dict[str, str]:
 
 @app.post("/api/execute", response_model=ExecuteResponse)
 def execute(request: ExecuteRequest) -> ExecuteResponse:
-    result = execute_python_code(request.code)
+    result = execute_python_code(request.code, stdin=request.stdin)
     return ExecuteResponse(
         stdout=result.stdout,
         stderr=result.stderr,

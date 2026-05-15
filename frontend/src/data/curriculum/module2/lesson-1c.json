@@ -28,7 +28,7 @@
     }
   ],
   "starterCode": "name = \"Alex\"\nprint(name)\n",
-  "editorPrompt": "Create a variable, store your name in it, and print it",
+  "editorPrompt": "Create a variable, store your name in it, and print it.",
   "progressiveHints": [
     "# Starter code — try changing \"Alex\" to your name!\nname = \"Alex\"\nprint(name)",
     "# Hint: Create more variables and print them\n# score = 100\n# print(score)",
