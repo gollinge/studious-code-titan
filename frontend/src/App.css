@@ -213,6 +213,27 @@
   background: #1b5e20;
 }
 
+/* ── Lesson complete actions ─────────────────────────────────────────────── */
+
+.lesson-complete-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.lesson-complete-actions--centered {
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.lesson-complete-badge {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #2e7d32;
+  letter-spacing: 0.02em;
+}
+
 .sandbox-theme .panel-left {
   border-color: #f0b429;
   background: #fffbe6;

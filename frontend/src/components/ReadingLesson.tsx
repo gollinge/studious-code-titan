@@ -7,14 +7,16 @@ type Props = {
   lesson: LessonConfig
   moduleTitle: string
   onComplete: () => void
+  onNext: () => void
   onBack: () => void
 }
 
-export function ReadingLesson({ lesson, moduleTitle, onComplete, onBack }: Props) {
+export function ReadingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }: Props) {
   const [cardIndex, setCardIndex] = useState(0)
   const [phase, setPhase] = useState<Phase>('cards')
   const [quizIndex, setQuizIndex] = useState(0)
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null)
+  const [isCompleted, setIsCompleted] = useState(false)
 
   const cards = lesson.content
   const quiz = lesson.quiz ?? []
@@ -30,6 +32,7 @@ export function ReadingLesson({ lesson, moduleTitle, onComplete, onBack }: Props
       setPhase('quiz')
     } else {
       onComplete()
+      setIsCompleted(true)
     }
   }
 
@@ -44,6 +47,7 @@ export function ReadingLesson({ lesson, moduleTitle, onComplete, onBack }: Props
       setSelectedOptionId(null)
     } else {
       onComplete()
+      setIsCompleted(true)
     }
   }
 
@@ -58,7 +62,7 @@ export function ReadingLesson({ lesson, moduleTitle, onComplete, onBack }: Props
         </span>
       </div>
 
-      {phase === 'cards' && (
+      {phase === 'cards' && !isCompleted && (
         <div className="card-reader">
           <p className="card-progress">
             {cardIndex + 1} / {cards.length}
@@ -82,6 +86,15 @@ export function ReadingLesson({ lesson, moduleTitle, onComplete, onBack }: Props
                 : 'Next →'}
             </button>
           </div>
+        </div>
+      )}
+
+      {phase === 'cards' && isCompleted && (
+        <div className="lesson-complete-actions lesson-complete-actions--centered">
+          <span className="lesson-complete-badge">✓ Lesson Complete</span>
+          <button type="button" className="continue-btn" onClick={onNext}>
+            Next Lesson →
+          </button>
         </div>
       )}
 
@@ -122,10 +135,18 @@ export function ReadingLesson({ lesson, moduleTitle, onComplete, onBack }: Props
               {currentQuestion.explanation}
             </div>
           )}
-          {selectedOptionId !== null && (
+          {selectedOptionId !== null && !isCompleted && (
             <button type="button" className="quiz-next-btn" onClick={handleNextQuestion}>
               {isLastQuestion ? 'Finish Lesson ✓' : 'Next Question →'}
             </button>
+          )}
+          {isCompleted && (
+            <div className="lesson-complete-actions">
+              <span className="lesson-complete-badge">✓ Lesson Complete</span>
+              <button type="button" className="continue-btn" onClick={onNext}>
+                Next Lesson →
+              </button>
+            </div>
           )}
         </div>
       )}

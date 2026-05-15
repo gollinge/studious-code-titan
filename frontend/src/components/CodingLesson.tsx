@@ -72,15 +72,17 @@ type Props = {
   lesson: LessonConfig
   moduleTitle: string
   onComplete: () => void
+  onNext: () => void
   onBack: () => void
 }
 
 const apiBase = import.meta.env.VITE_API_URL ?? 'http://127.0.0.1:8000'
 
-export function CodingLesson({ lesson, moduleTitle, onComplete, onBack }: Props) {
+export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }: Props) {
   // Card phase state
   const [cardIndex, setCardIndex] = useState(0)
   const [phase, setPhase] = useState<Phase>('cards')
+  const [isCompleted, setIsCompleted] = useState(false)
 
   // Editor state — starts with the objective as a comment; starter code is hint 0
   const initialCode = lesson.editorPrompt
@@ -361,9 +363,22 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onBack }: Props)
           </>
         )}
 
-        <button type="button" className="continue-btn coding-lesson__complete-btn" onClick={onComplete}>
-          Mark Complete ✓
-        </button>
+        {isCompleted ? (
+          <div className="lesson-complete-actions">
+            <span className="lesson-complete-badge">✓ Lesson Complete</span>
+            <button type="button" className="continue-btn" onClick={onNext}>
+              Next Lesson →
+            </button>
+          </div>
+        ) : (
+          <button
+            type="button"
+            className="continue-btn coding-lesson__complete-btn"
+            onClick={() => { onComplete(); setIsCompleted(true) }}
+          >
+            Mark Complete ✓
+          </button>
+        )}
       </section>
 
       {/* Center panel: editor */}

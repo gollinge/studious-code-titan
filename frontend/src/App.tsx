@@ -69,6 +69,18 @@ function App() {
     const modIdx = modules.findIndex((m) => m.id === activeModuleId)
     const nextMod = modules[modIdx + 1]
     markComplete(activeModuleId, lessonId, mod.lessonIds, nextMod?.id, nextMod?.lessonIds[0])
+    // stay on the lesson — Next Lesson button handles navigation
+  }
+
+  const handleNextLesson = (lessonId: string) => {
+    const mod = modules.find((m) => m.id === activeModuleId)
+    if (!mod) { setLessonView('module-detail'); return }
+    const idx = mod.lessonIds.indexOf(lessonId)
+    const nextId = idx >= 0 && idx < mod.lessonIds.length - 1 ? mod.lessonIds[idx + 1] : null
+    if (nextId) {
+      const next = allLessonConfigs.find((l) => l.id === nextId)
+      if (next) { handleSelectLesson(nextId, next.type === 'reading'); return }
+    }
     setLessonView('module-detail')
   }
 
@@ -159,6 +171,7 @@ function App() {
             lesson={activeLesson}
             moduleTitle={activeModule?.title ?? ''}
             onComplete={() => handleLessonComplete(activeLesson.id)}
+            onNext={() => handleNextLesson(activeLesson.id)}
             onBack={() => setLessonView('module-detail')}
           />
         </div>
@@ -170,6 +183,7 @@ function App() {
           lesson={activeLesson}
           moduleTitle={activeModule?.title ?? ''}
           onComplete={() => handleLessonComplete(activeLesson.id)}
+          onNext={() => handleNextLesson(activeLesson.id)}
           onBack={() => setLessonView('module-detail')}
         />
       )}

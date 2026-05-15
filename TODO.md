@@ -8,7 +8,7 @@
 ## Backlog
 
 ### Navigation & Flow
-- [ ] **"Next Lesson →" button** — appears in lesson view only after lesson is marked complete; advances to the next lesson in the module
+- [x] **"Next Lesson →" button** — appears in lesson view only after lesson is marked complete; advances to the next lesson in the module
 - [ ] **Welcome modal** — shown on first visit only (localStorage flag); explains the editor, hints, Dive Deeper, and Cmd+Enter shortcut; never shown again after dismissal
 
 ### Module 1 Practical
