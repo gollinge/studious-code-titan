@@ -1,0 +1,47 @@
+{
+  "id": "module5-4c",
+  "moduleId": "module5",
+  "title": "Functions That Receive Information",
+  "type": "coding",
+  "goal": "guided-practice",
+  "summary": "Make functions flexible — pass them a piece of information and they use it to do something unique.",
+  "content": [
+    {
+      "id": "c1",
+      "type": "text",
+      "title": "The Problem with Fixed Functions",
+      "summary": "A function that always prints the same thing isn't very flexible. Parameters fix that.",
+      "body": "So far, greet() always prints the same message. But what if you have three different heroes?\n\ndef greet():\n    print(\"Welcome, hero!\")\n\ngreet()   <- always says \"hero\"\ngreet()   <- always says \"hero\"\n\nYou would have to write a different function for each name. That's the old problem again."
+    },
+    {
+      "id": "c2",
+      "type": "code",
+      "title": "Giving Functions an Input",
+      "summary": "Put a name inside the parentheses of def — that becomes a variable the function can use.",
+      "body": "You can give a function a piece of information when you call it:\n\ndef greet(name):\n    print(\"Welcome,\", name)\n\ngreet(\"Kai\")\ngreet(\"Mira\")\ngreet(\"Leo\")\n\nOutput:\nWelcome, Kai\nWelcome, Mira\nWelcome, Leo\n\nname is called a parameter. When you call greet(\"Kai\"), name becomes \"Kai\" inside that function."
+    },
+    {
+      "id": "c3",
+      "type": "code",
+      "title": "Parameters Are Like Blanks to Fill In",
+      "summary": "Think of the parameter as a blank slot — whatever you pass in fills that slot for that call.",
+      "body": "Think of it like a template:\n\ndef announce(spell):\n    print(\"The wizard casts:\", spell)\n    print(\"A burst of light fills the room!\")\n\nannounce(\"Fireball\")\nannounce(\"Ice Storm\")\n\nOutput:\nThe wizard casts: Fireball\nA burst of light fills the room!\nThe wizard casts: Ice Storm\nA burst of light fills the room!\n\nOnly the first line changes — the rest of the function stays the same."
+    },
+    {
+      "id": "c4",
+      "type": "callout",
+      "title": "One Name, Two Places",
+      "summary": "The parameter name appears in def and is used inside the body — those two places are connected.",
+      "body": "The word in the parentheses at definition links to uses inside the body:\n\ndef pet(animal):        <- \"animal\" is defined here\n    print(\"You pet the\", animal)  <- used here\n    print(\"It seems happy!\")\n\npet(\"cat\")\npet(\"dragon\")\n\nYou choose the parameter name — use something that describes what gets passed in."
+    }
+  ],
+  "editorPrompt": "Write a function called announce(hero) that prints a two-line announcement using the hero's name. Call it for three different hero names.",
+  "starterCode": "# A function that announces a hero\ndef announce(hero):\n    pass  # print two lines using hero\n\n# Call it three times with different names\n",
+  "progressiveHints": [
+    "Replace pass with print lines. Use the word hero inside them: print(\"Hear ye! The hero\", hero, \"has arrived!\")",
+    "Add a second print line for drama: print(hero, \"draws their weapon!\")",
+    "Call the function three times with different strings: announce(\"Zara\"), announce(\"Rex\"), announce(\"Nova\")",
+    "Answer shape:\ndef announce(hero):\n    print(\"Hear ye!\", hero, \"has arrived!\")\n    print(hero, \"draws their weapon!\")\n\nannounce(\"Zara\")\nannounce(\"Rex\")\nannounce(\"Nova\")"
+  ],
+  "challenge": "Add a second parameter: announce(hero, weapon). Update the print lines to include both. Call it with three different hero+weapon combos."
+}

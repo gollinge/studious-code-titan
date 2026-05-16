@@ -1,0 +1,47 @@
+{
+  "id": "module5-4a",
+  "moduleId": "module5",
+  "title": "Why Functions Exist",
+  "type": "coding",
+  "goal": "guided-practice",
+  "summary": "Discover how to name a block of code so you can run it whenever you want.",
+  "content": [
+    {
+      "id": "c1",
+      "type": "text",
+      "title": "The Repetition Problem, Again",
+      "summary": "Copying the same lines over and over is a sign the code wants to become a function.",
+      "body": "You already know loops can repeat a single line. But what if you want to repeat a whole group of lines as one action?\n\nImagine a battle scene where the hero attacks:\n\nprint(\"You raise your sword!\")\nprint(\"Attack!\")\nprint(\"The enemy takes damage.\")\n\nIf you want that to happen three times, you're back to copy-pasting — or wrapping it all in a messy loop."
+    },
+    {
+      "id": "c2",
+      "type": "code",
+      "title": "Inventing Your Own Command",
+      "summary": "def lets you give a name to a block of code. After that, just write the name with () to run it.",
+      "body": "Python lets you invent new commands. It's called defining a function:\n\ndef attack():\n    print(\"You raise your sword!\")\n    print(\"Attack!\")\n    print(\"The enemy takes damage.\")\n\nNow attack() is a real command — just like print(). You call it by writing its name with parentheses:\n\nattack()\nattack()\nattack()"
+    },
+    {
+      "id": "c3",
+      "type": "text",
+      "title": "Define Once, Use Many Times",
+      "summary": "You define a function once at the top. Then call it as many times as you need.",
+      "body": "The def block runs zero times on its own — it just teaches Python what attack() means.\n\nEvery time you write attack(), Python runs the whole block from top to bottom.\n\nChange the function once and every place that calls it automatically changes too. That is the power of functions."
+    },
+    {
+      "id": "c4",
+      "type": "callout",
+      "title": "The Two Steps",
+      "summary": "Step 1: define (teach Python). Step 2: call (actually run it).",
+      "body": "Step 1 — Define (teach Python what the function does):\n\ndef jump():\n    print(\"Jump!\")\n\nStep 2 — Call (actually run it):\n\njump()\n\nIf you skip step 1 and just write jump(), Python says: NameError — it has never heard of jump.\nIf you only do step 1 and never call it, nothing happens."
+    }
+  ],
+  "editorPrompt": "Define a function called roar() that prints three lines describing a monster roar, then call it twice.",
+  "starterCode": "# Step 1: define the function\ndef roar():\n    pass  # replace this with your print lines\n\n# Step 2: call it\nroar()\n",
+  "progressiveHints": [
+    "Replace `pass` with two or three print() lines, each indented 4 spaces.",
+    "After the function definition (no indent), write roar() on a new line to call it.",
+    "To call it twice, add a second roar() line below the first.",
+    "Answer shape:\ndef roar():\n    print(\"ROAAAAR!\")\n    print(\"The ground shakes.\")\n\nroar()\nroar()"
+  ],
+  "challenge": "Add a third function called cast_spell() that prints a magic effect, then build a battle sequence: roar(), cast_spell(), roar()."
+}

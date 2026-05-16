@@ -9,7 +9,15 @@
 
 ### Navigation & Flow
 - [x] **"Next Lesson →" button** — appears in lesson view only after lesson is marked complete; advances to the next lesson in the module
+- [x] **Next Lesson phase reset** — fixed: "Next Lesson →" now always starts the next lesson from card 1 (not mid-editor or mid-quiz)
 - [ ] **Welcome modal** — shown on first visit only (localStorage flag); explains the editor, hints, Dive Deeper, and Cmd+Enter shortcut; never shown again after dismissal
+
+### Module 4 — Loops *(committed b32310f)*
+- [x] **Lesson 3a** — Why Loops Exist (`for`, `range()`, indentation)
+- [x] **Lesson 3b** — Counting with range() (start/stop/step, countdown)
+- [x] **Lesson 3c** — Building Patterns (string multiplication, open practice)
+- [x] **Lesson 3d** — Loops + Decisions (`if` inside loops, `%` operator)
+- [x] **Final Project** — Loop-Powered Mini Game (dungeon run; all concepts combined)
 
 ### Module 1 Practical
 - [ ] **Combined comprehension quiz** — covers lessons 0a, 0b, 0c; unlocks after all three are complete
