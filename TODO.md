@@ -27,6 +27,14 @@
 
 ### Sandbox
 - [ ] **Reference sheet popup** — toggleable floating panel with a Python syntax cheat sheet covering what's been taught
+- [ ] **Sandbox starter ideas** — revisit the current static example list; add curated starter programs, themed prompts, or remix-able project shells that invite open-ended creation (see VISION.md — The Sandbox)
+
+### VISION.md — Open Items
+- [ ] **Audience section** — fill in primary learner age range, context (home/school/self-directed), and assumed prior experience
+- [ ] **Scope ceiling** — confirm which module is the curriculum endpoint and which concepts are firmly out of scope for structured lessons
+- [ ] **Success criteria** — fill in the three "succeeding when" bullet points with concrete, observable signals
+- [ ] **Accounts decision** — confirm whether local-only / no accounts is intentional long-term; note cross-device progress implications
+- [ ] **What This Is Not** — add any other deliberately excluded features or approaches
 
 ### Polish
 - [ ] **Mobile layout** — test and fix layout on small screens
