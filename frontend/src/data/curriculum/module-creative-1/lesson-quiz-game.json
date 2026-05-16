@@ -1,0 +1,69 @@
+{
+  "id": "creative-1-quiz-game",
+  "moduleId": "module-creative-1",
+  "title": "Quiz Game",
+  "type": "coding",
+  "goal": "project",
+  "content": [
+    {
+      "id": "c1qg-intro",
+      "type": "text",
+      "title": "Your Mission",
+      "body": "Build a quiz game with at least three questions. Keep track of the player's score and tell them how they did at the end.\n\nYour game should:\n• Ask the player at least 3 questions using input()\n• Check if each answer is correct using if/else\n• Add 1 to the score for each correct answer\n• Print the final score at the end"
+    },
+    {
+      "id": "c1qg-ideas",
+      "type": "callout",
+      "title": "Quiz Ideas",
+      "body": "• A quiz about your favourite animal, film, or sport\n• A maths challenge (\"What is 7 × 8?\")\n• A geography quiz (\"What is the capital of France?\")\n• A Minecraft or Pokemon trivia quiz\n\nPick a topic you love!"
+    },
+    {
+      "id": "c1qg-patterns",
+      "type": "code",
+      "title": "Useful Patterns",
+      "body": "score = 0\n\nanswer = input(\"What colour is the sky? \")\nif answer.lower() == \"blue\":\n    print(\"Correct! +1\")\n    score = score + 1\nelse:\n    print(\"Not quite. The answer is blue.\")\n\nprint(\"Your score:\", score)"
+    }
+  ],
+  "starterCode": "# 🧠 Quiz Game\n# Build your quiz here!\n\nscore = 0\nprint(\"Welcome to the Quiz Game!\")\n\n# Question 1\nq1 = input(\"Question 1: What planet do we live on? \")\nif q1.lower() == \"earth\":\n    print(\"Correct! +1\")\n    score = score + 1\nelse:\n    print(\"Not quite! The answer is Earth.\")\n\n# Question 2\nq2 = input(\"Question 2: How many days are in a week? \")\nif q2 == \"7\":\n    print(\"Correct! +1\")\n    score = score + 1\nelse:\n    print(\"Not quite! The answer is 7.\")\n\n# Add more questions here!\n\nprint(\"\\nGame over! Your score:\", score, \"out of 2\")\n",
+  "progressiveHints": [
+    "Start with a score variable set to 0. Add 1 each time the player gets a question right.",
+    "Use input() to ask a question and store the answer in a variable.",
+    "Use if answer == \"correct answer\" to check if they got it right.",
+    "Use answer.lower() so the player can type 'Blue' or 'BLUE' and still get credit.",
+    "Copy your question pattern to add more questions — just change the question and the correct answer."
+  ],
+  "milestones": [
+    {
+      "id": "has-score",
+      "label": "Has a score variable",
+      "check": "score"
+    },
+    {
+      "id": "uses-input",
+      "label": "Uses input() to ask a question",
+      "check": "input("
+    },
+    {
+      "id": "uses-if",
+      "label": "Checks an answer with if",
+      "check": "if "
+    },
+    {
+      "id": "increments-score",
+      "label": "Adds to score when correct",
+      "check": "score + 1"
+    },
+    {
+      "id": "prints-score",
+      "label": "Prints the final score",
+      "check": "score"
+    }
+  ],
+  "remixIdeas": [
+    "Add a 4th and 5th question on your favourite topic.",
+    "Use a loop to repeat questions until the player gets them right.",
+    "Add difficulty levels — easy questions worth 1 point, hard ones worth 3.",
+    "Print a different message depending on the final score (\"Amazing!\", \"Not bad!\", \"Try again!\").",
+    "Turn it into a 2-player game — ask Player 1 then Player 2 and compare scores."
+  ]
+}

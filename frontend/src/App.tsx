@@ -12,6 +12,7 @@ import { ModuleDetail } from './components/ModuleDetail'
 import type { LessonRow } from './components/ModuleDetail'
 import { ReadingLesson } from './components/ReadingLesson'
 import { CodingLesson } from './components/CodingLesson'
+import { ProjectStudio } from './components/ProjectStudio'
 import type { AppMode, ExecutionResponse, LessonConfig } from './types'
 import './App.css'
 
@@ -179,8 +180,20 @@ function App() {
       )}
 
       {/* ── Coding Lesson ── */}
-      {mode === 'lessons' && lessonView === 'coding-lesson' && activeLesson && (
+      {mode === 'lessons' && lessonView === 'coding-lesson' && activeLesson && activeLesson.goal !== 'project' && (
         <CodingLesson
+          key={activeLesson.id}
+          lesson={activeLesson}
+          moduleTitle={activeModule?.title ?? ''}
+          onComplete={() => handleLessonComplete(activeLesson.id)}
+          onNext={() => handleNextLesson(activeLesson.id)}
+          onBack={() => setLessonView('module-detail')}
+        />
+      )}
+
+      {/* ── Project Studio ── */}
+      {mode === 'lessons' && lessonView === 'coding-lesson' && activeLesson && activeLesson.goal === 'project' && (
+        <ProjectStudio
           key={activeLesson.id}
           lesson={activeLesson}
           moduleTitle={activeModule?.title ?? ''}

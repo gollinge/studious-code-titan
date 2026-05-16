@@ -1,0 +1,11 @@
+{
+  "id": "module-creative-1",
+  "title": "Creative Projects I",
+  "type": "coding",
+  "goal": "Students build three open-ended projects — a text adventure, a quiz game, and a pet simulator — applying variables, input, conditionals, loops, and functions in creative, student-driven ways.",
+  "lessonIds": [
+    "creative-1-text-adventure",
+    "creative-1-quiz-game",
+    "creative-1-pet-simulator"
+  ]
+}

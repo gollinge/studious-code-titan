@@ -52,6 +52,17 @@ export type ModuleConfig = {
   lessonIds: string[]
 }
 
+/**
+ * A milestone is a detectable achievement in a ProjectStudio lesson.
+ * `check` is tested as a substring of the student's code on each Run.
+ */
+export type Milestone = {
+  id: string
+  label: string
+  /** Substring tested against the student's code string on each Run. */
+  check: string
+}
+
 export type LessonConfig = {
   id: string
   moduleId: string
@@ -74,6 +85,9 @@ export type LessonConfig = {
   starterCode?: string
   progressiveHints?: string[]
   challenge?: string
+  // ProjectStudio fields
+  milestones?: Milestone[]
+  remixIdeas?: string[]
 }
 
 // ── Legacy lesson type (coding lessons, pre-migration) ────────────────────────

@@ -1,0 +1,69 @@
+{
+  "id": "creative-1-text-adventure",
+  "moduleId": "module-creative-1",
+  "title": "Text Adventure",
+  "type": "coding",
+  "goal": "project",
+  "content": [
+    {
+      "id": "c1ta-intro",
+      "type": "text",
+      "title": "Your Mission",
+      "body": "Build a text adventure game where the player makes choices that change the story.\n\nYour game should:\n• Welcome the player and ask for their name\n• Describe a place or situation\n• Give the player at least two choices using input()\n• Take a different path depending on what they choose\n• Have a win condition AND a game-over condition"
+    },
+    {
+      "id": "c1ta-ideas",
+      "type": "callout",
+      "title": "Story Ideas",
+      "body": "• You wake up in a haunted house. Do you explore the basement or run outside?\n• You're an astronaut and your ship is losing power. Which system do you fix first?\n• You find a magic door. Do you knock, open it quietly, or walk away?\n\nPick any idea — or invent your own!"
+    },
+    {
+      "id": "c1ta-patterns",
+      "type": "code",
+      "title": "Useful Patterns",
+      "body": "name = input(\"What is your name? \")\nprint(\"Welcome,\", name)\n\nchoice = input(\"Do you go left or right? \")\nif choice == \"left\":\n    print(\"You find treasure!\")\nelse:\n    print(\"Dead end.\")"
+    }
+  ],
+  "starterCode": "# 🗺️ Text Adventure\n# Write your story here!\n\nprint(\"Welcome to my adventure game!\")\nname = input(\"What is your name? \")\nprint(\"Hello,\", name, \"- let the adventure begin!\")\n\n# Describe the scene\nprint(\"You are standing at a crossroads in a dark forest.\")\n\n# Give the player a choice\nchoice = input(\"Do you go left or right? \")\n\nif choice == \"left\":\n    print(\"You find a cozy cottage. You win!\")\nelse:\n    print(\"You fall into a ditch. Game over!\")\n",
+  "progressiveHints": [
+    "Use input() to ask the player questions. Store the answer in a variable.",
+    "Use if/else to send the player on different paths based on their answer.",
+    "Add more choices by nesting if statements inside each branch.",
+    "Use print() to describe each scene vividly — make the player feel they're really there!",
+    "For extra fun, add a score variable and increase it when the player makes good choices."
+  ],
+  "milestones": [
+    {
+      "id": "uses-input",
+      "label": "Uses input() to ask the player something",
+      "check": "input("
+    },
+    {
+      "id": "uses-variable",
+      "label": "Stores a value in a variable",
+      "check": " = "
+    },
+    {
+      "id": "uses-if",
+      "label": "Uses if to make a decision",
+      "check": "if "
+    },
+    {
+      "id": "uses-else",
+      "label": "Has an else branch (alternate path)",
+      "check": "else:"
+    },
+    {
+      "id": "multiple-prints",
+      "label": "Has multiple print() calls to tell the story",
+      "check": "print("
+    }
+  ],
+  "remixIdeas": [
+    "Add a third choice at the start — what happens down the middle path?",
+    "Give the player a health or score counter that changes based on choices.",
+    "Add a secret password that unlocks a hidden ending.",
+    "Use a loop so the player can keep making choices until they win or lose.",
+    "Add a character (a wizard, a robot, a cat) who gives advice using print()."
+  ]
+}

@@ -14,6 +14,7 @@ import module2Json from './module2/module.json'
 import module3Json from './module3/module.json'
 import module4Json from './module4/module.json'
 import module5Json from './module5/module.json'
+import moduleCreative1Json from './module-creative-1/module.json'
 
 // ── Module 1 lesson configs ───────────────────────────────────────────────────
 import lesson0aJson from './module1/lesson-0a.json'
@@ -49,6 +50,11 @@ import lesson4dJson from './module5/lesson-4d.json'
 import lesson4eJson from './module5/lesson-4e.json'
 import lesson5FinalJson from './module5/lesson-final.json'
 
+// ── Module Creative-1 lesson configs ─────────────────────────────────────────
+import creativeTextAdventureJson from './module-creative-1/lesson-text-adventure.json'
+import creativeQuizGameJson from './module-creative-1/lesson-quiz-game.json'
+import creativePetSimulatorJson from './module-creative-1/lesson-pet-simulator.json'
+
 // ── Typed exports ─────────────────────────────────────────────────────────────
 
 export const modules: ModuleConfig[] = [
@@ -57,6 +63,7 @@ export const modules: ModuleConfig[] = [
   module3Json as ModuleConfig,
   module4Json as ModuleConfig,
   module5Json as ModuleConfig,
+  moduleCreative1Json as ModuleConfig,
 ]
 
 export const readingLessonConfigs: LessonConfig[] = [
@@ -87,6 +94,9 @@ export const codingLessonConfigs: LessonConfig[] = [
   lesson4dJson as LessonConfig,
   lesson4eJson as LessonConfig,
   lesson5FinalJson as LessonConfig,
+  creativeTextAdventureJson as LessonConfig,
+  creativeQuizGameJson as LessonConfig,
+  creativePetSimulatorJson as LessonConfig,
 ]
 
 /** All lesson configs combined. */

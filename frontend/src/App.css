@@ -952,3 +952,261 @@ kbd {
 .coding-lesson-nav {
   margin-bottom: 0.5rem;
 }
+
+/* ── Project Studio ──────────────────────────────────────────────────────────── */
+
+.project-studio {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 280px 1fr 300px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.studio-panel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-right: 1px solid #d9e2ec;
+}
+
+.studio-panel--left {
+  background: #f0f4f8;
+  padding: 1rem;
+  overflow-y: auto;
+  gap: 1rem;
+}
+
+.studio-panel--editor {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #1e1e2e;
+}
+
+.studio-panel--editor .editor-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: #2a2a3d;
+  border-bottom: 1px solid #3a3a55;
+}
+
+.studio-panel--editor .CodeMirror,
+.studio-panel--editor .cm-editor {
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+}
+
+.studio-panel--right {
+  background: #fff;
+  padding: 1rem;
+  overflow-y: auto;
+  gap: 0.75rem;
+}
+
+.studio-back-btn {
+  align-self: flex-start;
+  font-size: 0.8rem;
+}
+
+.studio-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #7c3aed;
+  background: #ede9fe;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+
+.studio-title h2 {
+  margin: 0.25rem 0 0;
+  font-size: 1.1rem;
+  color: #102a43;
+}
+
+.studio-brief {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.studio-brief-card {
+  background: #fff;
+  border: 1px solid #d9e2ec;
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.75rem;
+}
+
+.studio-brief-card__title {
+  margin: 0 0 0.3rem;
+  font-size: 0.85rem;
+  color: #334e68;
+}
+
+.studio-brief-card__body {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #486581;
+  line-height: 1.5;
+}
+
+.studio-section-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #334e68;
+  margin: 0 0 0.5rem;
+}
+
+.studio-milestones {
+  border-top: 1px solid #d9e2ec;
+  padding-top: 0.75rem;
+}
+
+.milestone-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.milestone-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: #486581;
+  line-height: 1.4;
+}
+
+.milestone-item--done .milestone-label {
+  color: #27ae60;
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.milestone-check {
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.milestone-complete-msg {
+  margin: 0.5rem 0 0;
+  font-size: 0.82rem;
+  color: #27ae60;
+  font-weight: 600;
+}
+
+.studio-hints {
+  border-top: 1px solid #d9e2ec;
+  padding-top: 0.75rem;
+}
+
+.studio-section-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #486581;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 0.4rem;
+}
+
+.studio-section-toggle:hover {
+  color: #2f6feb;
+}
+
+.studio-section-toggle--remix {
+  color: #7c3aed;
+}
+
+.hint-list,
+.remix-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  color: #486581;
+}
+
+.studio-remix {
+  border-top: 1px solid #d9e2ec;
+  padding-top: 0.75rem;
+}
+
+.editor-toolbar__label {
+  font-size: 0.75rem;
+  color: #9aa5b4;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.run-btn {
+  margin-left: auto;
+  background: #2f6feb;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+}
+
+.run-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.studio-nav-actions {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid #d9e2ec;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lesson-complete-msg {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #27ae60;
+  font-weight: 600;
+}
+
+button.primary {
+  background: #2f6feb;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button.primary:hover {
+  background: #1a56d6;
+}
+
+.output-empty {
+  color: #9aa5b4;
+  font-size: 0.82rem;
+  font-style: italic;
+}
+
