@@ -17,9 +17,10 @@ import module5Json from './module5/module.json'
 import moduleCreative1Json from './module-creative-1/module.json'
 
 // ── Module 1 lesson configs ───────────────────────────────────────────────────
-import lesson0aJson from './module1/lesson-0a.json'
-import lesson0bJson from './module1/lesson-0b.json'
-import lesson0cJson from './module1/lesson-0c.json'
+import m1Lesson1aJson from './module1/lesson-1a.json'
+import m1Lesson1bJson from './module1/lesson-1b.json'
+import m1Lesson1cJson from './module1/lesson-1c.json'
+import m1Lesson1dJson from './module1/lesson-1d.json'
 
 // ── Module 2 lesson configs ───────────────────────────────────────────────────
 import lesson1aJson from './module2/lesson-1a.json'
@@ -67,9 +68,10 @@ export const modules: ModuleConfig[] = [
 ]
 
 export const readingLessonConfigs: LessonConfig[] = [
-  lesson0aJson as LessonConfig,
-  lesson0bJson as LessonConfig,
-  lesson0cJson as LessonConfig,
+  m1Lesson1aJson as LessonConfig,
+  m1Lesson1bJson as LessonConfig,
+  m1Lesson1cJson as LessonConfig,
+  m1Lesson1dJson as LessonConfig,
 ]
 
 export const codingLessonConfigs: LessonConfig[] = [

@@ -1,11 +1,12 @@
 {
   "id": "module1",
-  "title": "What Programming Is",
+  "title": "How Computers Think",
   "type": "reading",
   "goal": "Build mental models before any coding begins.",
   "lessonIds": [
-    "module1-lesson-0a",
-    "module1-lesson-0b",
-    "module1-lesson-0c"
+    "module1-lesson-1a",
+    "module1-lesson-1b",
+    "module1-lesson-1c",
+    "module1-lesson-1d"
   ]
 }

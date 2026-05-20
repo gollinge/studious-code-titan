@@ -443,18 +443,24 @@ kbd {
 }
 
 .back-btn {
-  border: none;
+  border: 1.5px solid #2f6feb;
   background: transparent;
   color: #2f6feb;
-  padding: 0;
+  padding: 0.4em 1em;
+  border-radius: 999px;
   cursor: pointer;
-  font-size: 0.9rem;
-  margin-bottom: 0.75rem;
-  display: inline-block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  transition: background 0.15s, color 0.15s;
 }
 
 .back-btn:hover {
-  text-decoration: underline;
+  background: #2f6feb;
+  color: #fff;
+  text-decoration: none;
 }
 
 .module-detail-header {
@@ -542,14 +548,15 @@ kbd {
 
 .reading-lesson-header {
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  margin-bottom: 1.75rem;
 }
 
 .breadcrumb {
-  font-size: 0.9rem;
-  color: #627d98;
+  font-size: 0.85rem;
+  color: #8a9bae;
 }
 
 .card-reader {
@@ -579,20 +586,34 @@ kbd {
   border-color: #b3d4f5;
 }
 
+.content-card-callout-label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #1d6fa5;
+  background: #d6eaf8;
+  border-radius: 4px;
+  padding: 0.18em 0.55em;
+  margin-bottom: 0.55rem;
+}
+
 .content-card--code {
   background: #f7fafc;
   border-color: #d9e2ec;
 }
 
 .content-card-title {
-  font-size: 1.15rem;
+  font-size: 1.25rem;
+  font-weight: 700;
   margin: 0 0 0.65rem;
   color: #102a43;
 }
 
 .content-card-body {
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: 1.05rem;
+  line-height: 1.75;
   color: #334e68;
   margin: 0;
 }
@@ -630,7 +651,56 @@ kbd {
 .card-nav {
   display: flex;
   gap: 0.75rem;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-prev-btn {
+  border: 1.5px solid #bcccdc;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  background: #fff;
+  color: #486581;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.card-prev-btn:hover {
+  border-color: #2f6feb;
+  color: #2f6feb;
+}
+
+.card-next-btn {
+  border: 1.5px solid #2f6feb;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  background: #2f6feb;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-end;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.card-next-btn:hover {
+  background: #1a56db;
+  border-color: #1a56db;
+}
+
+.card-nav-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.45rem;
+}
+
+.card-quiz-hint {
+  font-size: 0.82rem;
+  color: #627d98;
+  font-style: italic;
 }
 
 /* ── Quiz ── */
@@ -666,14 +736,15 @@ kbd {
 
 .quiz-option {
   text-align: left;
-  padding: 0.7rem 1rem;
-  border: 1px solid #d9e2ec;
-  border-radius: 0.55rem;
+  padding: 0.9rem 1.1rem;
+  border: 1.5px solid #d9e2ec;
+  border-radius: 0.65rem;
   background: #fff;
-  font-size: 0.95rem;
+  font-size: 1rem;
   cursor: pointer;
   color: #102a43;
-  transition: border-color 0.1s;
+  line-height: 1.4;
+  transition: border-color 0.1s, background 0.1s;
 }
 
 .quiz-option:hover:not(:disabled) {
@@ -716,8 +787,80 @@ kbd {
   border: 1px solid #d64545;
 }
 
-.quiz-next-btn {
-  align-self: flex-end;
+/* ── Card / quiz dot progress ── */
+
+.card-progress-dots {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.card-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d9e2ec;
+  display: inline-block;
+  transition: background 0.15s;
+}
+
+.card-dot--active {
+  background: #2f6feb;
+  width: 10px;
+  height: 10px;
+}
+
+.card-dot--done {
+  background: #27ab6e;
+}
+
+.quiz-progress-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ── Quiz summary screen ── */
+
+.quiz-summary {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 2.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.quiz-summary-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.quiz-summary-fraction {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #102a43;
+  line-height: 1;
+}
+
+.quiz-summary-label {
+  font-size: 0.9rem;
+  color: #627d98;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.quiz-summary-message {
+  font-size: 1rem;
+  color: #334e68;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 420px;
 }
 
 /* ── Coding lesson (CodingLesson component) ── */

@@ -1,0 +1,77 @@
+{
+  "id": "module1-lesson-1c",
+  "moduleId": "module1",
+  "title": "Introduction to Python",
+  "type": "reading",
+  "content": [
+    {
+      "id": "0c-card-1",
+      "type": "text",
+      "title": "What is Python?",
+      "body": "Python is a programming language — a way of writing instructions that computers can understand.\n\nIt was created in 1991 by a programmer named Guido van Rossum, who named it after Monty Python (a British comedy group — not the snake). Today, Python is one of the most popular programming languages in the world, used by beginners and experts alike."
+    },
+    {
+      "id": "0c-card-2",
+      "type": "text",
+      "title": "Python reads almost like English",
+      "body": "One reason Python is great for beginners is that it looks much closer to plain English than most other languages.\n\nSome languages bury simple ideas in curly braces, semicolons, and special symbols. Python keeps things readable. The rules are still there — you still have to be precise — but the code itself is much easier to follow."
+    },
+    {
+      "id": "0c-card-3",
+      "type": "text",
+      "title": "Python is used for real things",
+      "body": "Here's what Python powers in the real world:\n\n• YouTube — the backend that serves billions of videos\n• NASA — analysing data from space telescopes\n• Instagram — running the platform for over 2 billion users\n• Blender — the 3D animation software used in films\n• AI and machine learning — most modern AI tools are built with Python\n\nLearning Python doesn't just teach you to code — it opens doors into some of the most exciting technology being built today."
+    },
+    {
+      "id": "0c-card-4",
+      "type": "code",
+      "title": "Your first look at Python",
+      "body": "print(\"Hello! What's your name?\")\nname = \"Alex\"\nprint(\"Nice to meet you,\", name)\n\nscore = 0\nscore = score + 10\nprint(\"Your score is:\", score)"
+    },
+    {
+      "id": "0c-card-5",
+      "type": "callout",
+      "title": "Don't worry about understanding all of that yet",
+      "body": "That code might look a little strange right now — and that's completely fine. You're about to learn each piece step by step.\n\nBy the end of Module 2, every line in that example will make total sense. For now, just notice that it doesn't look that scary.\n\nYou're ready to start writing real code. Let's go!"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "0c-q1",
+      "type": "true-false",
+      "question": "Python was named after the snake.",
+      "options": [
+        { "id": "true", "text": "True" },
+        { "id": "false", "text": "False" }
+      ],
+      "correctOptionId": "false",
+      "explanation": "False! Python was named after Monty Python, a British comedy group. The snake connection is just a fun coincidence."
+    },
+    {
+      "id": "0c-q2",
+      "type": "multiple-choice",
+      "question": "Why is Python considered a good language for beginners?",
+      "options": [
+        { "id": "a", "text": "It runs faster than every other language" },
+        { "id": "b", "text": "Its code reads almost like plain English" },
+        { "id": "c", "text": "It has no rules, so you can write anything" },
+        { "id": "d", "text": "It was the very first programming language" }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Python's syntax is designed to be readable and close to English, which makes it much friendlier to learn than most other languages."
+    },
+    {
+      "id": "0c-q3",
+      "type": "multiple-choice",
+      "question": "Which of these is something Python is actually used for?",
+      "options": [
+        { "id": "a", "text": "Designing physical circuit boards" },
+        { "id": "b", "text": "Only teaching beginners to code" },
+        { "id": "c", "text": "Writing the instructions inside a CPU chip" },
+        { "id": "d", "text": "Powering AI tools and analysing data from space" }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Python powers AI, data science, web platforms like YouTube and Instagram, scientific research at NASA, and much more. It's a genuinely professional tool."
+    }
+  ]
+}

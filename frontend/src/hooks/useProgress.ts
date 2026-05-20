@@ -9,9 +9,9 @@ type ProgressState = Record<string, ModuleProgress>
 function initialProgress(): ProgressState {
   return {
     module1: {
-      'module1-lesson-0a': 'in-progress',
-      'module1-lesson-0b': 'locked',
-      'module1-lesson-0c': 'locked',
+      'module1-lesson-1a': 'in-progress',
+      'module1-lesson-1b': 'locked',
+      'module1-lesson-1c': 'locked',
     },
     module2: {
       print: 'locked',

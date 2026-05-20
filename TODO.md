@@ -11,6 +11,17 @@
 - [x] **"Next Lesson →" button** — appears in lesson view only after lesson is marked complete; advances to the next lesson in the module
 - [x] **Next Lesson phase reset** — fixed: "Next Lesson →" now always starts the next lesson from card 1 (not mid-editor or mid-quiz)
 - [ ] **Welcome modal** — shown on first visit only (localStorage flag); explains the editor, hints, Dive Deeper, and Cmd+Enter shortcut; never shown again after dismissal
+- [ ] **Phase grouping in Module Overview** — add a `Phase` type above `ModuleConfig`; group module cards under phase headers in the overview screen. Phases:
+  | Phase | Modules | Focus |
+  |---|---|---|
+  | Foundations | 1–5 | Core programming concepts |
+  | Consolidation | 6 | First major creative expansion |
+  | Expansion | 7–8 | New expressive capabilities |
+  | Consolidation | 9 | Larger creative ownership |
+  | Advanced Beginner | 10–11 | Dynamic systems and project structure |
+  | Independent Creation | 12 | Self-directed building |
+  | Optional Exploration | 13–14 | Exposure to broader programming ideas |
+  Implementation: `Phase` type in `types.ts`, `phases.ts` data file, phase header rows in `ModuleOverview.tsx`, unbuilt modules show "Coming soon" state.
 
 ### Module 4 — Loops *(committed b32310f)*
 - [x] **Lesson 3a** — Why Loops Exist (`for`, `range()`, indentation)

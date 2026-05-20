@@ -1,0 +1,90 @@
+{
+  "id": "module1-lesson-1b",
+  "moduleId": "module1",
+  "title": "How Computers Follow Instructions",
+  "type": "reading",
+  "content": [
+    {
+      "id": "0b-card-1",
+      "type": "text",
+      "title": "Computers are extremely literal",
+      "body": "A computer does exactly what you tell it. Not what you meant. Not what you were thinking. Exactly what you wrote.\n\nIf you say \"open the fridge and get the milk\" but forget to say \"close the fridge,\" a robot would stand there with the fridge open forever.\n\nThis isn't a flaw — it's just how computers work. And once you understand it, writing good code becomes a lot easier."
+    },
+    {
+      "id": "0b-card-2",
+      "type": "text",
+      "title": "Order matters — every time",
+      "body": "Computers follow instructions from top to bottom, in the exact order you write them. Step 1 always happens before Step 2.\n\nIf you write:\n  1. Pour the juice\n  2. Open the bottle\n\n...the computer tries to pour from a closed bottle. It doesn't rearrange your steps. It doesn't use common sense. It just goes in order."
+    },
+    {
+      "id": "0b-card-3",
+      "type": "callout",
+      "title": "Try the robot test",
+      "body": "Whenever you're not sure if your instructions are clear enough, imagine a robot that can only follow words literally — no guessing, no filling in gaps.\n\nWould your instructions make sense to that robot? If yes, they'll probably make sense to a computer too.\n\nMost bugs in code are just the programmer forgetting to be specific enough."
+    },
+    {
+      "id": "0b-card-4",
+      "type": "text",
+      "title": "This is why bugs exist",
+      "body": "A bug is a mistake in a program that makes it behave unexpectedly. Almost all beginner bugs come from:\n\n• A missing step (you forgot to close the fridge)\n• Steps in the wrong order (pour before opening)\n• A typo (writing \"pint\" instead of \"print\")\n\nBugs don't mean you're bad at coding — they mean you're coding. Every programmer, no matter how experienced, writes bugs. The skill is learning to find and fix them."
+    },
+    {
+      "id": "0b-card-5",
+      "type": "text",
+      "title": "Algorithms: your plan for solving a problem",
+      "body": "An algorithm is just a precise plan for solving a problem — a recipe your program follows.\n\nFor example, an algorithm for \"find the highest score\" might be:\n  1. Start by assuming the first score is the highest\n  2. Look at each score in the list\n  3. If a score is higher than the current best, update the best\n  4. When you've checked all scores, the best one wins\n\nYou don't need to memorise that word. But the idea — a clear, step-by-step plan — is how every programmer thinks before they write a single line of code."
+    }
+  ],
+  "quiz": [
+    {
+      "id": "0b-q1",
+      "type": "true-false",
+      "question": "If your instructions are unclear, a computer will try to figure out what you meant.",
+      "options": [
+        { "id": "true", "text": "True" },
+        { "id": "false", "text": "False" }
+      ],
+      "correctOptionId": "false",
+      "explanation": "False! Computers follow instructions literally and exactly. They don't guess, infer, or fill in gaps — which is exactly why clear, precise instructions matter so much."
+    },
+    {
+      "id": "0b-q2",
+      "type": "multiple-choice",
+      "question": "Your robot instructions say: \"1. Pour the juice. 2. Open the bottle.\" What happens?",
+      "options": [
+        { "id": "a", "text": "The robot pours the juice successfully" },
+        { "id": "b", "text": "The robot opens the bottle first, because it's smart" },
+        { "id": "c", "text": "The robot tries to pour from a closed bottle" },
+        { "id": "d", "text": "The robot asks you to clarify" }
+      ],
+      "correctOptionId": "c",
+      "explanation": "The robot follows step 1 first — \"pour the juice\" — even though the bottle is still closed. Computers don't reorder steps for you."
+    },
+    {
+      "id": "0b-q3",
+      "type": "multiple-choice",
+      "question": "What is a bug in a program?",
+      "options": [
+        { "id": "a", "text": "A literal insect found inside a computer" },
+        { "id": "b", "text": "A mistake in the code that makes it behave unexpectedly" },
+        { "id": "c", "text": "A feature that is too complicated" },
+        { "id": "d", "text": "A program that runs too slowly" }
+      ],
+      "correctOptionId": "b",
+      "explanation": "A bug is a mistake in the code — a missing step, wrong order, or typo — that makes the program do something you didn't intend. Every programmer gets them."
+    },
+    {
+      "id": "0b-q4",
+      "type": "multiple-choice",
+      "question": "What is an algorithm?",
+      "options": [
+        { "id": "a", "text": "A type of computer chip" },
+        { "id": "b", "text": "A programming language" },
+        { "id": "c", "text": "A precise, step-by-step plan for solving a problem" },
+        { "id": "d", "text": "A kind of bug" }
+      ],
+      "correctOptionId": "c",
+      "explanation": "An algorithm is a clear, step-by-step plan for solving a problem. It's the thinking you do before you write code — like a recipe before you start cooking."
+    }
+  ]
+}
