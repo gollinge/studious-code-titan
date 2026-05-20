@@ -5,49 +5,49 @@
   "type": "reading",
   "content": [
     {
-      "id": "0a-card-1",
+      "id": "1a-card-1",
       "type": "text",
       "title": "Giving a computer instructions",
       "body": "Programming is writing instructions for a computer to follow. Computers are very literal — they follow the instructions exactly, even if the instructions contain mistakes.\n\nThink about a recipe. It tells you: \"First, mix the flour. Then add the eggs. Then bake for 30 minutes.\" A program works the same way — a list of steps, in order, that the computer carries out."
     },
     {
-      "id": "0a-card-2",
+      "id": "1a-card-2",
       "type": "text",
       "title": "Programs are everywhere",
       "body": "Every piece of software you've ever used is a program someone wrote:\n\n• The Minecraft world generator that builds mountains and caves\n• The algorithm that picks which YouTube video to show you next\n• The game that tracks your score and decides when you level up\n• The app that sends a message to your friend across the world in a second\n\nPrograms are created by people — sometimes by huge teams of programmers working together."
     },
     {
-      "id": "0a-card-3",
+      "id": "1a-card-3",
       "type": "text",
       "title": "Programming languages",
       "body": "Programmers use special languages to write instructions for computers.\n\nSome programming languages are designed for beginners, like Scratch. Others, like Python and JavaScript, are used to build real games, apps, and websites.\n\nDifferent languages have different strengths, but they all do the same basic thing: tell a computer what to do."
     },
     {
-      "id": "0a-card-4",
+      "id": "1a-card-4",
       "type": "text",
       "title": "Input → Processing → Output",
       "body": "Most programs follow this basic pattern:\n\n1. Input — something goes in (a key press, a search, a photo from a camera)\n2. Processing — the computer does something with it\n3. Output — a result comes out (a sound, a new screen, an answer)\n\nExample: You type a search → Google processes it → you get a list of results."
     },
     {
-      "id": "0a-card-5",
+      "id": "1a-card-5",
       "type": "callout",
       "title": "Programs can make decisions",
       "body": "Remember: the computer only follows the instructions you give it. So how does it \"decide\" things?\n\nA programmer thinks ahead about different situations and tells the computer what to do in each one.\n\n\"If the player's health drops to zero, show the game-over screen.\"\n\"If the player collects 100 coins, unlock the next level.\"\n\"If the password is correct, let the player log in.\"\n\nThe computer isn't inventing the decision — it's following instructions that someone planned ahead of time."
     },
     {
-      "id": "0a-card-6",
+      "id": "1a-card-6",
       "type": "text",
       "title": "Breaking problems into steps",
       "body": "One of the most important programming skills is taking a big problem and breaking it into smaller pieces.\n\nImagine you want to build a quiz game. That sounds complicated — but you can split it into steps:\n\n• Show a question\n• Wait for the player to answer\n• Check the answer\n• Update the score\n• Show the next question\n\nProgrammers solve problems one small step at a time."
     },
     {
-      "id": "0a-card-7",
+      "id": "1a-card-7",
       "type": "callout",
       "title": "Mistakes are part of programming",
       "body": "Programmers almost never get everything correct on the first try.\n\nSometimes programs crash. Sometimes they do the wrong thing. Finding and fixing mistakes is called debugging.\n\nDebugging is a normal part of programming — even professional programmers do it every day."
     },
     {
-      "id": "0a-card-8",
+      "id": "1a-card-8",
       "type": "callout",
       "title": "Programmers are creators",
       "body": "Once you know how to program, you can turn ideas into things people can use.\n\nYou can build games, tools, art projects, websites, apps, robots, or something completely new.\n\nProgramming is a way to create things and share them with other people."
@@ -55,7 +55,7 @@
   ],
   "quiz": [
     {
-      "id": "0a-q1",
+      "id": "1a-q1",
       "type": "true-false",
       "question": "A program is a list of instructions that a computer follows step by step.",
       "options": [
@@ -66,7 +66,7 @@
       "explanation": "Correct! A computer follows instructions in order, step by step."
     },
     {
-      "id": "0a-q2",
+      "id": "1a-q2",
       "type": "multiple-choice",
       "question": "Which of these definitely contains computer programs?",
       "options": [
@@ -79,7 +79,7 @@
       "explanation": "Minecraft is made from millions of instructions written by programmers."
     },
     {
-      "id": "0a-q3",
+      "id": "1a-q3",
       "type": "multiple-choice",
       "question": "You press a button in a game and your character jumps. Which part is the output?",
       "options": [
@@ -92,7 +92,7 @@
       "explanation": "The button press is input, the game calculating the jump is processing, and the character jumping on screen is the output."
     },
     {
-      "id": "0a-q4",
+      "id": "1a-q4",
       "type": "multiple-choice",
       "question": "What does a programmer do when a program has a mistake?",
       "options": [
@@ -105,7 +105,7 @@
       "explanation": "Finding and fixing mistakes is called debugging. Every programmer does it."
     },
     {
-      "id": "0a-q5",
+      "id": "1a-q5",
       "type": "multiple-choice",
       "question": "You want to build a quiz game. What's the best first step?",
       "options": [

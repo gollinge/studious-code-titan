@@ -17,38 +17,38 @@ import module5Json from './module5/module.json'
 import moduleCreative1Json from './module-creative-1/module.json'
 
 // ── Module 1 lesson configs ───────────────────────────────────────────────────
-import m1Lesson1aJson from './module1/lesson-1a.json'
-import m1Lesson1bJson from './module1/lesson-1b.json'
-import m1Lesson1cJson from './module1/lesson-1c.json'
-import m1Lesson1dJson from './module1/lesson-1d.json'
+import lesson1aJson from './module1/lesson-1a.json'
+import lesson1bJson from './module1/lesson-1b.json'
+import lesson1cJson from './module1/lesson-1c.json'
+import lesson1dJson from './module1/lesson-1d.json'
 
 // ── Module 2 lesson configs ───────────────────────────────────────────────────
-import lesson1aJson from './module2/lesson-1a.json'
-import lesson1bJson from './module2/lesson-1b.json'
-import lesson1cJson from './module2/lesson-1c.json'
-import lesson1dJson from './module2/lesson-1d.json'
+import lesson2aJson from './module2/lesson-2a.json'
+import lesson2bJson from './module2/lesson-2b.json'
+import lesson2cJson from './module2/lesson-2c.json'
+import lesson2dJson from './module2/lesson-2d.json'
 import lesson2FinalJson from './module2/lesson-final.json'
 
 // ── Module 3 lesson configs ───────────────────────────────────────────────────
-import lesson2aJson from './module3/lesson-2a.json'
-import lesson2bJson from './module3/lesson-2b.json'
-import lesson2cJson from './module3/lesson-2c.json'
-import lesson2dJson from './module3/lesson-2d.json'
+import lesson3aJson from './module3/lesson-3a.json'
+import lesson3bJson from './module3/lesson-3b.json'
+import lesson3cJson from './module3/lesson-3c.json'
+import lesson3dJson from './module3/lesson-3d.json'
 import lesson3FinalJson from './module3/lesson-final.json'
 
 // ── Module 4 lesson configs ───────────────────────────────────────────────────
-import lesson3aJson from './module4/lesson-3a.json'
-import lesson3bJson from './module4/lesson-3b.json'
-import lesson3cJson from './module4/lesson-3c.json'
-import lesson3dJson from './module4/lesson-3d.json'
+import lesson4aJson from './module4/lesson-4a.json'
+import lesson4bJson from './module4/lesson-4b.json'
+import lesson4cJson from './module4/lesson-4c.json'
+import lesson4dJson from './module4/lesson-4d.json'
 import lesson4FinalJson from './module4/lesson-final.json'
 
 // ── Module 5 lesson configs ───────────────────────────────────────────────────
-import lesson4aJson from './module5/lesson-4a.json'
-import lesson4bJson from './module5/lesson-4b.json'
-import lesson4cJson from './module5/lesson-4c.json'
-import lesson4dJson from './module5/lesson-4d.json'
-import lesson4eJson from './module5/lesson-4e.json'
+import lesson5aJson from './module5/lesson-5a.json'
+import lesson5bJson from './module5/lesson-5b.json'
+import lesson5cJson from './module5/lesson-5c.json'
+import lesson5dJson from './module5/lesson-5d.json'
+import lesson5eJson from './module5/lesson-5e.json'
 import lesson5FinalJson from './module5/lesson-final.json'
 
 // ── Module Creative-1 lesson configs ─────────────────────────────────────────
@@ -68,33 +68,33 @@ export const modules: ModuleConfig[] = [
 ]
 
 export const readingLessonConfigs: LessonConfig[] = [
-  m1Lesson1aJson as LessonConfig,
-  m1Lesson1bJson as LessonConfig,
-  m1Lesson1cJson as LessonConfig,
-  m1Lesson1dJson as LessonConfig,
-]
-
-export const codingLessonConfigs: LessonConfig[] = [
   lesson1aJson as LessonConfig,
   lesson1bJson as LessonConfig,
   lesson1cJson as LessonConfig,
   lesson1dJson as LessonConfig,
-  lesson2FinalJson as LessonConfig,
+]
+
+export const codingLessonConfigs: LessonConfig[] = [
   lesson2aJson as LessonConfig,
   lesson2bJson as LessonConfig,
   lesson2cJson as LessonConfig,
   lesson2dJson as LessonConfig,
-  lesson3FinalJson as LessonConfig,
+  lesson2FinalJson as LessonConfig,
   lesson3aJson as LessonConfig,
   lesson3bJson as LessonConfig,
   lesson3cJson as LessonConfig,
   lesson3dJson as LessonConfig,
-  lesson4FinalJson as LessonConfig,
+  lesson3FinalJson as LessonConfig,
   lesson4aJson as LessonConfig,
   lesson4bJson as LessonConfig,
   lesson4cJson as LessonConfig,
   lesson4dJson as LessonConfig,
-  lesson4eJson as LessonConfig,
+  lesson4FinalJson as LessonConfig,
+  lesson5aJson as LessonConfig,
+  lesson5bJson as LessonConfig,
+  lesson5cJson as LessonConfig,
+  lesson5dJson as LessonConfig,
+  lesson5eJson as LessonConfig,
   lesson5FinalJson as LessonConfig,
   creativeTextAdventureJson as LessonConfig,
   creativeQuizGameJson as LessonConfig,
