@@ -1,0 +1,116 @@
+{
+  "id": "module1-lesson-0d",
+  "moduleId": "module1",
+  "title": "Module Review",
+  "type": "reading",
+  "content": [
+    {
+      "id": "0d-card-1",
+      "type": "callout",
+      "title": "Time for the module challenge! 🎯",
+      "body": "You've made it through all three lessons — now let's see what stuck.\n\nThis quiz covers everything from the module:\n• What programming is and why it matters\n• How computers follow instructions (and why bugs happen)\n• What Python is and where it's used\n\nTake your time — there's no timer. Every question has an explanation after you answer, so you'll learn from any mistakes as you go."
+    }
+  ],
+  "quiz": [
+    {
+      "id": "0d-q1",
+      "type": "true-false",
+      "question": "A program is a list of instructions that a computer follows in order.",
+      "options": [
+        { "id": "true", "text": "True" },
+        { "id": "false", "text": "False" }
+      ],
+      "correctOptionId": "true",
+      "explanation": "Exactly right. A program is a precise, ordered list of instructions — the computer carries them out step by step, from top to bottom."
+    },
+    {
+      "id": "0d-q2",
+      "type": "multiple-choice",
+      "question": "Which of these best describes what \"processing\" means in the Input → Processing → Output model?",
+      "options": [
+        { "id": "a", "text": "Taking information into the program" },
+        { "id": "b", "text": "Showing a result on screen" },
+        { "id": "c", "text": "The computer doing something with the input" },
+        { "id": "d", "text": "Writing the code" }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Processing is the middle step — the computer takes what came in and does something with it (calculates, decides, transforms) before producing an output."
+    },
+    {
+      "id": "0d-q3",
+      "type": "multiple-choice",
+      "question": "Your robot instructions say \"1. Pour the juice. 2. Open the bottle.\" What happens?",
+      "options": [
+        { "id": "a", "text": "The robot opens the bottle first, because it's smart" },
+        { "id": "b", "text": "The robot pours the juice successfully" },
+        { "id": "c", "text": "The robot asks you what to do" },
+        { "id": "d", "text": "The robot tries to pour from a closed bottle" }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Computers follow instructions in the exact order you write them. Step 1 is \"pour the juice\" — so it tries, even though the bottle is still closed."
+    },
+    {
+      "id": "0d-q4",
+      "type": "multiple-choice",
+      "question": "What is a bug in a program?",
+      "options": [
+        { "id": "a", "text": "A program that is too long" },
+        { "id": "b", "text": "A mistake in the code that makes it behave unexpectedly" },
+        { "id": "c", "text": "A feature that is too hard to use" },
+        { "id": "d", "text": "A computer that is broken" }
+      ],
+      "correctOptionId": "b",
+      "explanation": "A bug is a mistake in your code — a missing step, wrong order, or typo — that makes the program do something you didn't intend. All programmers write bugs. The skill is fixing them."
+    },
+    {
+      "id": "0d-q5",
+      "type": "multiple-choice",
+      "question": "What is an algorithm?",
+      "options": [
+        { "id": "a", "text": "A type of computer chip" },
+        { "id": "b", "text": "A kind of bug" },
+        { "id": "c", "text": "A precise, step-by-step plan for solving a problem" },
+        { "id": "d", "text": "A programming language" }
+      ],
+      "correctOptionId": "c",
+      "explanation": "An algorithm is your plan before you write code — a clear, step-by-step recipe for solving a problem. It's how every programmer thinks before typing anything."
+    },
+    {
+      "id": "0d-q6",
+      "type": "true-false",
+      "question": "Python was named after the snake.",
+      "options": [
+        { "id": "true", "text": "True" },
+        { "id": "false", "text": "False" }
+      ],
+      "correctOptionId": "false",
+      "explanation": "False! Python was named after Monty Python, a British comedy group. The snake connection is just a fun coincidence."
+    },
+    {
+      "id": "0d-q7",
+      "type": "multiple-choice",
+      "question": "Which of these is Python actually used for in the real world?",
+      "options": [
+        { "id": "a", "text": "Designing physical computer chips" },
+        { "id": "b", "text": "Only learning to code — it's not used professionally" },
+        { "id": "c", "text": "AI tools, data analysis, and powering platforms like YouTube" },
+        { "id": "d", "text": "Writing the firmware inside a fridge" }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Python is used by NASA, YouTube, Instagram, AI researchers, and game developers. It's a professional-grade language that's also approachable for beginners."
+    },
+    {
+      "id": "0d-q8",
+      "type": "multiple-choice",
+      "question": "You want to build a quiz game but it feels too big. What's the programmer's approach?",
+      "options": [
+        { "id": "a", "text": "Write all the code at once and hope for the best" },
+        { "id": "b", "text": "Give up — it's too complicated" },
+        { "id": "c", "text": "Find someone else to build it" },
+        { "id": "d", "text": "Break it into small pieces: one question, check the answer, keep score, repeat" }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Breaking a big problem into small, manageable pieces is one of the most important skills in programming. Every expert does this — it's not just for beginners."
+    }
+  ]
+}

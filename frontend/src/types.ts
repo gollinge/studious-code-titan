@@ -47,12 +47,13 @@ export type LessonStatus = 'locked' | 'in-progress' | 'complete'
 /**
  * A single guided step in the coding lesson flow.
  * `instruction` is shown in the banner above the editor.
- * If `editorPrompt` or `starterCode` are provided, the editor resets
- * to that content when the step begins.
+ * `starterCode` is only used on `steps[0]` (sets initial editor content)
+ * and `bonusSteps[0]` (resets editor to a blank slate when bonus begins).
+ * Steps are additive — the editor is never reset between main steps.
  */
 export type Step = {
   instruction: string
-  editorPrompt?: string
+  /** Initial editor content. Only meaningful on steps[0] and bonusSteps[0]. */
   starterCode?: string
 }
 
@@ -92,26 +93,28 @@ export type LessonConfig = {
   content: ContentCard[]
   quiz?: QuizQuestion[]
   // Coding-lesson fields (optional for reading lessons)
-  /** Short prompt shown as a comment at the top of the editor */
-  editorPrompt?: string
   /**
    * Guided steps shown above the editor, one at a time.
    * Each step is revealed after a successful run of the previous one.
-   * `editorPrompt` and `starterCode` on a step reset the editor when that step begins.
+   * Steps are additive — the editor is never cleared between main steps.
+   * `steps[0].starterCode` sets the initial editor content.
    */
   steps?: Step[]
   /**
    * Optional bonus steps shown after all main steps are done.
-   * Same structure as `steps`.
+   * `bonusSteps[0].starterCode` resets the editor when bonus begins.
    */
   bonusSteps?: Step[]
-  /** Legacy single-step bonus prompt — used by lessons without bonusSteps */
+  /** @deprecated Use `steps` instead */
+  editorPrompt?: string
+  /** @deprecated Use `steps` instead */
+  starterCode?: string
+  /** @deprecated Use `steps` instead */
   challenge?: string
   /** @deprecated Use `steps` instead */
   editorInstruction?: string
   /** @deprecated Use `steps` instead */
   editorInstructionStep2?: string
-  starterCode?: string
   progressiveHints?: string[]
   // ProjectStudio fields
   milestones?: Milestone[]

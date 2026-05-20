@@ -24,36 +24,35 @@
       "type": "text",
       "title": "The Output Panel",
       "summary": "Results and error messages appear in the Output panel.",
-      "body": "After your program runs, the results appear in the Output panel.\n\nIf your program prints text, you'll see it there. If something goes wrong, Python shows an error message to help you figure out what happened.\n\nErrors are a normal part of programming — even experienced programmers see them all the time."
+      "body": "After your program runs, the results appear in the Output panel.\n\nIf something goes wrong, Python shows an error message to help you figure out what happened."
     },
     {
       "id": "c4",
       "type": "code",
       "title": "print() — Your First Command",
       "summary": "print(\"Hello!\") displays text on the screen.",
-      "body": "print() tells Python to display a message on the screen.\n\nprint(\"Hello!\")\n\nThe quotation marks are important — they tell Python where the message starts and ends.\n\nTry changing \"Hello!\" to your own message, then press Run."
+      "body": "print() tells Python to display a message on the screen.\n\nprint(\"Hello!\")\n\nThe quotation marks are important — they tell Python where the message starts and ends.\n\nTry changing \"Hello!\" to your own message, then press Run.\n\nYou can change the message and run the program as many times as you want."
     }
   ],
   "steps": [
     {
-      "instruction": "Step 1: Change the message inside the quotation marks. Then press Run.",
-      "editorPrompt": "Change the message",
-      "starterCode": "print(\"Hello!\")\n"
+      "instruction": "Step 1: Change the message inside the quotation marks. Before you press Run, try to predict what will appear in the output.",
+      "starterCode": "# Change the message\nprint(\"Hello!\")\n"
     },
     {
-      "instruction": "Step 2: Add a second print() line below the first. Run it again!"
+      "instruction": "Step 2: Add a second print() line below the first. Python will run both lines from top to bottom."
     }
   ],
   "bonusSteps": [
     {
       "instruction": "Bonus: Write 3 print() lines — give the computer a name, a job, and one silly fact about it.",
-      "editorPrompt": "Give the computer a personality",
       "starterCode": ""
     }
   ],
   "progressiveHints": [
     "# Hint: Use print() with a message inside quotation marks\nprint(\"I like pizza\")",
     "print(\"your message here\")",
+    "print(\"Hello!\")\nprint(\"I added another line!\")",
     "print(\"Hello, world!\")\nprint(\"I made the computer say this!\")"
   ]
 }

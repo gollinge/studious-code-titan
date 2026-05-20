@@ -1,7 +1,7 @@
 import { keymap, EditorView } from '@codemirror/view'
 import { python } from '@codemirror/lang-python'
 import CodeMirror from '@uiw/react-codemirror'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import type { LessonConfig, ExecutionResponse, Step } from '../types'
 import { CardReader } from './CardReader'
 
@@ -48,12 +48,8 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
   const [phase, setPhase] = useState<Phase>('cards')
   const [isCompleted, setIsCompleted] = useState(false)
 
-  // Editor state — step 0's editorPrompt/starterCode takes precedence over lesson-level fields
-  const step0 = lesson.steps?.[0]
-  const initialCode = [
-    (step0?.editorPrompt ?? lesson.editorPrompt) ? `# ${step0?.editorPrompt ?? lesson.editorPrompt}` : '',
-    step0?.starterCode ?? lesson.starterCode ?? '',
-  ].filter(Boolean).join('\n')
+  // Editor state — steps[0].starterCode sets the initial editor content
+  const initialCode = lesson.steps?.[0]?.starterCode ?? lesson.starterCode ?? ''
   const [code, setCode] = useState(initialCode)
   const [output, setOutput] = useState<ExecutionResponse | null>(null)
   const [successCount, setSuccessCount] = useState(0)
@@ -87,30 +83,7 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
   const bonusDone = bonusMode && bonusSuccessCount >= bonusSteps.length
   const hasBonusChallenge = bonusSteps.length > 0
 
-  // Resets editor when a new step begins (if that step has its own editorPrompt/starterCode)
-  useEffect(() => {
-    if (successCount === 0) return
-    const next = steps[successCount]
-    if (!next?.editorPrompt && !next?.starterCode) return
-    const newCode = [
-      next.editorPrompt ? `# ${next.editorPrompt}` : '',
-      next.starterCode ?? '',
-    ].filter(Boolean).join('\n')
-    setCode(newCode)
-    setOutput(null)
-  }, [successCount]) // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    if (!bonusMode || bonusSuccessCount === 0) return
-    const next = bonusSteps[bonusSuccessCount]
-    if (!next?.editorPrompt && !next?.starterCode) return
-    const newCode = [
-      next.editorPrompt ? `# ${next.editorPrompt}` : '',
-      next.starterCode ?? '',
-    ].filter(Boolean).join('\n')
-    setCode(newCode)
-    setOutput(null)
-  }, [bonusSuccessCount]) // eslint-disable-line react-hooks/exhaustive-deps
+  // (step transitions are purely instructional — code is additive, editor is not reset)
 
   const isLastCard = cardIndex === cards.length - 1
 
@@ -213,12 +186,9 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
     setHintsRevealed(0)
     setOutput(null)
     const first = bonusSteps[0]
-    if (first?.editorPrompt || first?.starterCode) {
-      const newCode = [
-        first.editorPrompt ? `# ${first.editorPrompt}` : '',
-        first.starterCode ?? '',
-      ].filter(Boolean).join('\n')
-      setCode(newCode)
+    // bonusSteps[0].starterCode resets the editor to a fresh slate for the bonus
+    if (first?.starterCode !== undefined) {
+      setCode(first.starterCode)
     }
   }
 
@@ -255,56 +225,46 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
 
   return (
     <div className="coding-lesson coding-lesson--editor">
-      {/* Left panel: compact progress */}
-      <section className="coding-lesson__sidebar">
-        <div className="coding-lesson__sidebar-header">
-          <button type="button" className="back-btn" onClick={onBack}>
-            ← Module
-          </button>
+      {/* Top bar: back + lesson title + step dots */}
+      <header className="coding-lesson__topbar">
+        <button type="button" className="back-btn" onClick={onBack}>
+          ← Module
+        </button>
+        <div className="coding-lesson__topbar-info">
+          <span className="coding-lesson__topbar-module">{moduleTitle}</span>
+          <span className="coding-lesson__topbar-title">{lesson.title}</span>
         </div>
-
-        {/* ── Compact progress panel ── */}
-        <>
-          <div className="lesson-progress-panel">
-            <div className="lesson-goal">
-              <span className="lesson-goal-label">{bonusMode ? 'Bonus' : 'Goal'}</span>
-              <p className="lesson-goal-text">
-                {bonusMode
-                  ? (currentBonusInstruction ?? '🌟 Bonus complete!')
-                  : (currentStepInstruction ?? lesson.editorPrompt ?? '')}
-              </p>
-            </div>
-
-            {steps.length > 0 && (
-              <ul className="concept-checklist">
-                {steps.map((step, i) => {
-                  const done = i < successCount
-                  const active = i === successCount && !hasAllStepsDone
-                  return (
-                    <li key={i} className={`concept-item${active ? ' concept-item--active' : ''}`}>
-                      <span className="concept-check">{done ? '✓' : active ? '→' : '○'}</span>
-                      <span className="concept-title">{step.instruction}</span>
-                    </li>
-                  )
-                })}
-                {bonusSteps.length > 0 && bonusSteps.map((step, i) => {
-                  if (!bonusMode && !hasAllStepsDone) return null
-                  const done = bonusMode && i < bonusSuccessCount
-                  const active = bonusMode && i === bonusSuccessCount && !bonusDone
-                  return (
-                    <li key={`bonus-${i}`} className={`concept-item concept-item--bonus${active ? ' concept-item--active' : ''}`}>
-                      <span className="concept-check">{done ? '✓' : active ? '→' : '○'}</span>
-                      <span className="concept-title">🌟 {step.instruction}</span>
-                    </li>
-                  )
-                })}
-              </ul>
-            )}
+        {steps.length > 0 && (
+          <div className="step-dots">
+            {steps.map((step, i) => {
+              const done = i < successCount
+              const active = i === successCount && !hasAllStepsDone
+              return (
+                <span
+                  key={i}
+                  className={`step-dot${done ? ' step-dot--done' : active ? ' step-dot--active' : ''}`}
+                  title={step.instruction}
+                />
+              )
+            })}
+            {hasBonusChallenge && hasAllStepsDone && bonusSteps.map((step, i) => {
+              const done = bonusMode && i < bonusSuccessCount
+              const active = bonusMode && i === bonusSuccessCount && !bonusDone
+              return (
+                <span
+                  key={`bonus-${i}`}
+                  className={`step-dot step-dot--bonus${done ? ' step-dot--done' : active ? ' step-dot--active' : ''}`}
+                  title={`🌟 ${step.instruction}`}
+                />
+              )
+            })}
           </div>
-        </>
-      </section>
+        )}
+      </header>
 
-      {/* Center panel: editor */}
+      {/* Editor + output row */}
+      <div className="coding-lesson__workspace">
+      {/* Editor panel */}
       <section className="coding-lesson__editor">
         {bonusMode && currentBonusInstruction ? (
           <div className="editor-instruction editor-instruction--bonus">
@@ -464,6 +424,7 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
           )}
         </section>
       )}
+      </div>
     </div>
   )
 }
