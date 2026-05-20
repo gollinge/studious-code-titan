@@ -22,6 +22,8 @@ function statusIcon(status: LessonStatus): string {
 
 export function ModuleDetail({ module, lessonRows, getStatus, onSelectLesson, onBack }: Props) {
   const currentLesson = lessonRows.find((l) => getStatus(l.id) === 'in-progress')
+  const hasAnyProgress = lessonRows.some((l) => getStatus(l.id) !== 'locked')
+  const ctaLabel = hasAnyProgress ? 'Continue' : 'Start'
 
   return (
     <div className="module-detail">
@@ -39,7 +41,7 @@ export function ModuleDetail({ module, lessonRows, getStatus, onSelectLesson, on
           className="continue-btn"
           onClick={() => onSelectLesson(currentLesson.id, currentLesson.isReading)}
         >
-          Continue: {currentLesson.title} →
+          {ctaLabel}: {currentLesson.title} →
         </button>
       )}
 

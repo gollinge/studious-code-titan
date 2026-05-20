@@ -7,47 +7,47 @@
     {
       "id": "1d-card-1",
       "type": "callout",
-      "title": "Time for the module challenge! 🎯",
-      "body": "You've made it through all three lessons — now let's see what stuck.\n\nThis quiz covers everything from the module:\n• What programming is and why it matters\n• How computers follow instructions (and why bugs happen)\n• What Python is and where it's used\n\nTake your time — there's no timer. Every question has an explanation after you answer, so you'll learn from any mistakes as you go."
+      "title": "Time for the module challenge",
+      "body": "You've finished the lessons in this module. Now it's time to review the big ideas.\n\nThis quiz covers:\n\n• What programming is\n• How computers follow instructions\n• Why bugs happen\n• What algorithms are\n• What Python is used for\n\nTake your time. There is no timer, and every question includes an explanation after you answer."
     }
   ],
   "quiz": [
     {
       "id": "1d-q1",
       "type": "true-false",
-      "question": "A program is a list of instructions that a computer follows in order.",
+      "question": "A program is a list of instructions that a computer follows step by step.",
       "options": [
         { "id": "true", "text": "True" },
         { "id": "false", "text": "False" }
       ],
       "correctOptionId": "true",
-      "explanation": "Exactly right. A program is a precise, ordered list of instructions — the computer carries them out step by step, from top to bottom."
+      "explanation": "Correct. Programs are made from instructions that computers follow in order."
     },
     {
       "id": "1d-q2",
       "type": "multiple-choice",
-      "question": "Which of these best describes what \"processing\" means in the Input → Processing → Output model?",
+      "question": "In the Input → Processing → Output model, what does processing mean?",
       "options": [
         { "id": "a", "text": "Taking information into the program" },
-        { "id": "b", "text": "Showing a result on screen" },
+        { "id": "b", "text": "Showing a result on the screen" },
         { "id": "c", "text": "The computer doing something with the input" },
-        { "id": "d", "text": "Writing the code" }
+        { "id": "d", "text": "Writing code" }
       ],
       "correctOptionId": "c",
-      "explanation": "Processing is the middle step — the computer takes what came in and does something with it (calculates, decides, transforms) before producing an output."
+      "explanation": "Processing is when the computer works with the input before producing a result."
     },
     {
       "id": "1d-q3",
       "type": "multiple-choice",
-      "question": "Your robot instructions say \"1. Pour the juice. 2. Open the bottle.\" What happens?",
+      "question": "Your robot instructions say:\n\n1. Pour the juice\n2. Open the bottle\n\nWhat happens?",
       "options": [
-        { "id": "a", "text": "The robot opens the bottle first, because it's smart" },
+        { "id": "a", "text": "The robot opens the bottle first because it is smart" },
         { "id": "b", "text": "The robot pours the juice successfully" },
-        { "id": "c", "text": "The robot asks you what to do" },
+        { "id": "c", "text": "The robot asks for help" },
         { "id": "d", "text": "The robot tries to pour from a closed bottle" }
       ],
       "correctOptionId": "d",
-      "explanation": "Computers follow instructions in the exact order you write them. Step 1 is \"pour the juice\" — so it tries, even though the bottle is still closed."
+      "explanation": "Computers follow instructions in the exact order they are given."
     },
     {
       "id": "1d-q4",
@@ -55,12 +55,12 @@
       "question": "What is a bug in a program?",
       "options": [
         { "id": "a", "text": "A program that is too long" },
-        { "id": "b", "text": "A mistake in the code that makes it behave unexpectedly" },
-        { "id": "c", "text": "A feature that is too hard to use" },
-        { "id": "d", "text": "A computer that is broken" }
+        { "id": "b", "text": "A mistake in the code that causes problems" },
+        { "id": "c", "text": "A feature that is hard to use" },
+        { "id": "d", "text": "A broken computer" }
       ],
       "correctOptionId": "b",
-      "explanation": "A bug is a mistake in your code — a missing step, wrong order, or typo — that makes the program do something you didn't intend. All programmers write bugs. The skill is fixing them."
+      "explanation": "A bug is a mistake in the code that makes the program behave in a way the programmer did not expect."
     },
     {
       "id": "1d-q5",
@@ -73,7 +73,7 @@
         { "id": "d", "text": "A programming language" }
       ],
       "correctOptionId": "c",
-      "explanation": "An algorithm is your plan before you write code — a clear, step-by-step recipe for solving a problem. It's how every programmer thinks before typing anything."
+      "explanation": "An algorithm is a clear plan for solving a problem step by step."
     },
     {
       "id": "1d-q6",
@@ -84,33 +84,46 @@
         { "id": "false", "text": "False" }
       ],
       "correctOptionId": "false",
-      "explanation": "False! Python was named after Monty Python, a British comedy group. The snake connection is just a fun coincidence."
+      "explanation": "Correct. Python was named after Monty Python, a British comedy group."
     },
     {
       "id": "1d-q7",
       "type": "multiple-choice",
-      "question": "Which of these is Python actually used for in the real world?",
+      "question": "Which of these is something Python is commonly used for?",
       "options": [
-        { "id": "a", "text": "Designing physical computer chips" },
-        { "id": "b", "text": "Only learning to code — it's not used professionally" },
-        { "id": "c", "text": "AI tools, data analysis, and powering platforms like YouTube" },
-        { "id": "d", "text": "Writing the firmware inside a fridge" }
+        { "id": "a", "text": "Building websites and analyzing data" },
+        { "id": "b", "text": "Only learning programming" },
+        { "id": "c", "text": "Replacing the internet" },
+        { "id": "d", "text": "Manufacturing computer chips by itself" }
       ],
-      "correctOptionId": "c",
-      "explanation": "Python is used by NASA, YouTube, Instagram, AI researchers, and game developers. It's a professional-grade language that's also approachable for beginners."
+      "correctOptionId": "a",
+      "explanation": "Python is commonly used for websites, data analysis, automation, AI, science, and many other kinds of software."
     },
     {
       "id": "1d-q8",
       "type": "multiple-choice",
-      "question": "You want to build a quiz game but it feels too big. What's the programmer's approach?",
+      "question": "You want to build a quiz game, but it feels too complicated. What is the programmer's approach?",
       "options": [
-        { "id": "a", "text": "Write all the code at once and hope for the best" },
-        { "id": "b", "text": "Give up — it's too complicated" },
-        { "id": "c", "text": "Find someone else to build it" },
-        { "id": "d", "text": "Break it into small pieces: one question, check the answer, keep score, repeat" }
+        { "id": "a", "text": "Write all the code at once" },
+        { "id": "b", "text": "Give up because it is too hard" },
+        { "id": "c", "text": "Wait for someone else to build it" },
+        { "id": "d", "text": "Break the problem into smaller steps" }
       ],
       "correctOptionId": "d",
-      "explanation": "Breaking a big problem into small, manageable pieces is one of the most important skills in programming. Every expert does this — it's not just for beginners."
+      "explanation": "Programmers solve large problems by breaking them into smaller, manageable pieces."
+    },
+    {
+      "id": "1d-q9",
+      "type": "multiple-choice",
+      "question": "Why are computers good at repetition?",
+      "options": [
+        { "id": "a", "text": "They understand human emotions" },
+        { "id": "b", "text": "They never get bored repeating instructions" },
+        { "id": "c", "text": "They can guess missing instructions" },
+        { "id": "d", "text": "They know the future" }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Computers can repeat instructions quickly and accurately without getting tired or bored."
     }
   ]
 }

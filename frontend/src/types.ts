@@ -44,6 +44,18 @@ export type QuizQuestion = {
 
 export type LessonStatus = 'locked' | 'in-progress' | 'complete'
 
+/**
+ * A single guided step in the coding lesson flow.
+ * `instruction` is shown in the banner above the editor.
+ * If `editorPrompt` or `starterCode` are provided, the editor resets
+ * to that content when the step begins.
+ */
+export type Step = {
+  instruction: string
+  editorPrompt?: string
+  starterCode?: string
+}
+
 export type ModuleConfig = {
   id: string
   title: string
@@ -80,11 +92,27 @@ export type LessonConfig = {
   content: ContentCard[]
   quiz?: QuizQuestion[]
   // Coding-lesson fields (optional for reading lessons)
-  /** Short prompt shown as a comment at the top of the blank editor, e.g. "Make the computer print a message." */
+  /** Short prompt shown as a comment at the top of the editor */
   editorPrompt?: string
+  /**
+   * Guided steps shown above the editor, one at a time.
+   * Each step is revealed after a successful run of the previous one.
+   * `editorPrompt` and `starterCode` on a step reset the editor when that step begins.
+   */
+  steps?: Step[]
+  /**
+   * Optional bonus steps shown after all main steps are done.
+   * Same structure as `steps`.
+   */
+  bonusSteps?: Step[]
+  /** Legacy single-step bonus prompt — used by lessons without bonusSteps */
+  challenge?: string
+  /** @deprecated Use `steps` instead */
+  editorInstruction?: string
+  /** @deprecated Use `steps` instead */
+  editorInstructionStep2?: string
   starterCode?: string
   progressiveHints?: string[]
-  challenge?: string
   // ProjectStudio fields
   milestones?: Milestone[]
   remixIdeas?: string[]

@@ -48,6 +48,8 @@
 - [ ] **What This Is Not** — add any other deliberately excluded features or approaches
 
 ### Polish
+- [ ] **Output validation against step instructions** — each `steps[]` and `bonusSteps[]` entry can optionally specify a `validate` rule (e.g. expected output contains a string, output has N lines, no error) so the lesson can give targeted feedback instead of accepting any successful run as step completion. Backend could return structured output; frontend checks it before advancing the step counter.
+- [ ] **Remove legacy top-level `editorPrompt`, `starterCode`, `editorInstruction`, `editorInstructionStep2`, `challenge` fields** — once all lessons have been migrated to use `steps[]` and `bonusSteps[]`, strip these deprecated fields from all lesson JSON files and remove the fallback logic in `CodingLesson.tsx`. Also remove the `@deprecated` fields from `LessonConfig` in `types.ts`.
 - [ ] **Mobile layout** — test and fix layout on small screens
 - [ ] **Delete `lessons.ts`** — legacy file, no longer imported anywhere
 

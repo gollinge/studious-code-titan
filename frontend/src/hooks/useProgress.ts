@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { LessonStatus } from '../types'
 
-const PROGRESS_KEY = 'studious-progress'
+const PROGRESS_KEY = 'studious-progress-v2'
 
 type ModuleProgress = Record<string, LessonStatus>
 type ProgressState = Record<string, ModuleProgress>

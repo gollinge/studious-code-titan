@@ -1,7 +1,7 @@
 {
   "id": "module3-3b",
   "moduleId": "module3",
-  "title": "2b — Programs That Make Choices",
+  "title": "3b \u2014 Programs That Make Choices",
   "type": "coding",
   "goal": "guided-practice",
   "content": [
@@ -10,37 +10,37 @@
       "type": "text",
       "title": "What If Your Program Could Decide?",
       "summary": "if lets your program check something and only run certain code when it's true.",
-      "body": "Right now your programs run every line, top to bottom, no matter what. But what if you wanted a program that did something different depending on the player's answer? That's where if comes in. if lets your program check something — and only do something when that check is true."
+      "body": "Right now your programs run every line, top to bottom, no matter what. But what if you wanted a program that did something different depending on the player's answer? That's where if comes in. if lets your program check something \u2014 and only do something when that check is true."
     },
     {
       "id": "c2",
       "type": "code",
       "title": "Writing an if Statement",
       "summary": "Write if, then a condition, then a colon. The indented lines below only run if the condition is true.",
-      "body": "Here's the shape of an if statement:\n\nif something == \"value\":\n    print(\"It matched!\")\n\nThe == means \"is equal to\" — two equals signs, not one.\nThe indented line only runs if the check is true.\nIf it's false, Python skips it and moves on."
+      "body": "Here's the shape of an if statement:\n\nif something == \"value\":\n    print(\"It matched!\")\n\nThe == means \"is equal to\" \u2014 two equals signs, not one.\nThe indented line only runs if the check is true.\nIf it's false, Python skips it and moves on."
     },
     {
       "id": "c3",
       "type": "callout",
-      "title": "Indentation Matters — A Lot",
+      "title": "Indentation Matters \u2014 A Lot",
       "summary": "The code inside an if MUST be indented (4 spaces or a Tab). Python uses indentation to know what belongs inside the if.",
-      "body": "Python uses spaces (or a Tab) to know which lines belong inside the if. If a line is indented — pushed in by 4 spaces — it's \"inside\" the if. If it's back at the edge, it's outside.\n\nThis is one of the most common places to get an error. If you see an IndentationError, check whether the lines inside your if are pushed in!"
+      "body": "Python uses spaces (or a Tab) to know which lines belong inside the if. If a line is indented \u2014 pushed in by 4 spaces \u2014 it's \"inside\" the if. If it's back at the edge, it's outside.\n\nThis is one of the most common places to get an error. If you see an IndentationError, check whether the lines inside your if are pushed in!"
     },
     {
       "id": "c4",
       "type": "text",
       "title": "Try It: A Favourite Colour Checker",
       "summary": "Ask for a favourite colour. If it matches, print a special message.",
-      "body": "favorite = input(\"Favorite color? \")\n\nif favorite == \"blue\":\n    print(\"Blue is awesome!\")\n\nRun it and type \"blue\" — you should see the message. Now try typing something else. What happens? The program just stays silent because the check wasn't true."
+      "body": "favorite = input(\"Favorite color? \")\n\nif favorite == \"blue\":\n    print(\"Blue is awesome!\")\n\nRun it and type \"blue\" \u2014 you should see the message. Now try typing something else. What happens? The program just stays silent because the check wasn't true."
     }
   ],
   "editorPrompt": "Ask for a favourite colour. If it matches, print a special message.",
   "starterCode": "favorite = input(\"Favorite color? \")\n\nif favorite == \"blue\":\n    print(\"Blue is awesome!\")\n",
   "progressiveHints": [
-    "# Starter code — run it and try typing 'blue'!\nfavorite = input(\"Favorite color? \")\n\nif favorite == \"blue\":\n    print(\"Blue is awesome!\")",
+    "# Starter code \u2014 run it and try typing 'blue'!\nfavorite = input(\"Favorite color? \")\n\nif favorite == \"blue\":\n    print(\"Blue is awesome!\")",
     "# Hint: use == to check if the answer matches a word exactly\n# if answer == \"your word\":\n#     print(\"something\")",
     "pet = input(\"What is your favorite animal? \")\n\nif pet == \"dragon\":\n    print(\"Dragons are the best!\")",
     "game = input(\"What is your favorite game? \")\n\nif game == \"minecraft\":\n    print(\"A classic!\")\n\nif game == \"roblox\":\n    print(\"Nice choice!\")"
   ],
-  "challenge": "🚀 Dive Deeper: Make a Magic Password Door. Ask the player for a password. If they type the correct secret word, print a message that the door swings open. Make the password something silly and fun!"
+  "challenge": "\ud83d\ude80 Dive Deeper: Make a Magic Password Door. Ask the player for a password. If they type the correct secret word, print a message that the door swings open. Make the password something silly and fun!"
 }

@@ -1,7 +1,7 @@
 {
   "id": "module3-3d",
   "moduleId": "module3",
-  "title": "2d — Building a Tiny Game",
+  "title": "3d \u2014 Building a Tiny Game",
   "type": "coding",
   "goal": "open-practice",
   "content": [
@@ -9,38 +9,38 @@
       "id": "c1",
       "type": "text",
       "title": "You Have Everything You Need",
-      "summary": "input, variables, print, if, and else — that's enough to build a real game.",
-      "body": "Look at what you can do now:\n\n• input() — ask the player a question\n• variables — remember their answers\n• print() — show messages and story\n• if / else — make choices and branch the story\n\nThat's not just code. That's a game engine. Let's build something with it."
+      "summary": "input, variables, print, if, and else \u2014 that's enough to build a real game.",
+      "body": "Look at what you can do now:\n\n\u2022 input() \u2014 ask the player a question\n\u2022 variables \u2014 remember their answers\n\u2022 print() \u2014 show messages and story\n\u2022 if / else \u2014 make choices and branch the story\n\nThat's not just code. That's a game engine. Let's build something with it."
     },
     {
       "id": "c2",
       "type": "code",
       "title": "A Complete Tiny Game",
-      "summary": "All the pieces together: ask → store → decide → react.",
-      "body": "door = input(\"Choose a door: red or blue? \")\n\nif door == \"red\":\n    print(\"You open the red door...\")\n    print(\"A dragon is napping inside. It opens one eye.\")\n    print(\"The dragon goes back to sleep. You tiptoe past.\")\nelse:\n    print(\"You open the blue door...\")\n    print(\"Treasure! Mountains of gold coins!\")\n    print(\"You fill your pockets and sneak out.\")\n\nThe whole thing is only 8 lines — but it's a real game with two completely different stories."
+      "summary": "All the pieces together: ask \u2192 store \u2192 decide \u2192 react.",
+      "body": "door = input(\"Choose a door: red or blue? \")\n\nif door == \"red\":\n    print(\"You open the red door...\")\n    print(\"A dragon is napping inside. It opens one eye.\")\n    print(\"The dragon goes back to sleep. You tiptoe past.\")\nelse:\n    print(\"You open the blue door...\")\n    print(\"Treasure! Mountains of gold coins!\")\n    print(\"You fill your pockets and sneak out.\")\n\nThe whole thing is only 8 lines \u2014 but it's a real game with two completely different stories."
     },
     {
       "id": "c3",
       "type": "callout",
       "title": "Multiple print() Lines Inside if/else",
-      "summary": "You can have as many lines as you want inside if or else — just keep them all indented.",
-      "body": "You can put as many print() lines as you like inside an if or else — as long as they're all indented. Each indented line runs only for that branch. The moment a line goes back to the edge, it's outside the if/else and runs always."
+      "summary": "You can have as many lines as you want inside if or else \u2014 just keep them all indented.",
+      "body": "You can put as many print() lines as you like inside an if or else \u2014 as long as they're all indented. Each indented line runs only for that branch. The moment a line goes back to the edge, it's outside the if/else and runs always."
     },
     {
       "id": "c4",
       "type": "text",
       "title": "Make It Yours",
       "summary": "The best games have personality. Give yours a setting, some humour, and a twist.",
-      "body": "The starter code is just a starting point. Swap out the story, change the choices, add a character name. The best games have personality — weird twists, funny moments, unexpected outcomes.\n\nIdeas:\n• Cave adventure with a sleeping troll\n• Wizard duel where both spells go wrong\n• Spaceship with a broken teleporter\n• A guessing game with a sassy robot\n\nYou're the author. Make it fun."
+      "body": "The starter code is just a starting point. Swap out the story, change the choices, add a character name. The best games have personality \u2014 weird twists, funny moments, unexpected outcomes.\n\nIdeas:\n\u2022 Cave adventure with a sleeping troll\n\u2022 Wizard duel where both spells go wrong\n\u2022 Spaceship with a broken teleporter\n\u2022 A guessing game with a sassy robot\n\nYou're the author. Make it fun."
     }
   ],
   "editorPrompt": "Build a tiny game using input, variables, if, else, and print.",
   "starterCode": "door = input(\"Choose a door: red or blue? \")\n\nif door == \"red\":\n    print(\"You found treasure!\")\nelse:\n    print(\"A monster appeared!\")\n",
   "progressiveHints": [
-    "# Starter code — run it, then make it more exciting!\ndoor = input(\"Choose a door: red or blue? \")\n\nif door == \"red\":\n    print(\"You found treasure!\")\nelse:\n    print(\"A monster appeared!\")",
+    "# Starter code \u2014 run it, then make it more exciting!\ndoor = input(\"Choose a door: red or blue? \")\n\nif door == \"red\":\n    print(\"You found treasure!\")\nelse:\n    print(\"A monster appeared!\")",
     "# Hint: ask the player's name first so you can use it in the story!\n# name = input(\"What is your name, adventurer? \")\n# print(\"Welcome, \" + name + \"!\")",
     "name = input(\"What is your name? \")\ndoor = input(\"Choose a door: red or blue? \")\n\nif door == \"red\":\n    print(name + \" opens the red door...\")\n    print(\"A friendly dragon waves hello!\")\nelse:\n    print(name + \" opens the blue door...\")\n    print(\"A treasure chest gleams in the dark!\")",
     "name = input(\"What is your name? \")\nprint(\"Welcome, \" + name + \"! Your adventure begins now.\")\n\npath = input(\"Do you enter the forest or the castle? \")\n\nif path == \"forest\":\n    print(\"The trees whisper your name...\")\n    print(\"A tiny fox hands you a magic acorn.\")\nelse:\n    print(\"The castle gates creak open.\")\n    print(\"A ghost butler offers you a snack.\")"
   ],
-  "challenge": "🚀 Dive Deeper: Ask the player their name AND a choice. Use the name in your story text so it feels personal. Add at least 3 print() lines to each branch to make the story really come alive!"
+  "challenge": "\ud83d\ude80 Dive Deeper: Ask the player their name AND a choice. Use the name in your story text so it feels personal. Add at least 3 print() lines to each branch to make the story really come alive!"
 }

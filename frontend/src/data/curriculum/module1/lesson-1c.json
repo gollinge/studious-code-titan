@@ -8,31 +8,31 @@
       "id": "1c-card-1",
       "type": "text",
       "title": "What is Python?",
-      "body": "Python is a programming language — a way of writing instructions that computers can understand.\n\nIt was created in 1991 by a programmer named Guido van Rossum, who named it after Monty Python (a British comedy group — not the snake). Today, Python is one of the most popular programming languages in the world, used by beginners and experts alike."
+      "body": "Python is a programming language — a way of writing instructions that computers can understand.\n\nIt was created by a programmer named Guido van Rossum. The name came from Monty Python, a British comedy group — not the snake.\n\nToday, Python is one of the most widely used programming languages in the world. Beginners use it to learn programming, and professionals use it to build real software."
     },
     {
       "id": "1c-card-2",
       "type": "text",
-      "title": "Python reads almost like English",
-      "body": "One reason Python is great for beginners is that it looks much closer to plain English than most other languages.\n\nSome languages bury simple ideas in curly braces, semicolons, and special symbols. Python keeps things readable. The rules are still there — you still have to be precise — but the code itself is much easier to follow."
+      "title": "Python was designed to be readable",
+      "body": "One reason Python is popular for learning is that the code is designed to be readable and easier for humans to understand.\n\nPython avoids a lot of extra symbols and complicated formatting. The rules are still important — spelling, punctuation, and spacing can matter — but the code is often easier to follow than many other programming languages."
     },
     {
       "id": "1c-card-3",
       "type": "text",
-      "title": "Python is used for real things",
-      "body": "Here's what Python powers in the real world:\n\n• YouTube — the backend that serves billions of videos\n• NASA — analysing data from space telescopes\n• Instagram — running the platform for over 2 billion users\n• Blender — the 3D animation software used in films\n• AI and machine learning — most modern AI tools are built with Python\n\nLearning Python doesn't just teach you to code — it opens doors into some of the most exciting technology being built today."
+      "title": "Python is used for real projects",
+      "body": "Python is used for many different kinds of technology:\n\n• Building websites and apps\n• Analysing data and graphs\n• Automating repetitive tasks\n• Scientific and space research\n• Creating games and tools\n• AI and machine learning\n\nPython isn't just a \"practice\" language. It's a real tool used by programmers all over the world."
     },
     {
       "id": "1c-card-4",
       "type": "code",
       "title": "Your first look at Python",
-      "body": "print(\"Hello! What's your name?\")\nname = \"Alex\"\nprint(\"Nice to meet you,\", name)\n\nscore = 0\nscore = score + 10\nprint(\"Your score is:\", score)"
+      "body": "print(\"Hello! What's your name?\")\n\nname = \"Alex\"\nprint(\"Nice to meet you,\", name)\n\nscore = 0\nscore = score + 10\n\nprint(\"Your score is:\", score)"
     },
     {
       "id": "1c-card-5",
       "type": "callout",
-      "title": "Don't worry about understanding all of that yet",
-      "body": "That code might look a little strange right now — and that's completely fine. You're about to learn each piece step by step.\n\nBy the end of Module 2, every line in that example will make total sense. For now, just notice that it doesn't look that scary.\n\nYou're ready to start writing real code. Let's go!"
+      "title": "You don't need to understand everything yet",
+      "body": "That code might look unfamiliar right now — and that's completely normal.\n\nOver the next lessons, you'll learn what each line means step by step:\n\n• How to print text\n• How variables store information\n• How programs remember and update values\n\nFor now, just notice that Python code is readable and structured.\n\nNext, you'll start by learning how to print text to the screen."
     }
   ],
   "quiz": [
@@ -45,33 +45,46 @@
         { "id": "false", "text": "False" }
       ],
       "correctOptionId": "false",
-      "explanation": "False! Python was named after Monty Python, a British comedy group. The snake connection is just a fun coincidence."
+      "explanation": "Correct. Python was named after Monty Python, a British comedy group."
     },
     {
       "id": "1c-q2",
       "type": "multiple-choice",
-      "question": "Why is Python considered a good language for beginners?",
+      "question": "Why do many beginners start with Python?",
       "options": [
-        { "id": "a", "text": "It runs faster than every other language" },
-        { "id": "b", "text": "Its code reads almost like plain English" },
-        { "id": "c", "text": "It has no rules, so you can write anything" },
-        { "id": "d", "text": "It was the very first programming language" }
+        { "id": "a", "text": "Because it has no rules" },
+        { "id": "b", "text": "Because it was the first programming language ever made" },
+        { "id": "c", "text": "Because Python code is designed to be readable" },
+        { "id": "d", "text": "Because it only works for games" }
       ],
-      "correctOptionId": "b",
-      "explanation": "Python's syntax is designed to be readable and close to English, which makes it much friendlier to learn than most other languages."
+      "correctOptionId": "c",
+      "explanation": "Python was designed to be readable and easier for humans to understand."
     },
     {
       "id": "1c-q3",
       "type": "multiple-choice",
-      "question": "Which of these is something Python is actually used for?",
+      "question": "Which of these is something Python is commonly used for?",
       "options": [
-        { "id": "a", "text": "Designing physical circuit boards" },
-        { "id": "b", "text": "Only teaching beginners to code" },
-        { "id": "c", "text": "Writing the instructions inside a CPU chip" },
-        { "id": "d", "text": "Powering AI tools and analysing data from space" }
+        { "id": "a", "text": "Building websites and analyzing data" },
+        { "id": "b", "text": "Only teaching beginners" },
+        { "id": "c", "text": "Manufacturing computer chips by itself" },
+        { "id": "d", "text": "Replacing the internet" }
       ],
-      "correctOptionId": "d",
-      "explanation": "Python powers AI, data science, web platforms like YouTube and Instagram, scientific research at NASA, and much more. It's a genuinely professional tool."
+      "correctOptionId": "a",
+      "explanation": "Python is commonly used for websites, data analysis, automation, AI, science, and many other kinds of software."
+    },
+    {
+      "id": "1c-q4",
+      "type": "multiple-choice",
+      "question": "What does this line of Python code do?\n\nprint(\"Hello\")",
+      "options": [
+        { "id": "a", "text": "Deletes the word Hello" },
+        { "id": "b", "text": "Shows the word Hello on the screen" },
+        { "id": "c", "text": "Turns the computer off" },
+        { "id": "d", "text": "Stores Hello inside the keyboard" }
+      ],
+      "correctOptionId": "b",
+      "explanation": "The print command displays text on the screen."
     }
   ]
 }

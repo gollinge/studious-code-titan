@@ -107,6 +107,63 @@
   gap: 0.65rem;
 }
 
+.editor-hint {
+  padding: 0.6rem 0.75rem;
+  background: #fffbea;
+  border: 1.5px solid #f5a623;
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.editor-hint__label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #92400e;
+  margin-bottom: 0.3rem;
+}
+
+.editor-hint__code {
+  margin: 0;
+  font-family: monospace;
+  font-size: 0.95rem;
+  color: #78350f;
+  white-space: pre-wrap;
+}
+
+.editor-instruction--bonus {
+  background: #faf5ff;
+  border-color: #a855f7;
+  color: #581c87;
+}
+
+.editor-instruction--bonus::before {
+  content: "🌟";
+  font-size: 1.1rem;
+}
+
+.editor-instruction {
+  padding: 0.65rem 1rem;
+  background: #f0fdf4;
+  border: 2px solid #4ade80;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #166534;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.editor-instruction::before {
+  content: "👉";
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
 .editor-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -627,27 +684,6 @@ kbd {
   white-space: pre-wrap;
 }
 
-.content-card__code {
-  font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.88rem;
-  line-height: 1.65;
-  color: #1a3a1a;
-  background: #f0f4f0;
-  border: 1px solid #c8d8c8;
-  border-radius: 6px;
-  padding: 0.75rem 1rem;
-  margin: 0.5rem 0;
-  white-space: pre;
-  overflow-x: auto;
-}
-
-.content-card__body {
-  font-size: 1rem;
-  line-height: 1.65;
-  color: #334e68;
-  margin: 0.35rem 0;
-}
-
 .card-nav {
   display: flex;
   gap: 0.75rem;
@@ -879,11 +915,16 @@ kbd {
 .coding-lesson--editor {
   flex: 1;
   display: grid;
-  grid-template-columns: 280px 1fr 280px;
+  grid-template-columns: 280px 1fr;
   gap: 0.75rem;
   padding: 0.75rem;
   min-height: 0;
   overflow: hidden;
+}
+
+/* Output panel present — expand to 3 columns */
+.coding-lesson--editor:has(.coding-lesson__output) {
+  grid-template-columns: 280px 1fr 280px;
 }
 
 .coding-lesson__sidebar {
@@ -940,8 +981,161 @@ kbd {
   line-height: 1.4;
 }
 
+/* ── Compact lesson progress panel ── */
+
+.lesson-progress-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  border-top: 1px solid #d9e2ec;
+  padding-top: 0.85rem;
+}
+
+.lesson-goal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.lesson-goal-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9fb3c8;
+}
+
+.lesson-goal-text {
+  font-size: 0.82rem;
+  color: #334e68;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.concept-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.concept-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  color: #627d98;
+  line-height: 1.35;
+}
+
+.concept-item--active {
+  color: #1a365d;
+  font-weight: 600;
+}
+
+.concept-item--active .concept-check {
+  color: #2f6feb;
+}
+
+.concept-item--bonus {
+  opacity: 0.55;
+}
+
+.concept-item--bonus.concept-item--active {
+  opacity: 1;
+  color: #581c87;
+}
+
+.concept-item--bonus.concept-item--active .concept-check {
+  color: #a855f7;
+}
+
+.concept-check {
+  font-size: 0.72rem;
+  color: #27ab83;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+.concept-title {
+  color: inherit;
+}
+
 .coding-lesson__complete-btn {
-  margin-top: auto;
+  align-self: flex-start;
+}
+
+.lesson-finish-area {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.lesson-finish-prompt {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #166534;
+}
+
+.lesson-finish-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Shared shape for finish-area buttons — overrides the full-width continue-btn defaults */
+.lesson-finish-actions .continue-btn,
+.lesson-finish-actions .dive-deeper-btn {
+  display: inline-flex;
+  width: auto;
+  padding: 0.6rem 1rem;
+  border-radius: 0.6rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  margin-bottom: 0;
+}
+
+.lesson-finish-actions .continue-btn {
+  background: #2f6feb;
+  color: #fff;
+}
+
+.lesson-finish-actions .continue-btn:hover {
+  background: #1a56d4;
+}
+
+.lesson-finish-actions .dive-deeper-btn {
+  background: #fffbea;
+  border: 2px solid #f0b429;
+  color: #7b4f00;
+}
+
+.mark-complete-area {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.mark-complete-nudge {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #166534;
+  margin: 0;
+}
+
+.mark-complete--locked {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .coding-lesson__editor {
@@ -1028,7 +1222,6 @@ kbd {
 }
 
 .dive-deeper-btn {
-  margin-top: auto;
   padding: 0.55rem 0.9rem;
   border: 2px dashed #f0b429;
   border-radius: 0.6rem;
@@ -1039,6 +1232,32 @@ kbd {
   cursor: pointer;
   text-align: left;
   transition: background 0.15s, border-color 0.15s;
+}
+
+.dive-deeper-teaser {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.6rem;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.dive-deeper-teaser__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9ca3af;
+  margin: 0;
+}
+
+.dive-deeper-teaser__text {
+  font-size: 0.875rem;
+  color: #374151;
+  margin: 0;
 }
 
 .dive-deeper-btn:hover {

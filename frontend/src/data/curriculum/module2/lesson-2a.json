@@ -1,7 +1,7 @@
 {
   "id": "module2-2a",
   "moduleId": "module2",
-  "title": "1a — Running Your First Program",
+  "title": "Running Your First Program",
   "type": "coding",
   "goal": "concept",
   "content": [
@@ -9,38 +9,51 @@
       "id": "c1",
       "type": "text",
       "title": "The Code Editor",
-      "summary": "The big white box is where you type Python code.",
-      "body": "The big white box in the middle is the code editor. This is where you write Python programs. You can click anywhere inside it and start typing — just like a text editor, but for code."
+      "summary": "The editor is where you type Python code.",
+      "body": "The editor is where you write Python programs. Click inside it and start typing.\n\nIt works a lot like a normal text editor, except instead of writing sentences or notes, you're writing instructions for Python to run."
     },
     {
       "id": "c2",
       "type": "callout",
       "title": "The Run Button",
-      "summary": "Press Run (or Cmd/Ctrl+Enter) and Python carries out your code top to bottom.",
-      "body": "When you press Run, Python reads every line you wrote — from top to bottom — and carries out each instruction. You can also press Cmd+Enter (Mac) or Ctrl+Enter (Windows) to run without clicking."
+      "summary": "Press Run (or Cmd/Ctrl+Enter) to make Python run your code from top to bottom.",
+      "body": "When you press Run, Python goes through your code one line at a time, from top to bottom, and follows each instruction.\n\nWriting code by itself does nothing yet — your program only runs after you press Run.\n\nYou can also press Cmd+Enter (Mac) or Ctrl+Enter (Windows) instead of clicking the button."
     },
     {
       "id": "c3",
       "type": "text",
       "title": "The Output Panel",
-      "summary": "Results appear in the Output panel. Errors are normal — they're just feedback.",
-      "body": "After you run your program, the results appear in the Output panel on the right. If your program prints something, it shows up there. If something goes wrong, you'll see an error message — and that's totally normal."
+      "summary": "Results and error messages appear in the Output panel.",
+      "body": "After your program runs, the results appear in the Output panel.\n\nIf your program prints text, you'll see it there. If something goes wrong, Python shows an error message to help you figure out what happened.\n\nErrors are a normal part of programming — even experienced programmers see them all the time."
     },
     {
       "id": "c4",
       "type": "code",
       "title": "print() — Your First Command",
-      "summary": "print(\"Hello!\") displays text on screen. Anything inside the quotes appears in the output.",
-      "body": "print() tells Python to display a message on the screen. Whatever you put inside the quotes will appear in the output.\n\nprint(\"Hello!\")\n\nTry changing \"Hello!\" to something else and hit Run."
+      "summary": "print(\"Hello!\") displays text on the screen.",
+      "body": "print() tells Python to display a message on the screen.\n\nprint(\"Hello!\")\n\nThe quotation marks are important — they tell Python where the message starts and ends.\n\nTry changing \"Hello!\" to your own message, then press Run."
     }
   ],
-  "starterCode": "print(\"Hello!\")\n",
-  "editorPrompt": "Make the computer say something using print().",
+  "steps": [
+    {
+      "instruction": "Step 1: Change the message inside the quotation marks. Then press Run.",
+      "editorPrompt": "Change the message",
+      "starterCode": "print(\"Hello!\")\n"
+    },
+    {
+      "instruction": "Step 2: Add a second print() line below the first. Run it again!"
+    }
+  ],
+  "bonusSteps": [
+    {
+      "instruction": "Bonus: Write 3 print() lines — give the computer a name, a job, and one silly fact about it.",
+      "editorPrompt": "Give the computer a personality",
+      "starterCode": ""
+    }
+  ],
   "progressiveHints": [
-    "# Starter code — try changing the message!\nprint(\"Hello!\")",
-    "# Hint: Use print() with a message in quotes\n# print(\"your message here\")",
+    "# Hint: Use print() with a message inside quotation marks\nprint(\"I like pizza\")",
     "print(\"your message here\")",
     "print(\"Hello, world!\")\nprint(\"I made the computer say this!\")"
-  ],
-  "challenge": "🚀 Dive Deeper: Make the computer introduce itself. Write 3 print() lines — one for its name, one for its job, and one silly fact about it."
+  ]
 }

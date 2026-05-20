@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import type { LessonConfig, ContentCard } from '../types'
+import type { LessonConfig } from '../types'
+import { CardReader } from './CardReader'
 
 type Phase = 'cards' | 'quiz' | 'summary'
 
@@ -32,7 +33,6 @@ export function ReadingLesson({ lesson, moduleTitle, onComplete, onNext, onBack 
 
   const cards = lesson.content
   const quiz = lesson.quiz ?? []
-  const currentCard = cards[cardIndex]
   const isLastCard = cardIndex === cards.length - 1
   const currentQuestion = quiz[quizIndex]
   const isLastQuestion = quizIndex === quiz.length - 1
@@ -69,53 +69,30 @@ export function ReadingLesson({ lesson, moduleTitle, onComplete, onNext, onBack 
 
   return (
     <div className="reading-lesson">
-      <div className="reading-lesson-header">
-        <button type="button" className="back-btn" onClick={onBack}>
-          ← Back to module
-        </button>
-        <span className="breadcrumb">
-          {moduleTitle} › {lesson.title}
-        </span>
-      </div>
-
       {/* ── Card reader ── */}
       {phase === 'cards' && !isCompleted && (
-        <div className="card-reader">
-          <div className="card-progress-dots">
-            {cards.map((_, i) => (
-              <span
-                key={i}
-                className={`card-dot${i === cardIndex ? ' card-dot--active' : i < cardIndex ? ' card-dot--done' : ''}`}
-              />
-            ))}
-          </div>
-          <ContentCardView card={currentCard} />
-          <div className="card-nav">
-            {cardIndex > 0 ? (
-              <button
-                type="button"
-                className="card-prev-btn"
-                onClick={() => setCardIndex(cardIndex - 1)}
-              >
-                ← Previous
-              </button>
-            ) : (
-              <span />
-            )}
-            <div className="card-nav-right">
-              {isLastCard && quiz.length > 0 && (
-                <span className="card-quiz-hint">That's all the reading — time for a quick check!</span>
-              )}
-              <button type="button" className="card-next-btn" onClick={handleCardNext}>
-                {isLastCard
-                  ? quiz.length > 0
-                    ? 'Take the Quiz →'
-                    : 'Finish Lesson ✓'
-                  : 'Next →'}
-              </button>
-            </div>
-          </div>
-        </div>
+        <CardReader
+          cards={cards}
+          cardIndex={cardIndex}
+          moduleTitle={moduleTitle}
+          lessonTitle={lesson.title}
+          nextLabel={
+            isLastCard
+              ? quiz.length > 0
+                ? 'Take the Quiz →'
+                : 'Finish Lesson ✓'
+              : 'Next →'
+          }
+          hintText={
+            isLastCard && quiz.length > 0
+              ? "That's all the reading — time for a quick check!"
+              : undefined
+          }
+          backLabel="← Back to module"
+          onBack={onBack}
+          onPrev={() => setCardIndex(cardIndex - 1)}
+          onNext={handleCardNext}
+        />
       )}
 
       {/* ── Cards-only complete (no quiz) ── */}
@@ -198,20 +175,6 @@ export function ReadingLesson({ lesson, moduleTitle, onComplete, onNext, onBack 
             Next Lesson →
           </button>
         </div>
-      )}
-    </div>
-  )
-}
-
-function ContentCardView({ card }: { card: ContentCard }) {
-  return (
-    <div className={`content-card content-card--${card.type}`}>
-      {card.type === 'callout' && <span className="content-card-callout-label">💡 Good to know!</span>}
-      {card.title && <h3 className="content-card-title">{card.title}</h3>}
-      {card.type === 'code' ? (
-        <pre className="content-card-code">{card.body}</pre>
-      ) : (
-        <p className="content-card-body" style={{ whiteSpace: 'pre-wrap' }}>{card.body}</p>
       )}
     </div>
   )

@@ -1,7 +1,7 @@
 {
   "id": "module3-3c",
   "moduleId": "module3",
-  "title": "2c — More Than One Choice",
+  "title": "3c \u2014 More Than One Choice",
   "type": "coding",
   "goal": "guided-practice",
   "content": [
@@ -9,8 +9,8 @@
       "id": "c1",
       "type": "text",
       "title": "What Happens When the if Is False?",
-      "summary": "else runs when the if condition is false — it's the fallback path.",
-      "body": "In the last lesson, when the player typed something that didn't match, the program just went silent. That works sometimes — but usually you want to say something either way. That's what else is for. else runs when the if condition is false."
+      "summary": "else runs when the if condition is false \u2014 it's the fallback path.",
+      "body": "In the last lesson, when the player typed something that didn't match, the program just went silent. That works sometimes \u2014 but usually you want to say something either way. That's what else is for. else runs when the if condition is false."
     },
     {
       "id": "c2",
@@ -23,24 +23,24 @@
       "id": "c3",
       "type": "callout",
       "title": "else Has No Condition",
-      "summary": "else doesn't check anything — it just runs when nothing above matched.",
-      "body": "Notice that else doesn't have a condition after it — just a colon. It's the \"catch-all\" — it runs whenever the if was false. You can only have one else per if, and it always goes at the end."
+      "summary": "else doesn't check anything \u2014 it just runs when nothing above matched.",
+      "body": "Notice that else doesn't have a condition after it \u2014 just a colon. It's the \"catch-all\" \u2014 it runs whenever the if was false. You can only have one else per if, and it always goes at the end."
     },
     {
       "id": "c4",
       "type": "text",
       "title": "Story Branches",
       "summary": "if/else is the engine behind choose-your-own-adventure stories.",
-      "body": "Every choose-your-own-adventure story is secretly just a bunch of if/else statements! One choice sends you down one path, the other choice sends you down another.\n\ndoor = input(\"Choose a door — left or right? \")\n\nif door == \"left\":\n    print(\"You find a treasure chest!\")\nelse:\n    print(\"A friendly dragon waves hello.\")\n\nYou're writing a game engine now. 🎮"
+      "body": "Every choose-your-own-adventure story is secretly just a bunch of if/else statements! One choice sends you down one path, the other choice sends you down another.\n\ndoor = input(\"Choose a door \u2014 left or right? \")\n\nif door == \"left\":\n    print(\"You find a treasure chest!\")\nelse:\n    print(\"A friendly dragon waves hello.\")\n\nYou're writing a game engine now. \ud83c\udfae"
     }
   ],
   "editorPrompt": "Write an if/else so the program always has something to say.",
   "starterCode": "pet = input(\"Do you have a pet? \")\n\nif pet == \"yes\":\n    print(\"Pets are amazing!\")\nelse:\n    print(\"Maybe you'll get one someday!\")\n",
   "progressiveHints": [
-    "# Starter code — try typing 'yes' and then try something else!\npet = input(\"Do you have a pet? \")\n\nif pet == \"yes\":\n    print(\"Pets are amazing!\")\nelse:\n    print(\"Maybe you'll get one someday!\")",
+    "# Starter code \u2014 try typing 'yes' and then try something else!\npet = input(\"Do you have a pet? \")\n\nif pet == \"yes\":\n    print(\"Pets are amazing!\")\nelse:\n    print(\"Maybe you'll get one someday!\")",
     "# Hint: else goes after the if block, no condition needed\n# if answer == \"something\":\n#     print(\"matched!\")\n# else:\n#     print(\"didn't match\")",
     "answer = input(\"Do you like pizza? \")\n\nif answer == \"yes\":\n    print(\"Great taste!\")\nelse:\n    print(\"More pizza for me!\")",
-    "door = input(\"Choose a door — left or right? \")\n\nif door == \"left\":\n    print(\"You find a treasure chest full of gold!\")\nelse:\n    print(\"A dragon appears... and offers you a cookie.\")"
+    "door = input(\"Choose a door \u2014 left or right? \")\n\nif door == \"left\":\n    print(\"You find a treasure chest full of gold!\")\nelse:\n    print(\"A dragon appears... and offers you a cookie.\")"
   ],
-  "challenge": "🚀 Dive Deeper: Write a two-path mini adventure. Ask the player to choose between two options (a forest or a castle, a spaceship or a submarine — your choice!). Write a different story outcome for each path with at least 2 print() lines each."
+  "challenge": "\ud83d\ude80 Dive Deeper: Write a two-path mini adventure. Ask the player to choose between two options (a forest or a castle, a spaceship or a submarine \u2014 your choice!). Write a different story outcome for each path with at least 2 print() lines each."
 }

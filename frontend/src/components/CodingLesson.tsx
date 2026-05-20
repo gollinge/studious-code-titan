@@ -1,8 +1,9 @@
 import { keymap, EditorView } from '@codemirror/view'
 import { python } from '@codemirror/lang-python'
 import CodeMirror from '@uiw/react-codemirror'
-import { useCallback, useMemo, useRef, useState } from 'react'
-import type { LessonConfig, ExecutionResponse } from '../types'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import type { LessonConfig, ExecutionResponse, Step } from '../types'
+import { CardReader } from './CardReader'
 
 // ── Friendly error messages ────────────────────────────────────────────────────
 
@@ -27,43 +28,6 @@ function getFriendlyHelp(errorType: string | null, timedOut: boolean): string | 
   return ERROR_HELP[errorType] ?? null
 }
 
-// ── Content card renderer ──────────────────────────────────────────────────────
-
-type CardProps = {
-  card: LessonConfig['content'][number]
-}
-
-const PY_LINE = /^(\s+\S|(?:if|else|elif|for|while|def|class|import|from|return|pass|break|try|except|raise|with|print|input)\b|[a-zA-Z_]\w*\s*[=(+\[{])/
-
-function isCodeParagraph(para: string): boolean {
-  const lines = para.split('\n').filter((l) => l.trim() !== '')
-  return lines.length > 0 && lines.every((l) => PY_LINE.test(l))
-}
-
-function CardBody({ body }: { body: string }) {
-  const paragraphs = body.split(/\n\n+/)
-  return (
-    <>
-      {paragraphs.map((para, i) =>
-        isCodeParagraph(para) ? (
-          <pre key={i} className="content-card__code"><code>{para}</code></pre>
-        ) : (
-          <p key={i} className="content-card__body" style={{ whiteSpace: 'pre-wrap' }}>{para}</p>
-        )
-      )}
-    </>
-  )
-}
-
-function ContentCardView({ card }: CardProps) {
-  return (
-    <div className={`content-card content-card--${card.type}`}>
-      {card.title && <h3 className="content-card__title">{card.title}</h3>}
-      <CardBody body={card.body} />
-    </div>
-  )
-}
-
 // ── Main component ─────────────────────────────────────────────────────────────
 
 type Phase = 'cards' | 'editor' | 'dive-deeper'
@@ -84,13 +48,17 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
   const [phase, setPhase] = useState<Phase>('cards')
   const [isCompleted, setIsCompleted] = useState(false)
 
-  // Editor state — starts with the objective as a comment; starter code is hint 0
-  const initialCode = lesson.editorPrompt
-    ? `# ${lesson.editorPrompt}\n`
-    : ''
+  // Editor state — step 0's editorPrompt/starterCode takes precedence over lesson-level fields
+  const step0 = lesson.steps?.[0]
+  const initialCode = [
+    (step0?.editorPrompt ?? lesson.editorPrompt) ? `# ${step0?.editorPrompt ?? lesson.editorPrompt}` : '',
+    step0?.starterCode ?? lesson.starterCode ?? '',
+  ].filter(Boolean).join('\n')
   const [code, setCode] = useState(initialCode)
-  const [savedLessonCode, setSavedLessonCode] = useState<string | null>(null) // preserved when entering Dive Deeper
   const [output, setOutput] = useState<ExecutionResponse | null>(null)
+  const [successCount, setSuccessCount] = useState(0)
+  const [bonusMode, setBonusMode] = useState(false)
+  const [bonusSuccessCount, setBonusSuccessCount] = useState(0)
   const [isRunning, setIsRunning] = useState(false)
   const [hintsRevealed, setHintsRevealed] = useState(0)
   const [showHelp, setShowHelp] = useState(false)
@@ -98,11 +66,52 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
   const outputRef = useRef<HTMLPreElement | null>(null)
 
   const cards = lesson.content
-  // Prepend starter code as the first hint so the editor starts blank
-  const hints = [
-    ...(lesson.starterCode ? [`# Starter code\n${lesson.starterCode}`] : []),
-    ...(lesson.progressiveHints ?? []),
-  ]
+  const hints = lesson.progressiveHints ?? []
+
+  // Steps: new `steps[]` (Step objects) with fallback to legacy editorInstruction fields
+  const steps: Step[] = lesson.steps
+    ?? [lesson.editorInstruction, lesson.editorInstructionStep2]
+        .filter((s): s is string => Boolean(s))
+        .map((instruction) => ({ instruction }))
+
+  // Bonus steps: new `bonusSteps[]` with fallback to legacy `challenge` string
+  const bonusSteps: Step[] = lesson.bonusSteps
+    ?? (lesson.challenge ? [{ instruction: lesson.challenge.replace(/^🚀 Dive Deeper: /, '') }] : [])
+
+  const currentStep = steps[successCount] ?? null
+  const currentStepInstruction = currentStep?.instruction ?? null
+  const hasAllStepsDone = steps.length === 0 || successCount >= steps.length
+
+  const currentBonusStep = bonusSteps[bonusSuccessCount] ?? null
+  const currentBonusInstruction = currentBonusStep?.instruction ?? null
+  const bonusDone = bonusMode && bonusSuccessCount >= bonusSteps.length
+  const hasBonusChallenge = bonusSteps.length > 0
+
+  // Resets editor when a new step begins (if that step has its own editorPrompt/starterCode)
+  useEffect(() => {
+    if (successCount === 0) return
+    const next = steps[successCount]
+    if (!next?.editorPrompt && !next?.starterCode) return
+    const newCode = [
+      next.editorPrompt ? `# ${next.editorPrompt}` : '',
+      next.starterCode ?? '',
+    ].filter(Boolean).join('\n')
+    setCode(newCode)
+    setOutput(null)
+  }, [successCount]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!bonusMode || bonusSuccessCount === 0) return
+    const next = bonusSteps[bonusSuccessCount]
+    if (!next?.editorPrompt && !next?.starterCode) return
+    const newCode = [
+      next.editorPrompt ? `# ${next.editorPrompt}` : '',
+      next.starterCode ?? '',
+    ].filter(Boolean).join('\n')
+    setCode(newCode)
+    setOutput(null)
+  }, [bonusSuccessCount]) // eslint-disable-line react-hooks/exhaustive-deps
+
   const isLastCard = cardIndex === cards.length - 1
 
   // ── Card navigation ──────────────────────────────────────────────────────────
@@ -129,6 +138,10 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
       })
       const payload = (await response.json()) as ExecutionResponse
       setOutput(payload)
+      if (payload.error_type === null) {
+        if (bonusMode) setBonusSuccessCount((n) => n + 1)
+        else setSuccessCount((n) => n + 1)
+      }
     } catch {
       setOutput({
         stdout: '',
@@ -193,25 +206,20 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
     setShowHelp(false)
   }
 
-  // ── Dive Deeper mode ─────────────────────────────────────────────────────────
+  // ── Bonus (challenge) mode — stays in the same editor, just swaps the instruction ──
 
-  const challengePrompt = lesson.challenge
-    ? `# 🚀 Dive Deeper\n# ${lesson.challenge.replace(/^🚀 Dive Deeper: /, '').replace(/\n/g, '\n# ')}\n`
-    : ''
-
-  const enterDiveDeeper = () => {
-    setSavedLessonCode(code)
-    setCode(challengePrompt)
+  const startBonus = () => {
+    setBonusMode(true)
+    setHintsRevealed(0)
     setOutput(null)
-    setShowHelp(false)
-    setPhase('dive-deeper')
-  }
-
-  const exitDiveDeeper = () => {
-    setCode(savedLessonCode ?? initialCode)
-    setOutput(null)
-    setShowHelp(false)
-    setPhase('editor')
+    const first = bonusSteps[0]
+    if (first?.editorPrompt || first?.starterCode) {
+      const newCode = [
+        first.editorPrompt ? `# ${first.editorPrompt}` : '',
+        first.starterCode ?? '',
+      ].filter(Boolean).join('\n')
+      setCode(newCode)
+    }
   }
 
   // ── Derived output display ───────────────────────────────────────────────────
@@ -224,174 +232,150 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
       ? null
       : `${output.stdout}${output.stderr ? `\n${output.stderr}` : ''}`.trim() || '(no output)'
 
-  // ── Breadcrumb label ─────────────────────────────────────────────────────────
-
-  const breadcrumb = `${moduleTitle} › ${lesson.title}`
-
   // ── Cards phase ──────────────────────────────────────────────────────────────
 
   if (phase === 'cards') {
-    const currentCard = cards[cardIndex]
     return (
       <div className="coding-lesson coding-lesson--cards">
-        <div className="reading-lesson__header">
-          <button type="button" className="back-btn" onClick={onBack}>
-            ← Module
-          </button>
-          <span className="reading-lesson__breadcrumb">{breadcrumb}</span>
-          <span className="reading-lesson__progress">
-            {cardIndex + 1} / {cards.length}
-          </span>
-        </div>
-
-        <div className="card-reader">
-          <ContentCardView card={currentCard} />
-        </div>
-
-        <div className="reading-lesson__nav">
-          <button
-            type="button"
-            className="back-btn"
-            onClick={() => setCardIndex((i) => i - 1)}
-            disabled={cardIndex === 0}
-          >
-            ← Previous
-          </button>
-          <button type="button" className="continue-btn" onClick={handleCardNext}>
-            {isLastCard ? 'Open Editor →' : 'Next →'}
-          </button>
-        </div>
+        <CardReader
+          cards={cards}
+          cardIndex={cardIndex}
+          moduleTitle={moduleTitle}
+          lessonTitle={lesson.title}
+          nextLabel={isLastCard ? 'Try it →' : 'Next →'}
+          onBack={onBack}
+          onPrev={() => setCardIndex((i) => i - 1)}
+          onNext={handleCardNext}
+        />
       </div>
     )
   }
 
-  // ── Editor phase (shared between 'editor' and 'dive-deeper') ─────────────────
-
-  const isDivingDeeper = phase === 'dive-deeper'
+  // ── Editor phase ─────────────────────────────────────────────────────────────
 
   return (
-    <div className={`coding-lesson coding-lesson--editor ${isDivingDeeper ? 'coding-lesson--challenge' : ''}`}>
-      {/* Left panel: lesson info + hints */}
+    <div className="coding-lesson coding-lesson--editor">
+      {/* Left panel: compact progress */}
       <section className="coding-lesson__sidebar">
         <div className="coding-lesson__sidebar-header">
-          {isDivingDeeper ? (
-            <button type="button" className="back-btn" onClick={exitDiveDeeper}>
-              ← Back to Lesson
-            </button>
-          ) : (
-            <>
-              <button type="button" className="back-btn" onClick={onBack}>
-                ← Module
-              </button>
-              <button
-                type="button"
-                className="back-btn"
-                onClick={() => { setPhase('cards'); setCardIndex(0) }}
-              >
-                ← Review Cards
-              </button>
-            </>
-          )}
+          <button type="button" className="back-btn" onClick={onBack}>
+            ← Module
+          </button>
         </div>
 
-        {isDivingDeeper ? (
-          /* ── Dive Deeper sidebar ── */
-          <div className="dive-deeper-sidebar">
-            <div className="dive-deeper-badge">🚀 Dive Deeper</div>
-            <p className="dive-deeper-description">
-              {lesson.challenge?.replace(/^🚀 Dive Deeper: /, '')}
-            </p>
-            <p className="dive-deeper-note">
-              Your lesson code is saved — press "← Back to Lesson" when you're done.
-            </p>
-          </div>
-        ) : (
-          /* ── Normal lesson sidebar ── */
-          <>
-            <h2 className="coding-lesson__title">{lesson.title}</h2>
-            <p className="coding-lesson__breadcrumb">{moduleTitle}</p>
-
-            {/* Summary of cards as quick reference */}
-            <div className="coding-lesson__card-summary">
-              {cards.map((card) => (
-                <div key={card.id} className="coding-lesson__summary-card">
-                  {card.title && <strong className="coding-lesson__summary-title">{card.title}</strong>}
-                  {card.summary && <p className="coding-lesson__summary-text">{card.summary}</p>}
-                </div>
-              ))}
+        {/* ── Compact progress panel ── */}
+        <>
+          <div className="lesson-progress-panel">
+            <div className="lesson-goal">
+              <span className="lesson-goal-label">{bonusMode ? 'Bonus' : 'Goal'}</span>
+              <p className="lesson-goal-text">
+                {bonusMode
+                  ? (currentBonusInstruction ?? '🌟 Bonus complete!')
+                  : (currentStepInstruction ?? lesson.editorPrompt ?? '')}
+              </p>
             </div>
 
-            {/* Progressive hints */}
-            {hints.length > 0 && (
-              <div className="hints-section">
-                <h4>Hints</h4>
-                {hintsRevealed > 0 && (
-                  <ol className="hints-list">
-                    {hints.slice(0, hintsRevealed).map((hint, i) => (
-                      <li key={i}>
-                        <pre className="hint-code">{hint}</pre>
-                      </li>
-                    ))}
-                  </ol>
-                )}
-                {hintsRevealed < hints.length && (
-                  <button
-                    type="button"
-                    className="secondary"
-                    onClick={() => setHintsRevealed((n) => n + 1)}
-                  >
-                    {hintsRevealed === 0
-                      ? 'Show Hint'
-                      : hintsRevealed === hints.length - 1
-                      ? 'Show Solution'
-                      : 'Next Hint'}
-                  </button>
-                )}
-              </div>
+            {steps.length > 0 && (
+              <ul className="concept-checklist">
+                {steps.map((step, i) => {
+                  const done = i < successCount
+                  const active = i === successCount && !hasAllStepsDone
+                  return (
+                    <li key={i} className={`concept-item${active ? ' concept-item--active' : ''}`}>
+                      <span className="concept-check">{done ? '✓' : active ? '→' : '○'}</span>
+                      <span className="concept-title">{step.instruction}</span>
+                    </li>
+                  )
+                })}
+                {bonusSteps.length > 0 && bonusSteps.map((step, i) => {
+                  if (!bonusMode && !hasAllStepsDone) return null
+                  const done = bonusMode && i < bonusSuccessCount
+                  const active = bonusMode && i === bonusSuccessCount && !bonusDone
+                  return (
+                    <li key={`bonus-${i}`} className={`concept-item concept-item--bonus${active ? ' concept-item--active' : ''}`}>
+                      <span className="concept-check">{done ? '✓' : active ? '→' : '○'}</span>
+                      <span className="concept-title">🌟 {step.instruction}</span>
+                    </li>
+                  )
+                })}
+              </ul>
             )}
-
-            {/* Dive Deeper button */}
-            {lesson.challenge && (
-              <button
-                type="button"
-                className="dive-deeper-btn"
-                onClick={enterDiveDeeper}
-              >
-                🚀 Dive Deeper
-              </button>
-            )}
-          </>
-        )}
-
-        {isCompleted ? (
-          <div className="lesson-complete-actions">
-            <span className="lesson-complete-badge">✓ Lesson Complete</span>
-            <button type="button" className="continue-btn" onClick={onNext}>
-              Next Lesson →
-            </button>
           </div>
-        ) : (
-          <button
-            type="button"
-            className="continue-btn coding-lesson__complete-btn"
-            onClick={() => { onComplete(); setIsCompleted(true) }}
-          >
-            Mark Complete ✓
-          </button>
-        )}
+        </>
       </section>
 
       {/* Center panel: editor */}
       <section className="coding-lesson__editor">
+        {bonusMode && currentBonusInstruction ? (
+          <div className="editor-instruction editor-instruction--bonus">
+            {currentBonusInstruction}
+          </div>
+        ) : !bonusMode && currentStepInstruction ? (
+          <div className="editor-instruction">
+            {currentStepInstruction}
+          </div>
+        ) : null}
+        {hintsRevealed > 0 && (
+          <div className="editor-hint">
+            <span className="editor-hint__label">💡 Hint {hintsRevealed}</span>
+            <pre className="editor-hint__code">{hints[hintsRevealed - 1]}</pre>
+          </div>
+        )}
+        {bonusDone ? (
+          <div className="lesson-finish-area">
+            <p className="lesson-finish-prompt">🌟 Bonus complete! Amazing work.</p>
+            <div className="lesson-finish-actions">
+              <button
+                type="button"
+                className="continue-btn"
+                onClick={onNext}
+              >
+                Next Lesson →
+              </button>
+            </div>
+          </div>
+        ) : hasAllStepsDone && !isCompleted && (
+          <div className="lesson-finish-area">
+            <p className="lesson-finish-prompt">🎉 You did it! What's next?</p>
+            <div className="lesson-finish-actions">
+              <button
+                type="button"
+                className="continue-btn"
+                onClick={() => { onComplete(); setIsCompleted(true); onNext() }}
+              >
+                Next Lesson →
+              </button>
+              {hasBonusChallenge && (
+                <button
+                  type="button"
+                  className="dive-deeper-btn"
+                  onClick={() => { onComplete(); setIsCompleted(true); startBonus() }}
+                >
+                  🚀 Try the Challenge
+                </button>
+              )}
+            </div>
+          </div>
+        )}
         <div className="editor-toolbar">
           <button type="button" onClick={handleRunClick} disabled={isRunning}>
             {isRunning ? 'Running…' : '▶ Run'}
           </button>
+          {hints.length > 0 && hintsRevealed < hints.length && (
+            <button
+              type="button"
+              className="secondary"
+              onClick={() => setHintsRevealed((n) => n + 1)}
+            >
+              {hintsRevealed === 0
+                ? '💡 Hint'
+                : hintsRevealed === hints.length - 1
+                ? '💡 Solution'
+                : '💡 Next Hint'}
+            </button>
+          )}
           <button type="button" className="secondary" onClick={resetCode}>
-            Reset
-          </button>
-          <button type="button" className="secondary" onClick={() => setOutput(null)}>
-            Clear Output
+            ↺ Reset
           </button>
           <span className="editor-toolbar__shortcut">Cmd/Ctrl+Enter</span>
         </div>
@@ -405,81 +389,81 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
         />
       </section>
 
-      {/* Right panel: output */}
-      <section className="coding-lesson__output">
-        <h2>Output</h2>
-        {pendingInputs !== null && (
-          /* ── Input collection form ── */
-          <form
-            className="input-form"
-            onSubmit={(e) => {
-              e.preventDefault()
-              void runCode(pendingInputs.values.join('\n') + '\n')
-            }}
-          >
-            <p className="input-form__intro">Your program needs some answers first:</p>
-            {pendingInputs.prompts.map((prompt, i) => (
-              <div key={i} className="input-form__field">
-                <label className="input-form__label">{prompt || `Input ${i + 1}`}</label>
-                <input
-                  type="text"
-                  className="input-form__input"
-                  value={pendingInputs.values[i]}
-                  autoFocus={i === 0}
-                  onChange={(e) => {
-                    const newValues = [...pendingInputs.values]
-                    newValues[i] = e.target.value
-                    setPendingInputs({ ...pendingInputs, values: newValues })
-                  }}
-                />
-              </div>
-            ))}
-            <button type="submit" className="input-form__run-btn">
-              ▶ Run with my answers
-            </button>
-            <button
-              type="button"
-              className="secondary"
-              onClick={() => setPendingInputs(null)}
+      {/* Right panel: output — only shown after first run */}
+      {(output !== null || pendingInputs !== null) && (
+        <section className="coding-lesson__output">
+          <h2>Output</h2>
+          {pendingInputs !== null && (
+            /* ── Input collection form ── */
+            <form
+              className="input-form"
+              onSubmit={(e) => {
+                e.preventDefault()
+                void runCode(pendingInputs.values.join('\n') + '\n')
+              }}
             >
-              Cancel
-            </button>
-          </form>
-        )}
-        {output === null && pendingInputs === null ? (
-          <p className="output-placeholder">Run your code to see the output here.</p>
-        ) : output !== null ? (
-          <>
-            <pre
-              ref={outputRef}
-              className={`output ${hasError ? 'error' : 'success'}`}
-            >
-              {outputText}
-            </pre>
+              <p className="input-form__intro">Your program needs some answers first:</p>
+              {pendingInputs.prompts.map((prompt, i) => (
+                <div key={i} className="input-form__field">
+                  <label className="input-form__label">{prompt || `Input ${i + 1}`}</label>
+                  <input
+                    type="text"
+                    className="input-form__input"
+                    value={pendingInputs.values[i]}
+                    autoFocus={i === 0}
+                    onChange={(e) => {
+                      const newValues = [...pendingInputs.values]
+                      newValues[i] = e.target.value
+                      setPendingInputs({ ...pendingInputs, values: newValues })
+                    }}
+                  />
+                </div>
+              ))}
+              <button type="submit" className="input-form__run-btn">
+                ▶ Run with my answers
+              </button>
+              <button
+                type="button"
+                className="secondary"
+                onClick={() => setPendingInputs(null)}
+              >
+                Cancel
+              </button>
+            </form>
+          )}
+          {output !== null && (
+            <>
+              <pre
+                ref={outputRef}
+                className={`output ${hasError ? 'error' : 'success'}`}
+              >
+                {outputText}
+              </pre>
 
-            {/* Friendly error help */}
-            {hasError && friendlyHelp && (
-              <div className="output-help">
-                <button
-                  type="button"
-                  className="output-help__toggle"
-                  onClick={() => setShowHelp((v) => !v)}
-                  aria-label="Help"
-                >
-                  {showHelp ? '✕ Hide help' : '? Help'}
-                </button>
-                {showHelp && (
-                  <p className="output-help__text">{friendlyHelp}</p>
-                )}
-              </div>
-            )}
+              {/* Friendly error help */}
+              {hasError && friendlyHelp && (
+                <div className="output-help">
+                  <button
+                    type="button"
+                    className="output-help__toggle"
+                    onClick={() => setShowHelp((v) => !v)}
+                    aria-label="Help"
+                  >
+                    {showHelp ? '✕ Hide help' : '? Help'}
+                  </button>
+                  {showHelp && (
+                    <p className="output-help__text">{friendlyHelp}</p>
+                  )}
+                </div>
+              )}
 
-            {output.timed_out && (
-              <p className="timeout">⏱ Execution stopped after 2 seconds.</p>
-            )}
-          </>
-        ) : null}
-      </section>
+              {output.timed_out && (
+                <p className="timeout">⏱ Execution stopped after 2 seconds.</p>
+              )}
+            </>
+          )}
+        </section>
+      )}
     </div>
   )
 }

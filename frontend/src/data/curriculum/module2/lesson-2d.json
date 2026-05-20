@@ -1,7 +1,7 @@
 {
   "id": "module2-2d",
   "moduleId": "module2",
-  "title": "1d — Making Programs Dynamic",
+  "title": "2d \u2014 Making Programs Dynamic",
   "type": "coding",
   "goal": "guided-practice",
   "content": [
@@ -10,7 +10,7 @@
       "type": "text",
       "title": "Reusing variables",
       "summary": "Change a variable once at the top and the whole program updates automatically.",
-      "body": "Once a variable exists, you can use it as many times as you like. Change the variable once at the top and the whole program updates — you never have to search through every line."
+      "body": "Once a variable exists, you can use it as many times as you like. Change the variable once at the top and the whole program updates \u2014 you never have to search through every line."
     },
     {
       "id": "c2",
@@ -23,17 +23,17 @@
       "id": "c3",
       "type": "callout",
       "title": "Watch the spaces",
-      "summary": "Python won't add spaces for you — include them inside the string: \" entered the castle.\"",
-      "body": "When joining text with +, Python won't add spaces for you. Make sure to include a space at the start of the string: \" entered the castle.\" — see the space before 'entered'?"
+      "summary": "Python won't add spaces for you \u2014 include them inside the string: \" entered the castle.\"",
+      "body": "When joining text with +, Python won't add spaces for you. Make sure to include a space at the start of the string: \" entered the castle.\" \u2014 see the space before 'entered'?"
     }
   ],
   "starterCode": "name = \"Mia\"\nprint(name + \" entered the castle.\")\n",
   "editorPrompt": "Use a variable and + to print a message that includes a name.",
   "progressiveHints": [
-    "# Starter code — try changing the name or the message!\nname = \"Mia\"\nprint(name + \" entered the castle.\")",
+    "# Starter code \u2014 try changing the name or the message!\nname = \"Mia\"\nprint(name + \" entered the castle.\")",
     "# Hint: Use + to combine a variable with extra text\n# print(name + \" found a treasure chest!\")",
     "name = \"Mia\"\nitem = \"golden key\"\nprint(name + \" found a \" + item + \"!\")",
     "name = \"Mia\"\nitem = \"golden key\"\nroom = \"the dragon's lair\"\nprint(name + \" entered \" + room + \".\")\nprint(name + \" picked up the \" + item + \".\")\nprint(\"The door slammed shut!\")"
   ],
-  "challenge": "🚀 Dive Deeper: Create a game intro screen. Use at least 3 variables (player name, weapon, location) and print a dramatic opening using all of them."
+  "challenge": "\ud83d\ude80 Dive Deeper: Create a game intro screen. Use at least 3 variables (player name, weapon, location) and print a dramatic opening using all of them."
 }
