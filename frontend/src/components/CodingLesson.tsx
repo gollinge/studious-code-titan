@@ -173,7 +173,11 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
   }
 
   const resetCode = () => {
-    setCode(initialCode)
+    // In bonus mode, reset to the bonus starter code; otherwise restore initial code
+    const codeToRestore = bonusMode
+      ? (bonusSteps[0]?.starterCode ?? '')
+      : initialCode
+    setCode(codeToRestore)
     setOutput(null)
     setHintsRevealed(0)
     setShowHelp(false)

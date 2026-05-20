@@ -1,7 +1,7 @@
 {
   "id": "module2-2b",
   "moduleId": "module2",
-  "title": "2b \u2014 Telling Stories with Python",
+  "title": "Telling Stories with Python",
   "type": "coding",
   "goal": "guided-practice",
   "content": [
@@ -9,31 +9,57 @@
       "id": "c1",
       "type": "text",
       "title": "Strings are text",
-      "summary": "Anything inside quotes is a string \u2014 Python displays it exactly as written.",
-      "body": "In Python, any text inside quotes is called a string. Strings can contain letters, numbers, spaces, punctuation \u2014 even emoji! Python will display them exactly as you type them."
+      "summary": "Text inside quotes is displayed exactly as written.",
+      "body": "In Python, text inside quotation marks is called a string.\n\nStrings can contain letters, numbers, spaces, punctuation, and even emoji. Python displays them exactly as you type them.\n\nStrings are how programs display words and messages on the screen."
     },
     {
       "id": "c2",
       "type": "text",
-      "title": "Multiple print statements",
-      "summary": "Each print() puts its message on a new line \u2014 write as many as you like.",
-      "body": "You can have as many print() lines as you like. Each one puts its message on a new line in the output. Programs are like a list of instructions \u2014 Python follows them one by one."
+      "title": "Multiple print() lines",
+      "summary": "Every print() creates a new line in the output.",
+      "body": "You can write as many print() lines as you want.\n\nEvery time Python runs a print() command, it creates a new line in the output.\n\nPrograms are like a list of instructions — Python follows them one by one."
     },
     {
       "id": "c3",
       "type": "callout",
-      "title": "Programs run top to bottom",
-      "summary": "Python always starts at line 1 and reads down \u2014 order matters.",
-      "body": "Python always starts at the first line and works its way down. The order you write your print() lines is the order they appear in the output."
+      "title": "Stories have an order",
+      "summary": "Python runs from top to bottom — changing the order changes the story.",
+      "body": "Python always starts at the first line and works its way down.\n\nThat means the order of your print() lines matters. If you move lines around, your story changes too.\n\nEach print() line is like one moment in your story."
+    },
+    {
+      "id": "c4",
+      "type": "callout",
+      "title": "Try experimenting",
+      "summary": "There is no single correct story.",
+      "body": "Try changing the story completely.\n\nFunny stories, dramatic stories, strange stories, and random stories all work. Programming is not just about following instructions — it's also about creating things."
     }
   ],
-  "starterCode": "print(\"A dragon appeared!\")\nprint(\"You found a sword.\")\n",
-  "editorPrompt": "Write a short story using multiple print() lines \u2014 one line per print().",
-  "progressiveHints": [
-    "# Starter code \u2014 try continuing the story!\nprint(\"A dragon appeared!\")\nprint(\"You found a sword.\")",
-    "# Hint: Add more print() lines to continue the story\n# print(\"What happens next?\")",
-    "print(\"A dragon appeared!\")\nprint(\"You found a sword.\")\nprint(\"The dragon looked scared.\")",
-    "print(\"A dragon appeared!\")\nprint(\"You found a sword.\")\nprint(\"The dragon looked scared.\")\nprint(\"You held up the sword.\")\nprint(\"\\\"Please don't hurt me,\\\" said the dragon.\")"
+  "steps": [
+    {
+      "instruction": "Step 1: Run the story. Then change one of the lines and run it again to see what changes.",
+      "starterCode": "print(\"A dragon appeared!\")\nprint(\"You found a sword.\")\n"
+    },
+    {
+      "instruction": "Step 1: Run the story. Then change one of the lines and run it again to see what changes."
+    },
+    {
+      "instruction": "Step 2: Add another print() line to continue the story."
+    },
+    {
+      "instruction": "Step 3: Try changing the order of the print() lines. What changes in the story?"
+    }
   ],
-  "challenge": "\ud83d\ude80 Dive Deeper: Write a 5-line adventure story entirely with print() statements. Add at least one line of dialogue (a character saying something)."
+  "bonusSteps": [
+    {
+      "instruction": "Bonus: Write a 5-line adventure story using only print() statements.",
+      "editorPrompt": "Write your own adventure story",
+      "starterCode": ""
+    }
+  ],
+  "progressiveHints": [
+    "# Starter code — try continuing the story!\nprint(\"A dragon appeared!\")\nprint(\"You found a sword.\")",
+    "# Hint: Add another print() line below the others\nprint(\"What happens next?\")",
+    "print(\"A dragon appeared!\")\nprint(\"You found a sword.\")\nprint(\"The dragon backed away.\")",
+    "print(\"A dragon appeared!\")\nprint(\"You found a sword.\")\nprint(\"The dragon backed away.\")\nprint(\"You walked into the cave.\")\nprint(\"A treasure chest glowed in the dark.\")"
+  ]
 }
