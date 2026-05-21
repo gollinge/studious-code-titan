@@ -6,7 +6,7 @@ export function ContentCardView({ card }: { card: ContentCard }) {
   return (
     <div className={`content-card content-card--${card.type}`}>
       {card.type === 'callout' && (
-        <span className="content-card-callout-label">💡 Good to know!</span>
+        <span className="content-card-callout-label">💡 Remember this!</span>
       )}
       {card.title && <h3 className="content-card-title">{card.title}</h3>}
       {card.type === 'code' ? (
@@ -14,6 +14,14 @@ export function ContentCardView({ card }: { card: ContentCard }) {
       ) : (
         <p className="content-card-body" style={{ whiteSpace: 'pre-wrap' }}>
           {card.body}
+        </p>
+      )}
+      {card.codeBlock && (
+        <pre className="content-card-code">{card.codeBlock}</pre>
+      )}
+      {card.note && (
+        <p className="content-card-body" style={{ whiteSpace: 'pre-wrap' }}>
+          {card.note}
         </p>
       )}
     </div>

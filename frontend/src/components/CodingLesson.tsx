@@ -74,12 +74,8 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
   const bonusSteps: Step[] = lesson.bonusSteps
     ?? (lesson.challenge ? [{ instruction: lesson.challenge.replace(/^🚀 Dive Deeper: /, '') }] : [])
 
-  const currentStep = steps[successCount] ?? null
-  const currentStepInstruction = currentStep?.instruction ?? null
   const hasAllStepsDone = steps.length === 0 || successCount >= steps.length
 
-  const currentBonusStep = bonusSteps[bonusSuccessCount] ?? null
-  const currentBonusInstruction = currentBonusStep?.instruction ?? null
   const bonusDone = bonusMode && bonusSuccessCount >= bonusSteps.length
   const hasBonusChallenge = bonusSteps.length > 0
 
@@ -268,166 +264,199 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
 
       {/* Editor + output row */}
       <div className="coding-lesson__workspace">
-      {/* Editor panel */}
-      <section className="coding-lesson__editor">
-        {bonusMode && currentBonusInstruction ? (
-          <div className="editor-instruction editor-instruction--bonus">
-            {currentBonusInstruction}
-          </div>
-        ) : !bonusMode && currentStepInstruction ? (
-          <div className="editor-instruction">
-            {currentStepInstruction}
-          </div>
-        ) : null}
-        {hintsRevealed > 0 && (
-          <div className="editor-hint">
-            <span className="editor-hint__label">💡 Hint {hintsRevealed}</span>
-            <pre className="editor-hint__code">{hints[hintsRevealed - 1]}</pre>
-          </div>
-        )}
-        {bonusDone ? (
-          <div className="lesson-finish-area">
-            <p className="lesson-finish-prompt">🌟 Bonus complete! Amazing work.</p>
-            <div className="lesson-finish-actions">
-              <button
-                type="button"
-                className="continue-btn"
-                onClick={onNext}
-              >
-                Next Lesson →
-              </button>
+
+        {/* Left: compact instruction panel */}
+        <aside className="coding-lesson__instruction-panel">
+          {!bonusMode ? (
+            <div className="step-list">
+              {steps.slice(0, Math.min(successCount + 1, steps.length)).map((step, i) => {
+                const isDone = i < successCount
+                const isActive = i === successCount && !hasAllStepsDone
+                return (
+                  <div
+                    key={i}
+                    className={`step-card${isDone ? ' step-card--done' : ''}${isActive ? ' step-card--active' : ''}`}
+                  >
+                    <span className="step-label">
+                      {isDone ? '✓ ' : ''}Step {i + 1}
+                    </span>
+                    <p className="step-text">{step.instruction}</p>
+                  </div>
+                )
+              })}
             </div>
-          </div>
-        ) : hasAllStepsDone && !isCompleted && (
-          <div className="lesson-finish-area">
-            <p className="lesson-finish-prompt">🎉 You did it! What's next?</p>
-            <div className="lesson-finish-actions">
-              <button
-                type="button"
-                className="continue-btn"
-                onClick={() => { onComplete(); setIsCompleted(true); onNext() }}
-              >
-                Next Lesson →
-              </button>
-              {hasBonusChallenge && (
+          ) : (
+            <div className="step-list">
+              {bonusSteps.slice(0, Math.min(bonusSuccessCount + 1, bonusSteps.length)).map((step, i) => {
+                const isDone = i < bonusSuccessCount
+                const isActive = i === bonusSuccessCount && !bonusDone
+                return (
+                  <div
+                    key={i}
+                    className={`step-card step-card--bonus${isDone ? ' step-card--done' : ''}${isActive ? ' step-card--active' : ''}`}
+                  >
+                    <span className="step-label">
+                      {isDone ? '✓ ' : '🌟 '}Challenge {bonusSteps.length > 1 ? i + 1 : ''}
+                    </span>
+                    <p className="step-text">{step.instruction}</p>
+                  </div>
+                )
+              })}
+            </div>
+          )}
+          {hintsRevealed > 0 && (
+            <div className="editor-hint">
+              <span className="editor-hint__label">💡 Hint {hintsRevealed}</span>
+              <pre className="editor-hint__code">{hints[hintsRevealed - 1]}</pre>
+            </div>
+          )}
+          {bonusDone ? (
+            <div className="lesson-finish-area">
+              <p className="lesson-finish-prompt">🌟 Bonus complete!</p>
+              <div className="lesson-finish-actions">
+                <button type="button" className="continue-btn" onClick={onNext}>
+                  Next Lesson →
+                </button>
+              </div>
+            </div>
+          ) : hasAllStepsDone && !isCompleted ? (
+            <div className="lesson-finish-area">
+              <p className="lesson-finish-prompt">🎉 Nice work!</p>
+              <div className="lesson-finish-actions">
                 <button
                   type="button"
-                  className="dive-deeper-btn"
-                  onClick={() => { onComplete(); setIsCompleted(true); startBonus() }}
+                  className="continue-btn"
+                  onClick={() => { onComplete(); setIsCompleted(true); onNext() }}
                 >
-                  🚀 Try the Challenge
+                  Next Lesson →
+                </button>
+                {hasBonusChallenge && (
+                  <button
+                    type="button"
+                    className="dive-deeper-btn"
+                    onClick={() => { onComplete(); setIsCompleted(true); startBonus() }}
+                  >
+                    🚀 Challenge
+                  </button>
+                )}
+              </div>
+            </div>
+          ) : null}
+        </aside>
+
+        {/* Center: editor zone with dark header */}
+        <div className="coding-lesson__editor-zone">
+          <div className="editor-header">
+            <span className="editor-header__lang">Python</span>
+            <div className="editor-header__controls">
+              <span className="editor-header__shortcut">⌘↵</span>
+              {hints.length > 0 && hintsRevealed < hints.length && (
+                <button
+                  type="button"
+                  className="btn-hint"
+                  onClick={() => setHintsRevealed((n) => n + 1)}
+                >
+                  {hintsRevealed === 0
+                    ? '💡 Hint'
+                    : hintsRevealed === hints.length - 1
+                    ? 'Solution'
+                    : 'Next Hint'}
                 </button>
               )}
-            </div>
-          </div>
-        )}
-        <div className="editor-toolbar">
-          <button type="button" onClick={handleRunClick} disabled={isRunning}>
-            {isRunning ? 'Running…' : '▶ Run'}
-          </button>
-          {hints.length > 0 && hintsRevealed < hints.length && (
-            <button
-              type="button"
-              className="secondary"
-              onClick={() => setHintsRevealed((n) => n + 1)}
-            >
-              {hintsRevealed === 0
-                ? '💡 Hint'
-                : hintsRevealed === hints.length - 1
-                ? '💡 Solution'
-                : '💡 Next Hint'}
-            </button>
-          )}
-          <button type="button" className="secondary" onClick={resetCode}>
-            ↺ Reset
-          </button>
-          <span className="editor-toolbar__shortcut">Cmd/Ctrl+Enter</span>
-        </div>
-        <CodeMirror
-          value={code}
-          height="100%"
-          theme="light"
-          extensions={[python(), keyboardShortcut, EditorView.lineWrapping]}
-          onChange={(val) => setCode(val)}
-          basicSetup={{ lineNumbers: true, foldGutter: false, autocompletion: true }}
-        />
-      </section>
-
-      {/* Right panel: output — only shown after first run */}
-      {(output !== null || pendingInputs !== null) && (
-        <section className="coding-lesson__output">
-          <h2>Output</h2>
-          {pendingInputs !== null && (
-            /* ── Input collection form ── */
-            <form
-              className="input-form"
-              onSubmit={(e) => {
-                e.preventDefault()
-                void runCode(pendingInputs.values.join('\n') + '\n')
-              }}
-            >
-              <p className="input-form__intro">Your program needs some answers first:</p>
-              {pendingInputs.prompts.map((prompt, i) => (
-                <div key={i} className="input-form__field">
-                  <label className="input-form__label">{prompt || `Input ${i + 1}`}</label>
-                  <input
-                    type="text"
-                    className="input-form__input"
-                    value={pendingInputs.values[i]}
-                    autoFocus={i === 0}
-                    onChange={(e) => {
-                      const newValues = [...pendingInputs.values]
-                      newValues[i] = e.target.value
-                      setPendingInputs({ ...pendingInputs, values: newValues })
-                    }}
-                  />
-                </div>
-              ))}
-              <button type="submit" className="input-form__run-btn">
-                ▶ Run with my answers
+              <button type="button" className="btn-reset" onClick={resetCode} title="Reset code">
+                ↺
               </button>
               <button
                 type="button"
-                className="secondary"
-                onClick={() => setPendingInputs(null)}
+                className="btn-run"
+                onClick={handleRunClick}
+                disabled={isRunning}
               >
-                Cancel
+                {isRunning ? '…' : '▶ Run'}
               </button>
-            </form>
-          )}
-          {output !== null && (
-            <>
-              <pre
-                ref={outputRef}
-                className={`output ${hasError ? 'error' : 'success'}`}
+            </div>
+          </div>
+          <CodeMirror
+            value={code}
+            height="100%"
+            theme="light"
+            extensions={[python(), keyboardShortcut, EditorView.lineWrapping]}
+            onChange={(val) => setCode(val)}
+            basicSetup={{ lineNumbers: true, foldGutter: false, autocompletion: true }}
+          />
+        </div>
+
+        {/* Right: output — only shown after first run */}
+        {(output !== null || pendingInputs !== null) && (
+          <section className="coding-lesson__output">
+            <h2>Output</h2>
+            {pendingInputs !== null && (
+              <form
+                className="input-form"
+                onSubmit={(e) => {
+                  e.preventDefault()
+                  void runCode(pendingInputs.values.join('\n') + '\n')
+                }}
               >
-                {outputText}
-              </pre>
-
-              {/* Friendly error help */}
-              {hasError && friendlyHelp && (
-                <div className="output-help">
-                  <button
-                    type="button"
-                    className="output-help__toggle"
-                    onClick={() => setShowHelp((v) => !v)}
-                    aria-label="Help"
-                  >
-                    {showHelp ? '✕ Hide help' : '? Help'}
-                  </button>
-                  {showHelp && (
-                    <p className="output-help__text">{friendlyHelp}</p>
-                  )}
-                </div>
-              )}
-
-              {output.timed_out && (
-                <p className="timeout">⏱ Execution stopped after 2 seconds.</p>
-              )}
-            </>
-          )}
-        </section>
-      )}
+                <p className="input-form__intro">Your program needs some answers first:</p>
+                {pendingInputs.prompts.map((prompt, i) => (
+                  <div key={i} className="input-form__field">
+                    <label className="input-form__label">{prompt || `Input ${i + 1}`}</label>
+                    <input
+                      type="text"
+                      className="input-form__input"
+                      value={pendingInputs.values[i]}
+                      autoFocus={i === 0}
+                      onChange={(e) => {
+                        const newValues = [...pendingInputs.values]
+                        newValues[i] = e.target.value
+                        setPendingInputs({ ...pendingInputs, values: newValues })
+                      }}
+                    />
+                  </div>
+                ))}
+                <button type="submit" className="input-form__run-btn">
+                  ▶ Run with my answers
+                </button>
+                <button
+                  type="button"
+                  className="secondary"
+                  onClick={() => setPendingInputs(null)}
+                >
+                  Cancel
+                </button>
+              </form>
+            )}
+            {output !== null && (
+              <>
+                <pre
+                  ref={outputRef}
+                  className={`output ${hasError ? 'error' : 'success'}`}
+                >
+                  {outputText}
+                </pre>
+                {hasError && friendlyHelp && (
+                  <div className="output-help">
+                    <button
+                      type="button"
+                      className="output-help__toggle"
+                      onClick={() => setShowHelp((v) => !v)}
+                      aria-label="Help"
+                    >
+                      {showHelp ? '✕ Hide help' : '? Help'}
+                    </button>
+                    {showHelp && (
+                      <p className="output-help__text">{friendlyHelp}</p>
+                    )}
+                  </div>
+                )}
+                {output.timed_out && (
+                  <p className="timeout">⏱ Execution stopped after 2 seconds.</p>
+                )}
+              </>
+            )}
+          </section>
+        )}
       </div>
     </div>
   )

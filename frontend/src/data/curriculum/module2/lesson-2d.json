@@ -1,7 +1,7 @@
 {
   "id": "module2-2d",
   "moduleId": "module2",
-  "title": "2d \u2014 Making Programs Dynamic",
+  "title": "Making Programs Dynamic",
   "type": "coding",
   "goal": "guided-practice",
   "content": [
@@ -9,31 +9,56 @@
       "id": "c1",
       "type": "text",
       "title": "Reusing variables",
-      "summary": "Change a variable once at the top and the whole program updates automatically.",
-      "body": "Once a variable exists, you can use it as many times as you like. Change the variable once at the top and the whole program updates \u2014 you never have to search through every line."
+      "summary": "Change a variable once and the whole program updates automatically.",
+      "body": "Once you create a variable, you can reuse it anywhere later in the program.\n\nChange the variable once at the top and the whole program updates automatically."
     },
     {
       "id": "c2",
-      "type": "code",
-      "title": "Combining text with +",
-      "summary": "Use + to glue a variable and a string together into one line of output.",
-      "body": "You can join a variable and a string together using +. Python glues them into one line of text.\n\nname = \"Mia\"\nprint(name + \" entered the castle.\")\n\nOutput: Mia entered the castle."
+      "type": "text",
+      "title": "Building messages from pieces",
+      "summary": "Use + to combine variables and text into one message.",
+      "body": "You can use + to join variables and text together into one message.",
+      "codeBlock": "name = \"Mia\"\nprint(name + \" entered the castle.\")",
+      "note": "Python puts the pieces together in order — variable, then the text you added."
     },
     {
       "id": "c3",
       "type": "callout",
-      "title": "Watch the spaces",
-      "summary": "Python won't add spaces for you \u2014 include them inside the string: \" entered the castle.\"",
-      "body": "When joining text with +, Python won't add spaces for you. Make sure to include a space at the start of the string: \" entered the castle.\" \u2014 see the space before 'entered'?"
+      "title": "Python is literal",
+      "summary": "Python only prints exactly what you give it.",
+      "body": "Python will not add spaces automatically.\n\nIf you want a space between words, you have to include it yourself — inside the quotes.",
+      "codeBlock": "print(name + \"entered\")    # ❌ Miaentered\nprint(name + \" entered\")   # ✅ Mia entered"
     }
   ],
-  "starterCode": "name = \"Mia\"\nprint(name + \" entered the castle.\")\n",
-  "editorPrompt": "Use a variable and + to print a message that includes a name.",
-  "progressiveHints": [
-    "# Starter code \u2014 try changing the name or the message!\nname = \"Mia\"\nprint(name + \" entered the castle.\")",
-    "# Hint: Use + to combine a variable with extra text\n# print(name + \" found a treasure chest!\")",
-    "name = \"Mia\"\nitem = \"golden key\"\nprint(name + \" found a \" + item + \"!\")",
-    "name = \"Mia\"\nitem = \"golden key\"\nroom = \"the dragon's lair\"\nprint(name + \" entered \" + room + \".\")\nprint(name + \" picked up the \" + item + \".\")\nprint(\"The door slammed shut!\")"
+  "steps": [
+    {
+      "instruction": "Step 1: Run the program. Then change the name variable and run it again.",
+      "starterCode": "name = \"Mia\"\n\nprint(name)\n"
+    },
+    {
+      "instruction": "Step 2: Try changing the name variable and run it again."
+    },
+    {
+      "instruction": "Step 3: Add text after the variable using +."
+    },
+    {
+      "instruction": "Step 4: Add another variable called place. Print a message that uses both variables."
+    },
+    {
+      "instruction": "Step 5: Try changing the variables to create different outputs."
+    }
   ],
-  "challenge": "\ud83d\ude80 Dive Deeper: Create a game intro screen. Use at least 3 variables (player name, weapon, location) and print a dramatic opening using all of them."
+  "bonusSteps": [
+    {
+      "instruction": "Bonus: Create a short adventure scene using:\n- a name variable\n- a place variable\n- an item variable\n- at least 2 print() lines",
+      "editorPrompt": "Build a short adventure scene using variables",
+      "starterCode": ""
+    }
+  ],
+  "progressiveHints": [
+    "# Try changing the value inside the quotes\nname = \"Mia\"\n\nprint(name)",
+    "# Use + to combine a variable with text\nname = \"Mia\"\n\nprint(name + \" entered the castle.\")",
+    "name = \"Mia\"\nplace = \"the castle\"\n\nprint(name + \" entered \" + place + \".\")",
+    "name = \"Mia\"\nplace = \"the castle\"\nitem = \"golden key\"\n\nprint(name + \" entered \" + place + \".\")\nprint(name + \" found a \" + item + \".\")"
+  ]
 }

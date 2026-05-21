@@ -26,6 +26,10 @@ export type ContentCard = {
   /** One-sentence TLDR shown in the coding lesson sidebar as a quick reference. */
   summary?: string
   body: string
+  /** Optional code snippet rendered as a <pre> block after the body text. */
+  codeBlock?: string
+  /** Optional text rendered below the codeBlock. */
+  note?: string
 }
 
 export type QuizOption = {

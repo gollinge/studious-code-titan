@@ -36,17 +36,17 @@
   ],
   "steps": [
     {
-      "instruction": "Step 1: Run the story. Then change one of the lines and run it again to see what changes.",
+      "instruction": "Step 1: Run the story.",
       "starterCode": "print(\"A dragon appeared!\")\nprint(\"You found a sword.\")\n"
     },
     {
-      "instruction": "Step 1: Run the story. Then change one of the lines and run it again to see what changes."
+      "instruction": "Step 2: Try changing one of the lines and run it again to see what changes."
     },
     {
-      "instruction": "Step 2: Add another print() line to continue the story."
+      "instruction": "Step 3: Add another print() line to continue the story."
     },
     {
-      "instruction": "Step 3: Try changing the order of the print() lines. What changes in the story?"
+      "instruction": "Step 4: Try changing the order of the print() lines. What changes in the story?"
     }
   ],
   "bonusSteps": [

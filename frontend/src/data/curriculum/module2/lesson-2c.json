@@ -1,39 +1,66 @@
 {
   "id": "module2-2c",
   "moduleId": "module2",
-  "title": "2c \u2014 Variables",
+  "title": "Variables",
   "type": "coding",
   "goal": "guided-practice",
   "content": [
     {
       "id": "c1",
       "type": "text",
-      "title": "Variables are labeled boxes",
-      "summary": "A variable holds information under a name \u2014 use that name later to get it back.",
-      "body": "A variable is like a labeled box that holds information. You give the box a name, then put something inside it. Later, whenever you use that name, Python goes and checks what's in the box."
+      "title": "Variables store information",
+      "summary": "A variable is like a labelled box that holds a value.",
+      "body": "Think of a variable like a labelled box.\n\nYou write a name on the outside, and put a value inside.\n\nWhen Python sees the label later, it opens the box and uses what's inside.\n\nIn programming, we call this a variable — a named place in memory that stores a value."
     },
     {
       "id": "c2",
-      "type": "code",
+      "type": "text",
       "title": "Creating a variable",
-      "summary": "Use = to store a value: name = \"Alex\" then print(name) to display it.",
-      "body": "Use = to put something into a variable. The name goes on the left, and the value goes on the right.\n\nname = \"Alex\"\nprint(name)\n\nThis stores the text \"Alex\" in a box called name, then prints what's inside."
+      "summary": "Use = to put a value in the box.",
+      "body": "In Python, = means \"put this value in the box.\"",
+      "codeBlock": "name = \"Alex\"\nprint(name)",
+      "note": "This creates a box called name, puts \"Alex\" inside, then prints whatever is in the box.\n\nWe call this assigning a value — you're assigning \"Alex\" to the variable name."
     },
     {
       "id": "c3",
-      "type": "callout",
-      "title": "You can change the value",
-      "summary": "Assign a new value with = again at any time \u2014 that's what makes programs flexible.",
-      "body": "Variables can be updated any time \u2014 just use = again with a new value. That's what makes programs flexible. Try changing \"Alex\" to your own name and run it!"
+      "type": "text",
+      "title": "Variables can hold different kinds of things",
+      "summary": "Variables can store text, numbers, and more — each kind has a name.",
+      "body": "Different boxes can hold different things. Each kind has a name in Python:",
+      "codeBlock": "pet = \"cat\"   # text in quotes → called a string\nage = 12       # a whole number → called an integer",
+      "note": "Later you'll mix these to build things like:\n\"Hi, I'm Alex and I'm 12 years old.\" — all pulled from variables automatically."
     }
   ],
-  "starterCode": "name = \"Alex\"\nprint(name)\n",
-  "editorPrompt": "Create a variable, store your name in it, and print it.",
-  "progressiveHints": [
-    "# Starter code \u2014 try changing \"Alex\" to your name!\nname = \"Alex\"\nprint(name)",
-    "# Hint: Create more variables and print them\n# score = 100\n# print(score)",
-    "name = \"Alex\"\nscore = 100\nprint(name)\nprint(score)",
-    "name = \"Alex\"\npet = \"cat\"\nscore = 100\nprint(name)\nprint(pet)\nprint(score)"
+  "steps": [
+    {
+      "instruction": "Step 1: Run the program. Then change the value inside the name variable to your own name and run it again.",
+      "starterCode": "name = \"Alex\"\nprint(name)\n"
+    },
+    {
+      "instruction": "Step 2: Create a variable called pet. Store the name of an animal in it. Then print the pet variable on a new line."
+    },
+    {
+      "instruction": "Step 3: Create a variable called age. Store a number in it and print it."
+    },
+    {
+      "instruction": "Step 4: Create another variable called food. Store your favorite food in it and print it."
+    },
+    {
+      "instruction": "Step 5: Change name to a different name and pet to a different animal. Run it. What changed in the output?"
+    }
   ],
-  "challenge": "\ud83d\ude80 Dive Deeper: Build a mini character creator. Create variables for a character's name, their pet, and their favourite food. Print each one on its own line."
+  "bonusSteps": [
+    {
+      "instruction": "Bonus: Build a mini character creator. Create variables for a character's name, age, favorite food, and pet. Print each one on its own line.",
+      "editorPrompt": "Create a character using variables",
+      "starterCode": ""
+    }
+  ],
+  "progressiveHints": [
+    "# Variables store information under a name\nname = \"Taylor\"\nprint(name)",
+    "# Create another variable and print it\nname = \"Taylor\"\npet = \"dragon\"\n\nprint(name)\nprint(pet)",
+    "name = \"Taylor\"\nage = 12\n\nprint(name)\nprint(age)",
+    "name = \"Taylor\"\npet = \"dragon\"\nage = 12\nfood = \"pizza\"\n\nprint(name)\nprint(pet)\nprint(age)\nprint(food)",
+    "# Try changing the values and running the program again\nname = \"Morgan\"\npet = \"cat\"\nage = 10\nfood = \"tacos\"\n\nprint(name)\nprint(pet)\nprint(age)\nprint(food)"
+  ]
 }
