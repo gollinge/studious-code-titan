@@ -1055,7 +1055,7 @@ kbd {
 
 /* Left: compact instruction panel */
 .coding-lesson__instruction-panel {
-  width: 210px;
+  width: 25%;
   flex-shrink: 0;
   border-right: 1px solid #d9e2ec;
   padding: 1rem 0.875rem;
@@ -1278,6 +1278,56 @@ kbd {
   align-self: flex-start;
 }
 
+/* ── Output panel: step advancement + lesson completion ─────────────────────── */
+
+.output-advance {
+  margin-top: 0.75rem;
+}
+
+.output-completion {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.output-completion__msg {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #166534;
+}
+
+.output-completion__actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.output-completion__actions .continue-btn,
+.output-completion__actions .dive-deeper-btn {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  padding: 0.65rem 1rem;
+  border-radius: 0.6rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.25;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+/* Override the dashed amber style — in this context it's a solid action button */
+.output-completion__actions .dive-deeper-btn {
+  background: #7c3aed;
+  border: none;
+  color: #fff;
+}
+
+.output-completion__actions .dive-deeper-btn:hover {
+  background: #6d28d9;
+}
+
 .lesson-finish-area {
   display: flex;
   flex-direction: column;
@@ -1361,7 +1411,7 @@ kbd {
 }
 
 .coding-lesson__output {
-  width: 260px;
+  width: 25%;
   flex-shrink: 0;
   background: #f8fafc;
   border-left: 1px solid #d9e2ec;

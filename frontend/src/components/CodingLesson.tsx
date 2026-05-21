@@ -38,13 +38,7 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
   const [pendingInputs, setPendingInputs] = useState<{ prompts: string[]; values: string[] } | null>(null)
 
   const { isRunning, output, setOutput, outputRef, showHelp, setShowHelp, runCode } =
-    usePythonRunner({
-      code,
-      onSuccess: () => {
-        if (bonusMode) setBonusSuccessCount((n) => n + 1)
-        else setSuccessCount((n) => n + 1)
-      },
-    })
+    usePythonRunner({ code })
 
   const cards = lesson.content
   const hints = lesson.progressiveHints ?? []
@@ -100,6 +94,15 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
     setShowHelp(false)
   }
 
+  // ── Step advancement (explicit, user-triggered) ──────────────────────────────
+
+  const handleAdvanceStep = () => {
+    if (bonusMode) setBonusSuccessCount((n) => n + 1)
+    else setSuccessCount((n) => n + 1)
+    setOutput(null)   // clear output so next step starts fresh
+    setShowHelp(false)
+  }
+
   // ── Bonus (challenge) mode — stays in the same editor, just swaps the instruction ──
 
   const startBonus = () => {
@@ -112,6 +115,23 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
       setCode(first.starterCode)
     }
   }
+
+  // ── Derived advancement / completion visibility ───────────────────────────────
+
+  const lastRunOk = output?.error_type === null   // most recent run was successful
+
+  // "Next Step →" only when there's a genuine next step (not the last one)
+  const showNextStep = lastRunOk && !bonusMode && successCount < steps.length - 1
+  const showNextChallenge = lastRunOk && bonusMode && bonusSuccessCount < bonusSteps.length - 1
+
+  // Completion shows when the last step (or any already-advanced state) is passed
+  const showRegularCompletion =
+    !isCompleted &&
+    !bonusMode &&
+    (hasAllStepsDone || (lastRunOk && steps.length > 0 && successCount === steps.length - 1))
+  const showBonusCompletion =
+    bonusMode &&
+    (bonusDone || (lastRunOk && bonusSteps.length > 0 && bonusSuccessCount === bonusSteps.length - 1))
 
   // ── Cards phase ──────────────────────────────────────────────────────────────
 
@@ -221,19 +241,28 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
               <pre className="editor-hint__code">{hints[hintsRevealed - 1]}</pre>
             </div>
           )}
-          {bonusDone ? (
-            <div className="lesson-finish-area">
-              <p className="lesson-finish-prompt">🌟 Bonus complete!</p>
-              <div className="lesson-finish-actions">
-                <button type="button" className="continue-btn" onClick={onNext}>
-                  Next Lesson →
-                </button>
-              </div>
+
+          {/* Step advancement — only when a genuine next step exists */}
+          {showNextStep && (
+            <div className="output-advance">
+              <button type="button" className="continue-btn" onClick={handleAdvanceStep}>
+                Next Step →
+              </button>
             </div>
-          ) : hasAllStepsDone && !isCompleted ? (
-            <div className="lesson-finish-area">
-              <p className="lesson-finish-prompt">🎉 Nice work!</p>
-              <div className="lesson-finish-actions">
+          )}
+          {showNextChallenge && (
+            <div className="output-advance">
+              <button type="button" className="continue-btn" onClick={handleAdvanceStep}>
+                Next Challenge →
+              </button>
+            </div>
+          )}
+
+          {/* Lesson completion — last step passed or already advanced through all */}
+          {showRegularCompletion && (
+            <div className="output-completion">
+              <p className="output-completion__msg">🎉 Nice work!</p>
+              <div className="output-completion__actions">
                 <button
                   type="button"
                   className="continue-btn"
@@ -252,7 +281,19 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
                 )}
               </div>
             </div>
-          ) : null}
+          )}
+
+          {/* Bonus completion — last challenge passed or already advanced through all */}
+          {showBonusCompletion && (
+            <div className="output-completion">
+              <p className="output-completion__msg">🌟 Bonus complete!</p>
+              <div className="output-completion__actions">
+                <button type="button" className="continue-btn" onClick={onNext}>
+                  Next Lesson →
+                </button>
+              </div>
+            </div>
+          )}
         </aside>
 
         {/* Center: editor zone with dark header */}
@@ -276,57 +317,62 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
           />
         </div>
 
-        {/* Right: output — only shown after first run */}
-        {(output !== null || pendingInputs !== null) && (
-          <section className="coding-lesson__output">
-            <h2>Output</h2>
-            {pendingInputs !== null && (
-              <form
-                className="input-form"
-                onSubmit={(e) => {
-                  e.preventDefault()
-                  void runCode(pendingInputs.values.join('\n') + '\n')
-                }}
+        {/* Right: output panel — always visible */}
+        <section className="coding-lesson__output">
+          <h2>Output</h2>
+
+          {pendingInputs !== null && (
+            <form
+              className="input-form"
+              onSubmit={(e) => {
+                e.preventDefault()
+                void runCode(pendingInputs.values.join('\n') + '\n')
+              }}
+            >
+              <p className="input-form__intro">Your program needs some answers first:</p>
+              {pendingInputs.prompts.map((prompt, i) => (
+                <div key={i} className="input-form__field">
+                  <label className="input-form__label">{prompt || `Input ${i + 1}`}</label>
+                  <input
+                    type="text"
+                    className="input-form__input"
+                    value={pendingInputs.values[i]}
+                    autoFocus={i === 0}
+                    onChange={(e) => {
+                      const newValues = [...pendingInputs.values]
+                      newValues[i] = e.target.value
+                      setPendingInputs({ ...pendingInputs, values: newValues })
+                    }}
+                  />
+                </div>
+              ))}
+              <button type="submit" className="input-form__run-btn">
+                ▶ Run with my answers
+              </button>
+              <button
+                type="button"
+                className="secondary"
+                onClick={() => setPendingInputs(null)}
               >
-                <p className="input-form__intro">Your program needs some answers first:</p>
-                {pendingInputs.prompts.map((prompt, i) => (
-                  <div key={i} className="input-form__field">
-                    <label className="input-form__label">{prompt || `Input ${i + 1}`}</label>
-                    <input
-                      type="text"
-                      className="input-form__input"
-                      value={pendingInputs.values[i]}
-                      autoFocus={i === 0}
-                      onChange={(e) => {
-                        const newValues = [...pendingInputs.values]
-                        newValues[i] = e.target.value
-                        setPendingInputs({ ...pendingInputs, values: newValues })
-                      }}
-                    />
-                  </div>
-                ))}
-                <button type="submit" className="input-form__run-btn">
-                  ▶ Run with my answers
-                </button>
-                <button
-                  type="button"
-                  className="secondary"
-                  onClick={() => setPendingInputs(null)}
-                >
-                  Cancel
-                </button>
-              </form>
-            )}
-            {output !== null && (
-              <OutputPanel
-                output={output}
-                outputRef={outputRef}
-                showHelp={showHelp}
-                onToggleHelp={() => setShowHelp((v) => !v)}
-              />
-            )}
-          </section>
-        )}
+                Cancel
+              </button>
+            </form>
+          )}
+
+          {output !== null && (
+            <OutputPanel
+              output={output}
+              outputRef={outputRef}
+              showHelp={showHelp}
+              onToggleHelp={() => setShowHelp((v) => !v)}
+            />
+          )}
+
+          {/* Empty state */}
+          {output === null && pendingInputs === null && (
+            <p className="output-empty">Run your code to see the output here.</p>
+          )}
+        </section>
       </div>
     </div>
   )
