@@ -37,21 +37,18 @@
       "starterCode": "name = \"Alex\"\nprint(name)\n"
     },
     {
-      "instruction": "Step 2: Create a variable called pet. Store the name of an animal in it. Then print the pet variable on a new line."
+      "instruction": "Step 2: Create a variable called age. Store a number in it and print it."
     },
     {
-      "instruction": "Step 3: Create a variable called age. Store a number in it and print it."
+      "instruction": "Step 3: Create another variable called food. Store your favorite food in it and print it."
     },
     {
-      "instruction": "Step 4: Create another variable called food. Store your favorite food in it and print it."
-    },
-    {
-      "instruction": "Step 5: Change name to a different name and pet to a different animal. Run it. What changed in the output?"
+      "instruction": "Step 5: Change name to a different name and age to a different number. Run it. What changed in the output?"
     }
   ],
   "bonusSteps": [
     {
-      "instruction": "Bonus: Build a mini character creator. Create variables for a character's name, age, favorite food, and pet. Print each one on its own line.",
+      "instruction": "Bonus: Build a mini profile. Create variables for a character's name, age, favorite food, and pet. Print each one on its own line.",
       "editorPrompt": "Create a character using variables",
       "starterCode": ""
     }

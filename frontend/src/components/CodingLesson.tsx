@@ -4,6 +4,7 @@ import CodeMirror from '@uiw/react-codemirror'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import type { LessonConfig, ExecutionResponse, Step } from '../types'
 import { CardReader } from './CardReader'
+import { EditorHeader } from './EditorHeader'
 
 // ── Friendly error messages ────────────────────────────────────────────────────
 
@@ -346,36 +347,15 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
 
         {/* Center: editor zone with dark header */}
         <div className="coding-lesson__editor-zone">
-          <div className="editor-header">
-            <span className="editor-header__lang">Python</span>
-            <div className="editor-header__controls">
-              <span className="editor-header__shortcut">⌘↵</span>
-              {hints.length > 0 && hintsRevealed < hints.length && (
-                <button
-                  type="button"
-                  className="btn-hint"
-                  onClick={() => setHintsRevealed((n) => n + 1)}
-                >
-                  {hintsRevealed === 0
-                    ? '💡 Hint'
-                    : hintsRevealed === hints.length - 1
-                    ? 'Solution'
-                    : 'Next Hint'}
-                </button>
-              )}
-              <button type="button" className="btn-reset" onClick={resetCode} title="Reset code">
-                ↺
-              </button>
-              <button
-                type="button"
-                className="btn-run"
-                onClick={handleRunClick}
-                disabled={isRunning}
-              >
-                {isRunning ? '…' : '▶ Run'}
-              </button>
-            </div>
-          </div>
+          <EditorHeader
+            isRunning={isRunning}
+            onRun={handleRunClick}
+            hint={hints.length > 0 && hintsRevealed < hints.length ? {
+              label: hintsRevealed === 0 ? '💡 Hint' : hintsRevealed === hints.length - 1 ? 'Solution' : 'Next Hint',
+              onClick: () => setHintsRevealed((n) => n + 1),
+            } : undefined}
+            onReset={resetCode}
+          />
           <CodeMirror
             value={code}
             height="100%"

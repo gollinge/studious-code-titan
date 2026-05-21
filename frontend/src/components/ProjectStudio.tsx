@@ -13,6 +13,7 @@
 import { keymap } from '@codemirror/view'
 import { python } from '@codemirror/lang-python'
 import CodeMirror from '@uiw/react-codemirror'
+import { EditorHeader } from './EditorHeader'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import type { LessonConfig, ExecutionResponse, Milestone } from '../types'
 
@@ -255,16 +256,7 @@ export function ProjectStudio({ lesson, moduleTitle, onComplete, onNext, onBack 
 
       {/* ── Center panel: editor ── */}
       <section className="studio-panel studio-panel--editor">
-        <div className="editor-toolbar">
-          <span className="editor-toolbar__label">Python</span>
-          <button
-            className="run-btn"
-            onClick={handleRun}
-            disabled={isRunning}
-          >
-            {isRunning ? '⏳ Running…' : '▶ Run  ⌘↵'}
-          </button>
-        </div>
+        <EditorHeader isRunning={isRunning} onRun={handleRun} />
 
         <CodeMirror
           value={code}

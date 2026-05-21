@@ -33,7 +33,7 @@
   "steps": [
     {
       "instruction": "Step 1: Run the program. Then change the name variable and run it again.",
-      "starterCode": "name = \"Mia\"\n\nprint(name)\n"
+      "starterCode": "name = \"Mia\"\nprint(name)\n"
     },
     {
       "instruction": "Step 2: Try changing the name variable and run it again."
@@ -56,7 +56,7 @@
     }
   ],
   "progressiveHints": [
-    "# Try changing the value inside the quotes\nname = \"Mia\"\n\nprint(name)",
+    "# Try changing the value inside the quotes\nname = \"Mia\"\nprint(name)",
     "# Use + to combine a variable with text\nname = \"Mia\"\n\nprint(name + \" entered the castle.\")",
     "name = \"Mia\"\nplace = \"the castle\"\n\nprint(name + \" entered \" + place + \".\")",
     "name = \"Mia\"\nplace = \"the castle\"\nitem = \"golden key\"\n\nprint(name + \" entered \" + place + \".\")\nprint(name + \" found a \" + item + \".\")"
