@@ -1,33 +1,13 @@
 import { EditorView } from '@codemirror/view'
 import { python } from '@codemirror/lang-python'
 import CodeMirror from '@uiw/react-codemirror'
-import { useCallback, useRef, useState } from 'react'
-import type { LessonConfig, ExecutionResponse, Step } from '../types'
+import { useState } from 'react'
+import type { LessonConfig, Step } from '../types'
 import { CardReader } from './CardReader'
 import { EditorHeader } from './EditorHeader'
-
-// ── Friendly error messages ────────────────────────────────────────────────────
-
-const ERROR_HELP: Record<string, string> = {
-  SyntaxError:
-    "Python couldn't understand this line. Check your quotes, parentheses, or spelling.",
-  NameError:
-    "Python doesn't recognise that name. Did you create the variable first?",
-  IndentationError:
-    'The spacing on this line looks off. Try using the Tab key to indent.',
-  TypeError:
-    "Two things are being mixed up that don't go together — like a number and a word.",
-  ValueError:
-    "The value you gave doesn't make sense in this context. Double-check what you passed in.",
-  ConnectionError:
-    "Couldn't reach the server. Make sure the backend is running.",
-}
-
-function getFriendlyHelp(errorType: string | null, timedOut: boolean): string | null {
-  if (timedOut) return 'Your program ran for too long. Does it have a loop that never stops?'
-  if (!errorType) return null
-  return ERROR_HELP[errorType] ?? null
-}
+import { OutputPanel } from './OutputPanel'
+import { usePythonRunner } from '../hooks/usePythonRunner'
+import { extractInputPrompts } from '../utils/pythonUtils'
 
 // ── Main component ─────────────────────────────────────────────────────────────
 
@@ -41,7 +21,6 @@ type Props = {
   onBack: () => void
 }
 
-const apiBase = import.meta.env.VITE_API_URL ?? 'http://127.0.0.1:8000'
 
 export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }: Props) {
   // Card phase state
@@ -52,15 +31,20 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
   // Editor state — steps[0].starterCode sets the initial editor content
   const initialCode = lesson.steps?.[0]?.starterCode ?? lesson.starterCode ?? ''
   const [code, setCode] = useState(initialCode)
-  const [output, setOutput] = useState<ExecutionResponse | null>(null)
   const [successCount, setSuccessCount] = useState(0)
   const [bonusMode, setBonusMode] = useState(false)
   const [bonusSuccessCount, setBonusSuccessCount] = useState(0)
-  const [isRunning, setIsRunning] = useState(false)
   const [hintsRevealed, setHintsRevealed] = useState(0)
-  const [showHelp, setShowHelp] = useState(false)
   const [pendingInputs, setPendingInputs] = useState<{ prompts: string[]; values: string[] } | null>(null)
-  const outputRef = useRef<HTMLPreElement | null>(null)
+
+  const { isRunning, output, setOutput, outputRef, showHelp, setShowHelp, runCode } =
+    usePythonRunner({
+      code,
+      onSuccess: () => {
+        if (bonusMode) setBonusSuccessCount((n) => n + 1)
+        else setSuccessCount((n) => n + 1)
+      },
+    })
 
   const cards = lesson.content
   const hints = lesson.progressiveHints ?? []
@@ -94,56 +78,7 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
     }
   }
 
-  // ── Code execution ───────────────────────────────────────────────────────────
-
-  const runCode = useCallback(async (stdin = '') => {
-    setIsRunning(true)
-    setShowHelp(false)
-    setPendingInputs(null)
-    try {
-      const response = await fetch(`${apiBase}/api/execute`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code, stdin }),
-      })
-      const payload = (await response.json()) as ExecutionResponse
-      setOutput(payload)
-      if (payload.error_type === null) {
-        if (bonusMode) setBonusSuccessCount((n) => n + 1)
-        else setSuccessCount((n) => n + 1)
-      }
-    } catch {
-      setOutput({
-        stdout: '',
-        stderr: 'Could not connect to the server. Make sure the backend is running.',
-        error_type: 'ConnectionError',
-        timed_out: false,
-        exit_code: null,
-      })
-    } finally {
-      setIsRunning(false)
-      setTimeout(() => {
-        outputRef.current?.scrollTo(0, outputRef.current.scrollHeight)
-      }, 50)
-    }
-  }, [code])
-
-  // ── input() detection ────────────────────────────────────────────────────────
-
-  function extractInputPrompts(src: string): string[] {
-    const prompts: string[] = []
-    const re = /\binput\(\s*(?:f?["'])(.*?)["']\s*\)/g
-    let m: RegExpExecArray | null
-    while ((m = re.exec(src)) !== null) {
-      prompts.push(m[1])
-    }
-    // Also catch bare input() with no string arg
-    const bareRe = /\binput\(\s*\)/g
-    while ((bareRe.exec(src)) !== null) {
-      prompts.push('Enter a value')
-    }
-    return prompts
-  }
+  // ── Run handler ──────────────────────────────────────────────────────────────
 
   function handleRunClick() {
     const prompts = extractInputPrompts(code)
@@ -177,16 +112,6 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
       setCode(first.starterCode)
     }
   }
-
-  // ── Derived output display ───────────────────────────────────────────────────
-
-  const hasError = Boolean(output?.stderr) || Boolean(output?.timed_out)
-  const friendlyHelp = output ? getFriendlyHelp(output.error_type, output.timed_out) : null
-
-  const outputText =
-    output === null
-      ? null
-      : `${output.stdout}${output.stderr ? `\n${output.stderr}` : ''}`.trim() || '(no output)'
 
   // ── Cards phase ──────────────────────────────────────────────────────────────
 
@@ -393,32 +318,12 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
               </form>
             )}
             {output !== null && (
-              <>
-                <pre
-                  ref={outputRef}
-                  className={`output ${hasError ? 'error' : 'success'}`}
-                >
-                  {outputText}
-                </pre>
-                {hasError && friendlyHelp && (
-                  <div className="output-help">
-                    <button
-                      type="button"
-                      className="output-help__toggle"
-                      onClick={() => setShowHelp((v) => !v)}
-                      aria-label="Help"
-                    >
-                      {showHelp ? '✕ Hide help' : '? Help'}
-                    </button>
-                    {showHelp && (
-                      <p className="output-help__text">{friendlyHelp}</p>
-                    )}
-                  </div>
-                )}
-                {output.timed_out && (
-                  <p className="timeout">⏱ Execution stopped after 2 seconds.</p>
-                )}
-              </>
+              <OutputPanel
+                output={output}
+                outputRef={outputRef}
+                showHelp={showHelp}
+                onToggleHelp={() => setShowHelp((v) => !v)}
+              />
             )}
           </section>
         )}

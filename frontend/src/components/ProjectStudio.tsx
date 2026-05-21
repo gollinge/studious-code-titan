@@ -13,41 +13,11 @@
 import { python } from '@codemirror/lang-python'
 import CodeMirror from '@uiw/react-codemirror'
 import { EditorHeader } from './EditorHeader'
-import { useCallback, useRef, useState } from 'react'
-import type { LessonConfig, ExecutionResponse, Milestone } from '../types'
-
-// ── Friendly error messages (mirrored from CodingLesson) ─────────────────────
-
-const ERROR_HELP: Record<string, string> = {
-  SyntaxError:
-    "Python couldn't understand this line. Check your quotes, parentheses, or spelling.",
-  NameError:
-    "Python doesn't recognise that name. Did you create the variable first?",
-  IndentationError:
-    'The spacing on this line looks off. Try using the Tab key to indent.',
-  TypeError:
-    "Two things are being mixed up that don't go together — like a number and a word.",
-  ValueError:
-    "The value you gave doesn't make sense in this context. Double-check what you passed in.",
-  ConnectionError:
-    "Couldn't reach the server. Make sure the backend is running.",
-}
-
-function getFriendlyHelp(errorType: string | null, timedOut: boolean): string | null {
-  if (timedOut) return 'Your program ran for too long. Does it have a loop that never stops?'
-  if (!errorType) return null
-  return ERROR_HELP[errorType] ?? null
-}
-
-// ── input() detection ─────────────────────────────────────────────────────────
-
-function extractInputPrompts(code: string): string[] {
-  const re = /input\s*\(\s*(['"`])(.*?)\1\s*\)/g
-  const prompts: string[] = []
-  let m: RegExpExecArray | null
-  while ((m = re.exec(code)) !== null) prompts.push(m[2])
-  return prompts
-}
+import { OutputPanel } from './OutputPanel'
+import { useCallback, useState } from 'react'
+import type { LessonConfig, Milestone } from '../types'
+import { usePythonRunner } from '../hooks/usePythonRunner'
+import { extractInputPrompts } from '../utils/pythonUtils'
 
 // ── Props ─────────────────────────────────────────────────────────────────────
 
@@ -59,14 +29,11 @@ type Props = {
   onBack: () => void
 }
 
-const apiBase = import.meta.env.VITE_API_URL ?? 'http://127.0.0.1:8000'
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export function ProjectStudio({ lesson, moduleTitle, onComplete, onNext, onBack }: Props) {
   const [code, setCode] = useState(lesson.starterCode ?? '')
-  const [output, setOutput] = useState<ExecutionResponse | null>(null)
-  const [isRunning, setIsRunning] = useState(false)
   const [isCompleted, setIsCompleted] = useState(false)
   const [showHints, setShowHints] = useState(false)
   const [showRemix, setShowRemix] = useState(false)
@@ -77,8 +44,6 @@ export function ProjectStudio({ lesson, moduleTitle, onComplete, onNext, onBack 
   // input() support
   const [pendingInputs, setPendingInputs] = useState<string[]>([])
   const [inputValues, setInputValues] = useState<Record<number, string>>({})
-
-  const outputRef = useRef<HTMLPreElement | null>(null)
 
   const milestones: Milestone[] = lesson.milestones ?? []
   const allMilestonesHit = milestones.length > 0 && completedMilestones.size === milestones.length
@@ -95,40 +60,16 @@ export function ProjectStudio({ lesson, moduleTitle, onComplete, onNext, onBack 
     })
   }, [milestones])
 
-  const runCode = useCallback(async (stdin: string) => {
-    setIsRunning(true)
-    try {
-      const response = await fetch(`${apiBase}/api/execute`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code, stdin }),
-      })
-      const payload = (await response.json()) as ExecutionResponse
-      setOutput(payload)
-
-      // Detect milestones after each run
-      detectMilestones(code)
-
-      if (!isCompleted && payload.exit_code === 0) {
+  const { isRunning, output, outputRef, runCode } = usePythonRunner({
+    code,
+    onSuccess: () => {
+      if (!isCompleted) {
         setIsCompleted(true)
         onComplete()
         if (allMilestonesHit) setShowRemix(true)
       }
-    } catch {
-      setOutput({
-        stdout: '',
-        stderr: 'Could not connect to local backend. Start FastAPI server first.',
-        error_type: 'ConnectionError',
-        timed_out: false,
-        exit_code: null,
-      })
-    } finally {
-      setIsRunning(false)
-      setTimeout(() => {
-        if (outputRef.current) outputRef.current.scrollTop = outputRef.current.scrollHeight
-      }, 50)
-    }
-  }, [code, isCompleted, allMilestonesHit, detectMilestones, onComplete])
+    },
+  })
 
   const handleRun = () => {
     // Always re-detect milestones on Run even before execution
@@ -149,9 +90,6 @@ export function ProjectStudio({ lesson, moduleTitle, onComplete, onNext, onBack 
     setInputValues({})
     void runCode(stdin)
   }
-
-  const friendlyHelp = output ? getFriendlyHelp(output.error_type, output.timed_out) : null
-  const hasError = output && (output.stderr || output.timed_out)
 
   return (
     <div className="project-studio">
@@ -283,26 +221,11 @@ export function ProjectStudio({ lesson, moduleTitle, onComplete, onNext, onBack 
         )}
 
         {output && (
-          <>
-            {hasError ? (
-              <div className="output-error">
-                <pre ref={outputRef} className="output-pre output-pre--error">
-                  {output.timed_out
-                    ? '⏱ Program timed out.'
-                    : output.stderr || output.stdout}
-                </pre>
-                {friendlyHelp && (
-                  <div className="friendly-help">
-                    <strong>💡 Tip:</strong> {friendlyHelp}
-                  </div>
-                )}
-              </div>
-            ) : (
-              <pre ref={outputRef} className="output-pre">
-                {output.stdout || '(no output)'}
-              </pre>
-            )}
-          </>
+          <OutputPanel
+            output={output}
+            outputRef={outputRef}
+            helpToggle={false}
+          />
         )}
 
         {!output && !pendingInputs.length && (
