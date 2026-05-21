@@ -7,7 +7,8 @@
 
 ## Backlog
 
-### Navigation & Flow
+### Editor
+- [ ] **⌘+Enter keyboard shortcut** — currently removed. CodeMirror keymap extension approach was unreliable (dropped on dynamic reconfiguration); `onKeyDown` DOM approach also failed. Needs investigation — possibly requires CodeMirror `Compartment` for stable keymap, or a global `document` keydown listener scoped to when the editor zone has focus.
 - [x] **"Next Lesson →" button** — appears in lesson view only after lesson is marked complete; advances to the next lesson in the module
 - [x] **Next Lesson phase reset** — fixed: "Next Lesson →" now always starts the next lesson from card 1 (not mid-editor or mid-quiz)
 - [ ] **Welcome modal** — shown on first visit only (localStorage flag); explains the editor, hints, Dive Deeper, and Cmd+Enter shortcut; never shown again after dismissal

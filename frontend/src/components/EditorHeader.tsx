@@ -20,22 +20,33 @@ export function EditorHeader({ isRunning, onRun, hint, onReset }: EditorHeaderPr
       <span className="editor-toolbar__label">Python</span>
       <div className="editor-toolbar__controls">
         {hint && (
-          <button type="button" className="hint-btn" onClick={hint.onClick}>
+          <button
+            type="button"
+            className="hint-btn"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={hint.onClick}
+          >
             {hint.label}
           </button>
         )}
         {onReset && (
-          <button type="button" className="reset-btn" onClick={onReset}>
+          <button
+            type="button"
+            className="reset-btn"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={onReset}
+          >
             ↺ Reset
           </button>
         )}
         <button
           type="button"
           className="run-btn"
+          onMouseDown={(e) => e.preventDefault()}
           onClick={onRun}
           disabled={isRunning}
         >
-          {isRunning ? '⏳ Running…' : '▶ Run  ⌘↵'}
+          {isRunning ? '⏳ Running…' : '▶ Run'}
         </button>
       </div>
     </div>

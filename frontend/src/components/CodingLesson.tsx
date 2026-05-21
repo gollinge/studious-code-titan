@@ -1,7 +1,7 @@
-import { keymap, EditorView } from '@codemirror/view'
+import { EditorView } from '@codemirror/view'
 import { python } from '@codemirror/lang-python'
 import CodeMirror from '@uiw/react-codemirror'
-import { useCallback, useMemo, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import type { LessonConfig, ExecutionResponse, Step } from '../types'
 import { CardReader } from './CardReader'
 import { EditorHeader } from './EditorHeader'
@@ -127,21 +127,6 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
       }, 50)
     }
   }, [code])
-
-  const keyboardShortcut = useMemo(
-    () =>
-      keymap.of([
-        {
-          key: 'Mod-Enter',
-          run: () => {
-            void handleRunClick()
-            return true
-          },
-        },
-      ]),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [code],
-  )
 
   // ── input() detection ────────────────────────────────────────────────────────
 
@@ -360,7 +345,7 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
             value={code}
             height="100%"
             theme="light"
-            extensions={[python(), keyboardShortcut, EditorView.lineWrapping]}
+            extensions={[python(), EditorView.lineWrapping]}
             onChange={(val) => setCode(val)}
             basicSetup={{ lineNumbers: true, foldGutter: false, autocompletion: true }}
           />

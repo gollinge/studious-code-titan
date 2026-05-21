@@ -16,8 +16,8 @@
       "id": "c2",
       "type": "callout",
       "title": "The Run Button",
-      "summary": "Press Run (or Cmd/Ctrl+Enter) to make Python run your code from top to bottom.",
-      "body": "When you press Run, Python goes through your code one line at a time, from top to bottom, and follows each instruction.\n\nWriting code by itself does nothing yet — your program only runs after you press Run.\n\nYou can also press Cmd+Enter (Mac) or Ctrl+Enter (Windows) instead of clicking the button."
+      "summary": "Press Run to make Python run your code from top to bottom.",
+      "body": "When you press Run, Python goes through your code one line at a time, from top to bottom, and follows each instruction.\n\nWriting code by itself does nothing yet — your program only runs after you press Run."
     },
     {
       "id": "c3",

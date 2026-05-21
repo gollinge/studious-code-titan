@@ -10,11 +10,10 @@
  * string appears as a substring of the current editor code.
  */
 
-import { keymap } from '@codemirror/view'
 import { python } from '@codemirror/lang-python'
 import CodeMirror from '@uiw/react-codemirror'
 import { EditorHeader } from './EditorHeader'
-import { useCallback, useMemo, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import type { LessonConfig, ExecutionResponse, Milestone } from '../types'
 
 // ── Friendly error messages (mirrored from CodingLesson) ─────────────────────
@@ -151,21 +150,6 @@ export function ProjectStudio({ lesson, moduleTitle, onComplete, onNext, onBack 
     void runCode(stdin)
   }
 
-  const studioKeymap = useMemo(
-    () =>
-      keymap.of([
-        {
-          key: 'Mod-Enter',
-          run: () => {
-            handleRun()
-            return true
-          },
-        },
-      ]),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [code],
-  )
-
   const friendlyHelp = output ? getFriendlyHelp(output.error_type, output.timed_out) : null
   const hasError = output && (output.stderr || output.timed_out)
 
@@ -261,7 +245,7 @@ export function ProjectStudio({ lesson, moduleTitle, onComplete, onNext, onBack 
         <CodeMirror
           value={code}
           onChange={setCode}
-          extensions={[python(), studioKeymap]}
+          extensions={[python()]}
           height="100%"
           style={{ flex: 1, overflow: 'hidden' }}
         />
