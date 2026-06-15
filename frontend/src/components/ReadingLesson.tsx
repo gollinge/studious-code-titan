@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { LessonConfig } from '../types'
 import { CardReader } from './CardReader'
+import { ChoicePrompt } from './ChoicePrompt'
 
 type Phase = 'cards' | 'quiz' | 'summary'
 
@@ -26,9 +27,8 @@ export function ReadingLesson({ lesson, onComplete, onNext }: Props) {
   const [cardIndex, setCardIndex] = useState(0)
   const [phase, setPhase] = useState<Phase>('cards')
   const [quizIndex, setQuizIndex] = useState(0)
-  const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null)
+  const [answeredCurrent, setAnsweredCurrent] = useState(false)
   const [correctCount, setCorrectCount] = useState(0)
-  const [isCompleted, setIsCompleted] = useState(false)
 
   const cards = lesson.content
   const quiz = lesson.quiz ?? []
@@ -43,25 +43,21 @@ export function ReadingLesson({ lesson, onComplete, onNext }: Props) {
       setPhase('quiz')
     } else {
       onComplete()
-      setIsCompleted(true)
+      onNext()
     }
   }
 
-  const handleOptionSelect = (optionId: string) => {
-    if (selectedOptionId !== null) return
-    setSelectedOptionId(optionId)
-    if (optionId === currentQuestion.correctOptionId) {
-      setCorrectCount((n) => n + 1)
-    }
+  const handleAnswered = (_optionId: string, isCorrect: boolean) => {
+    if (isCorrect) setCorrectCount((n) => n + 1)
+    setAnsweredCurrent(true)
   }
 
   const handleNextQuestion = () => {
     if (!isLastQuestion) {
       setQuizIndex(quizIndex + 1)
-      setSelectedOptionId(null)
+      setAnsweredCurrent(false)
     } else {
       onComplete()
-      setIsCompleted(true)
       setPhase('summary')
     }
   }
@@ -69,7 +65,7 @@ export function ReadingLesson({ lesson, onComplete, onNext }: Props) {
   return (
     <div className="reading-lesson">
       {/* ── Card reader ── */}
-      {phase === 'cards' && !isCompleted && (
+      {phase === 'cards' && (
         <CardReader
           cards={cards}
           cardIndex={cardIndex}
@@ -90,16 +86,6 @@ export function ReadingLesson({ lesson, onComplete, onNext }: Props) {
         />
       )}
 
-      {/* ── Cards-only complete (no quiz) ── */}
-      {phase === 'cards' && isCompleted && (
-        <div className="quiz-summary">
-          <span className="lesson-complete-badge">✓ Lesson Complete</span>
-          <button type="button" className="continue-btn" onClick={onNext}>
-            Next Lesson →
-          </button>
-        </div>
-      )}
-
       {/* ── Quiz ── */}
       {phase === 'quiz' && currentQuestion && (
         <div className="quiz-view">
@@ -114,41 +100,12 @@ export function ReadingLesson({ lesson, onComplete, onNext }: Props) {
               ))}
             </div>
           </div>
-          <p className="quiz-question">{currentQuestion.question}</p>
-          <div className="quiz-options">
-            {currentQuestion.options.map((option) => {
-              const isSelected = selectedOptionId === option.id
-              const isCorrect = option.id === currentQuestion.correctOptionId
-              const hasAnswered = selectedOptionId !== null
-              let cls = 'quiz-option'
-              if (hasAnswered) {
-                if (isCorrect) cls += ' correct'
-                else if (isSelected) cls += ' wrong'
-              }
-              return (
-                <button
-                  key={option.id}
-                  type="button"
-                  className={cls}
-                  onClick={() => handleOptionSelect(option.id)}
-                  disabled={hasAnswered}
-                >
-                  {option.text}
-                </button>
-              )
-            })}
-          </div>
-          {selectedOptionId !== null && (
-            <div
-              className={`quiz-explanation ${
-                selectedOptionId === currentQuestion.correctOptionId ? 'correct' : 'wrong'
-              }`}
-            >
-              {selectedOptionId === currentQuestion.correctOptionId ? '✅ ' : '❌ '}
-              {currentQuestion.explanation}
-            </div>
-          )}
-          {selectedOptionId !== null && (
+          <ChoicePrompt
+            key={currentQuestion.id}
+            question={currentQuestion}
+            onAnswered={handleAnswered}
+          />
+          {answeredCurrent && (
             <button type="button" className="card-next-btn" onClick={handleNextQuestion}>
               {isLastQuestion ? 'See Results →' : 'Next Question →'}
             </button>

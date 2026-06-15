@@ -7,123 +7,75 @@
     {
       "id": "1d-card-1",
       "type": "callout",
-      "title": "Time for the module challenge",
-      "body": "You've finished the lessons in this module. Now it's time to review the big ideas.\n\nThis quiz covers:\n\n• What programming is\n• How computers follow instructions\n• Why bugs happen\n• What algorithms are\n• What Python is used for\n\nTake your time. There is no timer, and every question includes an explanation after you answer."
+      "title": "Time for the module review",
+      "body": "You've finished the lessons in this module. Now it's time to review the big ideas.\n\nThis quiz has 5 questions covering:\n\n• How computers follow instructions\n• Why bugs happen\n• What algorithms are\n• How programmers tackle big problems\n\nTake your time. There is no timer, and every question includes an explanation after you answer."
     }
   ],
   "quiz": [
     {
       "id": "1d-q1",
-      "type": "true-false",
-      "question": "A program is a list of instructions that a computer follows step by step.",
+      "type": "multiple-choice",
+      "question": "In the Input → Processing → Output pattern, what is the \"Processing\" step?",
       "options": [
-        { "id": "true", "text": "True" },
-        { "id": "false", "text": "False" }
+        { "id": "a", "text": "Taking information into the program" },
+        { "id": "b", "text": "Showing a result on the screen" },
+        { "id": "c", "text": "The computer working with the input to figure something out" },
+        { "id": "d", "text": "Writing the code" }
       ],
-      "correctOptionId": "true",
-      "explanation": "Correct. Programs are made from instructions that computers follow in order."
+      "correctOptionId": "c",
+      "explanation": "Processing is when the computer takes the input and does something with it before producing an output."
     },
     {
       "id": "1d-q2",
       "type": "multiple-choice",
-      "question": "In the Input → Processing → Output model, what does processing mean?",
+      "question": "A robot is given these steps:\n\n1. Pour the juice\n2. Open the bottle\n\nWhat will the robot do?",
       "options": [
-        { "id": "a", "text": "Taking information into the program" },
-        { "id": "b", "text": "Showing a result on the screen" },
-        { "id": "c", "text": "The computer doing something with the input" },
-        { "id": "d", "text": "Writing code" }
+        { "id": "a", "text": "Open the bottle first because it figures out the order" },
+        { "id": "b", "text": "Pour the juice without any trouble" },
+        { "id": "c", "text": "Ask a human to fix the steps" },
+        { "id": "d", "text": "Try to pour from a bottle that's still closed" }
       ],
-      "correctOptionId": "c",
-      "explanation": "Processing is when the computer works with the input before producing a result."
+      "correctOptionId": "d",
+      "explanation": "Robots and computers run steps in the exact order they're written — they won't rearrange them."
     },
     {
       "id": "1d-q3",
       "type": "multiple-choice",
-      "question": "Your robot instructions say:\n\n1. Pour the juice\n2. Open the bottle\n\nWhat happens?",
+      "question": "A program does something the programmer didn't want it to do. What do we call that?",
       "options": [
-        { "id": "a", "text": "The robot opens the bottle first because it is smart" },
-        { "id": "b", "text": "The robot pours the juice successfully" },
-        { "id": "c", "text": "The robot asks for help" },
-        { "id": "d", "text": "The robot tries to pour from a closed bottle" }
+        { "id": "a", "text": "A program that ran out of room" },
+        { "id": "b", "text": "A bug" },
+        { "id": "c", "text": "A feature that's hard to use" },
+        { "id": "d", "text": "A broken computer" }
       ],
-      "correctOptionId": "d",
-      "explanation": "Computers follow instructions in the exact order they are given."
+      "correctOptionId": "b",
+      "explanation": "A bug is a mistake in the code that makes a program behave in a way the programmer didn't expect. Every programmer writes bugs — finding them is part of the job."
     },
     {
       "id": "1d-q4",
       "type": "multiple-choice",
-      "question": "What is a bug in a program?",
+      "question": "Kai walks down a line of kids looking for the tallest one, remembering the tallest he's seen so far. What is Kai using?",
       "options": [
-        { "id": "a", "text": "A program that is too long" },
-        { "id": "b", "text": "A mistake in the code that causes problems" },
-        { "id": "c", "text": "A feature that is hard to use" },
-        { "id": "d", "text": "A broken computer" }
+        { "id": "a", "text": "A type of computer chip" },
+        { "id": "b", "text": "A kind of bug" },
+        { "id": "c", "text": "An algorithm" },
+        { "id": "d", "text": "A programming language" }
       ],
-      "correctOptionId": "b",
-      "explanation": "A bug is a mistake in the code that makes the program behave in a way the programmer did not expect."
+      "correctOptionId": "c",
+      "explanation": "An algorithm is a clear, step-by-step plan for solving a problem — exactly what Kai is doing."
     },
     {
       "id": "1d-q5",
       "type": "multiple-choice",
-      "question": "What is an algorithm?",
+      "question": "You want to build a whole quiz game, but the idea feels too big. What do programmers do in this situation?",
       "options": [
-        { "id": "a", "text": "A type of computer chip" },
-        { "id": "b", "text": "A kind of bug" },
-        { "id": "c", "text": "A precise, step-by-step plan for solving a problem" },
-        { "id": "d", "text": "A programming language" }
-      ],
-      "correctOptionId": "c",
-      "explanation": "An algorithm is a clear plan for solving a problem step by step."
-    },
-    {
-      "id": "1d-q6",
-      "type": "true-false",
-      "question": "Python was named after the snake.",
-      "options": [
-        { "id": "true", "text": "True" },
-        { "id": "false", "text": "False" }
-      ],
-      "correctOptionId": "false",
-      "explanation": "Correct. Python was named after Monty Python, a British comedy group."
-    },
-    {
-      "id": "1d-q7",
-      "type": "multiple-choice",
-      "question": "Which of these is something Python is commonly used for?",
-      "options": [
-        { "id": "a", "text": "Building websites and analyzing data" },
-        { "id": "b", "text": "Only learning programming" },
-        { "id": "c", "text": "Replacing the internet" },
-        { "id": "d", "text": "Manufacturing computer chips by itself" }
-      ],
-      "correctOptionId": "a",
-      "explanation": "Python is commonly used for websites, data analysis, automation, AI, science, and many other kinds of software."
-    },
-    {
-      "id": "1d-q8",
-      "type": "multiple-choice",
-      "question": "You want to build a quiz game, but it feels too complicated. What is the programmer's approach?",
-      "options": [
-        { "id": "a", "text": "Write all the code at once" },
-        { "id": "b", "text": "Give up because it is too hard" },
+        { "id": "a", "text": "Try to write all the code at once" },
+        { "id": "b", "text": "Give up because it's too hard" },
         { "id": "c", "text": "Wait for someone else to build it" },
         { "id": "d", "text": "Break the problem into smaller steps" }
       ],
       "correctOptionId": "d",
-      "explanation": "Programmers solve large problems by breaking them into smaller, manageable pieces."
-    },
-    {
-      "id": "1d-q9",
-      "type": "multiple-choice",
-      "question": "Why are computers good at repetition?",
-      "options": [
-        { "id": "a", "text": "They understand human emotions" },
-        { "id": "b", "text": "They never get bored repeating instructions" },
-        { "id": "c", "text": "They can guess missing instructions" },
-        { "id": "d", "text": "They know the future" }
-      ],
-      "correctOptionId": "b",
-      "explanation": "Computers can repeat instructions quickly and accurately without getting tired or bored."
+      "explanation": "Programmers handle big problems by splitting them into smaller pieces and solving one piece at a time."
     }
   ]
 }

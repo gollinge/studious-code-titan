@@ -82,6 +82,11 @@ export function WelcomeModal({ onDismiss }: Props) {
             </span>
           </li>
         </ul>
+        <p className="modal-educator-note">
+          <strong>Parents &amp; Educators:</strong> Module 1 is mostly reading — it
+          builds the ideas before the typing. If your kid is impatient to write code,
+          that's normal. You can come back to Module 1 anytime.
+        </p>
         <button type="button" className="modal-cta" onClick={handleDismiss}>
           Let's go!
         </button>

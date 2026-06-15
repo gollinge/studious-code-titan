@@ -6,6 +6,13 @@
   "goal": "concept",
   "content": [
     {
+      "id": "c0",
+      "type": "callout",
+      "title": "Here we go!",
+      "summary": "You're about to write your first real Python code.",
+      "body": "You're about to write your first real Python code — the same Python that data scientists, game makers, and AI researchers use every day.\n\nThe next few minutes are the moment you become a programmer. Ready?"
+    },
+    {
       "id": "c1",
       "type": "text",
       "title": "The Code Editor",
@@ -29,9 +36,11 @@
     {
       "id": "c4",
       "type": "code",
-      "title": "print() — Your First Command",
+      "title": "`print()` — Your First Command",
       "summary": "print(\"Hello!\") displays text on the screen.",
-      "body": "print() tells Python to display a message on the screen.\n\nprint(\"Hello!\")\n\nThe quotation marks are important — they tell Python where the message starts and ends.\n\nTry changing \"Hello!\" to your own message, then press Run.\n\nYou can change the message and run the program as many times as you want."
+      "body": "`print()` tells Python to display a message on the screen.",
+      "codeBlock": "print(\"Hello!\")",
+      "note": "The quotation marks are important — they tell Python where the message starts and ends.\n\nTry changing \"Hello!\" to your own message, then press Run. You can change the message and run the program as many times as you want."
     }
   ],
   "steps": [
@@ -40,13 +49,13 @@
       "starterCode": "# Change the message\nprint(\"Hello!\")\n"
     },
     {
-      "instruction": "Step 2: Add a second print() line below the first. Python will run both lines from top to bottom."
+      "instruction": "Step 2: Add a second `print()` line below the first. Python will run both lines from top to bottom."
     }
   ],
   "bonusSteps": [
     {
-      "instruction": "Bonus: Write 3 print() lines — give the computer a name, a job, and one silly fact about it.",
-      "starterCode": ""
+      "instruction": "Bonus: Write 3 `print()` lines — give the computer a name, a job, and one silly fact about it.",
+      "starterCode": "# Three print() lines about your computer:\n# 1) its name\n# 2) its job\n# 3) one silly fact\n\n\n"
     }
   ],
   "progressiveHints": [

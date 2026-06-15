@@ -1,16 +1,12 @@
 import type { ContentCard } from '../types'
+import { ChoicePrompt } from './ChoicePrompt'
+import { RunnerCard } from './RunnerCard'
+import { renderInlineCode } from '../utils/inlineCode'
 
-// Split prose text on `backticks` so `print()` style spans render as inline code.
-// Odd-indexed segments are the backtick-wrapped code.
 function ProseBody({ text }: { text: string }) {
-  const parts = text.split(/`([^`]+)`/g)
   return (
     <p className="content-card-body" style={{ whiteSpace: 'pre-wrap' }}>
-      {parts.map((part, i) =>
-        i % 2 === 1
-          ? <code key={i} className="content-card-inline-code">{part}</code>
-          : part,
-      )}
+      {renderInlineCode(text)}
     </p>
   )
 }
@@ -29,7 +25,9 @@ export function ContentCardView({ card }: { card: ContentCard }) {
       {card.type === 'callout' && (
         <span className="content-card-callout-label">💡 Remember this!</span>
       )}
-      {card.title && <h3 className="content-card-title">{card.title}</h3>}
+      {card.title && (
+        <h3 className="content-card-title">{renderInlineCode(card.title)}</h3>
+      )}
       {legacyCodeBody ? (
         <pre className="content-card-code"><code>{card.body}</code></pre>
       ) : (
@@ -37,6 +35,12 @@ export function ContentCardView({ card }: { card: ContentCard }) {
       )}
       {card.codeBlock && (
         <pre className="content-card-code"><code>{card.codeBlock}</code></pre>
+      )}
+      {card.type === 'puzzle' && card.puzzle && (
+        <ChoicePrompt question={card.puzzle} />
+      )}
+      {card.type === 'runner' && card.runnerCode && (
+        <RunnerCard code={card.runnerCode} />
       )}
       {card.note && <ProseBody text={card.note} />}
     </div>

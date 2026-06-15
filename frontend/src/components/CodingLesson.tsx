@@ -8,6 +8,7 @@ import { EditorHeader } from './EditorHeader'
 import { OutputPanel } from './OutputPanel'
 import { usePythonRunner } from '../hooks/usePythonRunner'
 import { extractInputPrompts } from '../utils/pythonUtils'
+import { renderInlineCode } from '../utils/inlineCode'
 
 // ── Main component ─────────────────────────────────────────────────────────────
 
@@ -206,7 +207,7 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext }: Props)
                       <span className="step-label">
                         {isDone ? '✓ ' : ''}Step {i + 1}
                       </span>
-                      <p className="step-text">{step.instruction}</p>
+                      <p className="step-text">{renderInlineCode(step.instruction)}</p>
                     </div>
                   )
                 })}
@@ -224,7 +225,7 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext }: Props)
                       <span className="step-label">
                         {isDone ? '✓ ' : '🌟 '}Challenge {bonusSteps.length > 1 ? i + 1 : ''}
                       </span>
-                      <p className="step-text">{step.instruction}</p>
+                      <p className="step-text">{renderInlineCode(step.instruction)}</p>
                     </div>
                   )
                 })}

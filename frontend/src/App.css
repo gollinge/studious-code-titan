@@ -451,6 +451,23 @@ kbd {
   font-family: inherit;
 }
 
+.modal-educator-note {
+  margin: 1.25rem 0 0.5rem;
+  padding: 0.75rem 0.9rem;
+  background: #f8fafc;
+  border-left: 3px solid #bcccdc;
+  border-radius: 0.4rem;
+  color: #486581;
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.modal-educator-note strong {
+  font-style: normal;
+  color: #334e68;
+}
+
 .modal-cta {
   display: block;
   width: 100%;
@@ -794,6 +811,55 @@ kbd {
   padding: 0.1em 0.35em;
   border-radius: 0.3em;
   white-space: nowrap;
+}
+
+/* ── Embedded runner card (Module 1+ first-look-at-Python pattern) ──────────── */
+
+.runner-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 0.5rem;
+}
+
+.runner-card__run-btn {
+  align-self: flex-start;
+  padding: 0.5rem 1rem;
+  background: #2f6feb;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.runner-card__run-btn:hover:not(:disabled) {
+  background: #1a56db;
+}
+
+.runner-card__run-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.runner-card__output {
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  margin: 0;
+  max-height: 240px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+.runner-card__output--error {
+  background: #4a1f1f;
+  color: #fecaca;
 }
 
 .card-nav {

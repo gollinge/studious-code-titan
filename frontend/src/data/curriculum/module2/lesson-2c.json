@@ -17,33 +17,53 @@
       "type": "text",
       "title": "Creating a variable",
       "summary": "Use = to put a value in the box.",
-      "body": "In Python, = means \"put this value in the box.\"",
-      "codeBlock": "name = \"Alex\"\nprint(name)",
-      "note": "This creates a box called name, puts \"Alex\" inside, then prints whatever is in the box.\n\nWe call this assigning a value — you're assigning \"Alex\" to the variable name."
+      "body": "In Python, `=` means \"put this value in the box.\"",
+      "codeBlock": "name = \"Maya\"\nprint(name)",
+      "note": "This creates a box called `name`, puts `\"Maya\"` inside, then prints whatever is in the box.\n\nWe call this assigning a value — you're assigning `\"Maya\"` to the variable `name`."
     },
     {
       "id": "c3",
       "type": "text",
       "title": "Variables can hold different kinds of things",
-      "summary": "Variables can store text, numbers, and more — each kind has a name.",
-      "body": "Different boxes can hold different things. Each kind has a name in Python:",
-      "codeBlock": "pet = \"cat\"   # text in quotes → called a string\nage = 12       # a whole number → called an integer",
-      "note": "Later you'll mix these to build things like:\n\"Hi, I'm Alex and I'm 12 years old.\" — all pulled from variables automatically."
+      "summary": "Variables can store text or numbers.",
+      "body": "Different boxes can hold different things. Text in quotes is one kind; numbers without quotes are another.",
+      "codeBlock": "pet = \"cat\"   # text in quotes — a string\nage = 12       # a number",
+      "note": "Later you'll mix these to build things like:\n\"Hi, I'm Maya and I'm 12 years old.\" — all pulled from variables automatically."
+    },
+    {
+      "id": "c4-puzzle",
+      "type": "puzzle",
+      "title": "Which one creates a variable correctly?",
+      "summary": "Spot the right way to store text in a variable.",
+      "body": "You want to store the word `pizza` in a variable called `food`. Which line does that?",
+      "puzzle": {
+        "id": "2c-puzzle-1",
+        "type": "multiple-choice",
+        "question": "",
+        "options": [
+          { "id": "a", "text": "food = pizza" },
+          { "id": "b", "text": "food = \"pizza\"" },
+          { "id": "c", "text": "\"pizza\" = food" },
+          { "id": "d", "text": "food == \"pizza\"" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The variable name goes on the left, the value on the right. Text always needs quotes — without them, Python looks for a variable called `pizza` and doesn't find one."
+      }
     }
   ],
   "steps": [
     {
-      "instruction": "Step 1: Run the program. Then change the value inside the name variable to your own name and run it again.",
-      "starterCode": "name = \"Alex\"\nprint(name)\n"
+      "instruction": "Step 1: Run the program. Then change the value inside the `name` variable to your own name and run it again.",
+      "starterCode": "name = \"Maya\"\nprint(name)\n"
     },
     {
-      "instruction": "Step 2: Create a variable called age. Store a number in it and print it."
+      "instruction": "Step 2: Create a variable called `age`. Store a number in it and print it."
     },
     {
-      "instruction": "Step 3: Create another variable called food. Store your favorite food in it and print it."
+      "instruction": "Step 3: Create another variable called `food`. Store a food you like in it and print it."
     },
     {
-      "instruction": "Step 5: Change name to a different name and age to a different number. Run it. What changed in the output?"
+      "instruction": "Step 4: Change `name` to a different name and `age` to a different number. Run it. What changed in the output?"
     }
   ],
   "bonusSteps": [

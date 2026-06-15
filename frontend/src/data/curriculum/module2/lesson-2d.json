@@ -17,8 +17,8 @@
       "type": "text",
       "title": "Building messages from pieces",
       "summary": "Use + to combine variables and text into one message.",
-      "body": "You can use + to join variables and text together into one message.",
-      "codeBlock": "name = \"Mia\"\nprint(name + \" entered the castle.\")",
+      "body": "You can use `+` to join variables and text together into one message.",
+      "codeBlock": "name = \"Kai\"\nprint(name + \" entered the castle.\")",
       "note": "Python puts the pieces together in order — variable, then the text you added."
     },
     {
@@ -27,22 +27,29 @@
       "title": "Python is literal",
       "summary": "Python only prints exactly what you give it.",
       "body": "Python will not add spaces automatically.\n\nIf you want a space between words, you have to include it yourself — inside the quotes.",
-      "codeBlock": "print(name + \"entered\")    # ❌ Miaentered\nprint(name + \" entered\")   # ✅ Mia entered"
+      "codeBlock": "print(name + \"entered\")    # ❌ Kaientered\nprint(name + \" entered\")   # ✅ Kai entered"
+    },
+    {
+      "id": "c4-errors",
+      "type": "callout",
+      "title": "Errors are part of programming",
+      "summary": "If Python shows a red error, that's normal — just check the line it mentions.",
+      "body": "When you run your code, you might see a red error message — that's normal. Python is trying to help you find a mistake.\n\nMost beginner errors are tiny: a missing quote, a missing parenthesis, or a typo. Just check the line Python mentioned."
     }
   ],
   "steps": [
     {
-      "instruction": "Step 1: Run the program. Then change the name variable and run it again.",
-      "starterCode": "name = \"Mia\"\nprint(name)\n"
+      "instruction": "Step 1: Run the program.",
+      "starterCode": "name = \"Kai\"\nprint(name)\n"
     },
     {
-      "instruction": "Step 2: Try changing the name variable and run it again."
+      "instruction": "Step 2: Change `\"Kai\"` to a name you like and run it again. What changes in the output?"
     },
     {
-      "instruction": "Step 3: Add text after the variable using +."
+      "instruction": "Step 3: Add text after the variable using `+`."
     },
     {
-      "instruction": "Step 4: Add another variable called place. Print a message that uses both variables."
+      "instruction": "Step 4: Add another variable called `place`. Print a message that uses both variables."
     },
     {
       "instruction": "Step 5: Try changing the variables to create different outputs."
@@ -50,15 +57,15 @@
   ],
   "bonusSteps": [
     {
-      "instruction": "Bonus: Create a short adventure scene using:\n- a name variable\n- a place variable\n- an item variable\n- at least 2 print() lines",
+      "instruction": "Bonus: Create a short adventure scene using:\n- a `name` variable\n- a `place` variable\n- an `item` variable\n- at least 2 `print()` lines",
       "editorPrompt": "Build a short adventure scene using variables",
       "starterCode": ""
     }
   ],
   "progressiveHints": [
-    "# Try changing the value inside the quotes\nname = \"Mia\"\nprint(name)",
-    "# Use + to combine a variable with text\nname = \"Mia\"\n\nprint(name + \" entered the castle.\")",
-    "name = \"Mia\"\nplace = \"the castle\"\n\nprint(name + \" entered \" + place + \".\")",
-    "name = \"Mia\"\nplace = \"the castle\"\nitem = \"golden key\"\n\nprint(name + \" entered \" + place + \".\")\nprint(name + \" found a \" + item + \".\")"
+    "# Try changing the value inside the quotes\nname = \"Kai\"\nprint(name)",
+    "# Use + to combine a variable with text\nname = \"Kai\"\n\nprint(name + \" entered the castle.\")",
+    "name = \"Kai\"\nplace = \"the castle\"\n\nprint(name + \" entered \" + place + \".\")",
+    "name = \"Kai\"\nplace = \"the castle\"\nitem = \"golden key\"\n\nprint(name + \" entered \" + place + \".\")\nprint(name + \" found a \" + item + \".\")"
   ]
 }

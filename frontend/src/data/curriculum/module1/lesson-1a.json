@@ -14,7 +14,7 @@
       "id": "1a-card-2",
       "type": "text",
       "title": "Programs are everywhere",
-      "body": "Every piece of software you've ever used is a program someone wrote:\n\n• The Minecraft world generator that builds mountains and caves\n• The algorithm that picks which YouTube video to show you next\n• The game that tracks your score and decides when you level up\n• The app that sends a message to your friend across the world in a second\n\nPrograms are created by people — sometimes by huge teams of programmers working together."
+      "body": "Programs aren't just on screens. They're built into all kinds of everyday things:\n\n• The microwave timer that beeps when your popcorn is done\n• Traffic lights that change in a pattern\n• The Minecraft world generator that builds mountains and caves\n• The app that sends a message to your friend across the world in a second\n\nPrograms are created by people — sometimes by huge teams of programmers working together."
     },
     {
       "id": "1a-card-3",
@@ -35,10 +35,29 @@
       "body": "Remember: the computer only follows the instructions you give it. So how does it \"decide\" things?\n\nA programmer thinks ahead about different situations and tells the computer what to do in each one.\n\n\"If the player's health drops to zero, show the game-over screen.\"\n\"If the player collects 100 coins, unlock the next level.\"\n\"If the password is correct, let the player log in.\"\n\nThe computer isn't inventing the decision — it's following instructions that someone planned ahead of time."
     },
     {
+      "id": "1a-card-5-puzzle",
+      "type": "puzzle",
+      "title": "Which one could a robot follow?",
+      "body": "A robot can only do exactly what you tell it. Which of these instructions is clear enough?",
+      "puzzle": {
+        "id": "1a-puzzle-1",
+        "type": "multiple-choice",
+        "question": "",
+        "options": [
+          { "id": "a", "text": "Wash the dishes" },
+          { "id": "b", "text": "Pick up the red cup, walk three steps, put it on the table" },
+          { "id": "c", "text": "Be nice" },
+          { "id": "d", "text": "Stop being silly" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Computers need exact, step-by-step instructions. \"Be nice\" and \"wash the dishes\" mean different things to different people — a robot wouldn't know where to start."
+      }
+    },
+    {
       "id": "1a-card-6",
       "type": "text",
       "title": "Breaking problems into steps",
-      "body": "One of the most important programming skills is taking a big problem and breaking it into smaller pieces.\n\nImagine you want to build a quiz game. That sounds complicated — but you can split it into steps:\n\n• Show a question\n• Wait for the player to answer\n• Check the answer\n• Update the score\n• Show the next question\n\nProgrammers solve problems one small step at a time."
+      "body": "One of the most important programming skills is taking a big problem and breaking it into smaller pieces.\n\nImagine Maya wants to build a quiz game. That sounds complicated — but she can split it into steps:\n\n• Show a question\n• Wait for the player to answer\n• Check the answer\n• Update the score\n• Show the next question\n\nProgrammers solve problems one small step at a time."
     },
     {
       "id": "1a-card-7",
@@ -51,71 +70,6 @@
       "type": "callout",
       "title": "Programmers are creators",
       "body": "Once you know how to program, you can turn ideas into things people can use.\n\nYou can build games, tools, art projects, websites, apps, robots, or something completely new.\n\nProgramming is a way to create things and share them with other people."
-    }
-  ],
-  "quiz": [
-    {
-      "id": "1a-q1",
-      "type": "true-false",
-      "question": "A program is a list of instructions that a computer follows step by step.",
-      "options": [
-        { "id": "true", "text": "True" },
-        { "id": "false", "text": "False" }
-      ],
-      "correctOptionId": "true",
-      "explanation": "Correct! A computer follows instructions in order, step by step."
-    },
-    {
-      "id": "1a-q2",
-      "type": "multiple-choice",
-      "question": "Which of these definitely contains computer programs?",
-      "options": [
-        { "id": "a", "text": "A backpack" },
-        { "id": "b", "text": "Minecraft" },
-        { "id": "c", "text": "A basketball" },
-        { "id": "d", "text": "A spoon" }
-      ],
-      "correctOptionId": "b",
-      "explanation": "Minecraft is made from millions of instructions written by programmers."
-    },
-    {
-      "id": "1a-q3",
-      "type": "multiple-choice",
-      "question": "You press a button in a game and your character jumps. Which part is the output?",
-      "options": [
-        { "id": "a", "text": "Pressing the button" },
-        { "id": "b", "text": "The game calculating the jump" },
-        { "id": "c", "text": "The character jumping on screen" },
-        { "id": "d", "text": "The game loading" }
-      ],
-      "correctOptionId": "c",
-      "explanation": "The button press is input, the game calculating the jump is processing, and the character jumping on screen is the output."
-    },
-    {
-      "id": "1a-q4",
-      "type": "multiple-choice",
-      "question": "What does a programmer do when a program has a mistake?",
-      "options": [
-        { "id": "a", "text": "Ignore it" },
-        { "id": "b", "text": "Debug it and fix the problem" },
-        { "id": "c", "text": "Throw the computer away" },
-        { "id": "d", "text": "Restart the internet" }
-      ],
-      "correctOptionId": "b",
-      "explanation": "Finding and fixing mistakes is called debugging. Every programmer does it."
-    },
-    {
-      "id": "1a-q5",
-      "type": "multiple-choice",
-      "question": "You want to build a quiz game. What's the best first step?",
-      "options": [
-        { "id": "a", "text": "Write all the code at once" },
-        { "id": "b", "text": "Give up because it's too complicated" },
-        { "id": "c", "text": "Break the game into smaller steps" },
-        { "id": "d", "text": "Wait for someone else to build it" }
-      ],
-      "correctOptionId": "c",
-      "explanation": "Programmers solve large problems by breaking them into smaller, manageable pieces."
     }
   ]
 }

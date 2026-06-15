@@ -15,16 +15,16 @@
     {
       "id": "c2",
       "type": "text",
-      "title": "Multiple print() lines",
+      "title": "Multiple `print()` lines",
       "summary": "Every print() creates a new line in the output.",
-      "body": "You can write as many print() lines as you want.\n\nEvery time Python runs a print() command, it creates a new line in the output.\n\nPrograms are like a list of instructions — Python follows them one by one."
+      "body": "You can write as many `print()` lines as you want.\n\nEvery time Python runs a `print()` command, it creates a new line in the output.\n\nPrograms are like a list of instructions — Python follows them one by one."
     },
     {
       "id": "c3",
       "type": "callout",
       "title": "Stories have an order",
       "summary": "Python runs from top to bottom — changing the order changes the story.",
-      "body": "Python always starts at the first line and works its way down.\n\nThat means the order of your print() lines matters. If you move lines around, your story changes too.\n\nEach print() line is like one moment in your story."
+      "body": "Python always starts at the first line and works its way down.\n\nThat means the order of your `print()` lines matters. If you move lines around, your story changes too.\n\nEach `print()` line is like one moment in your story."
     },
     {
       "id": "c4",
@@ -43,15 +43,15 @@
       "instruction": "Step 2: Try changing one of the lines and run it again to see what changes."
     },
     {
-      "instruction": "Step 3: Add another print() line to continue the story."
+      "instruction": "Step 3: Add another `print()` line to continue the story."
     },
     {
-      "instruction": "Step 4: Try changing the order of the print() lines. What changes in the story?"
+      "instruction": "Step 4: Try changing the order of the `print()` lines. What changes in the story?"
     }
   ],
   "bonusSteps": [
     {
-      "instruction": "Bonus: Write a 5-line adventure story using only print() statements.",
+      "instruction": "Bonus: Write a 5-line adventure story using only `print()` statements.",
       "editorPrompt": "Write your own adventure story",
       "starterCode": ""
     }

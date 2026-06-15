@@ -126,3 +126,15 @@
 - [x] CORS configured for Vite ports 5173–5176
 - [x] `stdin` support — `ExecuteRequest.stdin` piped to subprocess
 - [x] Friendly timeout (2s) with `TimeoutError` response
+
+## Module 1 illustrations (deferred from curriculum review)
+
+Visual scaffolding was identified as one of two top gaps in the Module 1 review (alongside lack of interactivity, now shipped). These illustrations are deferred until a designer pass; the schema/render plumbing is also deferred so we don't ship unused fields.
+
+- [ ] **Schema**: add `imageUrl?: string` and optional `imageAlt?: string` to `ContentCard` in `frontend/src/types.ts` when images are ready to ship.
+- [ ] **Render**: in `ContentCardView` (`frontend/src/components/CardReader.tsx`), render `<img className="content-card-image" src={card.imageUrl} alt={card.imageAlt ?? ''} />` after the title and before the body. Add a `.content-card-image` rule in `App.css` (max-width: 100%, height: auto, border-radius: 0.75rem, margin-bottom: 1rem).
+- [ ] **Asset storage**: commit SVGs under `frontend/src/assets/illustrations/module1/`. Import them at the lesson-loader level and resolve to URLs via Vite (`import url from './assets/...svg'`), OR put them in `public/` and reference by absolute path.
+- [ ] **1a-card-4** (Input → Processing → Output): horizontal three-box diagram with arrows. Label the boxes Input, Processing, Output. Below the diagram, an example row showing a concrete trio of icons: keyboard → gear → speech bubble.
+- [ ] **1b-card-3** (Try the robot test): friendly cartoon robot reading a checklist or scroll of instructions. Visual mood: literal-minded, slightly puzzled. Reinforces the "robot test" mental model.
+- [ ] **1c-card-3** (Python is used for real projects): small icon row matching the bullet list — globe (websites), bar chart (data), gear (automation), beaker (science), game controller (games/tools), brain (AI). Use a consistent line style across the six icons.
+

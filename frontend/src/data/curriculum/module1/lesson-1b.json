@@ -23,6 +23,25 @@
       "body": "When you're not sure if your instructions are clear enough, imagine a robot that can only follow instructions literally — no guessing, no filling in gaps.\n\nWould your instructions make sense to that robot? If yes, they'll probably make sense to a computer too.\n\nMany bugs happen because instructions are missing, unclear, or in the wrong order."
     },
     {
+      "id": "1b-card-3-puzzle",
+      "type": "puzzle",
+      "title": "Fix the broken instructions",
+      "body": "Sam wrote these instructions for a robot:\n\n1. Take the lid off the cookie jar\n2. Walk to the cookie jar\n3. Take a cookie\n\nWhat's wrong?",
+      "puzzle": {
+        "id": "1b-puzzle-1",
+        "type": "multiple-choice",
+        "question": "",
+        "options": [
+          { "id": "a", "text": "Nothing — it works" },
+          { "id": "b", "text": "The steps are in the wrong order" },
+          { "id": "c", "text": "There aren't enough steps" },
+          { "id": "d", "text": "The robot doesn't like cookies" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "The robot tries to take the lid off before walking to the cookie jar! Order matters — computers run instructions in the exact order you write them."
+      }
+    },
+    {
       "id": "1b-card-4",
       "type": "text",
       "title": "This is why bugs exist",
@@ -38,72 +57,7 @@
       "id": "1b-card-6",
       "type": "text",
       "title": "Algorithms: your plan for solving a problem",
-      "body": "An algorithm is a precise, step-by-step plan for solving a problem.\n\nFor example, imagine you want to find the highest score on a game leaderboard:\n\n  1. Start by assuming the first score is the highest\n  2. Look at each score one at a time\n  3. If you find a higher score, replace the current best\n  4. After checking all the scores, the highest one wins\n\nThe important part is the idea: programmers think through a clear plan before writing code."
-    }
-  ],
-  "quiz": [
-    {
-      "id": "1b-q1",
-      "type": "true-false",
-      "question": "If your instructions are unclear, a computer will try to figure out what you meant.",
-      "options": [
-        { "id": "true", "text": "True" },
-        { "id": "false", "text": "False" }
-      ],
-      "correctOptionId": "false",
-      "explanation": "Correct. Computers follow instructions exactly as written. They don't guess what you meant."
-    },
-    {
-      "id": "1b-q2",
-      "type": "multiple-choice",
-      "question": "Your robot instructions say: \"1. Pour the juice. 2. Open the bottle.\" What happens?",
-      "options": [
-        { "id": "a", "text": "The robot pours the juice successfully" },
-        { "id": "b", "text": "The robot opens the bottle first because it's smart" },
-        { "id": "c", "text": "The robot tries to pour from a closed bottle" },
-        { "id": "d", "text": "The robot asks you to explain" }
-      ],
-      "correctOptionId": "c",
-      "explanation": "The robot follows the instructions in order. Since the bottle wasn't opened yet, it tries to pour from a closed bottle."
-    },
-    {
-      "id": "1b-q3",
-      "type": "multiple-choice",
-      "question": "What is a bug in a program?",
-      "options": [
-        { "id": "a", "text": "A real insect inside a computer" },
-        { "id": "b", "text": "A mistake in the code that causes problems" },
-        { "id": "c", "text": "A program that is too long" },
-        { "id": "d", "text": "A computer running out of battery" }
-      ],
-      "correctOptionId": "b",
-      "explanation": "A bug is a mistake in a program that makes it behave in a way the programmer didn't expect."
-    },
-    {
-      "id": "1b-q4",
-      "type": "multiple-choice",
-      "question": "Why are computers good at repetition?",
-      "options": [
-        { "id": "a", "text": "They never get bored or tired of repeating steps" },
-        { "id": "b", "text": "They like doing homework" },
-        { "id": "c", "text": "They can guess missing instructions" },
-        { "id": "d", "text": "They understand human emotions" }
-      ],
-      "correctOptionId": "a",
-      "explanation": "Computers can repeat instructions extremely quickly and accurately without getting tired."
-    },
-    {
-      "id": "1b-q5",
-      "type": "multiple-choice",
-      "question": "What is an algorithm?",
-      "options": [
-        { "id": "a", "text": "A type of computer chip" },
-        { "id": "b", "text": "A programming language" },
-        { "id": "c", "text": "A precise, step-by-step plan for solving a problem" },
-        { "id": "d", "text": "A kind of bug" }
-      ],
-      "correctOptionId": "c",
-      "explanation": "An algorithm is a clear plan for solving a problem step by step."
+      "body": "An algorithm is a precise, step-by-step plan for solving a problem.\n\nImagine Kai wants to find the tallest kid in a line of five. Here's the algorithm:\n\n  1. Look at the first kid — assume they're the tallest so far\n  2. Compare each next kid to \"the tallest so far\"\n  3. If they're taller, remember the new tallest\n  4. When you reach the end of the line, you've found the tallest\n\nProgrammers solve problems the same way: think through a clear plan, step by step, before writing code."
     }
   ]
 }

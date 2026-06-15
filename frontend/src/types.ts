@@ -17,7 +17,7 @@ export type ModuleType = 'reading' | 'coding'
  */
 export type LessonGoal = 'concept' | 'guided-practice' | 'open-practice' | 'project'
 
-export type ContentCardType = 'text' | 'callout' | 'code'
+export type ContentCardType = 'text' | 'callout' | 'code' | 'puzzle' | 'runner'
 
 export type ContentCard = {
   id: string
@@ -30,6 +30,10 @@ export type ContentCard = {
   codeBlock?: string
   /** Optional text rendered below the codeBlock. */
   note?: string
+  /** Interactive multiple-choice prompt rendered inline. Required when type === 'puzzle'. */
+  puzzle?: QuizQuestion
+  /** Python snippet shown with a Run button. Required when type === 'runner'. */
+  runnerCode?: string
 }
 
 export type QuizOption = {
