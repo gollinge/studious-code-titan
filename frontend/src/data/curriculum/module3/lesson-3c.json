@@ -1,40 +1,44 @@
 {
   "id": "module3-3c",
   "moduleId": "module3",
-  "title": "3c \u2014 More Than One Choice",
+  "title": "More Than One Choice",
   "type": "coding",
   "goal": "guided-practice",
   "content": [
     {
       "id": "c1",
       "type": "text",
-      "title": "What Happens When the if Is False?",
-      "summary": "else runs when the if condition is false \u2014 it's the fallback path.",
-      "body": "In the last lesson, when the player typed something that didn't match, the program just went silent. That works sometimes \u2014 but usually you want to say something either way. That's what else is for. else runs when the if condition is false."
+      "title": "What Happens When the `if` Is False?",
+      "summary": "`else` runs when the `if` condition is false \u2014 it's the fallback path.",
+      "body": "In the last lesson, when the player typed something that didn't match, the program just went silent. That works sometimes \u2014 but usually you want to say something either way. That's what `else` is for. `else` runs when the `if` condition is false."
     },
     {
       "id": "c2",
       "type": "code",
-      "title": "if / else: Two Paths",
-      "summary": "if handles the \"yes\" path; else handles everything else.",
-      "body": "pet = input(\"Do you have a pet? \")\n\nif pet == \"yes\":\n    print(\"Pets are amazing!\")\nelse:\n    print(\"Maybe you'll get one someday!\")\n\nNow the program always has something to say. One path for \"yes\", one path for everything else. The player never gets silence."
+      "title": "`if` / `else`: Two Paths",
+      "summary": "`if` handles the \"yes\" path; `else` handles everything else.",
+      "body": "Two paths, one program:",
+      "codeBlock": "pet = input(\"Do you have a pet? \")\n\nif pet == \"yes\":\n    print(\"Pets are amazing!\")\nelse:\n    print(\"Maybe you'll get one someday!\")",
+      "note": "Now the program always has something to say. One path for `\"yes\"`, one path for everything else. The player never gets silence."
     },
     {
       "id": "c3",
       "type": "callout",
-      "title": "else Has No Condition",
-      "summary": "else doesn't check anything \u2014 it just runs when nothing above matched.",
-      "body": "Notice that else doesn't have a condition after it \u2014 just a colon. It's the \"catch-all\" \u2014 it runs whenever the if was false. You can only have one else per if, and it always goes at the end."
+      "title": "`else` Has No Condition",
+      "summary": "`else` doesn't check anything \u2014 it just runs when nothing above matched.",
+      "body": "Notice that `else` doesn't have a condition after it \u2014 just a colon. It's the \"catch-all\" \u2014 it runs whenever the `if` was false. You can only have one `else` per `if`, and it always goes at the end."
     },
     {
       "id": "c4",
-      "type": "text",
+      "type": "code",
       "title": "Story Branches",
-      "summary": "if/else is the engine behind choose-your-own-adventure stories.",
-      "body": "Every choose-your-own-adventure story is secretly just a bunch of if/else statements! One choice sends you down one path, the other choice sends you down another.\n\ndoor = input(\"Choose a door \u2014 left or right? \")\n\nif door == \"left\":\n    print(\"You find a treasure chest!\")\nelse:\n    print(\"A friendly dragon waves hello.\")\n\nYou're writing a game engine now. \ud83c\udfae"
+      "summary": "`if`/`else` is the engine behind choose-your-own-adventure stories.",
+      "body": "Every choose-your-own-adventure story is secretly just a bunch of `if`/`else` statements! One choice sends you down one path, the other choice sends you down another.",
+      "codeBlock": "door = input(\"Choose a door \u2014 left or right? \")\n\nif door == \"left\":\n    print(\"You find a treasure chest!\")\nelse:\n    print(\"A friendly dragon waves hello.\")",
+      "note": "You're writing a game engine now. \ud83c\udfae"
     }
   ],
-  "editorPrompt": "Write an if/else so the program always has something to say.",
+  "editorPrompt": "Write an `if`/`else` so the program always has something to say.",
   "starterCode": "pet = input(\"Do you have a pet? \")\n\nif pet == \"yes\":\n    print(\"Pets are amazing!\")\nelse:\n    print(\"Maybe you'll get one someday!\")\n",
   "progressiveHints": [
     "# Starter code \u2014 try typing 'yes' and then try something else!\npet = input(\"Do you have a pet? \")\n\nif pet == \"yes\":\n    print(\"Pets are amazing!\")\nelse:\n    print(\"Maybe you'll get one someday!\")",
@@ -42,5 +46,5 @@
     "answer = input(\"Do you like pizza? \")\n\nif answer == \"yes\":\n    print(\"Great taste!\")\nelse:\n    print(\"More pizza for me!\")",
     "door = input(\"Choose a door \u2014 left or right? \")\n\nif door == \"left\":\n    print(\"You find a treasure chest full of gold!\")\nelse:\n    print(\"A dragon appears... and offers you a cookie.\")"
   ],
-  "challenge": "\ud83d\ude80 Dive Deeper: Write a two-path mini adventure. Ask the player to choose between two options (a forest or a castle, a spaceship or a submarine \u2014 your choice!). Write a different story outcome for each path with at least 2 print() lines each."
+  "challenge": "\ud83d\ude80 Dive Deeper: Write a two-path mini adventure. Ask the player to choose between two options (a forest or a castle, a spaceship or a submarine \u2014 your choice!). Write a different story outcome for each path with at least 2 `print()` lines each."
 }

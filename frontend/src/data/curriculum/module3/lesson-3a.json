@@ -1,7 +1,7 @@
 {
   "id": "module3-3a",
   "moduleId": "module3",
-  "title": "3a \u2014 Talking to the Player",
+  "title": "Talking to the Player",
   "type": "coding",
   "goal": "concept",
   "content": [
@@ -10,31 +10,35 @@
       "type": "text",
       "title": "Your Program Can Ask Questions",
       "summary": "input() pauses the program and waits for the player to type something.",
-      "body": "So far your programs have just printed things. But what if your program could ask a question and wait for the player to answer? That's exactly what input() does. It pauses the program and waits for whoever is running it to type something."
+      "body": "So far your programs have just printed things. But what if your program could ask a question and wait for the player to answer? That's exactly what `input()` does. It pauses the program and waits for whoever is running it to type something."
     },
     {
       "id": "c2",
       "type": "code",
-      "title": "Using input()",
+      "title": "Using `input()`",
       "summary": "Put your question in quotes inside input(). Whatever the player types comes back as the answer.",
-      "body": "You put your question inside the quotes, and Python will display it and wait. When the player types their answer and presses Enter, Python hands you back whatever they typed.\n\nname = input(\"What is your name? \")\nprint(\"Welcome, \" + name)\n\nThe answer gets stored in a variable \u2014 just like you learned in Module 2!"
+      "body": "You put your question inside the quotes, and Python will display it and wait. When the player types their answer and presses Enter, Python hands you back whatever they typed.",
+      "codeBlock": "name = input(\"What is your name? \")\nprint(\"Welcome, \" + name)",
+      "note": "The answer gets stored in a variable \u2014 just like you learned in Module 2!"
     },
     {
       "id": "c3",
       "type": "callout",
       "title": "Joining Text Together",
       "summary": "Use + to stick pieces of text together \u2014 called string concatenation.",
-      "body": "When you write \"Welcome, \" + name, Python sticks the two pieces of text together. This is called concatenation (say: con-CAT-en-AY-shun). It's just a fancy word for \"gluing strings end-to-end.\"\n\nTip: make sure there's a space before the closing quote so words don't run together."
+      "body": "When you write `\"Welcome, \" + name`, Python sticks the two pieces of text together. This is called concatenation *(say it: con-CAT-en-AY-shun)* \u2014 a fancy word for \"gluing strings end-to-end.\"\n\n**Tip:** make sure there's a space before the closing quote so words don't run together."
     },
     {
       "id": "c4",
       "type": "code",
       "title": "Try It: Ask Your Own Question",
       "summary": "Every input() stores a different answer in a different variable.",
-      "body": "name = input(\"What is your name? \")\nfood = input(\"Favorite food? \")\nprint(name + \" loves \" + food)\n\nRun it and type your answers! Try changing the questions to ask about a favorite game, pet, or colour."
+      "body": "Every `input()` stores a different answer in a different variable.",
+      "codeBlock": "name = input(\"What is your name? \")\nfood = input(\"Favorite food? \")\nprint(name + \" loves \" + food)",
+      "note": "Run it and type your answers! Try changing the questions to ask about a favorite game, pet, or color."
     }
   ],
-  "editorPrompt": "Ask the player a question, then use their answer in a print().",
+  "editorPrompt": "Ask the player a question, then use their answer in a `print()`.",
   "starterCode": "name = input(\"What is your name? \")\nprint(\"Welcome, \" + name)\n",
   "progressiveHints": [
     "# Starter code \u2014 run it and type your name!\nname = input(\"What is your name? \")\nprint(\"Welcome, \" + name)",
@@ -42,5 +46,5 @@
     "name = input(\"What is your name? \")\nprint(\"Hi \" + name + \"!\")",
     "name = input(\"What is your name? \")\nfood = input(\"Favorite food? \")\nprint(name + \" loves \" + food + \"!\")"
   ],
-  "challenge": "\ud83d\ude80 Dive Deeper: Build a Player Setup screen. Ask for the player's name, their hero title (like \"wizard\" or \"knight\"), and their special power. Then print a dramatic introduction: \"Welcome, [name] the [title]! Your power is [power]!\""
+  "challenge": "\ud83d\ude80 Dive Deeper: Build a Player Setup screen. Ask for the player's name, their hero title (like `\"wizard\"` or `\"knight\"`), and their special power. Then `print()` a dramatic introduction: `\"Welcome, [name] the [title]! Your power is [power]!\"`"
 }
