@@ -1,7 +1,7 @@
 {
   "id": "module5-5e",
   "moduleId": "module5",
-  "title": "Organising Bigger Programs",
+  "title": "Organizing Bigger Programs",
   "type": "coding",
   "goal": "open-practice",
   "summary": "Break a longer program into named scenes — each scene is its own function.",
@@ -11,37 +11,41 @@
       "type": "text",
       "title": "Programs Get Long",
       "summary": "As programs grow, it becomes hard to find things. Functions are the solution: one function, one job.",
-      "body": "When programs get long, they get hard to read. You scroll up and down trying to remember where things happen.\n\nFunctions solve this by giving every section a name:\n\n• intro() — the opening\n• choose_path() — the decision\n• battle() — the fight\n• ending() — the finale\n\nNow the program reads like a list of chapters."
+      "body": "When programs get long, they get hard to read. You scroll up and down trying to remember where things happen.\n\nFunctions solve this by giving every section a name:\n\n• `intro()` — the opening\n• `choose_path()` — the decision\n• `battle()` — the fight\n• `ending()` — the finale\n\nNow the program reads like a list of chapters."
     },
     {
       "id": "c2",
       "type": "code",
       "title": "A Program Made of Scenes",
       "summary": "Define one function per scene. At the bottom, call them in story order.",
-      "body": "def intro():\n    print(\"Welcome to the dungeon.\")\n    print(\"A dark passage lies ahead.\")\n\ndef battle():\n    print(\"A skeleton rattles towards you!\")\n    print(\"You raise your shield.\")\n    print(\"Victory!\")\n\ndef ending():\n    print(\"You escape the dungeon.\")\n    print(\"The sun feels warm.\")\n\nintro()\nbattle()\nending()\n\nAt the very bottom, three lines tell the whole story."
+      "body": "Notice the shape: definitions at the top, the actual story at the very bottom.",
+      "codeBlock": "def intro():\n    print(\"Welcome to the dungeon.\")\n    print(\"A dark passage lies ahead.\")\n\ndef battle():\n    print(\"A skeleton rattles towards you!\")\n    print(\"You raise your shield.\")\n    print(\"Victory!\")\n\ndef ending():\n    print(\"You escape the dungeon.\")\n    print(\"The sun feels warm.\")\n\nintro()\nbattle()\nending()",
+      "note": "At the very bottom, three lines tell the whole story."
     },
     {
       "id": "c3",
       "type": "text",
       "title": "One Function, One Job",
       "summary": "Each function should do exactly one thing. If a function does three unrelated things, split it.",
-      "body": "A good rule: each function should do one clear job.\n\nIf battle() also prints the shop inventory and the ending message, it is doing too much.\n\nBreak it apart:\n• battle() — just the fight\n• show_shop() — just the shop\n• ending() — just the finale\n\nSmaller functions are easier to fix, easier to test, and easier to reuse."
+      "body": "A good rule: **each function should do one clear job.**\n\nIf `battle()` also prints the shop inventory and the ending message, it is doing too much.\n\nBreak it apart:\n• `battle()` — just the fight\n• `show_shop()` — just the shop\n• `ending()` — just the finale\n\nSmaller functions are easier to fix, easier to test, and easier to reuse."
     },
     {
       "id": "c4",
-      "type": "callout",
+      "type": "code",
       "title": "Reading the Program at a Glance",
       "summary": "The bottom of the file should read like a story outline — just function calls in order.",
-      "body": "When your program is well-organised, the bottom few lines tell the whole story:\n\nintro()\nchoose_weapon()\nbattle()\nlevel_up()\nending()\n\nAnyone reading this knows exactly what happens, in what order, without reading a single detail. That is good code design."
+      "body": "When your program is well-organized, the bottom few lines tell the whole story:",
+      "codeBlock": "intro()\nchoose_weapon()\nbattle()\nlevel_up()\nending()",
+      "note": "Anyone reading this knows exactly what happens, in what order, without reading a single detail. That is good code design."
     }
   ],
-  "editorPrompt": "Build a 3-scene mini story: write intro(), middle(), and ending() functions, each with 2–3 print lines. Call all three at the bottom in order.",
+  "editorPrompt": "Build a 3-scene mini story: write `intro()`, `middle()`, and `ending()` functions, each with 2–3 `print` lines. Call all three at the bottom in order.",
   "starterCode": "# A mini story in three scenes\ndef intro():\n    pass\n\ndef middle():\n    pass\n\ndef ending():\n    pass\n\n# Tell the story\nintro()\nmiddle()\nending()\n",
   "progressiveHints": [
-    "Replace each pass with 2–3 print lines that fit that scene of the story.",
-    "Keep each function focused on just its scene — don't put battle details in intro().",
+    "Replace each `pass` with 2–3 `print` lines that fit that scene of the story.",
+    "Keep each function focused on just its scene — don't put battle details in `intro()`.",
     "The three calls at the bottom are already there — just make sure your functions are filled in.",
-    "Bonus: give your middle() function a parameter, like middle(enemy), and pass a monster name when you call it."
+    "Bonus: give your `middle()` function a parameter, like `middle(enemy)`, and pass a monster name when you call it."
   ],
-  "challenge": "Add a fourth function called plot_twist() with a surprise reveal. Insert it between middle() and ending() in the story calls at the bottom."
+  "challenge": "🚀 Dive Deeper: Add a fourth function called `plot_twist()` with a surprise reveal. Insert it between `middle()` and `ending()` in the story calls at the bottom."
 }

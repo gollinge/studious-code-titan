@@ -10,38 +10,39 @@
       "id": "c1",
       "type": "text",
       "title": "You Have Everything You Need",
-      "summary": "Variables, input, if/else, loops, and functions — combined, they can build a real game.",
-      "body": "Here is every tool you have now:\n\n• Variables — remember information\n• input() — ask the player questions\n• if / elif / else — make decisions\n• for loops — repeat actions\n• Functions — reusable named scenes\n\nA text adventure game uses all five. The functions become the scenes; the loop drives the game; conditions branch the story."
+      "summary": "Variables, `input`, `if`/`else`, loops, and functions — combined, they can build a real game.",
+      "body": "Here is every tool you have now:\n\n• Variables — remember information\n• `input()` — ask the player questions\n• `if` / `elif` / `else` — make decisions\n• `for` loops — repeat actions\n• Functions — reusable named scenes\n\nA text adventure game uses all five. The functions become the scenes; the loop drives the game; conditions branch the story."
     },
     {
       "id": "c2",
       "type": "code",
       "title": "A Starting Skeleton",
       "summary": "Define your scenes as functions, then call them in story order at the bottom.",
-      "body": "Here is a shape to build from:\n\ndef intro():\n    print(\"Welcome to the adventure!\")\n\ndef choose_weapon():\n    weapon = input(\"Pick a weapon — sword or staff: \")\n    if weapon == \"sword\":\n        print(\"You grab the gleaming sword.\")\n    else:\n        print(\"You raise your magic staff.\")\n\ndef battle():\n    for i in range(1, 4):\n        print(\"Round\", i, \"— you strike!\")\n    print(\"The enemy falls.\")\n\ndef ending():\n    print(\"You win! The dungeon is clear.\")\n\nintro()\nchoose_weapon()\nbattle()\nending()"
+      "body": "Here is a shape to build from — definitions at the top, story at the bottom:",
+      "codeBlock": "def intro():\n    print(\"Welcome to the adventure!\")\n\ndef choose_weapon():\n    weapon = input(\"Pick a weapon — sword or staff: \")\n    if weapon == \"sword\":\n        print(\"You grab the gleaming sword.\")\n    else:\n        print(\"You raise your magic staff.\")\n\ndef battle():\n    for i in range(1, 4):\n        print(\"Round\", i, \"— you strike!\")\n    print(\"The enemy falls.\")\n\ndef ending():\n    print(\"You win! The dungeon is clear.\")\n\nintro()\nchoose_weapon()\nbattle()\nending()"
     },
     {
       "id": "c3",
       "type": "text",
       "title": "Project Requirements",
-      "summary": "Your game must use at least 3 functions, 1 loop, 1 if/else, and 1 input().",
-      "body": "Your adventure game must include:\n\n- At least 3 functions (scenes or actions)\n- At least 1 for loop (a battle, a search, a countdown)\n- At least 1 if/else (a choice that changes what happens)\n- At least 1 input() (ask the player something)\n- A clear beginning, middle, and end\n\nThink about your story first. What is the setting? What is the challenge? How does it end?"
+      "summary": "Your game must use at least 3 functions, 1 loop, 1 `if`/`else`, and 1 `input()`.",
+      "body": "Your adventure game must include:\n\n• At least **3 functions** (scenes or actions)\n• At least **1 `for` loop** (a battle, a search, a countdown)\n• At least **1 `if`/`else`** (a choice that changes what happens)\n• At least **1 `input()`** (ask the player something)\n• A clear beginning, middle, and end\n\nThink about your story first. What is the setting? What is the challenge? How does it end?"
     },
     {
       "id": "c4",
       "type": "callout",
       "title": "Plan Before You Code",
       "summary": "Write your scene names on paper first — then build one function at a time.",
-      "body": "Before writing a single line, answer these:\n\n• What are my 3 scenes? (name each one)\n• Where does the player make a choice?\n• What does the loop repeat? (battle rounds? exploration steps?)\n• What question does input() ask?\n• What is the final message?\n\nWrite the function names at the bottom first, then fill each one in from top to bottom."
+      "body": "Before writing a single line, answer these:\n\n• What are my 3 scenes? (name each one)\n• Where does the player make a choice?\n• What does the loop repeat? (battle rounds? exploration steps?)\n• What question does `input()` ask?\n• What is the final message?\n\nWrite the function names at the bottom first, then fill each one in from top to bottom.\n\n**Not into dungeons?** The same shape works for any story: a cooking show with secret-ingredient rounds, a sports match with multiple periods, a school day with class-by-class choices, an alien-first-contact mission, an escape room with locked doors. Swap the framing, keep the structure."
     }
   ],
-  "editorPrompt": "Build your mini adventure game. At least 3 functions, 1 loop, 1 if/else, and 1 input(). Start by writing the function names and the calls at the bottom — then fill each function in.",
+  "editorPrompt": "Build your mini adventure game. At least 3 functions, 1 loop, 1 `if`/`else`, and 1 `input()`. Start by writing the function names and the calls at the bottom — then fill each function in.",
   "starterCode": "# Mini Adventure Game — Final Project\n# Plan your scenes first:\n#   - What are your 3 functions?\n#   - Where is the player choice (if/else)?\n#   - What does the loop repeat?\n#   - What does input() ask?\n\ndef intro():\n    pass\n\ndef challenge():\n    pass\n\ndef ending():\n    pass\n\n# Call your scenes in order\nintro()\nchallenge()\nending()\n",
   "progressiveHints": [
-    "Start with intro(): just 2–3 print lines setting the scene. Replace pass and call it to make sure it works.",
-    "Build challenge() next. Add an input() for a player decision and an if/else that branches on their answer.",
-    "Add a for loop inside challenge() — battle rounds, search steps, or a countdown.",
-    "Fill in ending() last. Make it feel like a proper conclusion — reference what the player did if you can."
+    "Start with `intro()`: just 2–3 `print` lines setting the scene. Replace `pass` and run to make sure it works.",
+    "Build `challenge()` next. Add an `input()` for a player decision and an `if`/`else` that branches on their answer.",
+    "Add a `for` loop inside `challenge()` — battle rounds, search steps, or a countdown.",
+    "Fill in `ending()` last. Make it feel like a proper conclusion — reference what the player did if you can."
   ],
-  "challenge": "Add a score variable that increases based on the player's choices and how the battle goes. Print the final score in ending()."
+  "challenge": "🚀 Dive Deeper: Add a `score` variable that increases based on the player's choices and how the battle goes. Print the final score in `ending()`."
 }

@@ -8,40 +8,85 @@
   "content": [
     {
       "id": "c1",
-      "type": "text",
+      "type": "code",
       "title": "The Problem with Fixed Functions",
       "summary": "A function that always prints the same thing isn't very flexible. Parameters fix that.",
-      "body": "So far, greet() always prints the same message. But what if you have three different heroes?\n\ndef greet():\n    print(\"Welcome, hero!\")\n\ngreet()   <- always says \"hero\"\ngreet()   <- always says \"hero\"\n\nYou would have to write a different function for each name. That's the old problem again."
+      "body": "So far, `greet()` always prints the same message. But what if you have three different heroes?",
+      "codeBlock": "def greet():\n    print(\"Welcome, hero!\")\n\ngreet()   # always says \"hero\"\ngreet()   # always says \"hero\"",
+      "note": "You would have to write a different function for each name. That's the old problem again."
     },
     {
       "id": "c2",
       "type": "code",
       "title": "Giving Functions an Input",
-      "summary": "Put a name inside the parentheses of def — that becomes a variable the function can use.",
-      "body": "You can give a function a piece of information when you call it:\n\ndef greet(name):\n    print(\"Welcome,\", name)\n\ngreet(\"Kai\")\ngreet(\"Mira\")\ngreet(\"Leo\")\n\nOutput:\nWelcome, Kai\nWelcome, Mira\nWelcome, Leo\n\nname is called a parameter. When you call greet(\"Kai\"), name becomes \"Kai\" inside that function."
+      "summary": "Put a name inside the parentheses of `def` — that becomes a variable the function can use.",
+      "body": "You can give a function a piece of information when you call it:",
+      "codeBlock": "def greet(name):\n    print(\"Welcome,\", name)\n\ngreet(\"Kai\")\ngreet(\"Maya\")\ngreet(\"Leo\")",
+      "note": "**Output:**\n```\nWelcome, Kai\nWelcome, Maya\nWelcome, Leo\n```\n\n`name` is called a **parameter**. When you call `greet(\"Kai\")`, `name` becomes `\"Kai\"` inside that function."
     },
     {
       "id": "c3",
       "type": "code",
       "title": "Parameters Are Like Blanks to Fill In",
       "summary": "Think of the parameter as a blank slot — whatever you pass in fills that slot for that call.",
-      "body": "Think of it like a template:\n\ndef announce(spell):\n    print(\"The wizard casts:\", spell)\n    print(\"A burst of light fills the room!\")\n\nannounce(\"Fireball\")\nannounce(\"Ice Storm\")\n\nOutput:\nThe wizard casts: Fireball\nA burst of light fills the room!\nThe wizard casts: Ice Storm\nA burst of light fills the room!\n\nOnly the first line changes — the rest of the function stays the same."
+      "body": "Think of it like a template — only the parameter changes; the rest stays the same:",
+      "codeBlock": "def announce(spell):\n    print(\"The wizard casts:\", spell)\n    print(\"A burst of light fills the room!\")\n\nannounce(\"Fireball\")\nannounce(\"Ice Storm\")",
+      "note": "**Output:**\n```\nThe wizard casts: Fireball\nA burst of light fills the room!\nThe wizard casts: Ice Storm\nA burst of light fills the room!\n```\n\nOnly the first line changes — the rest of the function stays the same."
     },
     {
       "id": "c4",
-      "type": "callout",
+      "type": "code",
       "title": "One Name, Two Places",
-      "summary": "The parameter name appears in def and is used inside the body — those two places are connected.",
-      "body": "The word in the parentheses at definition links to uses inside the body:\n\ndef pet(animal):        <- \"animal\" is defined here\n    print(\"You pet the\", animal)  <- used here\n    print(\"It seems happy!\")\n\npet(\"cat\")\npet(\"dragon\")\n\nYou choose the parameter name — use something that describes what gets passed in."
+      "summary": "The parameter name appears in `def` and is used inside the body — those two places are connected.",
+      "body": "The word in the parentheses at definition links to its uses inside the body:",
+      "codeBlock": "def pet(animal):                  # \"animal\" is defined here\n    print(\"You pet the\", animal)  # used here\n    print(\"It seems happy!\")\n\npet(\"cat\")\npet(\"dragon\")",
+      "note": "You choose the parameter name — use something that describes what gets passed in."
+    },
+    {
+      "id": "c5-puzzle",
+      "type": "puzzle",
+      "title": "What does this print?",
+      "summary": "When you call a function, the value you pass replaces the parameter inside the body.",
+      "body": "What does this code print?\n\n```\ndef shout(word):\n    print(word, \"!!!\")\n\nshout(\"Hello\")\n```",
+      "puzzle": {
+        "id": "5c-puzzle-1",
+        "type": "multiple-choice",
+        "question": "",
+        "options": [
+          { "id": "a", "text": "word !!!" },
+          { "id": "b", "text": "Hello !!!" },
+          { "id": "c", "text": "Hello!!!" },
+          { "id": "d", "text": "An error" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "When you call `shout(\"Hello\")`, the parameter `word` becomes `\"Hello\"` inside the function. So `print(word, \"!!!\")` becomes `print(\"Hello\", \"!!!\")` — and the comma form of `print()` puts a space between them. Result: `Hello !!!`"
+      }
     }
   ],
-  "editorPrompt": "Write a function called announce(hero) that prints a two-line announcement using the hero's name. Call it for three different hero names.",
-  "starterCode": "# A function that announces a hero\ndef announce(hero):\n    pass  # print two lines using hero\n\n# Call it three times with different names\n",
-  "progressiveHints": [
-    "Replace pass with print lines. Use the word hero inside them: print(\"Hear ye! The hero\", hero, \"has arrived!\")",
-    "Add a second print line for drama: print(hero, \"draws their weapon!\")",
-    "Call the function three times with different strings: announce(\"Zara\"), announce(\"Rex\"), announce(\"Nova\")",
-    "Answer shape:\ndef announce(hero):\n    print(\"Hear ye!\", hero, \"has arrived!\")\n    print(hero, \"draws their weapon!\")\n\nannounce(\"Zara\")\nannounce(\"Rex\")\nannounce(\"Nova\")"
+  "steps": [
+    {
+      "instruction": "Step 1: Inside `announce(hero)`, replace `pass` with one indented `print()` line that uses `hero`. For example: `print(\"Hear ye!\", hero, \"has arrived!\")`. Save and run — nothing should print yet (no calls).",
+      "starterCode": "# A function that announces a hero\ndef announce(hero):\n    pass  # print lines using hero\n\n# Call it three times with different names\n"
+    },
+    {
+      "instruction": "Step 2: Add a second indented `print()` line inside `announce()` — something dramatic that also uses `hero`. For example: `print(hero, \"draws their weapon!\")`."
+    },
+    {
+      "instruction": "Step 3: At the bottom (no indent), add one call: `announce(\"Maya\")`. Run it. You should see both lines printed, with `Maya` in place of `hero`."
+    },
+    {
+      "instruction": "Step 4: Add two more calls with different names — for example `announce(\"Kai\")` and `announce(\"Sam\")`. Run it. The same two lines should appear three times, each with a different name."
+    }
   ],
-  "challenge": "Add a second parameter: announce(hero, weapon). Update the print lines to include both. Call it with three different hero+weapon combos."
+  "bonusSteps": [
+    {
+      "instruction": "Bonus: Add a **second** parameter so the function becomes `announce(hero, weapon)`. Use both inside the body — for example: `print(hero, \"wields the\", weapon, \"!\")`. Call it with three different hero+weapon combos."
+    }
+  ],
+  "progressiveHints": [
+    "Replace `pass` with `print()` lines that use the word `hero` — for example: `print(\"Hear ye! The hero\", hero, \"has arrived!\")`",
+    "Add a second `print` line for drama: `print(hero, \"draws their weapon!\")`",
+    "Call the function three times with different strings: `announce(\"Maya\")`, `announce(\"Kai\")`, `announce(\"Sam\")`",
+    "Answer shape:\ndef announce(hero):\n    print(\"Hear ye!\", hero, \"has arrived!\")\n    print(hero, \"draws their weapon!\")\n\nannounce(\"Maya\")\nannounce(\"Kai\")\nannounce(\"Sam\")"
+  ]
 }

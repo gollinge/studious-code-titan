@@ -59,13 +59,24 @@
       "note": "The loop body is at 4 spaces. The `if`/`else` bodies are at 8 spaces."
     }
   ],
-  "editorPrompt": "Simulate a dungeon run: loop through 6 rooms. If the room number is `4`, print `\"Boss fight!\"`. Otherwise, print `\"Room X — clear.\"` (use `i` for X).",
-  "starterCode": "# Walk through 6 dungeon rooms\n# Room 4 has the boss!\n",
-  "progressiveHints": [
-    "Use `for i in range(1, 7):` so rooms are numbered 1 through 6.",
-    "Inside the loop, write `if i == 4:` then print the boss message.",
-    "Add an `else:` that prints `\"Room\", i, \"— clear.\"`",
-    "Answer:\nfor i in range(1, 7):\n    if i == 4:\n        print(\"Boss fight!\")\n    else:\n        print(\"Room\", i, \"— clear.\")"
+  "steps": [
+    {
+      "instruction": "Step 1: Loop through 6 rooms numbered 1 through 6. Use `range(1, 7)`. Inside the loop, print something like `\"Room\", i, \"— clear.\"` for every room.",
+      "starterCode": "# Walk through 6 dungeon rooms\n# Room 4 has the boss!\n"
+    },
+    {
+      "instruction": "Step 2: Add an `if`/`else` **inside** the loop so that when the room is `4`, you print `\"Boss fight!\"` instead. All other rooms keep their normal message. Remember: the `if` body needs to be indented 8 spaces (4 for the loop, 4 more for the `if`)."
+    }
   ],
-  "challenge": "🚀 Dive Deeper: Add a second special room: if the room number is `2`, print a `\"Hidden chest!\"` message. Use `elif` (from the lesson) to handle both special rooms."
+  "bonusSteps": [
+    {
+      "instruction": "Bonus: Add a second special room. If the room is `2`, print `\"Hidden chest!\"`. Use `elif` (from the lesson) so the `if`, the `elif`, and the `else` all chain together."
+    }
+  ],
+  "progressiveHints": [
+    "Step 1: Use `for i in range(1, 7):` so rooms are numbered 1 through 6.",
+    "Step 1 finished:\nfor i in range(1, 7):\n    print(\"Room\", i, \"— clear.\")",
+    "Step 2: Add `if i == 4:` inside the loop, with `print(\"Boss fight!\")` indented twice. Then put the existing print in an `else:`.",
+    "Both steps:\nfor i in range(1, 7):\n    if i == 4:\n        print(\"Boss fight!\")\n    else:\n        print(\"Room\", i, \"— clear.\")"
+  ]
 }

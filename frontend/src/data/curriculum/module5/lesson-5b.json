@@ -11,37 +11,69 @@
       "type": "code",
       "title": "Multiple Lines Inside a Function",
       "summary": "Every indented line inside the function runs in order, top to bottom, each time you call it.",
-      "body": "A function can do as many things as you like. Every indented line is part of it:\n\ndef open_treasure():\n    print(\"The chest creaks open...\")\n    print(\"A golden light spills out.\")\n    print(\"You found 50 gold!\")\n\nopen_treasure()\n\nPython runs all three print lines in order, every time you call open_treasure()."
+      "body": "A function can do as many things as you like. Every indented line is part of it:",
+      "codeBlock": "def open_treasure():\n    print(\"The chest creaks open...\")\n    print(\"A golden light spills out.\")\n    print(\"You found 50 gold!\")\n\nopen_treasure()",
+      "note": "Python runs all three `print` lines in order, every time you call `open_treasure()`."
     },
     {
       "id": "c2",
-      "type": "text",
+      "type": "code",
       "title": "Order Matters",
       "summary": "Lines inside a function run top to bottom, just like normal code — sequence is everything.",
-      "body": "The lines inside a function run in the exact order you write them:\n\ndef enter_shop():\n    print(\"A bell jingles as you enter.\")\n    print(\"The shopkeeper looks up.\")\n    print(\"What would you like to buy?\")\n\nIf you swapped the last two lines, the shopkeeper would speak before looking up. Order tells the story."
+      "body": "The lines inside a function run in the exact order you write them:",
+      "codeBlock": "def enter_shop():\n    print(\"A bell jingles as you enter.\")\n    print(\"The shopkeeper looks up.\")\n    print(\"What would you like to buy?\")",
+      "note": "If you swapped the last two lines, the shopkeeper would speak before looking up. Order tells the story."
     },
     {
       "id": "c3",
-      "type": "callout",
+      "type": "code",
       "title": "Where Does the Function End?",
       "summary": "The function ends when indentation goes back to the left margin.",
-      "body": "Python knows the function is finished when the indent stops:\n\ndef battle():\n    print(\"The enemy charges!\")   <- inside the function\n    print(\"You dodge!\")            <- inside the function\n\nprint(\"Battle over.\")             <- outside the function (no indent)\n\nThe last print runs once, after any calls to battle()."
+      "body": "Python knows the function is finished when the indent stops:",
+      "codeBlock": "def battle():\n    print(\"The enemy charges!\")   # inside the function\n    print(\"You dodge!\")            # inside the function\n\nprint(\"Battle over.\")              # outside the function (no indent)",
+      "note": "The last `print` runs once, after any calls to `battle()`."
     },
     {
       "id": "c4",
       "type": "code",
       "title": "Using Variables Inside Functions",
       "summary": "You can use variables inside a function body just like anywhere else.",
-      "body": "Functions can use variables defined inside them:\n\ndef show_score():\n    score = 100\n    print(\"Current score:\", score)\n\nshow_score()\n\nThe variable score exists while the function runs. Each call to show_score() starts fresh."
+      "body": "Functions can create and use their own variables:",
+      "codeBlock": "def show_score():\n    score = 100\n    print(\"Current score:\", score)\n\nshow_score()",
+      "note": "The variable `score` exists while the function runs. Each call to `show_score()` starts fresh."
+    },
+    {
+      "id": "c5-errors",
+      "type": "callout",
+      "title": "Errors You Might See",
+      "summary": "Three common function errors — and how to spot them.",
+      "body": "Functions add a few new error types to watch for:\n\n• `NameError` — you called a function (like `jump()`) before defining it, or you misspelled the name.\n• `IndentationError` — the lines inside `def` need to be indented 4 spaces.\n• `SyntaxError` — usually a missing `:` after `def name():` or a missing `()` on the function name.\n\nIf Python complains, read the line number it gives you. The fix is almost always small."
     }
   ],
-  "editorPrompt": "Write a function called open_treasure() with at least 3 print lines describing finding treasure. Then write a function called game_over() with 2 lines. Call them both.",
-  "starterCode": "# Define two functions, then call them\ndef open_treasure():\n    pass\n\ndef game_over():\n    pass\n\n# Call both here\n",
-  "progressiveHints": [
-    "Replace each `pass` with 2–3 indented print() lines describing that moment.",
-    "Make sure every line inside the function is indented 4 spaces.",
-    "After both definitions, write open_treasure() and game_over() to call them.",
-    "Answer shape:\ndef open_treasure():\n    print(\"You found a chest!\")\n    print(\"Inside: a magic sword.\")\n\ndef game_over():\n    print(\"Game over.\")\n    print(\"Thanks for playing!\")\n\nopen_treasure()\ngame_over()"
+  "steps": [
+    {
+      "instruction": "Step 1: Replace the `pass` inside `open_treasure()` with 2–3 indented `print()` lines describing finding treasure (you found a chest, what's inside, what happens). Run the code — nothing should appear yet, because no one has *called* the function.",
+      "starterCode": "# Define two functions, then call them\ndef open_treasure():\n    pass\n\ndef game_over():\n    pass\n\n# Call both here\n"
+    },
+    {
+      "instruction": "Step 2: At the bottom (no indent — outside the functions), add the call `open_treasure()`. Run it. Your treasure lines should print."
+    },
+    {
+      "instruction": "Step 3: Now fill in `game_over()` with 2 indented `print()` lines — something like a goodbye message. Run it. Nothing new should appear yet — `game_over()` isn't being called."
+    },
+    {
+      "instruction": "Step 4: Add `game_over()` after `open_treasure()` at the bottom. Run it. You should see all your treasure lines, **then** the game-over lines, in order."
+    }
   ],
-  "challenge": "Add a third function called level_up() that prints a short celebration. Now call them in this order: open_treasure(), level_up(), game_over()."
+  "bonusSteps": [
+    {
+      "instruction": "Bonus: Add a third function called `level_up()` that prints a short celebration. Then call them in this order at the bottom: `open_treasure()`, `level_up()`, `game_over()`."
+    }
+  ],
+  "progressiveHints": [
+    "Replace each `pass` with 2–3 indented `print()` lines describing that moment.",
+    "Make sure every line inside the function is indented 4 spaces.",
+    "After both definitions, write `open_treasure()` and `game_over()` to call them.",
+    "Answer shape:\ndef open_treasure():\n    print(\"You found a chest!\")\n    print(\"Inside: a magic sword.\")\n\ndef game_over():\n    print(\"Game over.\")\n    print(\"Thanks for playing!\")\n\nopen_treasure()\ngame_over()"
+  ]
 }

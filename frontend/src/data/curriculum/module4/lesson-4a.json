@@ -45,31 +45,44 @@
     {
       "id": "c5-puzzle",
       "type": "puzzle",
-      "title": "What does this loop print?",
-      "summary": "Python counts from 0 — `range(N)` gives you 0 up to (but not including) N.",
-      "body": "What will this code print?\n\n```\nfor i in range(3):\n    print(i)\n```",
+      "title": "How many times will this run?",
+      "summary": "The number inside `range()` is how many times the loop repeats.",
+      "body": "How many times will this code print `\"Hi!\"`?\n\n```\nfor i in range(4):\n    print(\"Hi!\")\n```",
       "puzzle": {
         "id": "4a-puzzle-1",
         "type": "multiple-choice",
         "question": "",
         "options": [
-          { "id": "a", "text": "1 2 3" },
-          { "id": "b", "text": "0 1 2" },
-          { "id": "c", "text": "0 1 2 3" },
-          { "id": "d", "text": "1 2 3 4" }
+          { "id": "a", "text": "3 times" },
+          { "id": "b", "text": "4 times" },
+          { "id": "c", "text": "5 times" },
+          { "id": "d", "text": "1 time" }
         ],
         "correctOptionId": "b",
-        "explanation": "Python starts counting at `0`, and `range(3)` stops *before* `3`. So you get `0, 1, 2` — three numbers, but not the numbers you might have expected."
+        "explanation": "`range(4)` tells the loop to repeat **4 times**. The indented `print` runs once for every step."
       }
     }
   ],
-  "editorPrompt": "Make the robot shout your battle cry exactly 6 times using a `for` loop.",
-  "starterCode": "# Change this so it uses a loop instead of copy-paste!\nprint(\"Charge!\")\nprint(\"Charge!\")\nprint(\"Charge!\")\n",
+  "steps": [
+    {
+      "instruction": "Step 1: Replace the three `print(\"Charge!\")` lines with a `for` loop that prints `\"Charge!\"` 3 times. Remember: the line inside the loop must be indented (4 spaces).",
+      "starterCode": "# Change this so it uses a loop instead of copy-paste!\nprint(\"Charge!\")\nprint(\"Charge!\")\nprint(\"Charge!\")\n"
+    },
+    {
+      "instruction": "Step 2: Change the number inside `range()` so the loop shouts exactly **6** times instead of 3."
+    }
+  ],
+  "bonusSteps": [
+    {
+      "instruction": "Bonus: Write a 4-round battle chant. Inside **one** `for` loop, put **three** indented `print()` lines: `\"Are you ready?\"`, then `\"I can't HEAR you!\"`, then `\"CHAARGE!\"`. Run it — you should see the same three-line chant repeat 4 times in a row. (Hint: every line of the loop body needs the same indent.)",
+      "starterCode": "# Bonus: write a 4-round chant with 3 lines per round\n"
+    }
+  ],
   "progressiveHints": [
-    "Start with: `for i in range(6):`",
+    "Start with: `for i in range(3):`",
     "The next line needs to be indented (4 spaces), then write your `print`.",
     "Replace the three `print` lines with just one inside the loop.",
-    "Answer:\nfor i in range(6):\n    print(\"Charge!\")"
-  ],
-  "challenge": "🚀 Dive Deeper: Can you make it shout 20 times? What's the only thing you need to change?"
+    "After step 1:\nfor i in range(3):\n    print(\"Charge!\")",
+    "For step 2, just swap 3 for 6:\nfor i in range(6):\n    print(\"Charge!\")"
+  ]
 }

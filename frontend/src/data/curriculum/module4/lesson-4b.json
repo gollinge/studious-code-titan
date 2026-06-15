@@ -16,6 +16,26 @@
       "note": "**Output:** `0  1  2  3  4`\n\nPython starts counting at `0`, not `1`. So `range(5)` gives you `0, 1, 2, 3, 4` — five numbers, ending one *before* 5."
     },
     {
+      "id": "c1-puzzle",
+      "type": "puzzle",
+      "title": "What does this loop print?",
+      "summary": "`range(N)` gives you `0` up to (but not including) `N`.",
+      "body": "What will this code print?\n\n```\nfor i in range(3):\n    print(i)\n```",
+      "puzzle": {
+        "id": "4b-puzzle-1",
+        "type": "multiple-choice",
+        "question": "",
+        "options": [
+          { "id": "a", "text": "1 2 3" },
+          { "id": "b", "text": "0 1 2" },
+          { "id": "c", "text": "0 1 2 3" },
+          { "id": "d", "text": "1 2 3 4" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Python starts counting at `0`, and `range(3)` stops *before* `3`. So you get `0, 1, 2` — three numbers, but not the numbers you might have expected."
+      }
+    },
+    {
       "id": "c2",
       "type": "code",
       "title": "Choosing Where to Start",
@@ -50,13 +70,25 @@
       "body": "You'll notice we used **commas** here, not `+`:\n\n`print(\"Round\", i, \"— Fight!\")` ✅\n\nThat's because `i` is a number and the rest is text. Python lets you separate them with commas inside `print()`, and it adds spaces for you.\n\nIf you tried `print(\"Round \" + i)`, Python would refuse — you can't `+` text with a number directly. We'll fix that in a later module."
     }
   ],
-  "editorPrompt": "Build a rocket launch countdown: print from 10 down to 1, then print `\"Blast off!\"`.",
-  "starterCode": "# Countdown from 10 to 1, then blast off!\n",
+  "steps": [
+    {
+      "instruction": "Step 1: Write a `for` loop that prints the numbers 10 down to 1. Use `range(10, 0, -1)` — start at 10, stop before 0, step by -1 each time.",
+      "starterCode": "# Countdown from 10 to 1, then blast off!\n"
+    },
+    {
+      "instruction": "Step 2: After the loop, print `\"Blast off!\"` on its own line. This line should **not** be indented — it runs once, after the countdown finishes."
+    }
+  ],
+  "bonusSteps": [
+    {
+      "instruction": "Bonus: After blast off, print the score for each of 5 rounds using a **separate** loop. Use `i` to show the round number."
+    }
+  ],
   "progressiveHints": [
     "Use `range()` with three arguments: start, stop, step.",
     "To count down: `range(10, 0, -1)` — start at 10, stop before 0, step -1.",
-    "`print(i)` inside the loop, then `print(\"Blast off!\")` after the loop (no indent).",
-    "Answer:\nfor i in range(10, 0, -1):\n    print(i)\nprint(\"Blast off!\")"
-  ],
-  "challenge": "🚀 Dive Deeper: After blast off, print the score for each of 5 rounds using a separate loop. Use `i` to show the round number."
+    "Step 1 finished:\nfor i in range(10, 0, -1):\n    print(i)",
+    "Step 2: `print(\"Blast off!\")` goes **after** the loop with no indent.",
+    "Both steps:\nfor i in range(10, 0, -1):\n    print(i)\nprint(\"Blast off!\")"
+  ]
 }

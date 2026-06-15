@@ -41,13 +41,24 @@
       "body": "Pattern ideas to try:\n\n• A staircase of dashes: `\"-\" * i`\n• A triangle of dots: `\".\" * i`\n• A shrinking bar: `\"#\" * (10 - i)`\n• A scoreboard with rows labeled `Round 1`, `Round 2`...\n\nThere is no single right answer — experiment and see what appears!"
     }
   ],
-  "editorPrompt": "Draw a triangle of stars that grows from 1 star on row 1 to 5 stars on row 5.",
-  "starterCode": "# Draw a growing triangle of stars\n# Row 1: *\n# Row 2: **\n# Row 3: ***\n# Row 4: ****\n# Row 5: *****\n",
+  "steps": [
+    {
+      "instruction": "Step 1: Write a `for` loop that runs 5 times. Use `range(1, 6)` so `i` goes from 1 to 5. Inside the loop, just print `i` for now — you should see the numbers 1 through 5.",
+      "starterCode": "# Draw a growing triangle of stars\n# Row 1: *\n# Row 2: **\n# Row 3: ***\n# Row 4: ****\n# Row 5: *****\n"
+    },
+    {
+      "instruction": "Step 2: Now change the loop body from `print(i)` to `print(\"*\" * i)`. Each row should show that many stars."
+    }
+  ],
+  "bonusSteps": [
+    {
+      "instruction": "Bonus: After the growing triangle, add a **second** loop that makes the triangle shrink from 5 stars back to 1. Together they form a diamond shape!"
+    }
+  ],
   "progressiveHints": [
     "Use `range(1, 6)` so `i` goes from 1 to 5.",
-    "Inside the loop, `print(\"*\" * i)` — that repeats `*` exactly `i` times.",
-    "Full loop:\nfor i in range(1, 6):\n    print(\"*\" * i)",
-    "Bonus: can you make it shrink back down again using a second loop?"
-  ],
-  "challenge": "🚀 Dive Deeper: After the growing triangle, add a second loop that makes the triangle shrink from 5 stars back to 1. Together they form a diamond shape!"
+    "Step 1 finished:\nfor i in range(1, 6):\n    print(i)",
+    "Step 2: replace `print(i)` with `print(\"*\" * i)` — repeats `*` exactly `i` times.",
+    "Both steps:\nfor i in range(1, 6):\n    print(\"*\" * i)"
+  ]
 }

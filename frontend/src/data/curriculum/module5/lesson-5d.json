@@ -11,37 +11,57 @@
       "type": "code",
       "title": "The Combination",
       "summary": "Calling a function inside a loop repeats the whole action automatically.",
-      "body": "You know loops repeat code. You know functions are reusable actions. Combine them:\n\ndef jump():\n    print(\"Legs bend...\")\n    print(\"Jump!\")\n    print(\"Landing!\")\n\nfor i in range(3):\n    jump()\n\nOutput:\nLegs bend...\nJump!\nLanding!\nLegs bend...\nJump!\nLanding!\nLegs bend...\nJump!\nLanding!\n\nThree full jump actions — from just two lines of calling code."
+      "body": "You know loops repeat code. You know functions are reusable actions. Combine them:",
+      "codeBlock": "def jump():\n    print(\"Legs bend...\")\n    print(\"Jump!\")\n    print(\"Landing!\")\n\nfor i in range(3):\n    jump()",
+      "note": "**Output:**\n```\nLegs bend...\nJump!\nLanding!\nLegs bend...\nJump!\nLanding!\nLegs bend...\nJump!\nLanding!\n```\n\nThree full jump actions — from just two lines of calling code."
     },
     {
       "id": "c2",
       "type": "code",
       "title": "Passing the Loop Variable",
-      "summary": "Pass i into a function to make each call slightly different.",
-      "body": "You can pass i into the function so each round is labelled:\n\ndef battle_round(round_number):\n    print(\"--- Round\", round_number, \"---\")\n    print(\"You attack!\")\n    print(\"The enemy strikes back.\")\n\nfor i in range(1, 4):\n    battle_round(i)\n\nOutput:\n--- Round 1 ---\nYou attack!\nThe enemy strikes back.\n--- Round 2 ---\n..."
+      "summary": "Pass `i` into a function to make each call slightly different.",
+      "body": "You can pass `i` into the function so each round is labelled:",
+      "codeBlock": "def battle_round(round_number):\n    print(\"--- Round\", round_number, \"---\")\n    print(\"You attack!\")\n    print(\"The enemy strikes back.\")\n\nfor i in range(1, 4):\n    battle_round(i)",
+      "note": "**Output:**\n```\n--- Round 1 ---\nYou attack!\nThe enemy strikes back.\n--- Round 2 ---\n...\n```\n\nEvery iteration passes a different number, so every round looks unique."
     },
     {
       "id": "c3",
       "type": "text",
       "title": "Why This Is Better Than a Big Loop",
       "summary": "If you want to change the battle action, you only update the function — not every loop.",
-      "body": "Imagine the battle action needs to change. Without functions, you'd edit the code inside every loop.\n\nWith functions, you update battle_round() once — and every loop call automatically gets the new version.\n\nThis is called separation of concerns: the loop decides how many times, the function decides what happens."
+      "body": "Imagine the battle action needs to change. Without functions, you'd edit the code inside every loop.\n\nWith functions, you update `battle_round()` once — and every loop call automatically gets the new version.\n\nThis is called **separation of concerns**: the loop decides *how many times*, the function decides *what happens*."
     },
     {
       "id": "c4",
       "type": "code",
       "title": "Multiple Functions in One Loop",
       "summary": "A loop can call several different functions in sequence, building complex repeated scenes.",
-      "body": "A single loop iteration can call several functions:\n\ndef enter_room(n):\n    print(\"You enter room\", n)\n\ndef check_for_enemy():\n    print(\"No enemies here.\")\n\nfor i in range(1, 4):\n    enter_room(i)\n    check_for_enemy()\n\nThis builds a three-room walk-through with almost no repetition in the calling code."
+      "body": "A single loop iteration can call several functions:",
+      "codeBlock": "def enter_room(n):\n    print(\"You enter room\", n)\n\ndef check_for_enemy():\n    print(\"No enemies here.\")\n\nfor i in range(1, 4):\n    enter_room(i)\n    check_for_enemy()",
+      "note": "This builds a three-room walk-through with almost no repetition in the calling code."
     }
   ],
-  "editorPrompt": "Write a function called dance_move(step) that prints two lines describing that step. Then use a loop to call it for steps 1 through 5.",
-  "starterCode": "# A labelled dance move\ndef dance_move(step):\n    pass\n\n# Loop through 5 steps\n",
-  "progressiveHints": [
-    "Replace pass with two print lines. Use the step parameter: print(\"Step\", step, \"— spin!\").",
-    "Add a second line for flair, like print(\"The crowd cheers!\").",
-    "Write for i in range(1, 6): and call dance_move(i) inside it.",
-    "Answer shape:\ndef dance_move(step):\n    print(\"Step\", step, \"— spin!\")\n    print(\"The crowd cheers!\")\n\nfor i in range(1, 6):\n    dance_move(i)"
+  "steps": [
+    {
+      "instruction": "Step 1: Inside `dance_move(step)`, replace `pass` with one indented `print()` line that uses `step`. For example: `print(\"Step\", step, \"— spin!\")`. Save — nothing should print yet (no calls).",
+      "starterCode": "# A labelled dance move\ndef dance_move(step):\n    pass\n\n# Loop through 5 steps\n"
+    },
+    {
+      "instruction": "Step 2: Add a second indented `print()` line inside `dance_move()` for flair — something like `print(\"The crowd cheers!\")`."
+    },
+    {
+      "instruction": "Step 3: Below the function (no indent), add a `for` loop: `for i in range(1, 6):`. Inside the loop (indented 4 spaces), call `dance_move(i)`. Run it. You should see steps 1 through 5, each with the crowd cheering."
+    }
   ],
-  "challenge": "Add a second function called big_finish() that prints a grand finale message. After the loop ends, call big_finish() once."
+  "bonusSteps": [
+    {
+      "instruction": "Bonus: Add a second function called `big_finish()` that prints a grand finale message. After the loop ends (no indent again), call `big_finish()` once."
+    }
+  ],
+  "progressiveHints": [
+    "Replace `pass` with two `print` lines. Use the `step` parameter: `print(\"Step\", step, \"— spin!\")`.",
+    "Add a second line for flair, like `print(\"The crowd cheers!\")`.",
+    "Below the function, write `for i in range(1, 6):` and call `dance_move(i)` inside it.",
+    "Answer shape:\ndef dance_move(step):\n    print(\"Step\", step, \"— spin!\")\n    print(\"The crowd cheers!\")\n\nfor i in range(1, 6):\n    dance_move(i)"
+  ]
 }

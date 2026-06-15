@@ -3,11 +3,35 @@ import { ChoicePrompt } from './ChoicePrompt'
 import { RunnerCard } from './RunnerCard'
 import { renderInlineCode } from '../utils/inlineCode'
 
+// Split text on triple-backtick code fences (```...```), rendering each
+// fence as a <pre><code> block and each prose chunk through renderInlineCode.
+// Switches the container from <p> to <div> so block-level <pre> is valid HTML.
 function ProseBody({ text }: { text: string }) {
+  const fenceRe = /```(?:[a-zA-Z0-9_-]+\n)?([\s\S]*?)```/g
+  const segments: { type: 'prose' | 'fence'; text: string }[] = []
+  let lastIndex = 0
+  for (const m of text.matchAll(fenceRe)) {
+    const idx = m.index ?? 0
+    if (idx > lastIndex) {
+      segments.push({ type: 'prose', text: text.slice(lastIndex, idx) })
+    }
+    segments.push({ type: 'fence', text: m[1].replace(/^\n+/, '').replace(/\n+$/, '') })
+    lastIndex = idx + m[0].length
+  }
+  if (lastIndex < text.length) {
+    segments.push({ type: 'prose', text: text.slice(lastIndex) })
+  }
+
   return (
-    <p className="content-card-body" style={{ whiteSpace: 'pre-wrap' }}>
-      {renderInlineCode(text)}
-    </p>
+    <div className="content-card-body" style={{ whiteSpace: 'pre-wrap' }}>
+      {segments.map((seg, i) =>
+        seg.type === 'fence' ? (
+          <pre key={i} className="content-card-code"><code>{seg.text}</code></pre>
+        ) : (
+          <span key={i}>{renderInlineCode(seg.text)}</span>
+        ),
+      )}
+    </div>
   )
 }
 
