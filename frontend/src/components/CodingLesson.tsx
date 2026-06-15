@@ -198,100 +198,99 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
 
         {/* Left: compact instruction panel */}
         <aside className="coding-lesson__instruction-panel">
-          {!bonusMode ? (
-            <div className="step-list">
-              {steps.slice(0, Math.min(successCount + 1, steps.length)).map((step, i) => {
-                const isDone = i < successCount
-                const isActive = i === successCount && !hasAllStepsDone
-                return (
-                  <div
-                    key={i}
-                    className={`step-card${isDone ? ' step-card--done' : ''}${isActive ? ' step-card--active' : ''}`}
-                  >
-                    <span className="step-label">
-                      {isDone ? '✓ ' : ''}Step {i + 1}
-                    </span>
-                    <p className="step-text">{step.instruction}</p>
-                  </div>
-                )
-              })}
-            </div>
-          ) : (
-            <div className="step-list">
-              {bonusSteps.slice(0, Math.min(bonusSuccessCount + 1, bonusSteps.length)).map((step, i) => {
-                const isDone = i < bonusSuccessCount
-                const isActive = i === bonusSuccessCount && !bonusDone
-                return (
-                  <div
-                    key={i}
-                    className={`step-card step-card--bonus${isDone ? ' step-card--done' : ''}${isActive ? ' step-card--active' : ''}`}
-                  >
-                    <span className="step-label">
-                      {isDone ? '✓ ' : '🌟 '}Challenge {bonusSteps.length > 1 ? i + 1 : ''}
-                    </span>
-                    <p className="step-text">{step.instruction}</p>
-                  </div>
-                )
-              })}
-            </div>
-          )}
-          {hintsRevealed > 0 && (
-            <div className="editor-hint">
-              <span className="editor-hint__label">💡 Hint {hintsRevealed}</span>
-              <pre className="editor-hint__code">{hints[hintsRevealed - 1]}</pre>
-            </div>
-          )}
-
-          {/* Step advancement — only when a genuine next step exists */}
-          {showNextStep && (
-            <div className="output-advance">
-              <button type="button" className="continue-btn" onClick={handleAdvanceStep}>
-                Next Step →
-              </button>
-            </div>
-          )}
-          {showNextChallenge && (
-            <div className="output-advance">
-              <button type="button" className="continue-btn" onClick={handleAdvanceStep}>
-                Next Challenge →
-              </button>
-            </div>
-          )}
-
-          {/* Lesson completion — last step passed or already advanced through all */}
-          {showRegularCompletion && (
-            <div className="output-completion">
-              <p className="output-completion__msg">🎉 Nice work!</p>
-              <div className="output-completion__actions">
-                <button
-                  type="button"
-                  className="continue-btn"
-                  onClick={() => { onComplete(); setIsCompleted(true); onNext() }}
-                >
-                  Next Lesson →
-                </button>
-                {hasBonusChallenge && (
-                  <button
-                    type="button"
-                    className="dive-deeper-btn"
-                    onClick={() => { onComplete(); setIsCompleted(true); startBonus() }}
-                  >
-                    🚀 Challenge
-                  </button>
-                )}
+          {/* Scrollable body: step cards + hints */}
+          <div className="panel__body">
+            {!bonusMode ? (
+              <div className="step-list">
+                {steps.slice(0, Math.min(successCount + 1, steps.length)).map((step, i) => {
+                  const isDone = i < successCount
+                  const isActive = i === successCount && !hasAllStepsDone
+                  return (
+                    <div
+                      key={i}
+                      className={`step-card${isDone ? ' step-card--done' : ''}${isActive ? ' step-card--active' : ''}`}
+                    >
+                      <span className="step-label">
+                        {isDone ? '✓ ' : ''}Step {i + 1}
+                      </span>
+                      <p className="step-text">{step.instruction}</p>
+                    </div>
+                  )
+                })}
               </div>
-            </div>
-          )}
-
-          {/* Bonus completion — last challenge passed or already advanced through all */}
-          {showBonusCompletion && (
-            <div className="output-completion">
-              <p className="output-completion__msg">🌟 Bonus complete!</p>
-              <div className="output-completion__actions">
-                <button type="button" className="continue-btn" onClick={onNext}>
-                  Next Lesson →
-                </button>
+            ) : (
+              <div className="step-list">
+                {bonusSteps.slice(0, Math.min(bonusSuccessCount + 1, bonusSteps.length)).map((step, i) => {
+                  const isDone = i < bonusSuccessCount
+                  const isActive = i === bonusSuccessCount && !bonusDone
+                  return (
+                    <div
+                      key={i}
+                      className={`step-card step-card--bonus${isDone ? ' step-card--done' : ''}${isActive ? ' step-card--active' : ''}`}
+                    >
+                      <span className="step-label">
+                        {isDone ? '✓ ' : '🌟 '}Challenge {bonusSteps.length > 1 ? i + 1 : ''}
+                      </span>
+                      <p className="step-text">{step.instruction}</p>
+                    </div>
+                  )
+                })}
               </div>
+            )}
+            {hintsRevealed > 0 && (
+              <div className="editor-hint">
+                <span className="editor-hint__label">💡 Hint {hintsRevealed}</span>
+                <pre className="editor-hint__code">{hints[hintsRevealed - 1]}</pre>
+              </div>
+            )}
+          </div>
+
+          {/* Pinned footer: advancement + completion CTAs */}
+          {(showNextStep || showNextChallenge || showRegularCompletion || showBonusCompletion) && (
+            <div className="panel__footer">
+              {showNextStep && (
+                <button type="button" className="continue-btn" onClick={handleAdvanceStep}>
+                  Next Step →
+                </button>
+              )}
+              {showNextChallenge && (
+                <button type="button" className="continue-btn" onClick={handleAdvanceStep}>
+                  Next Challenge →
+                </button>
+              )}
+              {showRegularCompletion && (
+                <>
+                  <p className="output-completion__msg">🎉 Nice work!</p>
+                  <div className="output-completion__actions">
+                    <button
+                      type="button"
+                      className="continue-btn"
+                      onClick={() => { onComplete(); setIsCompleted(true); onNext() }}
+                    >
+                      Next Lesson →
+                    </button>
+                    {hasBonusChallenge && (
+                      <button
+                        type="button"
+                        className="dive-deeper-btn"
+                        onClick={() => { onComplete(); setIsCompleted(true); startBonus() }}
+                      >
+                        🚀 Challenge
+                      </button>
+                    )}
+                  </div>
+                </>
+              )}
+              {showBonusCompletion && (
+                <>
+                  <p className="output-completion__msg">🌟 Bonus complete!</p>
+                  <div className="output-completion__actions">
+                    <button type="button" className="continue-btn" onClick={onNext}>
+                      Next Lesson →
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           )}
         </aside>

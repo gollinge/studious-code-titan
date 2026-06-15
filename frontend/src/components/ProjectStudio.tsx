@@ -191,50 +191,53 @@ export function ProjectStudio({ lesson, moduleTitle, onComplete, onNext, onBack 
 
       {/* ── Right panel: output ── */}
       <aside className="studio-panel studio-panel--right">
-        <h3 className="studio-section-title">Output</h3>
+        {/* Scrollable body: title + output */}
+        <div className="panel__body">
+          <h3 className="studio-section-title">Output</h3>
 
-        {/* input() prompts */}
-        {pendingInputs.length > 0 && (
-          <div className="input-prompts">
-            <p className="input-prompts__label">Your program needs some answers:</p>
-            {pendingInputs.map((prompt, i) => (
-              <div key={i} className="input-prompt-row">
-                <label className="input-prompt-label">{prompt || `Input ${i + 1}`}</label>
-                <input
-                  className="input-prompt-field"
-                  type="text"
-                  value={inputValues[i] ?? ''}
-                  onChange={(e) =>
-                    setInputValues((prev) => ({ ...prev, [i]: e.target.value }))
-                  }
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' && i === pendingInputs.length - 1) handleSubmitInputs()
-                  }}
-                  autoFocus={i === 0}
-                />
-              </div>
-            ))}
-            <button className="run-btn" onClick={handleSubmitInputs}>
-              Submit Answers ↵
-            </button>
-          </div>
-        )}
+          {/* input() prompts */}
+          {pendingInputs.length > 0 && (
+            <div className="input-prompts">
+              <p className="input-prompts__label">Your program needs some answers:</p>
+              {pendingInputs.map((prompt, i) => (
+                <div key={i} className="input-prompt-row">
+                  <label className="input-prompt-label">{prompt || `Input ${i + 1}`}</label>
+                  <input
+                    className="input-prompt-field"
+                    type="text"
+                    value={inputValues[i] ?? ''}
+                    onChange={(e) =>
+                      setInputValues((prev) => ({ ...prev, [i]: e.target.value }))
+                    }
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' && i === pendingInputs.length - 1) handleSubmitInputs()
+                    }}
+                    autoFocus={i === 0}
+                  />
+                </div>
+              ))}
+              <button className="run-btn" onClick={handleSubmitInputs}>
+                Submit Answers ↵
+              </button>
+            </div>
+          )}
 
-        {output && (
-          <OutputPanel
-            output={output}
-            outputRef={outputRef}
-            helpToggle={false}
-          />
-        )}
+          {output && (
+            <OutputPanel
+              output={output}
+              outputRef={outputRef}
+              helpToggle={false}
+            />
+          )}
 
-        {!output && !pendingInputs.length && (
-          <p className="output-empty">Run your code to see the output here.</p>
-        )}
+          {!output && !pendingInputs.length && (
+            <p className="output-empty">Run your code to see the output here.</p>
+          )}
+        </div>
 
-        {/* Navigation */}
+        {/* Pinned footer: completion nav */}
         {isCompleted && (
-          <div className="studio-nav-actions">
+          <div className="panel__footer">
             <p className="lesson-complete-msg">✨ Great project! Keep building!</p>
             <button className="primary" onClick={onNext}>
               Next Lesson →

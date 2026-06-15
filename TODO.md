@@ -114,6 +114,7 @@
 - [x] Dive Deeper mode — amber UI, code preserved when switching to challenge
 - [x] Card summaries shown as sidebar TLDR during editor phase
 - [x] Friendly error display — real error + `? Help` toggle with child-readable explanation
+- [ ] **Friendly help not shown for IndentationError** — `error_type` returned by the backend for indentation errors may not match `"IndentationError"` exactly (could be `"IndentationError"` wrapped differently or a subtype). Verify what `error_type` the backend sets and align with the key in `ERROR_HELP` in `utils/pythonErrors.ts`.
 - [x] Keyboard shortcut (Cmd/Ctrl+Enter) visible in toolbar
 - [x] Reset button restores blank editor
 - [x] Line wrapping in editor
