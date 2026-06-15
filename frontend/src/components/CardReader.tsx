@@ -1,29 +1,44 @@
 import type { ContentCard } from '../types'
 
+// Split prose text on `backticks` so `print()` style spans render as inline code.
+// Odd-indexed segments are the backtick-wrapped code.
+function ProseBody({ text }: { text: string }) {
+  const parts = text.split(/`([^`]+)`/g)
+  return (
+    <p className="content-card-body" style={{ whiteSpace: 'pre-wrap' }}>
+      {parts.map((part, i) =>
+        i % 2 === 1
+          ? <code key={i} className="content-card-inline-code">{part}</code>
+          : part,
+      )}
+    </p>
+  )
+}
+
 // ── ContentCardView ────────────────────────────────────────────────────────────
 
 export function ContentCardView({ card }: { card: ContentCard }) {
+  // Legacy 'code' cards put the code straight into `body` with no separate
+  // `codeBlock`. For those, keep the whole-body <pre> rendering until the
+  // curriculum data is migrated. Once a card has its own codeBlock, the body
+  // is treated as prose like every other card type.
+  const legacyCodeBody = card.type === 'code' && !card.codeBlock
+
   return (
     <div className={`content-card content-card--${card.type}`}>
       {card.type === 'callout' && (
         <span className="content-card-callout-label">💡 Remember this!</span>
       )}
       {card.title && <h3 className="content-card-title">{card.title}</h3>}
-      {card.type === 'code' ? (
-        <pre className="content-card-code">{card.body}</pre>
+      {legacyCodeBody ? (
+        <pre className="content-card-code"><code>{card.body}</code></pre>
       ) : (
-        <p className="content-card-body" style={{ whiteSpace: 'pre-wrap' }}>
-          {card.body}
-        </p>
+        <ProseBody text={card.body} />
       )}
       {card.codeBlock && (
-        <pre className="content-card-code">{card.codeBlock}</pre>
+        <pre className="content-card-code"><code>{card.codeBlock}</code></pre>
       )}
-      {card.note && (
-        <p className="content-card-body" style={{ whiteSpace: 'pre-wrap' }}>
-          {card.note}
-        </p>
-      )}
+      {card.note && <ProseBody text={card.note} />}
     </div>
   )
 }

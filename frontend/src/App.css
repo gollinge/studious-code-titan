@@ -786,6 +786,16 @@ kbd {
   white-space: pre-wrap;
 }
 
+.content-card-inline-code {
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.92em;
+  background: #f1f5f9;
+  color: #0b2c4d;
+  padding: 0.1em 0.35em;
+  border-radius: 0.3em;
+  white-space: nowrap;
+}
+
 .card-nav {
   display: flex;
   gap: 0.75rem;
