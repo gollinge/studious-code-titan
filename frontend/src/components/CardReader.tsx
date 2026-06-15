@@ -33,15 +33,10 @@ export function ContentCardView({ card }: { card: ContentCard }) {
 type CardReaderProps = {
   cards: ContentCard[]
   cardIndex: number
-  moduleTitle: string
-  lessonTitle: string
   /** Label for the primary next/advance button. */
   nextLabel: string
   /** Optional hint shown above the next button on the last card. */
   hintText?: string
-  /** Label for the back-to-module button. Default: "← Module" */
-  backLabel?: string
-  onBack: () => void
   onPrev: () => void
   onNext: () => void
 }
@@ -49,12 +44,8 @@ type CardReaderProps = {
 export function CardReader({
   cards,
   cardIndex,
-  moduleTitle,
-  lessonTitle,
   nextLabel,
   hintText,
-  backLabel = '← Module',
-  onBack,
   onPrev,
   onNext,
 }: CardReaderProps) {
@@ -63,12 +54,6 @@ export function CardReader({
   return (
     <>
       <div className="reading-lesson-header">
-        <button type="button" className="back-btn" onClick={onBack}>
-          {backLabel}
-        </button>
-        <span className="breadcrumb">
-          {moduleTitle} › {lessonTitle}
-        </span>
         <span className="card-progress">
           {cardIndex + 1} / {cards.length}
         </span>

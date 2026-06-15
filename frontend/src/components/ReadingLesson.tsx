@@ -9,7 +9,6 @@ type Props = {
   moduleTitle: string
   onComplete: () => void
   onNext: () => void
-  onBack: () => void
 }
 
 function quizSummaryMessage(correct: number, total: number): string {
@@ -23,7 +22,7 @@ function quizSummaryMessage(correct: number, total: number): string {
   return "No worries — the first time through is always the hardest. Re-read the cards and try again whenever you're ready. Every programmer starts somewhere."
 }
 
-export function ReadingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }: Props) {
+export function ReadingLesson({ lesson, onComplete, onNext }: Props) {
   const [cardIndex, setCardIndex] = useState(0)
   const [phase, setPhase] = useState<Phase>('cards')
   const [quizIndex, setQuizIndex] = useState(0)
@@ -74,8 +73,6 @@ export function ReadingLesson({ lesson, moduleTitle, onComplete, onNext, onBack 
         <CardReader
           cards={cards}
           cardIndex={cardIndex}
-          moduleTitle={moduleTitle}
-          lessonTitle={lesson.title}
           nextLabel={
             isLastCard
               ? quiz.length > 0
@@ -88,8 +85,6 @@ export function ReadingLesson({ lesson, moduleTitle, onComplete, onNext, onBack 
               ? "That's all the reading — time for a quick check!"
               : undefined
           }
-          backLabel="← Back to module"
-          onBack={onBack}
           onPrev={() => setCardIndex(cardIndex - 1)}
           onNext={handleCardNext}
         />

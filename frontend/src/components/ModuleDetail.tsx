@@ -11,7 +11,6 @@ type Props = {
   lessonRows: LessonRow[]
   getStatus: (lessonId: string) => LessonStatus
   onSelectLesson: (lessonId: string, isReading: boolean) => void
-  onBack: () => void
 }
 
 function statusIcon(status: LessonStatus): string {
@@ -20,7 +19,7 @@ function statusIcon(status: LessonStatus): string {
   return '🔒'
 }
 
-export function ModuleDetail({ module, lessonRows, getStatus, onSelectLesson, onBack }: Props) {
+export function ModuleDetail({ module, lessonRows, getStatus, onSelectLesson }: Props) {
   const currentLesson = lessonRows.find((l) => getStatus(l.id) === 'in-progress')
   const hasAnyProgress = lessonRows.some((l) => getStatus(l.id) !== 'locked')
   const ctaLabel = hasAnyProgress ? 'Continue' : 'Start'
@@ -28,9 +27,6 @@ export function ModuleDetail({ module, lessonRows, getStatus, onSelectLesson, on
   return (
     <div className="module-detail">
       <div className="module-detail-header">
-        <button type="button" className="back-btn" onClick={onBack}>
-          ← Modules
-        </button>
         <h2 className="module-detail-title">{module.title}</h2>
         <p className="module-detail-goal">{module.goal}</p>
       </div>

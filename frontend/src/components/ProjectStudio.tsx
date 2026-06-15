@@ -26,13 +26,12 @@ type Props = {
   moduleTitle: string
   onComplete: () => void
   onNext: () => void
-  onBack: () => void
 }
 
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export function ProjectStudio({ lesson, moduleTitle, onComplete, onNext, onBack }: Props) {
+export function ProjectStudio({ lesson, onComplete, onNext }: Props) {
   const [code, setCode] = useState(lesson.starterCode ?? '')
   const [isCompleted, setIsCompleted] = useState(false)
   const [showHints, setShowHints] = useState(false)
@@ -95,10 +94,6 @@ export function ProjectStudio({ lesson, moduleTitle, onComplete, onNext, onBack 
     <div className="project-studio">
       {/* ── Left panel: brief + milestones + hints ── */}
       <aside className="studio-panel studio-panel--left">
-        <button className="secondary studio-back-btn" onClick={onBack}>
-          ← {moduleTitle}
-        </button>
-
         <div className="studio-title">
           <span className="studio-badge">🎨 Project</span>
           <h2>{lesson.title}</h2>

@@ -18,11 +18,10 @@ type Props = {
   moduleTitle: string
   onComplete: () => void
   onNext: () => void
-  onBack: () => void
 }
 
 
-export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }: Props) {
+export function CodingLesson({ lesson, moduleTitle, onComplete, onNext }: Props) {
   // Card phase state
   const [cardIndex, setCardIndex] = useState(0)
   const [phase, setPhase] = useState<Phase>('cards')
@@ -141,10 +140,7 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
         <CardReader
           cards={cards}
           cardIndex={cardIndex}
-          moduleTitle={moduleTitle}
-          lessonTitle={lesson.title}
           nextLabel={isLastCard ? 'Try it →' : 'Next →'}
-          onBack={onBack}
           onPrev={() => setCardIndex((i) => i - 1)}
           onNext={handleCardNext}
         />
@@ -156,11 +152,8 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext, onBack }
 
   return (
     <div className="coding-lesson coding-lesson--editor">
-      {/* Top bar: back + lesson title + step dots */}
+      {/* Top bar: lesson title + step dots */}
       <header className="coding-lesson__topbar">
-        <button type="button" className="back-btn" onClick={onBack}>
-          ← Module
-        </button>
         <div className="coding-lesson__topbar-info">
           <span className="coding-lesson__topbar-module">{moduleTitle}</span>
           <span className="coding-lesson__topbar-title">{lesson.title}</span>

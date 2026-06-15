@@ -1,11 +1,48 @@
+import { useEffect, useRef } from 'react'
+
 type Props = {
   onDismiss: () => void
 }
 
 export function WelcomeModal({ onDismiss }: Props) {
+  const onDismissRef = useRef(onDismiss)
+  useEffect(() => {
+    onDismissRef.current = onDismiss
+  }, [onDismiss])
+
+  useEffect(() => {
+    // Push a sentinel history entry so the browser back button closes this
+    // modal instead of leaving the app. The popstate listener pops the entry
+    // (browser already removed it) and calls onDismiss.
+    window.history.pushState({ welcomeModal: true }, '')
+
+    const handlePopState = () => onDismissRef.current()
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') window.history.back()
+    }
+
+    window.addEventListener('popstate', handlePopState)
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState)
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
+
+  // Trigger via history.back() so the Cmd-Click / button path and the browser
+  // back-button path both unwind through the same popstate handler.
+  const handleDismiss = () => window.history.back()
+
   return (
-    <div className="modal-backdrop">
-      <div className="modal" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+    <div className="modal-backdrop" onClick={handleDismiss}>
+      <div
+        className="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="welcome-title"
+        onClick={(e) => e.stopPropagation()}
+      >
         <h2 id="welcome-title">👋 Welcome to Python Play Lab!</h2>
         <p className="modal-intro">
           This is a place to learn Python by writing real code — right in your browser.
@@ -45,7 +82,7 @@ export function WelcomeModal({ onDismiss }: Props) {
             </span>
           </li>
         </ul>
-        <button type="button" className="modal-cta" onClick={onDismiss}>
+        <button type="button" className="modal-cta" onClick={handleDismiss}>
           Let's go!
         </button>
       </div>
