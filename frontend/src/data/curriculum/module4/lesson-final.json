@@ -10,38 +10,42 @@
       "id": "c1",
       "type": "text",
       "title": "What You Know Now",
-      "summary": "You now have variables, input, if/else, and for loops — enough to build a real game.",
-      "body": "Look at everything you can do:\n\n• Variables — store and change information\n• input() — ask the player questions\n• if / else — make decisions\n• for loops — repeat actions automatically\n• range() — control exactly how many times\n\nThat is enough to build a real interactive game."
+      "summary": "You now have variables, `input`, `if`/`else`/`elif`, and `for` loops — enough to build a real game.",
+      "body": "Look at everything you can do:\n\n• Variables — store and change information\n• `input()` — ask the player questions\n• `if` / `elif` / `else` — make decisions\n• `for` loops — repeat actions automatically\n• `range()` — control exactly how many times\n\nThat is enough to build a real interactive game."
     },
     {
       "id": "c2",
       "type": "code",
       "title": "The Project: Dungeon Run",
       "summary": "Ask for the hero's name, loop through rooms, make decisions in each room, end with a score.",
-      "body": "You will build a dungeon run game:\n\n1. Ask the player for their hero's name\n2. Loop through 5 rooms\n3. In each room, something happens (safe, trap, treasure, or boss)\n4. After the loop, print a victory message with their name\n\nHere is a starting shape:\n\nname = input(\"Hero name? \")\nfor i in range(1, 6):\n    print(\"Room\", i, \"...\")\nprint(name, \"wins!\")"
+      "body": "You will build a dungeon run game:\n\n1. Ask the player for their hero's name\n2. Loop through 5 rooms\n3. In each room, something happens (safe, trap, treasure, or boss)\n4. After the loop, print a victory message with their name\n\nHere is a starting shape:",
+      "codeBlock": "name = input(\"Hero name? \")\nfor i in range(1, 6):\n    print(\"Room\", i, \"...\")\nprint(name, \"wins!\")"
     },
     {
       "id": "c3",
       "type": "code",
       "title": "Making It Interesting",
-      "summary": "Use if inside the loop to make different rooms behave differently, and a score variable to track progress.",
-      "body": "Use if inside your loop to make different rooms behave differently:\n\nfor i in range(1, 6):\n    if i == 3:\n        print(\"Trap! Lose 10 HP.\")\n    elif i == 5:\n        print(\"Final boss!\")\n    else:\n        print(\"Safe room.\")\n\nYou can also keep a score variable and update it inside the loop:\n\nscore = 0\nfor i in range(1, 6):\n    score = score + 10\n    print(\"Score:\", score)"
+      "summary": "Use `if`/`elif` inside the loop so different rooms behave differently, and a score variable to track progress.",
+      "body": "Use `if`/`elif` inside your loop to make different rooms behave differently:",
+      "codeBlock": "for i in range(1, 6):\n    if i == 3:\n        print(\"Trap! Lose 10 HP.\")\n    elif i == 5:\n        print(\"Final boss!\")\n    else:\n        print(\"Safe room.\")",
+      "note": "You can also keep a `score` variable and update it inside the loop:\n\n```\nscore = 0\nfor i in range(1, 6):\n    score = score + 10\n    print(\"Score:\", score)\n```"
     },
     {
       "id": "c4",
       "type": "callout",
       "title": "Plan Before You Code",
       "summary": "Decide the rooms, events, and ending before writing a single line.",
-      "body": "Before writing, answer these questions:\n\n• How many rooms will the player visit?\n• Which room numbers are special (trap, treasure, boss)?\n• Does the player have HP or a score that changes?\n• What does the ending message say?\n\nYour game must use:\n- At least one loop\n- At least one variable\n- At least one if/else\n- At least one print that uses a variable"
+      "body": "Before writing, answer these questions:\n\n• How many rooms will the player visit?\n• Which room numbers are special (trap, treasure, boss)?\n• Does the player have HP or a score that changes?\n• What does the ending message say?\n\nYour game must use:\n• At least one loop\n• At least one variable\n• At least one `if`/`else` (or `elif`)\n• At least one `print` that uses a variable\n\n**Not into dungeons?** The same shape works for any setting — a cookie shop where each `i` is a customer, a soccer match where each `i` is a minute, a school day where each `i` is a class period. Swap the framing, keep the structure."
     }
   ],
-  "editorPrompt": "Build your dungeon run game. Collect the hero's name, loop through at least 5 rooms with different events, and end with a victory message.",
-  "starterCode": "# Dungeon Run — Final Project\n# Your game needs:\n#   - hero name from input()\n#   - a loop through at least 5 rooms\n#   - at least one special room (trap, treasure, or boss)\n#   - a score or HP variable that changes\n#   - a victory message at the end\n\nname = input(\"What is your hero's name? \")\nscore = 0\n\n# TODO: add your loop here\n\nprint(\"\\n\" + name + \" completed the dungeon! Final score:\", score)\n",
+  "editorPrompt": "Build your dungeon run game (or your own variation). Collect the hero's name, loop through at least 5 rooms with different events, and end with a victory message.",
+  "starterCode": "# Loop-Powered Mini Game — Final Project\n# Your game needs:\n#   - hero (or character) name from input()\n#   - a loop through at least 5 rooms (or scenes, customers, levels...)\n#   - at least one special step (trap, treasure, surprise, boss)\n#   - a score or HP variable that changes\n#   - a victory message at the end\n\nname = input(\"What is your hero's name? \")\nscore = 0\n\n# TODO: add your loop here\n\nprint(\"\\n\" + name + \" completed the dungeon! Final score:\", score)\n",
   "progressiveHints": [
-    "Start with for i in range(1, 6): and just print the room number inside.",
-    "Add if i == 3: (or whichever room) to make that room a trap or treasure.",
-    "Add score = score + 10 inside the safe rooms, and score = score - 5 for traps.",
-    "Don't forget: the print victory message is outside the loop (no indent), so it runs once at the end."
+    "Start with `for i in range(1, 6):` and just print the room number inside.",
+    "Add `if i == 3:` (or whichever room) to make that room a trap or treasure.",
+    "Add `score = score + 10` inside the safe rooms, and `score = score - 5` for traps.",
+    "Don't forget: the victory `print` is **outside** the loop (no indent), so it runs once at the end.",
+    "Full mini example (with `elif`):\nname = input(\"Hero name? \")\nscore = 0\nfor i in range(1, 6):\n    if i == 3:\n        print(\"Room 3 — trap! -5 score\")\n        score = score - 5\n    elif i == 5:\n        print(\"Room 5 — boss! +20 score\")\n        score = score + 20\n    else:\n        print(\"Room\", i, \"— safe. +10 score\")\n        score = score + 10\nprint(name, \"finished with score:\", score)"
   ],
-  "challenge": "Add a room where the player finds a secret weapon. Print a special congratulations only if they reach that room AND their score is above 20."
+  "challenge": "🚀 Dive Deeper: Add a room where the player finds a secret weapon. Print a special congratulations only if they reach that room AND their score is above `20`."
 }

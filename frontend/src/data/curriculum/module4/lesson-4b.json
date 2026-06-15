@@ -9,39 +9,54 @@
     {
       "id": "c1",
       "type": "code",
-      "title": "The Secret Variable: i",
-      "summary": "i is updated automatically — it starts at 0 and counts up to (but not including) the number in range().",
-      "body": "When you write for i in range(5):, Python creates a variable called i.\n\nIt starts at 0 and counts up:\n\nfor i in range(5):\n    print(i)\n\nOutput: 0  1  2  3  4\n\nPython starts counting at 0, not 1. So range(5) gives you 0, 1, 2, 3, 4."
+      "title": "The Secret Variable: `i`",
+      "summary": "`i` is updated automatically — it starts at 0 and counts up to (but not including) the number in `range()`.",
+      "body": "When you write `for i in range(5):`, Python creates a variable called `i`. It starts at `0` and counts up:",
+      "codeBlock": "for i in range(5):\n    print(i)",
+      "note": "**Output:** `0  1  2  3  4`\n\nPython starts counting at `0`, not `1`. So `range(5)` gives you `0, 1, 2, 3, 4` — five numbers, ending one *before* 5."
     },
     {
       "id": "c2",
       "type": "code",
       "title": "Choosing Where to Start",
-      "summary": "range(start, stop) lets you pick a custom starting number.",
-      "body": "You can tell range() where to start and stop:\n\nrange(1, 6)  gives you  1, 2, 3, 4, 5\n\nfor i in range(1, 6):\n    print(i)\n\nOutput: 1  2  3  4  5\n\nThe first number is the start. The second number is where Python stops (but doesn't include it)."
+      "summary": "`range(start, stop)` lets you pick a custom starting number.",
+      "body": "You can tell `range()` where to start and stop:",
+      "codeBlock": "for i in range(1, 6):\n    print(i)",
+      "note": "**Output:** `1  2  3  4  5`\n\nThe first number is the **start**. The second number is where Python **stops** (but doesn't include it). So `range(1, 6)` gives you 1 through 5."
     },
     {
       "id": "c3",
       "type": "code",
       "title": "Counting Down",
-      "summary": "Add a negative step to range() to count backwards.",
-      "body": "You can count backwards! Add a third number: the step.\n\nfor i in range(10, 0, -1):\n    print(i)\nprint(\"Blast off!\")\n\nOutput: 10  9  8  7  6  5  4  3  2  1  Blast off!\n\nrange(10, 0, -1) means: start at 10, stop before 0, step by -1 each time."
+      "summary": "Add a negative step to `range()` to count backwards.",
+      "body": "You can count backwards! Add a third number: the **step**.",
+      "codeBlock": "for i in range(10, 0, -1):\n    print(i)\nprint(\"Blast off!\")",
+      "note": "**Output:** `10  9  8  7  6  5  4  3  2  1  Blast off!`\n\n`range(10, 0, -1)` means: start at `10`, stop before `0`, step by `-1` each time."
     },
     {
       "id": "c4",
-      "type": "text",
-      "title": "Using i Inside the Loop",
-      "summary": "You can print i or use it in a calculation — it changes every time the loop runs.",
-      "body": "The loop variable i is a real variable — use it in your code:\n\nfor i in range(1, 4):\n    print(\"Round\", i, \"— Fight!\")\n\nOutput:\nRound 1 — Fight!\nRound 2 — Fight!\nRound 3 — Fight!\n\nEach time the loop runs, i has a different value. That makes every line unique."
+      "type": "code",
+      "title": "Using `i` Inside the Loop",
+      "summary": "You can print `i` or use it in a calculation — it changes every time the loop runs.",
+      "body": "The loop variable `i` is a real variable — use it in your code:",
+      "codeBlock": "for i in range(1, 4):\n    print(\"Round\", i, \"— Fight!\")",
+      "note": "**Output:**\n`Round 1 — Fight!`\n`Round 2 — Fight!`\n`Round 3 — Fight!`\n\nEach time the loop runs, `i` has a different value. That makes every line unique."
+    },
+    {
+      "id": "c5-commas",
+      "type": "callout",
+      "title": "Commas in `print()` — Why?",
+      "summary": "Use commas to mix text and numbers in `print()`. Don't try to `+` text with a number directly.",
+      "body": "You'll notice we used **commas** here, not `+`:\n\n`print(\"Round\", i, \"— Fight!\")` ✅\n\nThat's because `i` is a number and the rest is text. Python lets you separate them with commas inside `print()`, and it adds spaces for you.\n\nIf you tried `print(\"Round \" + i)`, Python would refuse — you can't `+` text with a number directly. We'll fix that in a later module."
     }
   ],
-  "editorPrompt": "Build a rocket launch countdown: print from 10 down to 1, then print \"Blast off!\".",
+  "editorPrompt": "Build a rocket launch countdown: print from 10 down to 1, then print `\"Blast off!\"`.",
   "starterCode": "# Countdown from 10 to 1, then blast off!\n",
   "progressiveHints": [
-    "Use range() with three arguments: start, stop, step.",
-    "To count down: range(10, 0, -1) — start at 10, stop before 0, step -1.",
-    "Print i inside the loop, then print \"Blast off!\" after the loop (no indent).",
+    "Use `range()` with three arguments: start, stop, step.",
+    "To count down: `range(10, 0, -1)` — start at 10, stop before 0, step -1.",
+    "`print(i)` inside the loop, then `print(\"Blast off!\")` after the loop (no indent).",
     "Answer:\nfor i in range(10, 0, -1):\n    print(i)\nprint(\"Blast off!\")"
   ],
-  "challenge": "After blast off, print the score for each of 5 rounds using a separate loop. Use i to show the round number."
+  "challenge": "🚀 Dive Deeper: After blast off, print the score for each of 5 rounds using a separate loop. Use `i` to show the round number."
 }

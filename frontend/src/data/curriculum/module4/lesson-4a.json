@@ -8,40 +8,68 @@
   "content": [
     {
       "id": "c1",
-      "type": "text",
+      "type": "code",
       "title": "The Copy-Paste Problem",
-      "summary": "Repeating print() over and over is slow. There has to be a better way.",
-      "body": "Imagine you want a robot to shout \"Jump!\" five times. You could write this:\n\nprint(\"Jump!\")\nprint(\"Jump!\")\nprint(\"Jump!\")\nprint(\"Jump!\")\nprint(\"Jump!\")\n\nThat works. But what if you want it 100 times? Or 1000? There has to be a better way."
+      "summary": "Repeating `print()` over and over is slow. There has to be a better way.",
+      "body": "Imagine you want a robot to shout `\"Jump!\"` five times. You could write this:",
+      "codeBlock": "print(\"Jump!\")\nprint(\"Jump!\")\nprint(\"Jump!\")\nprint(\"Jump!\")\nprint(\"Jump!\")",
+      "note": "That works. But what if you want it 100 times? Or 1000? There has to be a better way."
     },
     {
       "id": "c2",
       "type": "code",
       "title": "Loops to the Rescue",
-      "summary": "A for loop tells Python to repeat a block of code a set number of times.",
-      "body": "Python has a trick called a for loop. It lets you say \"do this X times\" in just two lines:\n\nfor i in range(5):\n    print(\"Jump!\")\n\nThat does the exact same thing as writing print(\"Jump!\") five times — Python just handles the repetition for you."
+      "summary": "A `for` loop tells Python to repeat a block of code a set number of times.",
+      "body": "Python has a trick called a **for loop**. It lets you say \"do this X times\" in just two lines:",
+      "codeBlock": "for i in range(5):\n    print(\"Jump!\")",
+      "note": "That does the exact same thing as writing `print(\"Jump!\")` five times — Python just handles the repetition for you."
     },
     {
       "id": "c3",
-      "type": "text",
+      "type": "code",
       "title": "What Does Each Part Mean?",
-      "summary": "for starts the loop, range(5) controls how many times, and the indented line is what runs each time.",
-      "body": "for i in range(5):\n    print(\"Jump!\")\n\n• for — starts the loop\n• i — a counter variable Python updates automatically\n• range(5) — tells Python to repeat 5 times\n• The indented line — the code that runs each time\n\nThe indented block is called the loop body. Every time Python counts, it runs that block."
+      "summary": "`for` starts the loop, `range(5)` controls how many times, and the indented line is what runs each time.",
+      "body": "Let's break down a `for` loop, piece by piece:",
+      "codeBlock": "for i in range(5):\n    print(\"Jump!\")",
+      "note": "• `for` — starts the loop\n• `i` — a counter variable Python updates automatically\n• `range(5)` — tells Python to repeat 5 times\n• The indented line — the code that runs each time\n\nThe indented block is called the **loop body**. Every time Python counts, it runs that block."
     },
     {
       "id": "c4",
-      "type": "callout",
+      "type": "code",
       "title": "Indentation Is the Rule",
       "summary": "The loop body must be indented 4 spaces. Code outside the loop runs once after the loop finishes.",
-      "body": "The loop body must be indented — moved in by 4 spaces.\n\nfor i in range(3):\n    print(\"Hello!\")   <- runs 3 times\n\nprint(\"Done\")        <- runs once, after the loop\n\nIf you forget the indent, Python shows an error."
+      "body": "The loop body must be **indented** — moved in by 4 spaces.",
+      "codeBlock": "for i in range(3):\n    print(\"Hello!\")   # runs 3 times\n\nprint(\"Done\")        # runs once, after the loop",
+      "note": "If you forget the indent, Python shows an `IndentationError`."
+    },
+    {
+      "id": "c5-puzzle",
+      "type": "puzzle",
+      "title": "What does this loop print?",
+      "summary": "Python counts from 0 — `range(N)` gives you 0 up to (but not including) N.",
+      "body": "What will this code print?\n\n```\nfor i in range(3):\n    print(i)\n```",
+      "puzzle": {
+        "id": "4a-puzzle-1",
+        "type": "multiple-choice",
+        "question": "",
+        "options": [
+          { "id": "a", "text": "1 2 3" },
+          { "id": "b", "text": "0 1 2" },
+          { "id": "c", "text": "0 1 2 3" },
+          { "id": "d", "text": "1 2 3 4" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "Python starts counting at `0`, and `range(3)` stops *before* `3`. So you get `0, 1, 2` — three numbers, but not the numbers you might have expected."
+      }
     }
   ],
-  "editorPrompt": "Make the robot shout your battle cry exactly 6 times using a for loop.",
+  "editorPrompt": "Make the robot shout your battle cry exactly 6 times using a `for` loop.",
   "starterCode": "# Change this so it uses a loop instead of copy-paste!\nprint(\"Charge!\")\nprint(\"Charge!\")\nprint(\"Charge!\")\n",
   "progressiveHints": [
-    "Start with: for i in range(6):",
-    "The next line needs to be indented (4 spaces), then write your print.",
-    "Replace the three print lines with just one inside the loop.",
-    "Answer: for i in range(6):\\n    print(\"Charge!\")"
+    "Start with: `for i in range(6):`",
+    "The next line needs to be indented (4 spaces), then write your `print`.",
+    "Replace the three `print` lines with just one inside the loop.",
+    "Answer:\nfor i in range(6):\n    print(\"Charge!\")"
   ],
-  "challenge": "Can you make it shout 20 times? What's the only thing you need to change?"
+  "challenge": "🚀 Dive Deeper: Can you make it shout 20 times? What's the only thing you need to change?"
 }

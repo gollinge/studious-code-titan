@@ -10,38 +10,44 @@
       "id": "c1",
       "type": "code",
       "title": "Loops Make Art",
-      "summary": "Run the same print statement many times and you get a repeating pattern.",
-      "body": "Loops are great for patterns. Run the same print statement many times and you get a design:\n\nfor i in range(5):\n    print(\"* * *\")\n\nOutput:\n* * *\n* * *\n* * *\n* * *\n* * *\n\nFive identical rows — written with only two lines of code."
+      "summary": "Run the same `print` statement many times and you get a repeating pattern.",
+      "body": "Loops are great for patterns. Run the same `print` statement many times and you get a design:",
+      "codeBlock": "for i in range(5):\n    print(\"* * *\")",
+      "note": "**Output:**\n```\n* * *\n* * *\n* * *\n* * *\n* * *\n```\n\nFive identical rows — written with only two lines of code."
     },
     {
       "id": "c2",
       "type": "code",
-      "title": "Growing Patterns with i",
-      "summary": "Multiply a string by i to make each row longer as the loop counts up.",
-      "body": "When you use i inside print(), each row can be different:\n\nfor i in range(1, 6):\n    print(\"#\" * i)\n\nOutput:\n#\n##\n###\n####\n#####\n\n\"#\" * i repeats the # character i times. As i grows, the row gets longer."
+      "title": "Growing Patterns with `i`",
+      "summary": "Multiply a string by `i` to make each row longer as the loop counts up.",
+      "body": "Python can **multiply text** by a number to repeat it. `\"#\" * 3` gives you `\"###\"`.\n\nWhen you put `i` inside the multiplication, each row can be different:",
+      "codeBlock": "for i in range(1, 6):\n    print(\"#\" * i)",
+      "note": "**Output:**\n```\n#\n##\n###\n####\n#####\n```\n\n`\"#\" * i` repeats the `#` character `i` times. As `i` grows, the row gets longer."
     },
     {
       "id": "c3",
       "type": "code",
-      "title": "Mixing Text and i",
+      "title": "Mixing Text and `i`",
       "summary": "Combine a label with a growing pattern to create level-up style displays.",
-      "body": "You can mix fixed text with the counter to label each row:\n\nfor i in range(1, 4):\n    print(\"Level\", i, \":\", \"*\" * i)\n\nOutput:\nLevel 1 : *\nLevel 2 : **\nLevel 3 : ***\n\nEach line has the level number and a growing row of stars."
+      "body": "You can mix fixed text with the counter to label each row:",
+      "codeBlock": "for i in range(1, 4):\n    print(\"Level\", i, \":\", \"*\" * i)",
+      "note": "**Output:**\n```\nLevel 1 : *\nLevel 2 : **\nLevel 3 : ***\n```\n\nEach line has the level number and a growing row of stars."
     },
     {
       "id": "c4",
       "type": "text",
       "title": "Your Turn to Design",
       "summary": "There is no single right answer — experiment with different characters and ranges.",
-      "body": "Pattern ideas to try:\n\n• A staircase of dashes: \"-\" * i\n• A triangle of dots: \".\" * i\n• A shrinking bar: \"#\" * (10 - i)\n• A score board with rows labeled Round 1, Round 2...\n\nThere is no single right answer — experiment and see what appears!"
+      "body": "Pattern ideas to try:\n\n• A staircase of dashes: `\"-\" * i`\n• A triangle of dots: `\".\" * i`\n• A shrinking bar: `\"#\" * (10 - i)`\n• A scoreboard with rows labeled `Round 1`, `Round 2`...\n\nThere is no single right answer — experiment and see what appears!"
     }
   ],
   "editorPrompt": "Draw a triangle of stars that grows from 1 star on row 1 to 5 stars on row 5.",
   "starterCode": "# Draw a growing triangle of stars\n# Row 1: *\n# Row 2: **\n# Row 3: ***\n# Row 4: ****\n# Row 5: *****\n",
   "progressiveHints": [
-    "Use range(1, 6) so i goes from 1 to 5.",
-    "Inside the loop, print \"*\" * i — that repeats * exactly i times.",
+    "Use `range(1, 6)` so `i` goes from 1 to 5.",
+    "Inside the loop, `print(\"*\" * i)` — that repeats `*` exactly `i` times.",
     "Full loop:\nfor i in range(1, 6):\n    print(\"*\" * i)",
-    "Challenge: can you make it shrink back down again using a second loop?"
+    "Bonus: can you make it shrink back down again using a second loop?"
   ],
-  "challenge": "After the growing triangle, add a second loop that makes the triangle shrink from 5 stars back to 1. Together they form a diamond shape!"
+  "challenge": "🚀 Dive Deeper: After the growing triangle, add a second loop that makes the triangle shrink from 5 stars back to 1. Together they form a diamond shape!"
 }
