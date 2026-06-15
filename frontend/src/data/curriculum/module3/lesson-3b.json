@@ -29,6 +29,33 @@
       "body": "Python uses spaces (or a Tab) to know which lines belong inside the `if`. If a line is indented \u2014 pushed in by 4 spaces \u2014 it's \"inside\" the `if`. If it's back at the edge, it's outside.\n\nThis is one of the most common places to get an error. If you see an `IndentationError`, check whether the lines inside your `if` are pushed in!"
     },
     {
+      "id": "c3-case",
+      "type": "callout",
+      "title": "Python Is Picky About Capital Letters",
+      "summary": "`\"yes\"`, `\"Yes\"`, and `\"YES\"` are all different to Python.",
+      "body": "Python treats capital letters as different from lowercase. To Python, `\"yes\"`, `\"Yes\"`, and `\"YES\"` are three completely different words.\n\nIf your `if` checks for `\"yes\"` and the player types `\"Yes\"`, the check won't match \u2014 and nothing inside the `if` will run. That's not a bug. Python is just being very literal.\n\nFor now, match what you think the player will most likely type. Later you'll learn tricks for accepting any capitalization."
+    },
+    {
+      "id": "c3-puzzle",
+      "type": "puzzle",
+      "title": "Which `if` statement is correct?",
+      "summary": "Spot the right way to check a value.",
+      "body": "You want to check if a variable called `mood` equals the word `happy`. Which line does that correctly?",
+      "puzzle": {
+        "id": "3b-puzzle-1",
+        "type": "multiple-choice",
+        "question": "",
+        "options": [
+          { "id": "a", "text": "if mood = \"happy\":" },
+          { "id": "b", "text": "if mood == happy:" },
+          { "id": "c", "text": "if mood == \"happy\":" },
+          { "id": "d", "text": "if mood equals \"happy\":" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "Use `==` (two equals signs) to check, not `=` (one equals sign \u2014 that's for storing values). Text like `\"happy\"` needs quotes \u2014 without them, Python looks for a variable called `happy` and won't find one. And `equals` isn't a Python word; only symbols like `==` work."
+      }
+    },
+    {
       "id": "c4",
       "type": "code",
       "title": "Try It: A Favorite Color Checker",

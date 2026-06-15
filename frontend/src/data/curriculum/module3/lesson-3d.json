@@ -29,11 +29,27 @@
       "body": "You can put as many `print()` lines as you like inside an `if` or `else` \u2014 as long as they're all indented. Each indented line runs only for that branch. The moment a line goes back to the edge, it's outside the `if`/`else` and runs always."
     },
     {
+      "id": "c3-nested",
+      "type": "code",
+      "title": "Choices Inside Choices",
+      "summary": "You can put an `if` inside another `if` to ask follow-up questions.",
+      "body": "Sometimes one choice leads to another. You can put an `if` inside another `if` \u2014 just indent the inner one even more.",
+      "codeBlock": "path = input(\"Forest or castle? \")\n\nif path == \"forest\":\n    print(\"You enter the forest...\")\n    creature = input(\"A fox appears. Talk or run? \")\n    if creature == \"talk\":\n        print(\"The fox gives you a magic acorn!\")\n    else:\n        print(\"You run \u2014 but the fox finds you anyway.\")\nelse:\n    print(\"The castle gates creak open...\")",
+      "note": "An `if` inside another one is called a **nested if**. It's how your story branches into more than two paths."
+    },
+    {
+      "id": "c3-errors",
+      "type": "callout",
+      "title": "Errors You Might See",
+      "summary": "Three common errors, three quick fixes.",
+      "body": "Building games means making mistakes. Here's what to look for:\n\n\u2022 `SyntaxError` \u2014 check for a missing `:` after `if` or `else`.\n\u2022 `IndentationError` \u2014 the lines inside an `if` need to be pushed in.\n\u2022 **Silent no-match** \u2014 the player typed `\"Yes\"` but your code checks for `\"yes\"`. Capital letters matter.\n\nErrors aren't failures \u2014 they're Python pointing at the line to look at."
+    },
+    {
       "id": "c4",
       "type": "text",
       "title": "Make It Yours",
       "summary": "The best games have personality. Give yours a setting, some humor, and a twist.",
-      "body": "The starter code is just a starting point. Swap out the story, change the choices, add a character name. The best games have personality \u2014 weird twists, funny moments, unexpected outcomes.\n\nIdeas:\n\u2022 Cave adventure with a sleeping troll\n\u2022 Wizard duel where both spells go wrong\n\u2022 Spaceship with a broken teleporter\n\u2022 A guessing game with a sassy robot\n\nYou're the author. Make it fun."
+      "body": "The starter code is just a starting point. Swap out the story, change the choices, add a character name. The best games have personality \u2014 weird twists, funny moments, unexpected outcomes.\n\nIdeas:\n\u2022 Cave adventure with a sleeping troll\n\u2022 Wizard duel where both spells go wrong\n\u2022 A school day \u2014 pick your class, pick your snack\n\u2022 Cooking challenge \u2014 choose your secret ingredient\n\u2022 Spaceship with a broken teleporter\n\u2022 A guessing game with a sassy robot\n\nYou're the author. Make it fun."
     }
   ],
   "editorPrompt": "Build a tiny game using `input`, variables, `if`, `else`, and `print`.",

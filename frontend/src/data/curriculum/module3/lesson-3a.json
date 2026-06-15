@@ -25,8 +25,15 @@
       "id": "c3",
       "type": "callout",
       "title": "Joining Text Together",
-      "summary": "Use + to stick pieces of text together \u2014 called string concatenation.",
-      "body": "When you write `\"Welcome, \" + name`, Python sticks the two pieces of text together. This is called concatenation *(say it: con-CAT-en-AY-shun)* \u2014 a fancy word for \"gluing strings end-to-end.\"\n\n**Tip:** make sure there's a space before the closing quote so words don't run together."
+      "summary": "Use `+` to stick pieces of text together.",
+      "body": "When you write `\"Welcome, \" + name`, Python sticks the two pieces of text together. This is called **joining strings** \u2014 programmers sometimes say **concatenation** if you want the fancy word.\n\n**Tip:** make sure there's a space before the closing quote so words don't run together."
+    },
+    {
+      "id": "c3-string",
+      "type": "callout",
+      "title": "What `input()` Hands You",
+      "summary": "Whatever the player types comes back as text \u2014 even numbers.",
+      "body": "Whatever the player types comes back as **text** (a string). Even if they type a number like `10`, Python treats it as the text `\"10\"` \u2014 not the number `10`.\n\nThat doesn't matter yet \u2014 for now we're just storing names, foods, colors, and so on. You'll learn how to turn text into real numbers in a later module."
     },
     {
       "id": "c4",
@@ -46,5 +53,5 @@
     "name = input(\"What is your name? \")\nprint(\"Hi \" + name + \"!\")",
     "name = input(\"What is your name? \")\nfood = input(\"Favorite food? \")\nprint(name + \" loves \" + food + \"!\")"
   ],
-  "challenge": "\ud83d\ude80 Dive Deeper: Build a Player Setup screen. Ask for the player's name, their hero title (like `\"wizard\"` or `\"knight\"`), and their special power. Then `print()` a dramatic introduction: `\"Welcome, [name] the [title]! Your power is [power]!\"`"
+  "challenge": "\ud83d\ude80 Dive Deeper: Build a Player Setup screen. Ask for the player's name, their hero title (like `\"wizard\"` or `\"knight\"`), and their special power. Then use `print()` to show something like: `Welcome, Maya the wizard! Your power is invisibility!` \u2014 using the variables you collected."
 }

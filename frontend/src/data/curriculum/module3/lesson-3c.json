@@ -35,7 +35,7 @@
       "summary": "`if`/`else` is the engine behind choose-your-own-adventure stories.",
       "body": "Every choose-your-own-adventure story is secretly just a bunch of `if`/`else` statements! One choice sends you down one path, the other choice sends you down another.",
       "codeBlock": "door = input(\"Choose a door \u2014 left or right? \")\n\nif door == \"left\":\n    print(\"You find a treasure chest!\")\nelse:\n    print(\"A friendly dragon waves hello.\")",
-      "note": "You're writing a game engine now. \ud83c\udfae"
+      "note": "You're writing a game engine now. \ud83c\udfae\n\nNot into dragons? `if`/`else` works for any choice \u2014 `pizza or sushi`, `forest or city`, `morning or night`. The story can be anything."
     }
   ],
   "editorPrompt": "Write an `if`/`else` so the program always has something to say.",
