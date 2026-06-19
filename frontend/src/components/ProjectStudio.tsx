@@ -14,7 +14,7 @@ import { python } from '@codemirror/lang-python'
 import CodeMirror from '@uiw/react-codemirror'
 import { EditorHeader } from './EditorHeader'
 import { OutputPanel } from './OutputPanel'
-import { ContentCardView } from './CardReader'
+import { ContentCardView, ConceptBadges } from './CardReader'
 import { useCallback, useState } from 'react'
 import type { LessonConfig, Milestone } from '../types'
 import { usePythonRunner } from '../hooks/usePythonRunner'
@@ -108,6 +108,8 @@ export function ProjectStudio({ lesson, onComplete, onNext }: Props) {
           <span className="studio-badge">🎨 Project</span>
           <h2>{lesson.title}</h2>
         </div>
+
+        {lesson.conceptBadges && <ConceptBadges badges={lesson.conceptBadges} />}
 
         {/* Project brief from content cards — uses the shared ContentCardView
             so puzzle/runner/code/callout cards all render correctly here too. */}

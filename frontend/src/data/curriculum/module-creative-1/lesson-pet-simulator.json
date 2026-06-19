@@ -4,6 +4,7 @@
   "title": "Pet Simulator",
   "type": "coding",
   "goal": "project",
+  "conceptBadges": ["while", "if/elif/else", "input()", "variables"],
   "content": [
     {
       "id": "c1ps-intro",

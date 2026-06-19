@@ -1812,6 +1812,32 @@ kbd {
   margin-bottom: 0.25rem;
 }
 
+.concept-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+}
+
+.concept-badges__label {
+  color: #486581;
+  font-weight: 600;
+  margin-right: 0.15rem;
+}
+
+.concept-badge {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.7rem;
+  color: #0b7285;
+  background: #e3fafc;
+  border: 1px solid #99e9f2;
+  border-radius: 999px;
+  padding: 0.1rem 0.55rem;
+  white-space: nowrap;
+}
+
 .studio-title h2 {
   margin: 0.25rem 0 0;
   font-size: 1.1rem;

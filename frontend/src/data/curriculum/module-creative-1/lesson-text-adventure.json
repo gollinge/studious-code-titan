@@ -4,7 +4,65 @@
   "title": "Text Adventure",
   "type": "coding",
   "goal": "project",
+  "conceptBadges": ["print()", "input()", "variables", "if/else"],
   "content": [
+    {
+      "id": "c1ta-recall-input",
+      "type": "puzzle",
+      "title": "Quick warmup",
+      "body": "Before you dive in, three quick checks. (Skip if you're feeling solid — these are here for anyone who wants a refresher.)\n\nWhich line asks the player for their name and saves what they typed?",
+      "puzzle": {
+        "id": "c1ta-recall-input-q",
+        "type": "multiple-choice",
+        "question": "",
+        "options": [
+          { "id": "a", "text": "print(\"Your name?\")" },
+          { "id": "b", "text": "name = input(\"Your name? \")" },
+          { "id": "c", "text": "input(name) = \"Your name?\"" },
+          { "id": "d", "text": "ask(\"Your name?\")" }
+        ],
+        "correctOptionId": "b",
+        "explanation": "input() asks the player a question, and the = sign saves their answer into the variable 'name'."
+      }
+    },
+    {
+      "id": "c1ta-recall-ifelse",
+      "type": "puzzle",
+      "title": "Warmup 2 of 3",
+      "body": "Look at this code:\n\n```\nchoice = input(\"left or right? \")\nif choice == \"left\":\n    print(\"You find a key.\")\nelse:\n    print(\"You find a dragon.\")\n```\n\nIf the player types 'left', what does Python print?",
+      "puzzle": {
+        "id": "c1ta-recall-ifelse-q",
+        "type": "multiple-choice",
+        "question": "",
+        "options": [
+          { "id": "a", "text": "You find a key." },
+          { "id": "b", "text": "You find a dragon." },
+          { "id": "c", "text": "Both messages." },
+          { "id": "d", "text": "Nothing." }
+        ],
+        "correctOptionId": "a",
+        "explanation": "When the 'if' test is True, Python runs the indented lines under it and skips the 'else' block entirely."
+      }
+    },
+    {
+      "id": "c1ta-recall-assign",
+      "type": "puzzle",
+      "title": "Warmup 3 of 3",
+      "body": "Which of these stores the number 5 in a variable called health?",
+      "puzzle": {
+        "id": "c1ta-recall-assign-q",
+        "type": "multiple-choice",
+        "question": "",
+        "options": [
+          { "id": "a", "text": "health == 5" },
+          { "id": "b", "text": "5 = health" },
+          { "id": "c", "text": "health = 5" },
+          { "id": "d", "text": "health: 5" }
+        ],
+        "correctOptionId": "c",
+        "explanation": "A single = puts a value into a variable. The == form is for checking if two things are equal — not for assigning."
+      }
+    },
     {
       "id": "c1ta-intro",
       "type": "text",

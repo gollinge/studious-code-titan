@@ -4,6 +4,7 @@
   "title": "Quiz Game",
   "type": "coding",
   "goal": "project",
+  "conceptBadges": ["input()", "if/else", "variables", "score"],
   "content": [
     {
       "id": "c1qg-intro",
