@@ -47,13 +47,22 @@ export function ProjectStudio({ lesson, onComplete, onNext }: Props) {
   const milestones: Milestone[] = lesson.milestones ?? []
   const allMilestonesHit = milestones.length > 0 && completedMilestones.size === milestones.length
 
-  // Detect milestones on the current code string
+  // Detect milestones on the current code string.
+  // `check` may be a string or an array of alternates (any-match).
+  // `notCheck` (optional) excludes hits when any of its substrings are present —
+  // used to keep loose checks like ` = ` from matching `==`.
   const detectMilestones = useCallback((currentCode: string) => {
     if (milestones.length === 0) return
     setCompletedMilestones((prev) => {
       const next = new Set(prev)
       for (const m of milestones) {
-        if (currentCode.includes(m.check)) next.add(m.id)
+        const checks = Array.isArray(m.check) ? m.check : [m.check]
+        if (!checks.some((c) => currentCode.includes(c))) continue
+        const exclusions = m.notCheck
+          ? Array.isArray(m.notCheck) ? m.notCheck : [m.notCheck]
+          : []
+        if (exclusions.some((c) => currentCode.includes(c))) continue
+        next.add(m.id)
       }
       return next
     })

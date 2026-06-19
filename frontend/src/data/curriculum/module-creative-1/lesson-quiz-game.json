@@ -51,7 +51,7 @@
     {
       "id": "increments-score",
       "label": "Adds to score when correct",
-      "check": "score + 1"
+      "check": ["score + 1", "score+1", "score += 1", "score +=1"]
     },
     {
       "id": "prints-score",

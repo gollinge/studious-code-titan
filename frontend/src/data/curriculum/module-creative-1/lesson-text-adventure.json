@@ -41,7 +41,8 @@
     {
       "id": "uses-variable",
       "label": "Stores a value in a variable",
-      "check": " = "
+      "check": ["name =", "choice =", "score ="],
+      "notCheck": ["=="]
     },
     {
       "id": "uses-if",

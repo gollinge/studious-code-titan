@@ -57,7 +57,8 @@
     {
       "id": "changes-stat",
       "label": "Changes a stat variable based on the action",
-      "check": "= "
+      "check": ["happiness =", "hunger =", "energy ="],
+      "notCheck": ["=="]
     }
   ],
   "remixIdeas": [

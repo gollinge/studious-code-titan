@@ -76,12 +76,15 @@ export type ModuleConfig = {
 /**
  * A milestone is a detectable achievement in a ProjectStudio lesson.
  * `check` is tested as a substring of the student's code on each Run.
+ * If `check` is an array, the milestone hits when ANY alternate is present.
+ * If `notCheck` is set, the milestone fails when ANY excluded substring is
+ * present — used to prevent loose checks like ` = ` from matching `==`.
  */
 export type Milestone = {
   id: string
   label: string
-  /** Substring tested against the student's code string on each Run. */
-  check: string
+  check: string | string[]
+  notCheck?: string | string[]
 }
 
 export type LessonConfig = {
@@ -127,6 +130,12 @@ export type LessonConfig = {
   // ProjectStudio fields
   milestones?: Milestone[]
   remixIdeas?: string[]
+  /** Short labels (e.g. 'print()', 'if/else') shown as a badge row above the first card. */
+  conceptBadges?: string[]
+  /** When set, the completion footer shows a "name your project" + save UI. */
+  savePrompt?: string
+  /** 1–3 short questions shown alongside the save prompt. */
+  reflectionPrompts?: string[]
 }
 
 // ── Legacy lesson type (coding lessons, pre-migration) ────────────────────────
