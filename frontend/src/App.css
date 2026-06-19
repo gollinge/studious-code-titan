@@ -1838,6 +1838,56 @@ kbd {
   white-space: nowrap;
 }
 
+.project-save {
+  margin-top: 1.25rem;
+  padding: 1rem;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.project-save__label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  color: #7c2d12;
+  font-weight: 600;
+}
+
+.project-save__input,
+.project-save__textarea {
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: #1f2937;
+  background: #ffffff;
+  border: 1px solid #fdba74;
+  border-radius: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  font-weight: 400;
+}
+
+.project-save__textarea {
+  resize: vertical;
+  min-height: 2.2rem;
+}
+
+.project-save__saved {
+  color: #166534;
+  background: #dcfce7;
+  border-radius: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.project-save__sandbox-btn {
+  align-self: flex-start;
+}
+
 .studio-title h2 {
   margin: 0.25rem 0 0;
   font-size: 1.1rem;

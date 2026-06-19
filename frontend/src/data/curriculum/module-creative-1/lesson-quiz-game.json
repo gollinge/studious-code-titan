@@ -73,5 +73,11 @@
     "Add difficulty levels — easy questions worth 1 point, hard ones worth 3.",
     "Print a different message depending on the final score (\"Amazing!\", \"Not bad!\", \"Try again!\").",
     "Turn it into a 2-player game — ask Player 1 then Player 2 and compare scores."
+  ],
+  "savePrompt": "Name your quiz!",
+  "reflectionPrompts": [
+    "What's your quiz about?",
+    "Which question are you most proud of?",
+    "What would you add next time?"
   ]
 }

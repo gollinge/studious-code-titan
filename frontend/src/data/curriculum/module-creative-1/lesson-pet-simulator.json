@@ -69,5 +69,11 @@
     "Let the player name an action — \"feed fish\" or \"throw ball\" — and parse what they typed.",
     "Add a friendship level that increases when the player makes good choices.",
     "Create a second pet and let the player look after both at the same time."
+  ],
+  "savePrompt": "Give your pet a forever home!",
+  "reflectionPrompts": [
+    "What kind of pet did you build?",
+    "What was the trickiest part?",
+    "What would you add next time?"
   ]
 }

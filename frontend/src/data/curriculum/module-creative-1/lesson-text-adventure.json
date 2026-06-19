@@ -125,5 +125,11 @@
     "Add a secret password that unlocks a hidden ending.",
     "Use a loop so the player can keep making choices until they win or lose.",
     "Add a character (a wizard, a robot, a cat) who gives advice using print()."
+  ],
+  "savePrompt": "Give your adventure a name!",
+  "reflectionPrompts": [
+    "What did you add that made it yours?",
+    "What was hardest?",
+    "What would you add next time?"
   ]
 }
