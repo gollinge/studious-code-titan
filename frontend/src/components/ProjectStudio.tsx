@@ -14,6 +14,7 @@ import { python } from '@codemirror/lang-python'
 import CodeMirror from '@uiw/react-codemirror'
 import { EditorHeader } from './EditorHeader'
 import { OutputPanel } from './OutputPanel'
+import { ContentCardView } from './CardReader'
 import { useCallback, useState } from 'react'
 import type { LessonConfig, Milestone } from '../types'
 import { usePythonRunner } from '../hooks/usePythonRunner'
@@ -108,15 +109,11 @@ export function ProjectStudio({ lesson, onComplete, onNext }: Props) {
           <h2>{lesson.title}</h2>
         </div>
 
-        {/* Project brief from content cards */}
+        {/* Project brief from content cards — uses the shared ContentCardView
+            so puzzle/runner/code/callout cards all render correctly here too. */}
         <div className="studio-brief">
           {lesson.content.map((card) => (
-            <div key={card.id} className="studio-brief-card">
-              {card.title && <h3 className="studio-brief-card__title">{card.title}</h3>}
-              <p className="studio-brief-card__body" style={{ whiteSpace: 'pre-wrap' }}>
-                {card.body}
-              </p>
-            </div>
+            <ContentCardView key={card.id} card={card} />
           ))}
         </div>
 
