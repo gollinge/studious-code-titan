@@ -55,6 +55,7 @@ import lesson5FinalJson from './module5/lesson-final.json'
 import creativeTextAdventureJson from './module-creative-1/lesson-text-adventure.json'
 import creativeQuizGameJson from './module-creative-1/lesson-quiz-game.json'
 import creativePetSimulatorJson from './module-creative-1/lesson-pet-simulator.json'
+import creativeMakeYourOwnJson from './module-creative-1/lesson-make-your-own.json'
 
 // ── Typed exports ─────────────────────────────────────────────────────────────
 
@@ -99,6 +100,7 @@ export const codingLessonConfigs: LessonConfig[] = [
   creativeTextAdventureJson as LessonConfig,
   creativeQuizGameJson as LessonConfig,
   creativePetSimulatorJson as LessonConfig,
+  creativeMakeYourOwnJson as LessonConfig,
 ]
 
 /** All lesson configs combined. */
