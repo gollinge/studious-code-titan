@@ -9,7 +9,7 @@
       "id": "c1ta-intro",
       "type": "text",
       "title": "Your Mission",
-      "body": "Build a text adventure game where the player makes choices that change the story.\n\nYour game should:\n• Welcome the player and ask for their name\n• Describe a place or situation\n• Give the player at least two choices using input()\n• Take a different path depending on what they choose\n• Have a win condition AND a game-over condition"
+      "body": "You're about to build a text adventure — a choose-your-own-story game where the player decides what happens next. Make it about anything you love: a haunted house, a space mission, a dragon hunt, a sneaky cat. You're in charge.\n\nYour game should:\n• Welcome the player and ask for their name\n• Describe a place or situation\n• Give the player at least two choices using input()\n• Take a different path depending on what they choose\n• Have a win condition AND a game-over condition"
     },
     {
       "id": "c1ta-ideas",
@@ -30,7 +30,8 @@
     "Use if/else to send the player on different paths based on their answer.",
     "Add more choices by nesting if statements inside each branch.",
     "Use print() to describe each scene vividly — make the player feel they're really there!",
-    "For extra fun, add a score variable and increase it when the player makes good choices."
+    "For extra fun, add a score variable and increase it when the player makes good choices.",
+    "Full walkthrough — a complete tiny example you can copy and remix:\n\nname = input(\"What is your name? \")\nprint(\"Welcome,\", name)\nchoice = input(\"You see two doors. Red or blue? \")\nif choice == \"red\":\n    print(\"You found treasure! You win!\")\nelse:\n    print(\"You wake up a sleeping dragon. Game over.\")"
   ],
   "milestones": [
     {

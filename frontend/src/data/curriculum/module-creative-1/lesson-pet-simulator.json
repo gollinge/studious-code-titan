@@ -9,7 +9,7 @@
       "id": "c1ps-intro",
       "type": "text",
       "title": "Your Mission",
-      "body": "Build a virtual pet that the player can look after!\n\nYour pet should have stats (hunger, happiness, energy) that change based on what the player does. Use a loop so the player can keep taking care of their pet until it runs out of energy — or becomes perfectly happy!\n\nYour simulator should:\n• Give the pet a name (using input)\n• Track at least one stat (hunger, happiness, or energy)\n• Have a loop that keeps going until a condition is met\n• Offer the player choices for what to do each turn\n• React differently depending on the player's choices"
+      "body": "Time to build a virtual pet of your own — a dragon, a space slime, a wizard kitten, whatever you want. The player has to take care of it, and the choices they make will change how your pet feels.\n\nYour simulator should:\n• Give the pet a name (using input)\n• Track at least one stat (hunger, happiness, or energy)\n• Have a loop that keeps going until a condition is met\n• Offer the player choices for what to do each turn\n• React differently depending on the player's choices"
     },
     {
       "id": "c1ps-ideas",
@@ -31,7 +31,8 @@
     "Use input() each loop turn to ask the player what they want to do.",
     "Use if/elif/else to check what the player typed and change the stat accordingly.",
     "Print the stat after each turn so the player can see how their pet is doing.",
-    "Add a fun message when the player wins or loses at the end of the loop."
+    "Add a fun message when the player wins or loses at the end of the loop.",
+    "Full walkthrough — a complete tiny pet you can copy and remix:\n\nname = input(\"Name your pet: \")\nhappiness = 5\nwhile happiness > 0 and happiness < 10:\n    action = input(\"play or rest? \")\n    if action == \"play\":\n        happiness = happiness + 2\n    else:\n        happiness = happiness - 1\n    print(name, \"feels:\", happiness)\nif happiness >= 10:\n    print(name, \"is perfectly happy!\")\nelse:\n    print(name, \"is sad. Try again!\")"
   ],
   "milestones": [
     {
