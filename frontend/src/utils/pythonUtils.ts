@@ -1,4 +1,7 @@
-export const apiBase = import.meta.env.VITE_API_BASE ?? 'http://127.0.0.1:8000'
+// Dev: Vite (5173) and FastAPI (8000) run separately. Production builds are
+// served by the backend itself (see packaging/windows), so use the same origin.
+export const apiBase =
+  import.meta.env.VITE_API_BASE ?? (import.meta.env.DEV ? 'http://127.0.0.1:8000' : '')
 
 /**
  * Scan `code` for `input(...)` calls and return the prompt strings.

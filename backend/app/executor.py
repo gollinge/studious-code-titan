@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import re
 import subprocess
 import sys
@@ -99,6 +100,14 @@ def _detect_error_type(stderr: str) -> str | None:
     return "ExecutionError"
 
 
+def _child_env() -> dict[str, str]:
+    env = {"PYTHONIOENCODING": "utf-8"}
+    # Windows needs SYSTEMROOT or the child interpreter fails to start.
+    if sys.platform == "win32" and "SYSTEMROOT" in os.environ:
+        env["SYSTEMROOT"] = os.environ["SYSTEMROOT"]
+    return env
+
+
 def execute_python_code(code: str, stdin: str = "") -> ExecutionResult:
     with tempfile.TemporaryDirectory(prefix="study-python-") as temp_dir:
         temp_path = Path(temp_dir)
@@ -116,7 +125,7 @@ def execute_python_code(code: str, stdin: str = "") -> ExecutionResult:
                 text=True,
                 timeout=TIMEOUT_SECONDS,
                 input=stdin,
-                env={"PYTHONIOENCODING": "utf-8"},
+                env=_child_env(),
             )
             stderr = completed.stderr
             return ExecutionResult(
