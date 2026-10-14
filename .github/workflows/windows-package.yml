@@ -1,0 +1,78 @@
+name: Windows package
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    paths:
+      - "packaging/windows/**"
+      - "backend/**"
+      - "frontend/**"
+      - ".github/workflows/windows-package.yml"
+
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: write # only used to attach the zip to a tagged release
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Build package
+        run: python packaging/windows/build.py
+
+      - name: Smoke test the packaged app
+        shell: pwsh
+        run: |
+          $app = "dist/StudiousCodeTitan"
+          $proc = Start-Process -FilePath "$app/python/python.exe" `
+            -ArgumentList "-I", "$app/server/launcher.py", "--no-browser" `
+            -PassThru -NoNewWindow
+          $base = "http://127.0.0.1:8765"
+          for ($i = 0; $i -lt 60; $i++) {
+            try { Invoke-RestMethod "$base/health" | Out-Null; break } catch { Start-Sleep -Milliseconds 500 }
+          }
+          function Run-Code($code, $stdin = "") {
+            $body = @{ code = $code; stdin = $stdin } | ConvertTo-Json
+            Invoke-RestMethod "$base/api/execute" -Method Post -ContentType "application/json" -Body $body
+          }
+          try {
+            $page = Invoke-WebRequest "$base/lessons" -UseBasicParsing
+            if ($page.Content -notmatch '<div id="root">') { throw "Frontend not served" }
+
+            $result = Run-Code "name = input()`nprint('hi', name)" "Ada`n"
+            if ($result.stdout -ne "hi Ada`n") { throw "Unexpected output: $($result | ConvertTo-Json)" }
+
+            $result = Run-Code "import os"
+            if ($result.error_type -ne "ImportError") { throw "Sandbox not enforced: $($result | ConvertTo-Json)" }
+
+            $result = Run-Code "while True: pass"
+            if (-not $result.timed_out) { throw "Timeout not enforced: $($result | ConvertTo-Json)" }
+
+            Write-Host "Smoke test passed"
+          } finally {
+            Stop-Process -Id $proc.Id -Force
+          }
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: StudiousCodeTitan-windows-x64
+          path: dist/StudiousCodeTitan/
+
+      - name: Attach to release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/StudiousCodeTitan-windows-x64.zip

@@ -5,6 +5,14 @@ Most recent decisions are at the top of each section.
 
 ---
 
+## Packaging
+
+### 2026-09-26 — Windows package bundles a portable CPython, not a PyInstaller exe
+**Decision:** Ship Windows as a zip containing the official NuGet CPython, the backend, and the built frontend, started by a `.bat` file. The backend serves the frontend itself on a fixed port (8765).
+**Rationale:** The executor runs student code with `sys.executable -I -S`, which needs a real interpreter with the full standard library — a frozen PyInstaller exe has neither. The NuGet package is official, needs no installer, and can be fetched from any build OS. One origin removes CORS from the packaged setup, and a fixed port keeps `localStorage` progress stable between launches.
+
+---
+
 ## Licensing
 
 ### 2026-05-15 — Switched from GNU GPL to MIT
