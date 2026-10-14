@@ -1,0 +1,64 @@
+{
+  "id": "creative-1-make-your-own",
+  "moduleId": "module-creative-1",
+  "title": "Make Your Own",
+  "type": "coding",
+  "goal": "project",
+  "conceptBadges": ["input()", "if/else", "def (functions)", "variables"],
+  "content": [
+    {
+      "id": "c1myo-intro",
+      "type": "text",
+      "title": "Your project. Your rules.",
+      "body": "You've built three projects. Now it's your turn to invent one.\n\nIt can be a game, a story, a quiz, a simulator, a shop, a sports tracker, a robot helper — anything. There's no single right answer here. You're the one in charge.\n\nThe only things your project needs:\n• A beginning (greet the player or set the scene)\n• At least one place where the player types something with input()\n• At least one function you wrote yourself with def\n• An ending (tell the player how it went)"
+    },
+    {
+      "id": "c1myo-ideas",
+      "type": "callout",
+      "title": "Stuck for ideas?",
+      "body": "• A treasure hunt where the player picks rooms to search\n• A snack vending machine that takes orders and gives change\n• A daily mood tracker that asks how you feel and writes a tiny message back\n• A 'what should I draw?' generator that suggests random subjects\n• A trivia gauntlet that gets harder each round\n• A choose-your-own-restaurant that asks what you want to eat\n• Remix one of your earlier projects — but bigger, weirder, or funnier"
+    },
+    {
+      "id": "c1myo-plan",
+      "type": "callout",
+      "title": "Plan before you code",
+      "body": "Before you start typing, take 30 seconds:\n\n1. What's it called?\n2. What does the player do?\n3. What's the ending?\n\nIf you can answer those three, you have a plan. Now build the smallest version of it. You can always make it bigger."
+    }
+  ],
+  "starterCode": "# 🚀 Make Your Own\n# Anything goes. Start by saying hi to your player.\n",
+  "progressiveHints": [
+    "Start small. What's the simplest version of your idea? Build that first — then add to it.",
+    "Use `def` to wrap one piece of your project in a function, like `def show_menu():` or `def greet_player():`. Functions keep things tidy.",
+    "Full walkthrough — a tiny structural sketch you can copy and remix:\n\ndef intro():\n    print(\"Welcome to my project!\")\n\ndef play():\n    answer = input(\"Ready? \")\n    if answer.lower() == \"yes\":\n        print(\"Let's go!\")\n    else:\n        print(\"Maybe next time.\")\n\ndef ending():\n    print(\"Thanks for playing!\")\n\nintro()\nplay()\nending()"
+  ],
+  "milestones": [
+    {
+      "id": "uses-input",
+      "label": "Asks the player something with input()",
+      "check": "input("
+    },
+    {
+      "id": "uses-function",
+      "label": "Defines your own function with def",
+      "check": "def "
+    },
+    {
+      "id": "uses-conditional",
+      "label": "Uses if to make a decision",
+      "check": "if "
+    }
+  ],
+  "remixIdeas": [
+    "Add a second function — maybe one for the intro and one for the ending.",
+    "Add a score, a stat, or a counter that changes during the game.",
+    "Use a loop so the player can do something more than once.",
+    "Add a twist — a secret answer, a hidden ending, or a surprise message.",
+    "Show your project to someone and ask what they'd add."
+  ],
+  "savePrompt": "Name your creation!",
+  "reflectionPrompts": [
+    "What did you build?",
+    "What was the best part?",
+    "What would you build next?"
+  ]
+}

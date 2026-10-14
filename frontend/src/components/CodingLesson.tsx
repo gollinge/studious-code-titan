@@ -141,6 +141,7 @@ export function CodingLesson({ lesson, moduleTitle, onComplete, onNext }: Props)
         <CardReader
           cards={cards}
           cardIndex={cardIndex}
+          conceptBadges={lesson.conceptBadges}
           nextLabel={isLastCard ? 'Try it →' : 'Next →'}
           onPrev={() => setCardIndex((i) => i - 1)}
           onNext={handleCardNext}

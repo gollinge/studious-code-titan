@@ -7,6 +7,9 @@
 
 ## Backlog
 
+### Module 6 — "My Projects" gallery view
+- [ ] **My Projects view** — Module 6 projects save to `localStorage` (key `studious-projects`) via the save/reflection footer (Phase 8 of the Module 6 implementation plan). There is currently no UI to browse or re-open saved projects. Build a "My Projects" surface — likely a section on the home screen or a top-nav entry — that lists saved projects by name + timestamp and offers "Open in Sandbox" / "Delete". Out of scope for the initial Module 6 implementation; ship after the save flow is live.
+
 ### Editor
 - [ ] **⌘+Enter keyboard shortcut** — currently removed. CodeMirror keymap extension approach was unreliable (dropped on dynamic reconfiguration); `onKeyDown` DOM approach also failed. Needs investigation — possibly requires CodeMirror `Compartment` for stable keymap, or a global `document` keydown listener scoped to when the editor zone has focus.
 - [x] **"Next Lesson →" button** — appears in lesson view only after lesson is marked complete; advances to the next lesson in the module

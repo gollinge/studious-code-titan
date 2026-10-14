@@ -2,10 +2,11 @@
   "id": "module-creative-1",
   "title": "Creative Projects I",
   "type": "coding",
-  "goal": "Students build three open-ended projects — a text adventure, a quiz game, and a pet simulator — applying variables, input, conditionals, loops, and functions in creative, student-driven ways.",
+  "goal": "Students build four open-ended projects — a text adventure, a quiz game, a pet simulator, and a wide-open 'make your own' capstone — applying variables, input, conditionals, loops, and functions in creative, student-driven ways. Scaffolding decreases from project to project, ending with a near-blank slate.",
   "lessonIds": [
     "creative-1-text-adventure",
     "creative-1-quiz-game",
-    "creative-1-pet-simulator"
+    "creative-1-pet-simulator",
+    "creative-1-make-your-own"
   ]
 }

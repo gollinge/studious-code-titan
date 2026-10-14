@@ -4,12 +4,13 @@
   "title": "Pet Simulator",
   "type": "coding",
   "goal": "project",
+  "conceptBadges": ["while", "if/elif/else", "input()", "variables"],
   "content": [
     {
       "id": "c1ps-intro",
       "type": "text",
       "title": "Your Mission",
-      "body": "Build a virtual pet that the player can look after!\n\nYour pet should have stats (hunger, happiness, energy) that change based on what the player does. Use a loop so the player can keep taking care of their pet until it runs out of energy — or becomes perfectly happy!\n\nYour simulator should:\n• Give the pet a name (using input)\n• Track at least one stat (hunger, happiness, or energy)\n• Have a loop that keeps going until a condition is met\n• Offer the player choices for what to do each turn\n• React differently depending on the player's choices"
+      "body": "Time to build a virtual pet of your own — a dragon, a space slime, a wizard kitten, whatever you want. The player has to take care of it, and the choices they make will change how your pet feels.\n\nYour simulator should:\n• Give the pet a name (using input)\n• Track at least one stat (hunger, happiness, or energy)\n• Have a loop that keeps going until a condition is met\n• Offer the player choices for what to do each turn\n• React differently depending on the player's choices"
     },
     {
       "id": "c1ps-ideas",
@@ -24,14 +25,15 @@
       "body": "happiness = 5\n\nwhile happiness > 0 and happiness < 10:\n    action = input(\"What do you do? (play/feed/sleep) \")\n    if action == \"play\":\n        happiness = happiness + 2\n        print(\"Your pet is happy! Happiness:\", happiness)\n    elif action == \"feed\":\n        happiness = happiness + 1\n    else:\n        print(\"Your pet is confused.\")"
     }
   ],
-  "starterCode": "# 🐾 Pet Simulator\n# Take care of your virtual pet!\n\nname = input(\"What will you name your pet? \")\nprint(\"You got a new pet called\", name, \"!\")\n\nhunger = 5   # 0 = full, 10 = very hungry\nhappiness = 5  # 0 = sad, 10 = very happy\n\nprint(name, \"starts with hunger:\", hunger, \"and happiness:\", happiness)\n\n# Game loop — keep going until the pet is too sad or perfectly happy\nwhile happiness > 0 and happiness < 10:\n    print(\"\\nWhat do you do?\")\n    action = input(\"Type 'feed', 'play', or 'rest': \")\n\n    if action == \"feed\":\n        hunger = hunger - 2\n        print(name, \"loves the food! Hunger:\", hunger)\n    elif action == \"play\":\n        happiness = happiness + 2\n        hunger = hunger + 1\n        print(name, \"had fun! Happiness:\", happiness)\n    elif action == \"rest\":\n        happiness = happiness + 1\n        print(name, \"had a nap. Happiness:\", happiness)\n    else:\n        print(\"Hmm,\", name, \"doesn't understand that.\")\n\nif happiness >= 10:\n    print(\"\\n🎉\", name, \"is perfectly happy! You win!\")\nelse:\n    print(\"\\n😢\", name, \"is too sad. Game over.\")\n",
+  "starterCode": "# 🐾 Pet Simulator\n# Build a pet the player can take care of!\n\nname = input(\"What will you name your pet? \")\nhappiness = 5\nprint(name, \"starts with happiness:\", happiness)\n\nwhile happiness > 0 and happiness < 10:\n    action = input(\"What do you do? \")\n    # ↑ What can the player do each turn?\n    #   Use if / elif to change `happiness` based on the action.\n    print(name, \"now has happiness:\", happiness)\n\n# Once the loop ends, tell the player how it went.\n",
   "progressiveHints": [
     "Start by choosing one stat to track (e.g. happiness). Set it to a starting number like 5.",
     "Use a while loop that keeps going as long as the stat is between 0 and 10.",
     "Use input() each loop turn to ask the player what they want to do.",
     "Use if/elif/else to check what the player typed and change the stat accordingly.",
     "Print the stat after each turn so the player can see how their pet is doing.",
-    "Add a fun message when the player wins or loses at the end of the loop."
+    "Add a fun message when the player wins or loses at the end of the loop.",
+    "Full walkthrough — a complete tiny pet you can copy and remix:\n\nname = input(\"Name your pet: \")\nhappiness = 5\nwhile happiness > 0 and happiness < 10:\n    action = input(\"play or rest? \")\n    if action == \"play\":\n        happiness = happiness + 2\n    else:\n        happiness = happiness - 1\n    print(name, \"feels:\", happiness)\nif happiness >= 10:\n    print(name, \"is perfectly happy!\")\nelse:\n    print(name, \"is sad. Try again!\")"
   ],
   "milestones": [
     {
@@ -57,7 +59,8 @@
     {
       "id": "changes-stat",
       "label": "Changes a stat variable based on the action",
-      "check": "= "
+      "check": ["happiness =", "hunger =", "energy ="],
+      "notCheck": ["=="]
     }
   ],
   "remixIdeas": [
@@ -66,5 +69,11 @@
     "Let the player name an action — \"feed fish\" or \"throw ball\" — and parse what they typed.",
     "Add a friendship level that increases when the player makes good choices.",
     "Create a second pet and let the player look after both at the same time."
+  ],
+  "savePrompt": "Give your pet a forever home!",
+  "reflectionPrompts": [
+    "What kind of pet did you build?",
+    "What was the trickiest part?",
+    "What would you add next time?"
   ]
 }

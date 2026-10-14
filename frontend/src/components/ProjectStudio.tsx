@@ -12,12 +12,37 @@
 
 import { python } from '@codemirror/lang-python'
 import CodeMirror from '@uiw/react-codemirror'
+import { useNavigate } from 'react-router-dom'
 import { EditorHeader } from './EditorHeader'
 import { OutputPanel } from './OutputPanel'
+import { ContentCardView, ConceptBadges } from './CardReader'
 import { useCallback, useState } from 'react'
 import type { LessonConfig, Milestone } from '../types'
 import { usePythonRunner } from '../hooks/usePythonRunner'
 import { extractInputPrompts } from '../utils/pythonUtils'
+
+const SAVED_PROJECTS_KEY = 'studious-projects'
+const SANDBOX_SEED_KEY = 'sandbox-seed'
+
+type SavedProject = {
+  projectId: string
+  lessonId: string
+  name: string
+  code: string
+  reflections: string[]
+  savedAt: string
+}
+
+function saveProject(record: SavedProject) {
+  try {
+    const raw = localStorage.getItem(SAVED_PROJECTS_KEY)
+    const list: SavedProject[] = raw ? JSON.parse(raw) : []
+    list.push(record)
+    localStorage.setItem(SAVED_PROJECTS_KEY, JSON.stringify(list))
+  } catch {
+    // localStorage full or disabled — silently skip. The kid's code is still in the editor.
+  }
+}
 
 // ── Props ─────────────────────────────────────────────────────────────────────
 
@@ -32,6 +57,7 @@ type Props = {
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export function ProjectStudio({ lesson, onComplete, onNext }: Props) {
+  const navigate = useNavigate()
   const [code, setCode] = useState(lesson.starterCode ?? '')
   const [isCompleted, setIsCompleted] = useState(false)
   const [showHints, setShowHints] = useState(false)
@@ -44,16 +70,56 @@ export function ProjectStudio({ lesson, onComplete, onNext }: Props) {
   const [pendingInputs, setPendingInputs] = useState<string[]>([])
   const [inputValues, setInputValues] = useState<Record<number, string>>({})
 
+  // save / reflection state (only used when lesson.savePrompt is set)
+  const reflectionPrompts = lesson.reflectionPrompts ?? []
+  const [projectName, setProjectName] = useState('')
+  const [reflections, setReflections] = useState<string[]>(
+    () => reflectionPrompts.map(() => ''),
+  )
+  const [savedAt, setSavedAt] = useState<string | null>(null)
+
+  const handleSave = () => {
+    const trimmedName = projectName.trim() || `${lesson.title} project`
+    const record: SavedProject = {
+      projectId: `${lesson.id}-${Date.now()}`,
+      lessonId: lesson.id,
+      name: trimmedName,
+      code,
+      reflections,
+      savedAt: new Date().toISOString(),
+    }
+    saveProject(record)
+    setSavedAt(record.savedAt)
+  }
+
+  const handleContinueInSandbox = () => {
+    try {
+      sessionStorage.setItem(SANDBOX_SEED_KEY, code)
+    } catch {
+      // sessionStorage disabled — sandbox will just open with its prior content.
+    }
+    navigate('/sandbox')
+  }
+
   const milestones: Milestone[] = lesson.milestones ?? []
   const allMilestonesHit = milestones.length > 0 && completedMilestones.size === milestones.length
 
-  // Detect milestones on the current code string
+  // Detect milestones on the current code string.
+  // `check` may be a string or an array of alternates (any-match).
+  // `notCheck` (optional) excludes hits when any of its substrings are present —
+  // used to keep loose checks like ` = ` from matching `==`.
   const detectMilestones = useCallback((currentCode: string) => {
     if (milestones.length === 0) return
     setCompletedMilestones((prev) => {
       const next = new Set(prev)
       for (const m of milestones) {
-        if (currentCode.includes(m.check)) next.add(m.id)
+        const checks = Array.isArray(m.check) ? m.check : [m.check]
+        if (!checks.some((c) => currentCode.includes(c))) continue
+        const exclusions = m.notCheck
+          ? Array.isArray(m.notCheck) ? m.notCheck : [m.notCheck]
+          : []
+        if (exclusions.some((c) => currentCode.includes(c))) continue
+        next.add(m.id)
       }
       return next
     })
@@ -99,15 +165,13 @@ export function ProjectStudio({ lesson, onComplete, onNext }: Props) {
           <h2>{lesson.title}</h2>
         </div>
 
-        {/* Project brief from content cards */}
+        {lesson.conceptBadges && <ConceptBadges badges={lesson.conceptBadges} />}
+
+        {/* Project brief from content cards — uses the shared ContentCardView
+            so puzzle/runner/code/callout cards all render correctly here too. */}
         <div className="studio-brief">
           {lesson.content.map((card) => (
-            <div key={card.id} className="studio-brief-card">
-              {card.title && <h3 className="studio-brief-card__title">{card.title}</h3>}
-              <p className="studio-brief-card__body" style={{ whiteSpace: 'pre-wrap' }}>
-                {card.body}
-              </p>
-            </div>
+            <ContentCardView key={card.id} card={card} />
           ))}
         </div>
 
@@ -227,6 +291,59 @@ export function ProjectStudio({ lesson, onComplete, onNext }: Props) {
 
           {!output && !pendingInputs.length && (
             <p className="output-empty">Run your code to see the output here.</p>
+          )}
+
+          {/* Save + reflection panel — only when the lesson asks for it. */}
+          {isCompleted && lesson.savePrompt && (
+            <div className="project-save">
+              <h3 className="studio-section-title">💾 {lesson.savePrompt}</h3>
+              <label className="project-save__label">
+                Project name
+                <input
+                  type="text"
+                  className="project-save__input"
+                  value={projectName}
+                  onChange={(e) => setProjectName(e.target.value)}
+                  placeholder={`My ${lesson.title}`}
+                  disabled={savedAt !== null}
+                />
+              </label>
+
+              {reflectionPrompts.map((prompt, i) => (
+                <label key={i} className="project-save__label">
+                  {prompt}
+                  <textarea
+                    className="project-save__textarea"
+                    value={reflections[i] ?? ''}
+                    onChange={(e) =>
+                      setReflections((prev) => {
+                        const next = [...prev]
+                        next[i] = e.target.value
+                        return next
+                      })
+                    }
+                    rows={2}
+                    disabled={savedAt !== null}
+                  />
+                </label>
+              ))}
+
+              {savedAt === null ? (
+                <button className="primary" onClick={handleSave}>
+                  Save my project ✓
+                </button>
+              ) : (
+                <p className="project-save__saved">✅ Saved! You can come back to this anytime.</p>
+              )}
+
+              <button
+                type="button"
+                className="secondary project-save__sandbox-btn"
+                onClick={handleContinueInSandbox}
+              >
+                🧪 Continue in Sandbox →
+              </button>
+            </div>
           )}
         </div>
 

@@ -7,11 +7,24 @@ import { usePythonRunner } from '../hooks/usePythonRunner'
 import { OutputPanel } from './OutputPanel'
 
 const SANDBOX_CODE_KEY = 'python-play-lab.sandbox.code'
+const SANDBOX_SEED_KEY = 'sandbox-seed'
 const DEFAULT_SANDBOX_CODE = sandboxExamples[0].code
+
+// One-shot pickup: if ProjectStudio handed us code via sessionStorage, use it
+// as the starting content (and clear the seed so a refresh doesn't re-apply).
+function readAndClearSandboxSeed(): string | null {
+  try {
+    const seed = sessionStorage.getItem(SANDBOX_SEED_KEY)
+    if (seed !== null) sessionStorage.removeItem(SANDBOX_SEED_KEY)
+    return seed
+  } catch {
+    return null
+  }
+}
 
 export function SandboxView() {
   const [sandboxCode, setSandboxCode] = useState<string>(
-    () => localStorage.getItem(SANDBOX_CODE_KEY) ?? DEFAULT_SANDBOX_CODE,
+    () => readAndClearSandboxSeed() ?? localStorage.getItem(SANDBOX_CODE_KEY) ?? DEFAULT_SANDBOX_CODE,
   )
 
   const { isRunning, output, setOutput, outputRef, runCode } = usePythonRunner({

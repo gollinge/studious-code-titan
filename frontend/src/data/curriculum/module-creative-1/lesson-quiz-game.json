@@ -4,24 +4,31 @@
   "title": "Quiz Game",
   "type": "coding",
   "goal": "project",
+  "conceptBadges": ["input()", "if/else", "variables", "score"],
   "content": [
     {
       "id": "c1qg-intro",
       "type": "text",
       "title": "Your Mission",
-      "body": "Build a quiz game with at least three questions. Keep track of the player's score and tell them how they did at the end.\n\nYour game should:\n• Ask the player at least 3 questions using input()\n• Check if each answer is correct using if/else\n• Add 1 to the score for each correct answer\n• Print the final score at the end"
+      "body": "You're about to build a quiz of anything you love — Pokémon, your family, soccer trivia, dinosaurs, world capitals, you pick. Let's go!\n\nYour game should:\n• Ask the player at least 3 questions using input()\n• Check if each answer is correct using if/else\n• Add 1 to the score for each correct answer\n• Print the final score at the end"
     },
     {
       "id": "c1qg-ideas",
       "type": "callout",
       "title": "Quiz Ideas",
-      "body": "• A quiz about your favourite animal, film, or sport\n• A maths challenge (\"What is 7 × 8?\")\n• A geography quiz (\"What is the capital of France?\")\n• A Minecraft or Pokemon trivia quiz\n\nPick a topic you love!"
+      "body": "• A quiz about your favorite animal, movie, or sport\n• A math challenge (\"What is 7 × 8?\")\n• A geography quiz (\"What's the largest ocean?\")\n• A Minecraft or Pokémon trivia quiz\n\nPick a topic you love!"
+    },
+    {
+      "id": "c1qg-lower-tip",
+      "type": "callout",
+      "title": "Quick trick: .lower()",
+      "body": "Quick trick: writing `answer.lower()` turns the player's text all lowercase. That way 'Blue', 'BLUE', and 'blue' all count as right — players don't get punished for capital letters."
     },
     {
       "id": "c1qg-patterns",
       "type": "code",
       "title": "Useful Patterns",
-      "body": "score = 0\n\nanswer = input(\"What colour is the sky? \")\nif answer.lower() == \"blue\":\n    print(\"Correct! +1\")\n    score = score + 1\nelse:\n    print(\"Not quite. The answer is blue.\")\n\nprint(\"Your score:\", score)"
+      "body": "score = 0\n\nanswer = input(\"What color is the sky? \")\nif answer.lower() == \"blue\":\n    print(\"Correct! +1\")\n    score = score + 1\nelse:\n    print(\"Not quite. The answer is blue.\")\n\nprint(\"Your score:\", score)"
     }
   ],
   "starterCode": "# 🧠 Quiz Game\n# Build your quiz here!\n\nscore = 0\nprint(\"Welcome to the Quiz Game!\")\n\n# Question 1\nq1 = input(\"Question 1: What planet do we live on? \")\nif q1.lower() == \"earth\":\n    print(\"Correct! +1\")\n    score = score + 1\nelse:\n    print(\"Not quite! The answer is Earth.\")\n\n# Question 2\nq2 = input(\"Question 2: How many days are in a week? \")\nif q2 == \"7\":\n    print(\"Correct! +1\")\n    score = score + 1\nelse:\n    print(\"Not quite! The answer is 7.\")\n\n# Add more questions here!\n\nprint(\"\\nGame over! Your score:\", score, \"out of 2\")\n",
@@ -30,7 +37,8 @@
     "Use input() to ask a question and store the answer in a variable.",
     "Use if answer == \"correct answer\" to check if they got it right.",
     "Use answer.lower() so the player can type 'Blue' or 'BLUE' and still get credit.",
-    "Copy your question pattern to add more questions — just change the question and the correct answer."
+    "Copy your question pattern to add more questions — just change the question and the correct answer.",
+    "Full walkthrough — a complete tiny quiz you can copy and remix:\n\nscore = 0\nq1 = input(\"What is 2 + 2? \")\nif q1 == \"4\":\n    print(\"Correct!\")\n    score = score + 1\nq2 = input(\"What color is grass? \")\nif q2.lower() == \"green\":\n    print(\"Correct!\")\n    score = score + 1\nprint(\"Final score:\", score)"
   ],
   "milestones": [
     {
@@ -51,7 +59,7 @@
     {
       "id": "increments-score",
       "label": "Adds to score when correct",
-      "check": "score + 1"
+      "check": ["score + 1", "score+1", "score += 1", "score +=1"]
     },
     {
       "id": "prints-score",
@@ -60,10 +68,16 @@
     }
   ],
   "remixIdeas": [
-    "Add a 4th and 5th question on your favourite topic.",
+    "Add a 4th and 5th question on your favorite topic.",
     "Use a loop to repeat questions until the player gets them right.",
     "Add difficulty levels — easy questions worth 1 point, hard ones worth 3.",
     "Print a different message depending on the final score (\"Amazing!\", \"Not bad!\", \"Try again!\").",
     "Turn it into a 2-player game — ask Player 1 then Player 2 and compare scores."
+  ],
+  "savePrompt": "Name your quiz!",
+  "reflectionPrompts": [
+    "What's your quiz about?",
+    "Which question are you most proud of?",
+    "What would you add next time?"
   ]
 }

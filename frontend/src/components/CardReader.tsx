@@ -71,6 +71,21 @@ export function ContentCardView({ card }: { card: ContentCard }) {
   )
 }
 
+// ── ConceptBadges ──────────────────────────────────────────────────────────────
+
+/** Small pill row showing the concepts a lesson uses (e.g. 'print()', 'while'). */
+export function ConceptBadges({ badges }: { badges: string[] }) {
+  if (badges.length === 0) return null
+  return (
+    <div className="concept-badges" aria-label="Concepts you'll use">
+      <span className="concept-badges__label">You'll use:</span>
+      {badges.map((b) => (
+        <span key={b} className="concept-badge">{b}</span>
+      ))}
+    </div>
+  )
+}
+
 // ── CardReader ─────────────────────────────────────────────────────────────────
 
 type CardReaderProps = {
@@ -80,6 +95,8 @@ type CardReaderProps = {
   nextLabel: string
   /** Optional hint shown above the next button on the last card. */
   hintText?: string
+  /** Optional concept pills shown above the card stack. */
+  conceptBadges?: string[]
   onPrev: () => void
   onNext: () => void
 }
@@ -89,6 +106,7 @@ export function CardReader({
   cardIndex,
   nextLabel,
   hintText,
+  conceptBadges,
   onPrev,
   onNext,
 }: CardReaderProps) {
@@ -103,6 +121,7 @@ export function CardReader({
       </div>
 
       <div className="card-reader">
+        {conceptBadges && <ConceptBadges badges={conceptBadges} />}
         <div className="card-progress-dots">
           {cards.map((_, i) => (
             <span

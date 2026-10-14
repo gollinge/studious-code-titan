@@ -69,6 +69,7 @@ export function ReadingLesson({ lesson, onComplete, onNext }: Props) {
         <CardReader
           cards={cards}
           cardIndex={cardIndex}
+          conceptBadges={lesson.conceptBadges}
           nextLabel={
             isLastCard
               ? quiz.length > 0
